@@ -16,10 +16,15 @@
 # limitations under the License.
 
 find_package(WPEFramework)
-find_package(${NAMESPACE}Protocols REQUIRED)
 find_package(CompileSettingsDebug CONFIG REQUIRED)
 find_package(ProxyStubGenerator REQUIRED)
 find_package(JsonGenerator REQUIRED)
+
+find_package(${NAMESPACE}Core)
+find_package(${NAMESPACE}Tracing)
+find_package(${NAMESPACE}COM QUIET)
+find_package(${NAMESPACE}WebSocket QUIET)
+find_package(${NAMESPACE}Protocols QUIET)
 
 option(PROTOCOLS "Include the protocols library." ON)
 
@@ -33,9 +38,10 @@ file(GLOB JSON_FILE "${CMAKE_CURRENT_SOURCE_DIR}/json/*.json")
 list(APPEND PUBLIC_HEADERS Module.h)
 list(APPEND PUBLIC_HEADERS definitions.h)
 
-ProxyStubGenerator(INPUT "${CMAKE_CURRENT_SOURCE_DIR}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/generated/proxystubs" INCLUDE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/..)
-JsonGenerator(CODE INPUT ${JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated/json" INCLUDE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/..)
-JsonGenerator(CODE INPUT "${CMAKE_CURRENT_SOURCE_DIR}/I*.h" OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated/json" INCLUDE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/..)
+set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
+ProxyStubGenerator(INPUT "${CMAKE_CURRENT_SOURCE_DIR}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/generated/proxystubs" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
+JsonGenerator(CODE INPUT ${JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated/json" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
+JsonGenerator(CODE INPUT "${CMAKE_CURRENT_SOURCE_DIR}/I*.h" OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated/json" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
 file(GLOB PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/proxystubs/ProxyStubs*.cpp")
 add_library(${TargetMarshalling} SHARED 
