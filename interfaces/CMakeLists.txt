@@ -15,33 +15,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-find_package(WPEFramework)
-find_package(CompileSettingsDebug CONFIG REQUIRED)
-find_package(ProxyStubGenerator REQUIRED)
-find_package(JsonGenerator REQUIRED)
+cmake_minimum_required(VERSION 3.3)
 
-find_package(${NAMESPACE}Core)
-find_package(${NAMESPACE}Tracing)
-find_package(${NAMESPACE}COM QUIET)
-find_package(${NAMESPACE}WebSocket QUIET)
-find_package(${NAMESPACE}Protocols QUIET)
-
-option(PROTOCOLS "Include the protocols library." ON)
+project(Interfaces)
 
 set(TargetMarshalling ${NAMESPACE}Marshallings)
-set(TargetDefinitions ${NAMESPACE}Definitions)
-string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
-
-file(GLOB PUBLIC_HEADERS I*.h)
-file(GLOB JSON_FILE "${CMAKE_CURRENT_SOURCE_DIR}/json/*.json")
-
-list(APPEND PUBLIC_HEADERS Module.h)
-list(APPEND PUBLIC_HEADERS definitions.h)
 
 set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
 ProxyStubGenerator(INPUT "${CMAKE_CURRENT_SOURCE_DIR}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/generated/proxystubs" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
-JsonGenerator(CODE INPUT ${JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated/json" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
-JsonGenerator(CODE INPUT "${CMAKE_CURRENT_SOURCE_DIR}/I*.h" OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated/json" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
+
+file(GLOB INTERFACES_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/I*.h")
+list(APPEND INTERFACES_HEADERS Module.h)
 
 file(GLOB PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/proxystubs/ProxyStubs*.cpp")
 add_library(${TargetMarshalling} SHARED 
@@ -50,14 +34,6 @@ add_library(${TargetMarshalling} SHARED
         )
 
 target_include_directories(${TargetMarshalling} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
-
-file(GLOB JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/json/JsonEnum*.cpp")
-file(GLOB JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/json/J*.h")
-
-add_library(${TargetDefinitions} SHARED
-        Definitions.cpp
-        ${JSON_ENUM_SOURCES}
-        )
 
 target_link_libraries(${TargetMarshalling}
         PRIVATE
@@ -70,14 +46,6 @@ target_compile_definitions(${TargetMarshalling}
         PUBLIC
             PROXYSTUB_BUILDING=1)
 
-target_link_libraries(${TargetDefinitions}
-        PUBLIC
-          ${NAMESPACE}Core::${NAMESPACE}Core
-          ${NAMESPACE}Tracing::${NAMESPACE}Tracing
-        PRIVATE
-          CompileSettingsDebug::CompileSettingsDebug
-        )
-
 if (PROTOCOLS)
     target_link_libraries(${TargetMarshalling}
             PRIVATE
@@ -86,7 +54,6 @@ if (PROTOCOLS)
 else()
     target_link_libraries(${TargetMarshalling}
             PRIVATE
-              ${NAMESPACE}WebSocket::${NAMESPACE}WebSocket
               ${NAMESPACE}COM::${NAMESPACE}COM
             )
 endif ()
@@ -99,32 +66,7 @@ set_target_properties(${TargetMarshalling} PROPERTIES
         SOVERSION ${VERSION_MAJOR}
         )
 
-set_target_properties(${TargetDefinitions} PROPERTIES
-        CXX_STANDARD 11
-        CXX_STANDARD_REQUIRED YES
-        FRAMEWORK FALSE
-        VERSION ${VERSION}
-        SOVERSION ${VERSION_MAJOR}
-        PUBLIC_HEADER "${PUBLIC_HEADERS}" # specify the public headers
-        )
-
-target_include_directories(${TargetDefinitions}
-        PUBLIC
-          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../>
-          $<INSTALL_INTERFACE:include/${NAMESPACE}>
-          $<INSTALL_INTERFACE:include/${NAMESPACE}/interfaces>
-        )
-
-install(
-        TARGETS ${TargetDefinitions} EXPORT ${TargetDefinitions}Targets  # for downstream dependencies
-        ARCHIVE DESTINATION lib/ COMPONENT libs      # static lib
-        LIBRARY DESTINATION lib/ COMPONENT libs      # shared lib
-        RUNTIME DESTINATION bin COMPONENT libs      # binaries
-        FRAMEWORK DESTINATION bin/ COMPONENT libs    # for mac
-        PUBLIC_HEADER DESTINATION include/${NAMESPACE}/interfaces COMPONENT devel   # headers for mac (note the different component -> different package)
-        INCLUDES DESTINATION include/${NAMESPACE}   # default include path
-)
+string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
 
 install(
         TARGETS ${TargetMarshalling} EXPORT ${TargetMarshalling}Targets  # for downstream dependencies
@@ -132,13 +74,6 @@ install(
 )
 
 install(
-        FILES ${JSON_LINK_HEADERS}
-        DESTINATION include/${NAMESPACE}/interfaces/json
+        FILES ${INTERFACES_HEADERS}
+        DESTINATION include/${NAMESPACE}/interfaces
 )
-
-InstallPackageConfig(
-        TARGETS ${TargetDefinitions}
-        DESCRIPTION "Share lookup tables associated with interface enums."
-        )
-
-InstallCMakeConfig(TARGETS ${TargetDefinitions})

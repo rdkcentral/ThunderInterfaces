@@ -28,8 +28,21 @@ set(NAMESPACE ${PROJECT_NAME} CACHE STRING "Namespace of the project")
 
 message(STATUS "Setting up ${PROJECT_NAME} v${VERSION}")
 
+find_package(WPEFramework)
+find_package(CompileSettingsDebug CONFIG REQUIRED)
+find_package(ProxyStubGenerator REQUIRED)
+find_package(JsonGenerator REQUIRED)
+find_package(${NAMESPACE}Core)
+find_package(${NAMESPACE}Tracing)
+find_package(${NAMESPACE}Protocols QUIET)
+find_package(${NAMESPACE}COM QUIET)
+find_package(${NAMESPACE}WebSocket QUIET)
+
+option(PROTOCOLS "Include the protocols library." ON)
+
 if (BUILD_REFERENCE)
     add_definitions (-DBUILD_REFERENCE=${BUILD_REFERENCE})
 endif()
 
 add_subdirectory(interfaces)
+add_subdirectory(definitions)
