@@ -21,7 +21,7 @@ project(Definitions)
 
 set(Target ${NAMESPACE}Definitions)
 
-file(GLOB JSON_FILE      "${CMAKE_CURRENT_SOURCE_DIR}/../json/*.json")
+file(GLOB JSON_FILE      "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/*.json")
 file(GLOB INTERFACE_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/I*.h")
 
 list(APPEND PUBLIC_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/definitions.h)
