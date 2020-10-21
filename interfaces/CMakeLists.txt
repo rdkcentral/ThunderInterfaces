@@ -42,10 +42,6 @@ target_link_libraries(${TargetMarshalling}
           CompileSettingsDebug::CompileSettingsDebug
         )
 
-target_compile_definitions(${TargetMarshalling}
-        PUBLIC
-            PROXYSTUB_BUILDING=1)
-
 if (PROTOCOLS)
     target_link_libraries(${TargetMarshalling}
             PRIVATE

@@ -36,9 +36,3 @@
 // in the file calls Ids.h, please extend it with your requried interface number
 // if you are creating a new interface.
 #include "Ids.h"
-
-#if defined(PROXYSTUB_BUILDING)
-#include <com/com.h>
-#endif
-
-
