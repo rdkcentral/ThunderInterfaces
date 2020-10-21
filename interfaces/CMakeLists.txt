@@ -22,12 +22,12 @@ project(Interfaces)
 set(TargetMarshalling ${NAMESPACE}Marshallings)
 
 set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
-ProxyStubGenerator(INPUT "${CMAKE_CURRENT_SOURCE_DIR}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/generated/proxystubs" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
+ProxyStubGenerator(INPUT "${CMAKE_CURRENT_SOURCE_DIR}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
 file(GLOB INTERFACES_HEADERS I*.h)
 list(APPEND INTERFACES_HEADERS Module.h)
 
-file(GLOB PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/proxystubs/ProxyStubs*.cpp")
+file(GLOB PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/ProxyStubs*.cpp")
 add_library(${TargetMarshalling} SHARED 
         Module.cpp
         ${PROXY_STUB_SOURCES}

@@ -1,4 +1,4 @@
- /*
+/*
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
@@ -17,6 +17,31 @@
  * limitations under the License.
  */
 
-#include "Module.h"
+#pragma once
 
-MODULE_NAME_DECLARATION(BUILD_REFERENCE)
+#ifndef MODULE_NAME
+#define MODULE_NAME Definitions
+#endif
+
+#include <core/core.h>
+
+#if defined(__WINDOWS__) 
+#if defined(DEFINITIONS_EXPORTS)
+#undef EXTERNAL
+#define EXTERNAL EXTERNAL_EXPORT
+#else
+#pragma comment(lib, "definitions.lib")
+#endif
+#endif
+
+#include <interfaces/IComposition.h>
+#include <interfaces/IStream.h>
+#include <interfaces/IVoiceHandler.h>
+#include <interfaces/IPower.h>
+
+namespace WPEFramework {
+
+	ENUM_CONVERSION_HANDLER(Exchange::IComposition::ScreenResolution);
+	ENUM_CONVERSION_HANDLER(Exchange::IStream::streamtype);
+	ENUM_CONVERSION_HANDLER(Exchange::IStream::state);
+}

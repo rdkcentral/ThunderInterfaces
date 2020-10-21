@@ -24,14 +24,12 @@ set(Target ${NAMESPACE}Definitions)
 file(GLOB JSON_FILE      "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/*.json")
 file(GLOB INTERFACE_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/I*.h")
 
-list(APPEND PUBLIC_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/definitions.h)
-
 set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
-JsonGenerator(CODE INPUT ${JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated/json" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
-JsonGenerator(CODE INPUT ${INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated/json" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
+JsonGenerator(CODE INPUT ${JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
+JsonGenerator(CODE INPUT ${INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
-file(GLOB JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/json/JsonEnum*.cpp")
-file(GLOB JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/json/J*.h")
+file(GLOB JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/JsonEnum*.cpp")
+file(GLOB JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/J*.h")
 
 add_library(${Target} SHARED
         Definitions.cpp
@@ -59,10 +57,8 @@ target_include_directories(${Target}
         PUBLIC
           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
-          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../interfaces>
           $<INSTALL_INTERFACE:include/${NAMESPACE}>
-          $<INSTALL_INTERFACE:include/${NAMESPACE}/interfaces>
-        )
+       )
 
 install(
         TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies
