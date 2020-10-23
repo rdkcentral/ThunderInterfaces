@@ -19,4 +19,12 @@
 
 #include "Module.h"
 
+#ifdef __WINDOWS__
+
+// ProxyStub code needs the definitions on windows for the default
+// Contstructor/Destructor implementations, generated EXTERNAL.
+#include <definitions/definitions.h>
+
+#endif
+
 MODULE_NAME_DECLARATION(BUILD_REFERENCE)
