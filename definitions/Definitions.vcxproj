@@ -22,8 +22,8 @@
     <ClCompile Include="Definitions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\interfaces\json\ExternalMetadata.h" />
     <ClInclude Include="definitions.h" />
-    <ClInclude Include="Module.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\jsonrpc\BluetoothControl.json">

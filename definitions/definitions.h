@@ -38,6 +38,7 @@
 #include <interfaces/IStream.h>
 #include <interfaces/IVoiceHandler.h>
 #include <interfaces/IPower.h>
+#include <interfaces/json/ExternalMetadata.h>
 
 namespace WPEFramework {
 

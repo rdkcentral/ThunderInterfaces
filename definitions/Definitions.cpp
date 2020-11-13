@@ -145,6 +145,15 @@ ENUM_CONVERSION_BEGIN(Exchange::IPower::PCState)
     { Exchange::IPower::PowerOff, _TXT(_T("off")) }, 
 ENUM_CONVERSION_END(Exchange::IPower::PCState)
 
+ENUM_CONVERSION_BEGIN(Exchange::External::Metadata::protocol)
+    { Exchange::External::Metadata::protocol::PROT_I2C,      _TXT(_T("I2C"))      },
+    { Exchange::External::Metadata::protocol::PROT_1W,       _TXT(_T("1W"))       },
+    { Exchange::External::Metadata::protocol::PROT_NRF24L01, _TXT(_T("NRF24L01")) },
+    { Exchange::External::Metadata::protocol::PROT_GPIO,     _TXT(_T("GPIO"))     },
+    { Exchange::External::Metadata::protocol::PROT_ZWAVE,    _TXT(_T("ZWave"))    },
+    { Exchange::External::Metadata::protocol::PROT_ZIGBEE,   _TXT(_T("ZigBee"))   },
+ENUM_CONVERSION_END(Exchange::External::Metadata::protocol)
+
 namespace Exchange
 {
 
