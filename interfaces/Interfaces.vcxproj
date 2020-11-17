@@ -64,6 +64,7 @@
     <ClInclude Include="IAVSClient.h" />
     <ClInclude Include="IBluetooth.h" />
     <ClInclude Include="IBrowser.h" />
+    <ClInclude Include="IButler.h" />
     <ClInclude Include="ICapture.h" />
     <ClInclude Include="ICommand.h" />
     <ClInclude Include="IComposition.h" />
@@ -202,7 +203,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\artifacts\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" -I $(FrameworkPath) "$(ProjectDir)."</Command>
+      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)."</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Create ProxyStub code</Message>
@@ -232,7 +233,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\artifacts\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" -I $(FrameworkPath) "$(ProjectDir)."</Command>
+      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)."</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Create ProxyStub code</Message>
@@ -262,7 +263,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\artifacts\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" -I $(FrameworkPath) "$(ProjectDir)."</Command>
+      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)."</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Create ProxyStub code</Message>
@@ -296,7 +297,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\artifacts\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" -I $(FrameworkPath) "$(ProjectDir)."</Command>
+      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)."</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Create ProxyStub code</Message>

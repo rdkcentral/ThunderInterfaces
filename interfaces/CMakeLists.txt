@@ -25,6 +25,7 @@ set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAME
 ProxyStubGenerator(INPUT "${CMAKE_CURRENT_SOURCE_DIR}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
 file(GLOB INTERFACES_HEADERS I*.h)
+file(GLOB JSON_HEADERS json/*.h)
 list(APPEND INTERFACES_HEADERS Module.h)
 
 file(GLOB PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/ProxyStubs*.cpp")
@@ -72,4 +73,9 @@ install(
 install(
         FILES ${INTERFACES_HEADERS}
         DESTINATION include/${NAMESPACE}/interfaces
+)
+
+install(
+        FILES ${JSON_HEADERS}
+        DESTINATION include/${NAMESPACE}/interfaces/json
 )
