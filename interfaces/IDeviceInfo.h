@@ -45,13 +45,13 @@ namespace Exchange {
 
         typedef RPC::IIteratorType<AudioOutput, ID_DEVICE_CAPABILITIES_AUDIO> IAudioOutputIterator;
         typedef RPC::IIteratorType<VideoOutput, ID_DEVICE_CAPABILITIES_VIDEO> IVideoOutputIterator;
-        typedef RPC::IIteratorType<VideoOutput, ID_DEVICE_CAPABILITIES_RESOLUTION> IOutputResolutionIterator;
+        typedef RPC::IIteratorType<OutputResolution, ID_DEVICE_CAPABILITIES_RESOLUTION> IOutputResolutionIterator;
 
         virtual uint32_t Configure(const PluginHost::IShell* service) = 0;
 
-        virtual uint32_t SupportedResolutions(IOutputResolutionIterator*& res /* @out */) const = 0;
         virtual uint32_t SupportedAudioOutputs(IAudioOutputIterator*& res /* @out */) const = 0;
         virtual uint32_t SupportedVideoOutputs(IVideoOutputIterator*& res /* @out */) const = 0;
+        virtual uint32_t SupportedResolutions(IOutputResolutionIterator*& res /* @out */) const = 0;
 
         virtual uint32_t SupportsHDR(bool& supportsHDR /*@out*/) const = 0;
         virtual uint32_t SupportsAtmos(bool& supportsAtmos /*@out*/) const = 0;
