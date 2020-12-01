@@ -13,19 +13,23 @@ namespace Exchange {
         virtual ~IDeviceCapabilities() {}
 
         enum AudioOutput : uint8_t {
-            ANALOG,
-            DIGITAL_COAX,
-            TOSLINK,
-            HDMI_PCM,
-            HDMI_DOLBY
+            AUDIO_OTHER,
+            AUDIO_RF_MODULATOR,
+            AUDIO_ANALOG,
+            AUDIO_SPDIF, //over RCA or TOSLINK
+            AUDIO_HDMI,
+            AUDIO_DISPLAYPORT
         };
 
         enum VideoOutput : uint8_t {
-            COMPOSITE,
-            SCART_RGB,
-            HDMI_14,
-            HDMI_20,
-            HDMI_21
+            VIDEO_OTHER,
+            VIDEO_RF_MODULATOR,
+            VIDEO_COMPOSITE, // also composite over SCART
+            VIDEO_SVIDEO,
+            VIDEO_COMPONENT,
+            VIDEO_SCART_RGB,
+            VIDEO_HDMI,
+            VIDEO_DISPLAYPORT // also DisplayPort over USB-C
         };
 
         enum OutputResolution : uint8_t {
@@ -43,18 +47,30 @@ namespace Exchange {
             RESOLUTION_4320P60,
         };
 
+        enum CopyProtection : uint8_t {
+            HDCP_UNAVAILABLE,
+            HDCP_14,
+            HDCP_20,
+            HDCP_21,
+            HDCP_22
+        };
+
         typedef RPC::IIteratorType<AudioOutput, ID_DEVICE_CAPABILITIES_AUDIO> IAudioOutputIterator;
         typedef RPC::IIteratorType<VideoOutput, ID_DEVICE_CAPABILITIES_VIDEO> IVideoOutputIterator;
         typedef RPC::IIteratorType<OutputResolution, ID_DEVICE_CAPABILITIES_RESOLUTION> IOutputResolutionIterator;
 
         virtual uint32_t Configure(const PluginHost::IShell* service) = 0;
 
-        virtual uint32_t SupportedAudioOutputs(IAudioOutputIterator*& res /* @out */) const = 0;
-        virtual uint32_t SupportedVideoOutputs(IVideoOutputIterator*& res /* @out */) const = 0;
-        virtual uint32_t SupportedResolutions(IOutputResolutionIterator*& res /* @out */) const = 0;
+        virtual uint32_t AudioOutputs(IAudioOutputIterator*& res /* @out */) const = 0;
+        virtual uint32_t VideoOutputs(IVideoOutputIterator*& res /* @out */) const = 0;
+        virtual uint32_t Resolutions(IOutputResolutionIterator*& res /* @out */) const = 0;
 
-        virtual uint32_t SupportsHDR(bool& supportsHDR /*@out*/) const = 0;
-        virtual uint32_t SupportsAtmos(bool& supportsAtmos /*@out*/) const = 0;
+        virtual uint32_t HDR(bool& supportsHDR /*@out*/) const = 0;
+        virtual uint32_t Atmos(bool& supportsAtmos /*@out*/) const = 0;
+        virtual uint32_t CEC(bool& supportsCEC /*@out*/) const = 0;
+        virtual uint32_t HDCP(CopyProtection& supportedHDCP /*@out*/) const = 0;
+
+
     };
 }
 }
