@@ -34,6 +34,7 @@ namespace Exchange {
 
             enum Type : uint8_t {
                 DIGITAL_PCM = 0,
+                DIGITAL_PASSTHROUGH = 2, // FIXME: Replace with actual value
                 DIGITAL_PLUS = 3,
                 DIGITAL_AC3 = 4,
                 AUTO = 5,
