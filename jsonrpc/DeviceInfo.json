@@ -24,10 +24,10 @@
           "description": "5min cpuload average"
         },
         "avg15min": {
-           "type": "number",
-           "size": 64,
-           "example": 789132680,
-           "description": "15min cpuload average"
+          "type": "number",
+          "size": 64,
+          "example": 789132680,
+          "description": "15min cpuload average"
         }
       },
       "required": [
@@ -35,11 +35,173 @@
         "avg5min",
         "avg15min"
       ]
-  
+    },
+    "audio_output": {
+      "type": "string",
+      "enum": [
+        "other",
+        "rf_modulator",
+        "analog",
+        "spdif",
+        "hdmi",
+        "displayport"
+      ],
+      "enumvalues": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "description": "Audio output supported by the STB",
+      "example": "analog"
+    },
+    "video_output": {
+      "type": "string",
+      "enum": [
+        "other",
+        "rf_modulator",
+        "composite",
+        "svideo",
+        "component",
+        "scart_rgb",
+        "hdmi",
+        "displayport"
+      ],
+      "enumvalues": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "description": "Video output supported by the STB",
+      "example": "displayport"
+    },
+    "output_resolution": {
+      "type": "string",
+      "enum": [
+        "unknown",
+        "480i",
+        "480p",
+        "576i",
+        "576p",
+        "720p",
+        "1080i",
+        "1080p",
+        "2160p30",
+        "2160p60",
+        "4320p30",
+        "4320p60"
+      ],
+      "enumvalues": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "description": "Resolution supported by the STB",
+      "example": "1080p"
+    },
+    "copy_protection": {
+      "type": "string",
+      "enum": [
+        "unavailable",
+        "hdcp_14",
+        "hdcp_20",
+        "hdcp_21",
+        "hdcp_22"
+      ],
+      "enumvalues": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "description": "HDCP support",
+      "example": "hdcp_20"
+    },
+    "audio_outputs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/audio_output"
+      }
+    },
+    "video_outputs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/video_output"
+      }
+    },
+    "output_resolutions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/output_resolution"
+      }
     }
   },
   "properties": {
-
+    "stbcapabilities": {
+      "summary": "Capabilities of the STB",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "hdr": {
+            "description": "Is HDR supported by this device",
+            "type": "boolean",
+            "example": false
+          },
+          "atmos": {
+            "description": "Is Atmos supported by this device",
+            "type": "boolean",
+            "example": false
+          },
+          "cec": {
+            "description": "Is CEC supported by this device",
+            "type": "boolean",
+            "example": true
+          },
+          "hdcp": {
+            "description": "HDCP support",
+            "type": "string",
+            "$ref": "#/definitions/copy_protection",
+            "example": "hdcp_20"
+          },
+          "audio_outputs": {
+            "description": "Audio Output support",
+            "type": "string",
+            "$ref": "#/definitions/audio_outputs",
+            "example": "[hdmi, spdif]"
+          },
+          "video_outputs": {
+            "description": "Video Output support",
+            "type": "string",
+            "$ref": "#/definitions/video_outputs",
+            "example": "[hdmi, displayport]"
+          },
+          "output_resolutions": {
+            "description": "Supported resolutions",
+            "type": "string",
+            "$ref": "#/definitions/output_resolutions",
+            "example": "[1080p, 720p]"
+          }
+        }
+      }
+    },
     "systeminfo": {
       "summary": "System general information",
       "readonly": true,
@@ -187,7 +349,9 @@
             "example": 1
           }
         },
-        "required": ["runs"]
+        "required": [
+          "runs"
+        ]
       }
     }
   }
