@@ -188,7 +188,9 @@ namespace Exchange {
         ID_CUSTOMER_CARE_OPERATIONS,
 
         ID_MEDIAPLAYER,
-        ID_MEDIAPLAYER_NOTIFICATION
+        ID_MEDIAPLAYER_NOTIFICATION,
+
+        ID_APPLICATION
     };
 }
 }
