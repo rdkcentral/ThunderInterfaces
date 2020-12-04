@@ -190,7 +190,8 @@ namespace Exchange {
         ID_MEDIAPLAYER,
         ID_MEDIAPLAYER_NOTIFICATION,
 
-        ID_APPLICATION
+        ID_APPLICATION,
+        ID_CONFIGURATION
     };
 }
 }
