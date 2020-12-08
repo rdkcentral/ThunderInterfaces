@@ -199,7 +199,16 @@
             "$ref": "#/definitions/output_resolutions",
             "example": "[1080p, 720p]"
           }
-        }
+        },
+        "required": [
+          "hdr",
+          "atmos",
+          "cec",
+          "hdcp",
+          "audio_outputs",
+          "video_outputs",
+          "output_resolutions"
+        ]
       }
     },
     "systeminfo": {
