@@ -28,27 +28,34 @@ struct IMediaPlayer : virtual public Core::IUnknown {
 
     enum { ID = ID_MEDIAPLAYER };
 
-    struct INotification : virtual public Core::IUnknown {
+    struct IMediaStream : virtual public Core::IUnknown {
 
-        enum { ID = ID_MEDIAPLAYER_NOTIFICATION };
+        enum { ID = ID_MEDIASTREAM };
 
-        virtual ~INotification() {}
+        struct INotification : virtual public Core::IUnknown {
 
-        virtual void Event(const string& eventName, const string& parametersJson) = 0;
+            enum { ID = ID_MEDIASTREAM_NOTIFICATION };
+
+            ~INotification() override = default;
+
+            virtual void Event(const string& eventName, const string& parametersJson) = 0;
+        };
+
+        ~IMediaStream() override = default;
+
+        virtual uint32_t Load(const string& url, bool autoPlay) = 0;
+        virtual uint32_t SetRate(int32_t rate) = 0;
+        virtual uint32_t SeekTo(int32_t positionSec) = 0;
+        virtual uint32_t Stop() = 0;
+        virtual uint32_t InitConfig(const string& configurationJson) = 0;
+        virtual uint32_t InitDRMConfig(const string& configurationJson) = 0;
+        virtual uint32_t Register(INotification* notification) = 0;
+        virtual uint32_t Unregister(INotification* notification) = 0;
     };
 
-    virtual ~IMediaPlayer() {}
+    ~IMediaPlayer() override = default;
 
-    virtual uint32_t Load(const string& url, bool autoPlay) = 0;
-    virtual uint32_t SetRate(int32_t rate) = 0;
-    virtual uint32_t SeekTo(int32_t positionSec) = 0;
-    virtual uint32_t Stop() = 0;
-    virtual uint32_t InitConfig(const string& configurationJson) = 0;
-    virtual uint32_t InitDRMConfig(const string& configurationJson) = 0;
-    virtual uint32_t Register(INotification* notification) = 0;
-    virtual uint32_t Unregister(INotification* notification) = 0;
-
-    static IMediaPlayer* Instance(const string& id);
+    virtual IMediaStream* CreateStream(const string& id) = 0;
 };
 
 }
