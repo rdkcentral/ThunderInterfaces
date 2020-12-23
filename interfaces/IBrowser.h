@@ -100,18 +100,33 @@ namespace Exchange {
         // @param fps Current FPS
         virtual uint32_t FPS(uint8_t& fps /* @out */) const = 0;
 
+        // @property
+        // @brief Headers to send on all requests that the browser makes
+        // @param header Header Name
         virtual uint32_t Headers(string& header /* @out */) const = 0;
         virtual uint32_t Headers(const string& header) = 0;
 
+        // @property
+        // @brief UserAgent string used by the browser
+        // @param useragent UserAgent value
         virtual uint32_t UserAgent(string& ua /* @out */) const = 0;
         virtual uint32_t UserAgent(const string& ua) = 0;
 
+        // @property
+        // @brief User preferred languages used by the browser
+        // @param language Preferred language
         virtual uint32_t Languages(string& langs /* @out */) const = 0;
         virtual uint32_t Languages(const string& langs) = 0;
 
+        // @property
+        // @brief Controls the local storage availability
+        // @param state enabled or disabled
         virtual uint32_t LocalStorageEnabled(bool& enabled /* @out */) const = 0;
         virtual uint32_t LocalStorageEnabled(const bool enabled) = 0;
 
+        // @property
+        // @brief HTTP cookies accept policy
+        // @param policy HTTP Cookie Accept Policy Type
         virtual uint32_t HTTPCookieAcceptPolicy(HTTPCookieAcceptPolicyType& policy /* @out */) const = 0;
         virtual uint32_t HTTPCookieAcceptPolicy(const HTTPCookieAcceptPolicyType policy) = 0;
 
