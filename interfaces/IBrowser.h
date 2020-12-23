@@ -72,11 +72,23 @@ namespace Exchange {
             enum { ID = ID_WEBKITBROWSER_NOTIFICATION };
 
             // Signal changes on the subscribed namespace..
+            // @brief Initial HTML document has been completely loaded and parsed
+            // @param URL The URL that has been loaded
+            // @param code The response code of main resource request
             virtual void LoadFinished(const string& URL, const int32_t code) = 0;
+            // @brief Browser failed to load page
+            // @param URL The URL that has been failed to load
             virtual void LoadFailed(const string& URL) = 0;
+            // @brief Signals a URL change in the browser
+            // @param URL The URL that has been loaded or requested
+            // @param loaded loaded (true) or not (false)
             virtual void URLChange(const string& URL, const bool loaded) = 0;
+            // @brief Signals a visibility change of the browser
+            // @param hidden hidden (true) or visible (false)
             virtual void VisibilityChange(const bool hidden) = 0;
+            // @brief Notifies that the web page requests to close its window
             virtual void PageClosure() = 0;
+            // @brief Base64 encoded JSON message from legacy $badger bridge
             virtual void BridgeQuery(const string& message) = 0;
         };
 
