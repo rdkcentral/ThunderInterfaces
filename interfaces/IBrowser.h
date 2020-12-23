@@ -130,7 +130,11 @@ namespace Exchange {
         virtual uint32_t HTTPCookieAcceptPolicy(HTTPCookieAcceptPolicyType& policy /* @out */) const = 0;
         virtual uint32_t HTTPCookieAcceptPolicy(const HTTPCookieAcceptPolicyType policy) = 0;
 
+        // @brief Response for legacy $badger.
+        // @param payload base64 encoded JSON string response to be delivered to $badger.callback(pid, success, json)
         virtual uint32_t BridgeReply(const string& payload) = 0;
+        // @brief Send legacy $badger event.
+        // @param payload base64 encoded JSON string response to be delivered to window.$badger.event(handlerId, json)
         virtual uint32_t BridgeEvent(const string& payload) = 0;
 
     };
