@@ -72,11 +72,23 @@ namespace Exchange {
             enum { ID = ID_WEBKITBROWSER_NOTIFICATION };
 
             // Signal changes on the subscribed namespace..
+            // @brief Initial HTML document has been completely loaded and parsed
+            // @param URL The URL that has been loaded
+            // @param code The response code of main resource request
             virtual void LoadFinished(const string& URL, const int32_t code) = 0;
+            // @brief Browser failed to load page
+            // @param URL The URL that has been failed to load
             virtual void LoadFailed(const string& URL) = 0;
+            // @brief Signals a URL change in the browser
+            // @param URL The URL that has been loaded or requested
+            // @param loaded loaded (true) or not (false)
             virtual void URLChange(const string& URL, const bool loaded) = 0;
+            // @brief Signals a visibility change of the browser
+            // @param hidden hidden (true) or visible (false)
             virtual void VisibilityChange(const bool hidden) = 0;
+            // @brief Notifies that the web page requests to close its window
             virtual void PageClosure() = 0;
+            // @brief Base64 encoded JSON message from legacy $badger bridge
             virtual void BridgeQuery(const string& message) = 0;
         };
 
@@ -100,22 +112,41 @@ namespace Exchange {
         // @param fps Current FPS
         virtual uint32_t FPS(uint8_t& fps /* @out */) const = 0;
 
+        // @property
+        // @brief Headers to send on all requests that the browser makes
+        // @param header Header Name
         virtual uint32_t Headers(string& header /* @out */) const = 0;
         virtual uint32_t Headers(const string& header) = 0;
 
+        // @property
+        // @brief UserAgent string used by the browser
+        // @param useragent UserAgent value
         virtual uint32_t UserAgent(string& ua /* @out */) const = 0;
         virtual uint32_t UserAgent(const string& ua) = 0;
 
+        // @property
+        // @brief User preferred languages used by the browser
+        // @param language Preferred language
         virtual uint32_t Languages(string& langs /* @out */) const = 0;
         virtual uint32_t Languages(const string& langs) = 0;
 
+        // @property
+        // @brief Controls the local storage availability
+        // @param state enabled or disabled
         virtual uint32_t LocalStorageEnabled(bool& enabled /* @out */) const = 0;
         virtual uint32_t LocalStorageEnabled(const bool enabled) = 0;
 
+        // @property
+        // @brief HTTP cookies accept policy
+        // @param policy HTTP Cookie Accept Policy Type
         virtual uint32_t HTTPCookieAcceptPolicy(HTTPCookieAcceptPolicyType& policy /* @out */) const = 0;
         virtual uint32_t HTTPCookieAcceptPolicy(const HTTPCookieAcceptPolicyType policy) = 0;
 
+        // @brief Response for legacy $badger.
+        // @param payload base64 encoded JSON string response to be delivered to $badger.callback(pid, success, json)
         virtual uint32_t BridgeReply(const string& payload) = 0;
+        // @brief Send legacy $badger event.
+        // @param payload base64 encoded JSON string response to be delivered to window.$badger.event(handlerId, json)
         virtual uint32_t BridgeEvent(const string& payload) = 0;
 
     };
