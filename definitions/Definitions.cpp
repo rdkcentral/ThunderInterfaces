@@ -146,12 +146,14 @@ ENUM_CONVERSION_BEGIN(Exchange::IPower::PCState)
 ENUM_CONVERSION_END(Exchange::IPower::PCState)
 
 ENUM_CONVERSION_BEGIN(Exchange::External::Metadata::protocol)
-    { Exchange::External::Metadata::protocol::PROT_I2C,      _TXT(_T("I2C"))      },
-    { Exchange::External::Metadata::protocol::PROT_1W,       _TXT(_T("1W"))       },
-    { Exchange::External::Metadata::protocol::PROT_NRF24L01, _TXT(_T("NRF24L01")) },
-    { Exchange::External::Metadata::protocol::PROT_GPIO,     _TXT(_T("GPIO"))     },
-    { Exchange::External::Metadata::protocol::PROT_ZWAVE,    _TXT(_T("ZWave"))    },
-    { Exchange::External::Metadata::protocol::PROT_ZIGBEE,   _TXT(_T("ZigBee"))   },
+    { Exchange::External::Metadata::protocol::I2C,      _TXT(_T("I2C"))      },
+    { Exchange::External::Metadata::protocol::ONEWIRE,  _TXT(_T("1W"))       },
+    { Exchange::External::Metadata::protocol::NRF24L01, _TXT(_T("NRF24L01")) },
+    { Exchange::External::Metadata::protocol::GPIO,     _TXT(_T("GPIO"))     },
+    { Exchange::External::Metadata::protocol::ZWAVE,    _TXT(_T("ZWave"))    },
+    { Exchange::External::Metadata::protocol::ZIGBEE,   _TXT(_T("ZigBee"))   },
+    { Exchange::External::Metadata::protocol::JSONRPC,  _TXT(_T("JSONRPC"))  },
+    { Exchange::External::Metadata::protocol::VIRTUAL,  _TXT(_T("Virtual"))  },
 ENUM_CONVERSION_END(Exchange::External::Metadata::protocol)
 
 namespace Exchange
