@@ -75,13 +75,13 @@ namespace Exchange {
 
                 // If we are going to change the periodicity, we need to remove 
                 // the current action, if ongoing, anyway..
-                // First attempt to remove the Job. Th job might currently be
-                // executing the S
+                // First attempt to remove the Job. The job might currently be
+                // executing....
                 _parent._timed.Revoke();
 
                 // It could be that we where waiting for the Job to complete
                 // in the previous Revoke. Than we assume thathe the job left
-                // the queue, hwever the job, reschedukes itself so for these
+                // the queue, however the job, reschedules itself so for these
                 // rare cases, we need to revoke the job....again !!!
                 _parent._timed.Revoke();
 
@@ -93,8 +93,9 @@ namespace Exchange {
             }
             void Dispatch()
             {
+                _parent.Evaluate();
+
                 if (_periodicity != 0) {
-                    _parent.Evaluate();
                     _nextTime += _periodicity;
                     _parent._timed.Schedule(Core::Time(_nextTime));
                 }
@@ -319,6 +320,10 @@ namespace Exchange {
                 _job.Submit();
             }
             _adminLock.Unlock();
+        }
+        inline bool Schedule(const Core::Time& evaluationPoint)
+        {
+            return (_timed.Reschedule(evaluationPoint));
         }
         inline void ChangeTypeId(const uint32_t id, const uint32_t type)
         {
