@@ -1,3 +1,4 @@
+
 /*
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
@@ -23,17 +24,79 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // This interface gives direct access to an Application instance
+    // @json
     struct IApplication : virtual public Core::IUnknown {
 
         enum { ID = ID_APPLICATION };
 
-
         virtual ~IApplication() {}
 
-        virtual void Reset() = 0;
-        virtual void DeepLink(const string& deepLink) = 0;
+        enum resettype : uint8_t {
+            FACTORY,
+            CACHE,
+            CREDENTIALS,
+            RECORDINGS
+        };
+
+        enum launchpointtype : uint8_t {
+            UNDEFINED,
+            DIAL,
+            DEDICATED_BUTTON,
+            DEDICATED_ICON,
+            APPLICATION_LIST,
+            INTEGRATED_TILE,
+            SEARCH_RESULT,
+            SEARCH_CONTINUATION,
+            VOICE_CONTROL,
+            VOICE_SEARCH_RESULT,
+            VISUAL_GESTURE,
+            TOUCH_GESTURE,
+            EPG_GRID,
+            CHANNEL_NUMBER,
+            CHANNEL_ZAP,
+            CHANNEL_BAR,
+            WEB_BROWSER,
+            POWER_ON,
+            POWER_ON_FROM_DEDICATED_BUTTON
+            SUSPENDED_POWER_ON,
+            RESTART,
+            SUSPENDED_RESTART,
+            RESUMED_FROM_SCREENSERVER,
+            RESUMED_FROM_STANDBY,
+            BANNER_AD,
+            TITLE_RECOMENDATION,
+            APPLICATION_PROMOTION
+        };
+
+        // @brief Resets application data
+        // @param type Type of reset to perform
+        virtual uint32_t Reset(const resettype type) = 0;
+
+        // @property
+        // @brief Application-specific identification value
+        // @param id ID string (e.g. ABCDEFG=00000005)
+        virtual uint32_t ID(string& id /* @out */) const = 0;
+
+        // @property
+        // @brief URI of the associated application-specific content
+        // @param link Content URI (e.g. https://youtube.com)
+        virtual uint32_t ContentLink(const string& link) = 0;
+
+        // @property
+        // @brief Application launching point
+        virtual uint32_t LaunchPoint(launchpointtype& point /* @out */) const = 0;
+        virtual uint32_t LaunchPoint(const launchpointtype&) = 0;
+
+        // @property
+        // @brief Current application visibility
+        virtual uint32_t Visible(bool& visiblity /* @out */) const = 0;
+        virtual uint32_t Visible(const bool&) = 0;
+
+        // @property
+        // @brief Current application user interface language
+        // @param language Language string as per RFC5646 (e.g. en)
+        virtual uint32_t Language(string& language /* @out */) const = 0;
+        virtual uint32_t Language(const string&) = 0;
     };
 }
 }
-
