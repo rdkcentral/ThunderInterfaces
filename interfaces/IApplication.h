@@ -57,7 +57,7 @@ namespace Exchange {
             CHANNEL_BAR,
             WEB_BROWSER,
             POWER_ON,
-            POWER_ON_FROM_DEDICATED_BUTTON
+            POWER_ON_FROM_DEDICATED_BUTTON,
             SUSPENDED_POWER_ON,
             RESTART,
             SUSPENDED_RESTART,
@@ -73,9 +73,9 @@ namespace Exchange {
         virtual uint32_t Reset(const resettype type) = 0;
 
         // @property
-        // @brief Application-specific identification value
-        // @param id ID string (e.g. ABCDEFG=00000005)
-        virtual uint32_t ID(string& id /* @out */) const = 0;
+        // @brief Application-specific identification string
+        // @param id Identifier string (e.g. ABCDEFG=00000005)
+        virtual uint32_t Identifier(string& id /* @out */) const = 0;
 
         // @property
         // @brief URI of the associated application-specific content
