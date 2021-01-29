@@ -1,4 +1,3 @@
-
 /*
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
@@ -25,11 +24,23 @@ namespace WPEFramework {
 namespace Exchange {
 
     // @json
-    struct IApplication : virtual public Core::IUnknown {
+    struct EXTERNAL IApplication : virtual public Core::IUnknown {
 
         enum { ID = ID_APPLICATION };
 
-        virtual ~IApplication() {}
+        virtual ~IApplication() = default;
+
+        /* @event */
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
+            enum { ID = ID_APPLICATION_NOTIFICATION };
+
+            virtual ~INotification() = default;
+
+            /* @brief Application visibility changes */
+            /* @param name Application name (e.g. Netflix) */
+            /* @param hidden Denotes if application is currently hidden */
+            virtual void VisibilityChange(const string& name, const bool hidden) = 0;
+        };
 
         enum resettype : uint8_t {
             FACTORY,
@@ -68,13 +79,16 @@ namespace Exchange {
             APPLICATION_PROMOTION
         };
 
+        virtual void Register(INotification* sink) = 0;
+        virtual void Unregister(INotification* sink) = 0;
+
         // @brief Resets application data
         // @param type Type of reset to perform
         virtual uint32_t Reset(const resettype type) = 0;
 
         // @property
         // @brief Application-specific identification string
-        // @param id Identifier string (e.g. ABCDEFG=00000005)
+        // @param id Identifier string
         virtual uint32_t Identifier(string& id /* @out */) const = 0;
 
         // @property
