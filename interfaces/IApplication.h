@@ -37,9 +37,8 @@ namespace Exchange {
             virtual ~INotification() = default;
 
             /* @brief Application visibility changes */
-            /* @param name Application name (e.g. Netflix) */
             /* @param hidden Denotes if application is currently hidden */
-            virtual void VisibilityChange(const string& name, const bool hidden) = 0;
+            virtual void VisibilityChange(const bool hidden) = 0;
         };
 
         enum resettype : uint8_t {
