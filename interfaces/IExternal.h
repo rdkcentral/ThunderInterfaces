@@ -45,6 +45,7 @@ namespace Exchange {
             // Pushing notifications to interested sinks
             virtual void Register(ICatalog::INotification* sink) = 0;
             virtual void Unregister(ICatalog::INotification* sink) = 0;
+            virtual IExternal* Resource(const uint32_t id) = 0;
         };
 
         //  Basic/specific and dimension together define the Type.
