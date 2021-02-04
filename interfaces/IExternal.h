@@ -45,6 +45,7 @@ namespace Exchange {
             // Pushing notifications to interested sinks
             virtual void Register(ICatalog::INotification* sink) = 0;
             virtual void Unregister(ICatalog::INotification* sink) = 0;
+            virtual IExternal* Resource(const uint32_t id) = 0;
         };
 
         //  Basic/specific and dimension together define the Type.
@@ -123,6 +124,9 @@ namespace Exchange {
 
         // Periodically we might like to be evaluated, call this method at a set time.
         virtual void Evaluate() = 0;
+
+        // There most be more than meets the eye, report it as a JSON string..
+        virtual string Metadata() const = 0;
 
         // ------------------------------------------------------------------------
         // Convenience methods to extract interesting information from the Type()

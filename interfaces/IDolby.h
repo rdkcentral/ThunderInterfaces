@@ -37,7 +37,8 @@ namespace Exchange {
                 DIGITAL_PLUS = 3,
                 DIGITAL_AC3 = 4,
                 AUTO = 5,
-                MS12 = 6
+                DIGITAL_PASSTHROUGH = 6,
+                MS12 = 7
             };
 
             enum SoundModes : uint8_t {

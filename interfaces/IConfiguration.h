@@ -18,31 +18,16 @@
  */
 
 #pragma once
-
-#ifndef MODULE_NAME
-#define MODULE_NAME Definitions
-#endif
-
-#include <core/core.h>
-
-#if defined(__WINDOWS__) 
-#if defined(DEFINITIONS_EXPORTS)
-#undef EXTERNAL
-#define EXTERNAL EXTERNAL_EXPORT
-#else
-#pragma comment(lib, "definitions.lib")
-#endif
-#endif
-
-#include <interfaces/IComposition.h>
-#include <interfaces/IStream.h>
-#include <interfaces/IVoiceHandler.h>
-#include <interfaces/IPower.h>
-#include <interfaces/json/ExternalMetadata.h>
+#include "Module.h"
 
 namespace WPEFramework {
+namespace Exchange {
 
-	ENUM_CONVERSION_HANDLER(Exchange::IComposition::ScreenResolution);
-	ENUM_CONVERSION_HANDLER(Exchange::IStream::streamtype);
-	ENUM_CONVERSION_HANDLER(Exchange::IStream::state);
+    struct EXTERNAL IConfiguration : virtual public Core::IUnknown {
+        enum { ID = ID_CONFIGURATION };
+
+        virtual uint32_t Configure(PluginHost::IShell* framework) = 0;
+    };
 }
+}
+
