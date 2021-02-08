@@ -93,6 +93,38 @@
           "application"
         ]
       }
+    },
+    "show": {
+      "summary": "Signals that application show was requested over DIAL",
+      "description": "This event is sent out only for un-managed applications (i.e. in *passive mode*).",
+      "deprecated": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "application": {
+            "$ref": "#/events/start/params/properties/application"
+          }
+        },
+        "required": [
+          "application"
+        ]
+      }
+    },
+    "change": {
+      "summary": "Signals that application URL change was requested over DIAL",
+      "description": "This event is sent out only for un-managed applications (i.e. in *passive mode*).",
+      "deprecated": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "application": {
+            "$ref": "#/events/start/params/properties/application"
+          }
+        },
+        "required": [
+          "application"
+        ]
+      }
     }
   }
 }
