@@ -149,6 +149,8 @@ namespace Exchange {
         // @param payload base64 encoded JSON string response to be delivered to window.$badger.event(handlerId, json)
         virtual uint32_t BridgeEvent(const string& payload) = 0;
 
+        // @brief Initiate garbage collection
+        virtual uint32_t CollectGarbage() = 0;
     };
 
 }
