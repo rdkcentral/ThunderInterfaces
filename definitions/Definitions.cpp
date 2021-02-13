@@ -27,6 +27,7 @@
 #include <interfaces/ICapture.h>
 #include <interfaces/ICommand.h>
 #include <interfaces/IComposition.h>
+#include <interfaces/IConfiguration.h>
 #include <interfaces/IContentDecryption.h>
 #include <interfaces/ICustomerCareOperations.h>
 #include <interfaces/IDeviceIdentification.h>
