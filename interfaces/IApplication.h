@@ -71,10 +71,10 @@ namespace Exchange {
             SUSPENDED_POWER_ON,
             RESTART,
             SUSPENDED_RESTART,
-            RESUMED_FROM_SCREENSERVER,
+            RESUMED_FROM_SCREEN_SAVER,
             RESUMED_FROM_STANDBY,
             BANNER_AD,
-            TITLE_RECOMENDATION,
+            TITLE_RECOMMENDATION,
             APPLICATION_PROMOTION
         };
 
