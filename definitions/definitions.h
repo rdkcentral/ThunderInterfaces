@@ -39,6 +39,7 @@
 #include <interfaces/IVoiceHandler.h>
 #include <interfaces/IPower.h>
 #include <interfaces/json/ExternalMetadata.h>
+#include <interfaces/IDeviceInfo.h>
 
 namespace WPEFramework {
 
