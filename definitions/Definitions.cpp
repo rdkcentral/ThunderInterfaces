@@ -23,6 +23,7 @@
 #include <interfaces/IAVNClient.h>
 #include <interfaces/IAVSClient.h>
 #include <interfaces/IBluetooth.h>
+#include <interfaces/IButler.h>
 #include <interfaces/IBrowser.h>
 #include <interfaces/ICapture.h>
 #include <interfaces/ICommand.h>
