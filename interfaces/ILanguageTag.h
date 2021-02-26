@@ -18,7 +18,6 @@
  */
 
 #pragma once
-#include <utility>
 
 #include "Module.h"
 
@@ -37,7 +36,7 @@ namespace Exchange {
 
             // @brief Notify that the Language tag has been changed
             // @param language new LangauageTag value.
-            virtual void LanguageChanged(const std::string& language) = 0;
+            virtual void LanguageChanged(const string& language) = 0;
 
         };
 
@@ -48,8 +47,8 @@ namespace Exchange {
         // @property
         // @brief Current application user interface language tag
         // @param language Language string as per RFC5646 (e.g. en)
-        virtual uint32_t Language(std::string& language /* @out */) const = 0;
-        virtual uint32_t Language(const std::string& language) = 0;
+        virtual uint32_t Language(string& language /* @out */) const = 0;
+        virtual uint32_t Language(const string& language) = 0;
 
     };
 }
