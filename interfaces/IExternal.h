@@ -48,6 +48,15 @@ namespace Exchange {
             virtual IExternal* Resource(const uint32_t id) = 0;
         };
 
+        struct IDerived : virtual public Core::IUnknown {
+            ~IDerived() override = default;
+
+            enum { ID = ID_EXTERNAL_DERIVED };
+
+            virtual string Source() const = 0;
+        };
+
+
         //  Basic/specific and dimension together define the Type.
         // 32     13    | 3 |  4  |     12     |
         //  +---------------+------------------+
