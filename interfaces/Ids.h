@@ -206,7 +206,9 @@ namespace Exchange {
         ID_DIALSERVER_APPLICATION,
 
         ID_LANGUAGETAG,
-        ID_LANGUAGETAG_NOTIFICATION
+        ID_LANGUAGETAG_NOTIFICATION,
+          
+        ID_EXTERNAL_DERIVED
     };
 }
 }
