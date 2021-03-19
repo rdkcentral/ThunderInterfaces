@@ -86,7 +86,8 @@ namespace Exchange {
             powerManagement = 0x00B,
             system = 0x00C,
             emergency = 0x00D,
-            clock = 0x00E
+            clock = 0x00E,
+            light = 0x00F
         };
 
         enum dimension : uint16_t { /* 13 bits (8192) */
@@ -97,6 +98,7 @@ namespace Exchange {
             pulses = 0x0004, /* counter */
             degrees = 0x0005, /* temperture in degrees celsius */
             units = 0x0006, /* unqualified value, just units */
+            lux = 0x0007
         };
 
         enum condition : uint8_t {
@@ -114,12 +116,6 @@ namespace Exchange {
 
         // Identification of this element.
         virtual uint32_t Identifier() const = 0;
-
-        // The module is the top 8 bits of the Identifier. The value of 0 is reserved,
-        // it means that the module is not assigned. Any other number indicates that the 
-        // IExternal is allocated to a module and should not be overwritten with an other
-        // number than 0.
-        virtual uint32_t Module(const uint8_t module) = 0;
 
         // Characteristics of this element
         virtual uint32_t Type() const = 0;
