@@ -104,7 +104,8 @@ namespace Exchange {
             RESOLUTION_2160P25,
             RESOLUTION_2160P30,
             RESOLUTION_2160P50,
-            RESOLUTION_2160P60
+            RESOLUTION_2160P60,
+            RESOLUTION_2160P
         };
 
         // @property
