@@ -10,6 +10,38 @@
     "$ref": "common.json"
   },
   "methods": {
+    "Messenger.1.create": {
+      "summary": "Creates a messaging room name and URL regex",
+      "description": "Only apps that match the regex will be allowed to join the room",
+      "params": {
+        "type": "object",
+        "properties": {
+          "room": {
+            "description": "Name of the room to create (must not be empty)",
+            "type": "string",
+            "example": "Lounge"
+          },
+          "urlRegex": {
+            "description": "URL regex to match apps (must not be empty)",
+            "type": "string",
+            "example": "*://*.local:*"
+          }
+        },
+        "required": [
+          "room",
+          "urlRegex"
+        ]
+      },
+      "result": {
+        "$ref": "#/common/results/void"
+      },
+      "errors": [
+        {
+          "description": "Room name or URL regex was invalid",
+          "$ref": "#/common/errors/badrequest"
+        }
+      ]
+    },
     "Messenger.1.join": {
       "summary": "Joins a messaging room",
       "description": "Use this method to join a room. If the specified room does not exist, then it will be created.",
