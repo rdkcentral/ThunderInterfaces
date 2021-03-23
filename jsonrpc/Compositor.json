@@ -64,6 +64,26 @@
         }
       ]
     },
+    "brightness": {
+      "summary": "Platform brightness",
+      "description": "Use this property to get or set luminance for the whole platform",
+      "params": {
+        "type": "integer",
+        "description": "Luminance of the platform",
+        "example": 200,
+        "size": 16
+      },
+      "errors": [
+        {
+          "$ref": "#/common/errors/unavailable",
+          "description": "Brigthness manipulation is not supported or failed"
+        },
+        {
+          "$ref": "#/common/errors/general",
+          "description": "Failed to get/set brightness"
+        }
+      ]
+    },
     "geometry": {
       "summary": "Client surface geometry",
       "description": "Use this property to update or retrieve the geometry of a client's surface.",
@@ -112,7 +132,7 @@
     "visiblity": {
       "summary": "Client surface visibility",
       "description": "Use this property to set the client's surface visibility.",
-      "writeonly":true,
+      "writeonly": true,
       "params": {
         "type": "string",
         "enum": [
@@ -135,7 +155,7 @@
     "opacity": {
       "summary": "Client surface opacity",
       "description": "Use this property to set the client's surface opacity level.",
-      "writeonly":true,
+      "writeonly": true,
       "params": {
         "description": "Opacity level (0 to 255; 0: fully transparent, 255: fully opaque)",
         "type": "number",
