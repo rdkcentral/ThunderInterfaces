@@ -32,6 +32,8 @@ namespace Exchange {
         static constexpr uint32_t maxZOrder = 255;
         static constexpr uint32_t minZOrder = 0;
 
+        static constexpr uint32_t maxLuminance = 1000;
+
         enum ScreenResolution : uint8_t {
             ScreenResolution_Unknown = 0,
             ScreenResolution_480i = 1,
@@ -82,6 +84,8 @@ namespace Exchange {
         // Set and get output resolution
         virtual uint32_t Resolution(const ScreenResolution) = 0;
         virtual ScreenResolution Resolution() const = 0;
+        virtual uint32_t Brightness(uint32_t& luminance /* @out */) const = 0;
+        virtual uint32_t Brightness(const uint32_t luminance) = 0;
     };
 }
 }
