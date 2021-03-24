@@ -1,0 +1,47 @@
+{
+  "$schema": "interface.schema.json",
+  "jsonrpc": "2.0",
+  "info": {
+    "title": "EssosSample API",
+    "class": "EssosSample",
+    "description": "EssosSample JSON-RPC interface"
+  },
+  "common": {
+    "$ref": "common.json"
+  },
+  "properties": {
+    "waylanddisplay": {
+      "summary": "wayland display to be used for rendering",
+      "params": {
+        "type": "string",
+        "example": "wayland-0"
+      }
+    }
+  },
+  "methods": {
+     "start": {
+      "summary": "start the rendering",
+      "description": "start drawing contents",
+      "params": {
+        "$ref": "#/common/results/void"
+      },
+      "result": {
+        "$ref": "#/common/results/void"
+      },
+      "errors": [
+      ]
+     },
+     "stop": {
+      "summary": "stop the rendering",
+      "description": "stop drawing contents",
+      "params": {
+        "$ref": "#/common/results/void"
+      },
+      "result": {
+        "$ref": "#/common/results/void"
+      },
+      "errors": [
+      ]
+    }
+  }
+}
