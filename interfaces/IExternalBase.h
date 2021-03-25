@@ -65,11 +65,11 @@ namespace Exchange {
 
         public:
             // Return the periodicity in Seconds...
-            inline uint16_t Period() const
+            inline uint32_t Period() const
             {
-                return (_periodicity / (1000 * Core::Time::TicksPerMillisecond));
+                return (_periodicity / 1000);
             }
-            inline void Period(const uint16_t periodicity)
+            inline void Period(const uint32_t periodicity)
             {
                 _periodicity = 0;
 
@@ -86,7 +86,7 @@ namespace Exchange {
                 _parent._timed.Revoke();
 
                 if (periodicity != 0) {
-                    _periodicity = periodicity * (1000 * Core::Time::TicksPerMillisecond);
+                    _periodicity = periodicity * 1000;
                     _nextTime = Core::Time::Now().Ticks();
                     _parent._timed.Submit();
                 }
@@ -96,14 +96,14 @@ namespace Exchange {
                 _parent.Evaluate();
 
                 if (_periodicity != 0) {
-                    _nextTime += _periodicity;
-                    _parent._timed.Schedule(Core::Time(_nextTime));
+                    _nextTime.Add(_periodicity);
+                    _parent._timed.Schedule(_nextTime);
                 }
             }
 
         private:
             ExternalBase& _parent;
-            uint64_t _nextTime;
+            Core::Time _nextTime;
             uint32_t _periodicity;
         };
 
@@ -158,12 +158,12 @@ namespace Exchange {
         // ------------------------------------------------------------------------
         // Polling interface methods
         // ------------------------------------------------------------------------
-        // Define the polling time in Seconds. This value has a maximum of a 24 hour.
-        inline uint16_t Period() const
+        // Define the polling time in Seconds. This value has a maximum of a 48 days.
+        inline uint32_t Period() const
         {
             return (static_cast<const Timed&>(_timed).Period());
         }
-        inline void Period(const uint16_t value)
+        inline void Period(const uint32_t value)
         {
             _adminLock.Lock();
             static_cast<Timed&>(_timed).Period(value);
@@ -211,12 +211,6 @@ namespace Exchange {
         // Identification of this element.
         uint32_t Identifier() const override
         {
-            return (_id);
-        }
-        uint32_t Module(const uint8_t module) override
-        {
-            ASSERT((module == 0) ^ ((_id & 0xFF000000) == 0));
-            _id = (_id & 0x00FFFFFF) | (module << 24);
             return (_id);
         }
 
