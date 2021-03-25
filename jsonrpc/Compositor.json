@@ -65,22 +65,29 @@
       ]
     },
     "brightness": {
-      "summary": "Platform brightness",
-      "description": "Use this property to get or set luminance for the whole platform",
+      "summary": "Brightness of SDR graphics in HDR display",
+      "description": "Use this property to set or retrieve the brightness of the SDR graphics.",
       "params": {
-        "type": "integer",
-        "description": "Luminance of the platform",
-        "example": 200,
-        "size": 16
+        "type": "string",
+        "enum": [
+          "default",
+          "match_video",
+          "max"
+        ],
+        "example": "match_video"
       },
       "errors": [
         {
+          "$ref": "#/common/errors/unknownkey",
+          "description": "Unknown brightness"
+        },
+        {
           "$ref": "#/common/errors/unavailable",
-          "description": "Brigthness manipulation is not supported or failed"
+          "description": "Set brightness is not supported or failed"
         },
         {
           "$ref": "#/common/errors/general",
-          "description": "Failed to get/set brightness"
+          "description": "Failed to set brightness"
         }
       ]
     },

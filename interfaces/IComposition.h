@@ -48,6 +48,13 @@ namespace Exchange {
             ScreenResolution_2160p60Hz = 10
         };
 
+        //Brightness of SDR graphics in HDR display
+        enum Brightness : uint8_t {
+            SdrToHdrGraphicsBrightness_Default = 0, /* peak luminance of SDR graphics in HDR display might be less bright than SDR video in HDR display */
+            SdrToHdrGraphicsBrightness_MatchVideo = 1, /* peak luminance of SDR graphics in HDR display will be as bright as SDR video in HDR display */
+            SdrToHdrGraphicsBrightness_Max = 2 /* peak luminance of SDR graphics in HDR display might be more bright than SDR video in HDR display */
+        };
+
         static uint32_t WidthFromResolution(const ScreenResolution resolution);
         static uint32_t HeightFromResolution(const ScreenResolution resolution);
 
@@ -64,7 +71,7 @@ namespace Exchange {
             virtual string Name() const = 0;
             virtual void Opacity(const uint32_t value) = 0;
             virtual uint32_t Geometry(const Rectangle& rectangle) = 0;
-            virtual Rectangle Geometry() const = 0; 
+            virtual Rectangle Geometry() const = 0;
             virtual uint32_t ZOrder(const uint16_t index) = 0;
             virtual uint32_t ZOrder() const = 0;
         };
@@ -84,9 +91,9 @@ namespace Exchange {
         // Set and get output resolution
         virtual uint32_t Resolution(const ScreenResolution) = 0;
         virtual ScreenResolution Resolution() const = 0;
-        virtual uint32_t Brightness(uint32_t& luminance /* @out */) const = 0;
-        virtual uint32_t Brightness(const uint32_t luminance) = 0;
+        
+        virtual uint32_t SdrToHdrGraphicsBrightness(Brightness& brightness /* @out */) const = 0;
+        virtual uint32_t SdrToHdrGraphicsBrightness(const Brightness& brightness) = 0;
     };
 }
 }
-

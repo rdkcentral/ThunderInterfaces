@@ -156,6 +156,12 @@ ENUM_CONVERSION_BEGIN(Exchange::External::Metadata::protocol)
     { Exchange::External::Metadata::protocol::VIRTUAL,  _TXT(_T("Virtual"))  },
 ENUM_CONVERSION_END(Exchange::External::Metadata::protocol)
 
+ENUM_CONVERSION_BEGIN(Exchange::IComposition::Brightness)
+    { Exchange::IComposition::SdrToHdrGraphicsBrightness_Default, _TXT("default") },
+    { Exchange::IComposition::SdrToHdrGraphicsBrightness_MatchVideo, _TXT("match_video") },
+    { Exchange::IComposition::SdrToHdrGraphicsBrightness_Max, _TXT("max") },
+ENUM_CONVERSION_END(Exchange::IComposition::Brightness)
+
 namespace Exchange
 {
 
