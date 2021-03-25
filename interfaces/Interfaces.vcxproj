@@ -27,8 +27,10 @@
     <ClCompile Include="ProxyStubs_AVSClient.cpp" />
     <ClCompile Include="ProxyStubs_Browser.cpp" />
     <ClCompile Include="ProxyStubs_Composition.cpp" />
+    <ClCompile Include="ProxyStubs_Configuration.cpp" />
     <ClCompile Include="ProxyStubs_ContentDecryption.cpp" />
     <ClCompile Include="ProxyStubs_DeviceIdentification.cpp" />
+    <ClCompile Include="ProxyStubs_DIALServer.cpp" />
     <ClCompile Include="ProxyStubs_Dictionary.cpp" />
     <ClCompile Include="ProxyStubs_DisplayInfo.cpp" />
     <ClCompile Include="ProxyStubs_Dolby.cpp" />
@@ -68,7 +70,9 @@
     <ClInclude Include="ICapture.h" />
     <ClInclude Include="ICommand.h" />
     <ClInclude Include="IComposition.h" />
+    <ClInclude Include="IConfiguration.h" />
     <ClInclude Include="IContentDecryption.h" />
+    <ClInclude Include="IDIALServer.h" />
     <ClInclude Include="IDictionary.h" />
     <ClInclude Include="IDisplayInfo.h" />
     <ClInclude Include="IDRM.h" />

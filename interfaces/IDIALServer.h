@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2020 RDK Management
+ * Copyright 2021 RDK Management
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,32 +18,29 @@
  */
 
 #pragma once
-
-#ifndef MODULE_NAME
-#define MODULE_NAME Definitions
-#endif
-
-#include <core/core.h>
-
-#if defined(__WINDOWS__) 
-#if defined(DEFINITIONS_EXPORTS)
-#undef EXTERNAL
-#define EXTERNAL EXTERNAL_EXPORT
-#else
-#pragma comment(lib, "definitions.lib")
-#endif
-#endif
-
-#include <interfaces/IComposition.h>
-#include <interfaces/IStream.h>
-#include <interfaces/IVoiceHandler.h>
-#include <interfaces/IPower.h>
-#include <interfaces/json/ExternalMetadata.h>
-#include <interfaces/IDeviceInfo.h>
+#include "Module.h"
 
 namespace WPEFramework {
+namespace Exchange {
 
-	ENUM_CONVERSION_HANDLER(Exchange::IComposition::ScreenResolution);
-	ENUM_CONVERSION_HANDLER(Exchange::IStream::streamtype);
-	ENUM_CONVERSION_HANDLER(Exchange::IStream::state);
+    struct EXTERNAL IDIALServer : virtual public Core::IUnknown {
+
+        enum { ID = ID_DIALSERVER };
+
+        struct EXTERNAL IApplication : virtual public Core::IUnknown {
+
+            enum { ID = ID_DIALSERVER_APPLICATION };
+
+            virtual ~IApplication() = default;
+
+            virtual uint32_t AdditionalDataURL(string& url /* @out */) const = 0;
+
+        };
+
+        virtual ~IDIALServer() = default;
+
+        virtual IApplication* Application(const string& name) = 0;
+    };
+
+}
 }

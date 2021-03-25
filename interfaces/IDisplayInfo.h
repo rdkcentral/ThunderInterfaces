@@ -115,6 +115,7 @@ namespace Exchange {
         // @brief Video output port on the STB used for connection to TV
         // @param name: video output port name
         virtual uint32_t PortName (string& name /* @out */) const = 0;
+
     };
 
     /* @json */
@@ -146,6 +147,103 @@ namespace Exchange {
         // @brief HDR format in use
         // @param type: HDR format
         virtual uint32_t HDRSetting(HDRType& type /* @out */) const = 0;
+    };
+
+    /* @json */
+    struct EXTERNAL IDisplayProperties : virtual public Core::IUnknown {
+        enum { ID = ID_DISPLAY_PROPERTIES };
+
+        enum ColourSpaceType : uint8_t {
+            FORMAT_UNKNOWN,
+            FORMAT_OTHER,
+            FORMAT_RGB_444,
+            FORMAT_YCBCR_444,
+            FORMAT_YCBCR_422,
+            FORMAT_YCBCR_420
+        };
+
+        enum FrameRateType : uint8_t {
+            FRAMERATE_UNKNOWN,
+            FRAMERATE_23_976,
+            FRAMERATE_24,
+            FRAMERATE_25,
+            FRAMERATE_29_97,
+            FRAMERATE_30,
+            FRAMERATE_47_952,
+            FRAMERATE_48,
+            FRAMERATE_50,
+            FRAMERATE_59_94,
+            FRAMERATE_60,
+            FRAMERATE_119_88,
+            FRAMERATE_120,
+            FRAMERATE_144
+        };
+
+        enum ColourDepthType : uint8_t {
+            COLORDEPTH_UNKNOWN,
+            COLORDEPTH_8_BIT,
+            COLORDEPTH_10_BIT,
+            COLORDEPTH_12_BIT
+        };
+
+        enum QuantizationRangeType : uint8_t {
+            QUANTIZATIONRANGE_UNKNOWN,
+            QUANTIZATIONRANGE_LIMITED,
+            QUANTIZATIONRANGE_FULL
+        };
+
+        enum ColorimetryType : uint8_t {
+            COLORIMETRY_UNKNOWN,
+            COLORIMETRY_OTHER,
+            COLORIMETRY_SMPTE170M,
+            COLORIMETRY_BT709,
+            COLORIMETRY_XVYCC601,
+            COLORIMETRY_XVYCC709,
+            COLORIMETRY_SYCC601,
+            COLORIMETRY_OPYCC601,
+            COLORIMETRY_OPRGB,
+            COLORIMETRY_BT2020YCCBCBRC,
+            COLORIMETRY_BT2020RGB_YCBCR
+        };
+
+        enum EotfType : uint8_t {
+            EOTF_UNKNOWN,
+            EOTF_OTHER,
+            EOTF_BT1886,
+            EOTF_BT2100,
+            EOTF_SMPTE_ST_2084
+        };
+        typedef RPC::IIteratorType<ColorimetryType, ID_COLORIMETRY_ITERATOR> IColorimetryIterator;
+
+        // @property
+        // @brief Provides access to the display's Colour space (chroma subsampling format)
+        // @param cs: colour space
+        virtual uint32_t ColorSpace(ColourSpaceType& cs /* @out */) const = 0;
+
+        // @property
+        // @brief Provides access to Frame Rate
+        // @param rate: frame rate
+        virtual uint32_t FrameRate(FrameRateType& rate /* @out */) const = 0;
+
+        // @property
+        // @brief Provides access to display's colour Depth
+        // @param colour: colour depth
+        virtual uint32_t ColourDepth(ColourDepthType& colour /* @out */) const = 0;
+
+        // @property
+        // @brief Provides access to display's colorimetry
+        // @param colorimetry: display colorimetry
+        virtual uint32_t Colorimetry(IColorimetryIterator*& colorimetry /* @out */) const = 0;
+
+        // @property
+        // @brief Provides access to display's Qauntization Range
+        // @param qr: quantization range
+        virtual uint32_t QuantizationRange(QuantizationRangeType& qr /* @out */) const = 0;
+
+        // @property
+        // @brief Provides access to display's Electro optical transfer function
+        // @param eotf: display's EOTF
+        virtual uint32_t EOTF(EotfType& eotf /* @out */) const = 0;
     };
 }
 }
