@@ -34,7 +34,7 @@ namespace Exchange {
         virtual uint64_t Allocated() const = 0;
         virtual uint64_t Shared() const = 0;
         virtual uint8_t Processes() const = 0;
-        virtual const bool IsOperational() const = 0;
+        virtual bool IsOperational() const = 0;
     };
 }
 }
