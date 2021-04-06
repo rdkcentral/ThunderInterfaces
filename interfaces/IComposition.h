@@ -32,7 +32,6 @@ namespace Exchange {
         static constexpr uint32_t maxZOrder = 255;
         static constexpr uint32_t minZOrder = 0;
 
-
         enum ScreenResolution : uint8_t {
             ScreenResolution_Unknown = 0,
             ScreenResolution_480i = 1,
@@ -45,13 +44,6 @@ namespace Exchange {
             ScreenResolution_1080p60Hz = 8,
             ScreenResolution_2160p50Hz = 9,
             ScreenResolution_2160p60Hz = 10
-        };
-
-        //Brightness of SDR graphics in HDR display
-        enum Brightness : uint8_t {
-            SdrToHdrGraphicsBrightness_Default = 0, /* peak luminance of SDR graphics in HDR display might be less bright than SDR video in HDR display */
-            SdrToHdrGraphicsBrightness_MatchVideo = 1, /* peak luminance of SDR graphics in HDR display will be as bright as SDR video in HDR display */
-            SdrToHdrGraphicsBrightness_Max = 2 /* peak luminance of SDR graphics in HDR display might be more bright than SDR video in HDR display */
         };
 
         static uint32_t WidthFromResolution(const ScreenResolution resolution);
@@ -90,7 +82,18 @@ namespace Exchange {
         // Set and get output resolution
         virtual uint32_t Resolution(const ScreenResolution) = 0;
         virtual ScreenResolution Resolution() const = 0;
-        
+    };
+
+    struct EXTERNAL IBrightness : virtual public Core::IUnknown {
+        enum { ID = ID_BRIGHTNESS };
+
+        //Brightness of SDR graphics in HDR display
+        enum Brightness : uint8_t {
+            SdrToHdrGraphicsBrightness_Default = 0, /* peak luminance of SDR graphics in HDR display might be less bright than SDR video in HDR display */
+            SdrToHdrGraphicsBrightness_MatchVideo = 1, /* peak luminance of SDR graphics in HDR display will be as bright as SDR video in HDR display */
+            SdrToHdrGraphicsBrightness_Max = 2 /* peak luminance of SDR graphics in HDR display might be more bright than SDR video in HDR display */
+        };
+
         virtual uint32_t SdrToHdrGraphicsBrightness(Brightness& brightness /* @out */) const = 0;
         virtual uint32_t SdrToHdrGraphicsBrightness(const Brightness& brightness) = 0;
     };

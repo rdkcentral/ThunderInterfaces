@@ -208,7 +208,8 @@ namespace Exchange {
         ID_LANGUAGETAG,
         ID_LANGUAGETAG_NOTIFICATION,
           
-        ID_EXTERNAL_DERIVED
+        ID_EXTERNAL_DERIVED,
+        ID_BRIGHTNESS
     };
 }
 }
