@@ -66,6 +66,8 @@
         },
         "signal": {
           "type": "number",
+          "signed": true,
+          "size": 32,
           "example": -44,
           "description": "Network's signal level in dBm"
         }
