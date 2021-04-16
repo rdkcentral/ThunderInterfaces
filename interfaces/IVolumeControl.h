@@ -28,7 +28,7 @@ namespace Exchange {
     struct EXTERNAL IVolumeControl : virtual public Core::IUnknown {
         enum { ID = ID_VOLUMECONTROL };
 
-        // @event
+        /* @event @extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_VOLUMECONTROL_NOTIFICATION };
 

@@ -51,7 +51,7 @@ namespace Exchange {
             HDCP_AUTO
         };
 
-        /* @event */
+        /* @event @extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_CONNECTION_PROPERTIES_NOTIFICATION };
 
