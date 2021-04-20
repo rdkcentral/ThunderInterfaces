@@ -18,13 +18,18 @@
  */
 
 #pragma once
+
 #include "Module.h"
 
 namespace WPEFramework {
 namespace Exchange {
 
+    using exchange_id = uint32_t;
+
     struct EXTERNAL IComposition : virtual public Core::IUnknown {
         enum { ID = ID_COMPOSITION };
+
+        ~IComposition() override = default;
 
         static constexpr uint32_t maxOpacity = 255;
         static constexpr uint32_t minOpacity = 0;
@@ -59,6 +64,9 @@ namespace Exchange {
         struct EXTERNAL IClient : virtual public Core::IUnknown {
             enum { ID = ID_COMPOSITION_CLIENT };
 
+            ~IClient() override = default;
+
+            virtual exchange_id Native() = 0;
             virtual string Name() const = 0;
             virtual void Opacity(const uint32_t value) = 0;
             virtual uint32_t Geometry(const Rectangle& rectangle) = 0;
@@ -70,8 +78,25 @@ namespace Exchange {
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_COMPOSITION_NOTIFICATION };
 
+            ~INotification() override = default;
+
             virtual void Attached(const string& name, IClient* client) = 0;
             virtual void Detached(const string& name) = 0;
+        };
+
+        struct EXTERNAL IDisplay : virtual public Core::IUnknown {
+            enum { ID = ID_COMPOSITION_DISPLAY };
+
+            ~IDisplay() override = default;
+
+            virtual exchange_id Native() = 0;
+            virtual string Port() const = 0;
+
+            virtual IClient* CreateClient(const string& name, const uint32_t width, const uint32_t height);
+
+            // Set and get output resolution
+            virtual uint32_t Resolution(const ScreenResolution) = 0;
+            virtual ScreenResolution Resolution() const = 0;
         };
 
         virtual void Register(IComposition::INotification* notification) = 0;
