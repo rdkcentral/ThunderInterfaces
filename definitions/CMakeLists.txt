@@ -14,10 +14,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-cmake_minimum_required(VERSION 3.7.2)
-
-project(Definitions)
+find_package(JsonGenerator REQUIRED)
 
 set(Target ${NAMESPACE}Definitions)
 
@@ -56,8 +53,8 @@ set_target_properties(${Target} PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED YES
         FRAMEWORK FALSE
-        VERSION ${VERSION}
-        SOVERSION ${VERSION_MAJOR}
+        VERSION ${PROJECT_VERSION}
+        SOVERSION ${PROJECT_VERSION_MAJOR}
         PUBLIC_HEADER "${PUBLIC_HEADERS}" # specify the public headers
         )
 
