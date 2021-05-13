@@ -17,26 +17,17 @@
 
 cmake_minimum_required(VERSION 3.3)
 
-project(WPEFramework)
-
-set(VERSION_MAJOR 1)
-set(VERSION_MINOR 0)
-set(VERSION_PATCH 0)
-
-set(VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
-set(NAMESPACE ${PROJECT_NAME} CACHE STRING "Namespace of the project")
-
-message(STATUS "Setting up ${PROJECT_NAME} v${VERSION}")
-
+project(Interfaces)
 find_package(WPEFramework)
+
+project_version(1.0.0)
+
+message(STATUS "Setting up ${PROJECT_NAME} v${PROJECT_VERSION}")
+
 find_package(CompileSettingsDebug CONFIG REQUIRED)
-find_package(ProxyStubGenerator REQUIRED)
-find_package(JsonGenerator REQUIRED)
 find_package(${NAMESPACE}Core)
 find_package(${NAMESPACE}Tracing)
-find_package(${NAMESPACE}Protocols QUIET)
-find_package(${NAMESPACE}COM QUIET)
-find_package(${NAMESPACE}WebSocket QUIET)
+find_package(${NAMESPACE}COM)
 
 option(PROTOCOLS "Include the protocols library." ON)
 

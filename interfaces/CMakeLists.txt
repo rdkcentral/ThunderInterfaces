@@ -14,10 +14,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-cmake_minimum_required(VERSION 3.3)
-
-project(Interfaces)
+find_package(ProxyStubGenerator REQUIRED)
 
 set(TargetMarshalling ${NAMESPACE}Marshallings)
 
@@ -40,27 +37,16 @@ target_link_libraries(${TargetMarshalling}
         PRIVATE
           ${NAMESPACE}Core::${NAMESPACE}Core
           ${NAMESPACE}Tracing::${NAMESPACE}Tracing
+          ${NAMESPACE}COM::${NAMESPACE}COM
           CompileSettingsDebug::CompileSettingsDebug
         )
-
-if (PROTOCOLS)
-    target_link_libraries(${TargetMarshalling}
-            PRIVATE
-              ${NAMESPACE}Protocols::${NAMESPACE}Protocols
-            )
-else()
-    target_link_libraries(${TargetMarshalling}
-            PRIVATE
-              ${NAMESPACE}COM::${NAMESPACE}COM
-            )
-endif ()
 
 set_target_properties(${TargetMarshalling} PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED YES
         FRAMEWORK FALSE
-        VERSION ${VERSION}
-        SOVERSION ${VERSION_MAJOR}
+        VERSION ${PROJECT_VERSION}
+        SOVERSION ${PROJECT_VERSION_MAJOR}
         )
 
 string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
