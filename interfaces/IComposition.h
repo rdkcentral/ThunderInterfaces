@@ -24,10 +24,10 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    using exchange_id = uint32_t;
-
     struct EXTERNAL IComposition : virtual public Core::IUnknown {
         enum { ID = ID_COMPOSITION };
+
+        using instance_id = uint32_t; // huppel needs to go!
 
         ~IComposition() override = default;
 
@@ -53,6 +53,7 @@ namespace Exchange {
 
         static uint32_t WidthFromResolution(const ScreenResolution resolution);
         static uint32_t HeightFromResolution(const ScreenResolution resolution);
+        static ScreenResolution ResolutionFromHeightWidth(const uint32_t height, const uint32_t width);
 
         struct Rectangle {
             uint32_t x;
@@ -66,13 +67,21 @@ namespace Exchange {
 
             ~IClient() override = default;
 
-            virtual exchange_id Native() = 0;
+            virtual instance_id Native() const = 0;
             virtual string Name() const = 0;
             virtual void Opacity(const uint32_t value) = 0;
             virtual uint32_t Geometry(const Rectangle& rectangle) = 0;
             virtual Rectangle Geometry() const = 0; 
             virtual uint32_t ZOrder(const uint16_t index) = 0;
             virtual uint32_t ZOrder() const = 0;
+        };
+
+        struct EXTERNAL IRender : virtual public Core::IUnknown {
+            enum { ID = ID_COMPOSITION_RENDER };
+
+            ~IRender() override = default;
+
+            virtual void ScanOut() = 0;
         };
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
@@ -89,7 +98,7 @@ namespace Exchange {
 
             ~IDisplay() override = default;
 
-            virtual exchange_id Native() = 0;
+            virtual instance_id Native() const = 0;
             virtual string Port() const = 0;
 
             virtual IClient* CreateClient(const string& name, const uint32_t width, const uint32_t height);

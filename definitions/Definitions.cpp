@@ -215,5 +215,18 @@ namespace Exchange
     {
         return ((static_cast<uint32_t>(resolution) < sizeof(resolutionWidthHeightTable) / sizeof(ScreenResolutionWidthHeight)) ? resolutionWidthHeightTable[static_cast<uint32_t>(resolution)].height : 0);
     }
+
+    IComposition::ScreenResolution ResolutionFromHeightWidth(const uint32_t height, const uint32_t width) {
+        IComposition::ScreenResolution resolution = IComposition::ScreenResolution_Unknown;
+        for(uint16_t pos = 0; pos < ( sizeof(resolutionWidthHeightTable) / sizeof(ScreenResolutionWidthHeight)); ++pos) {
+            if( ( resolutionWidthHeightTable[pos].height == height ) && (resolutionWidthHeightTable[pos].width == width) ) {
+                resolution = resolutionWidthHeightTable[pos].resolution;
+                break;
+            }
+        }
+        return resolution;
+    }
+
+
 }
 }
