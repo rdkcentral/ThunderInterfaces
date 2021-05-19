@@ -211,6 +211,38 @@
         ]
       }
     },
+    "metadata":{
+      "params":{
+        "type": "object",
+        "properties": {
+          "modelName": {
+            "description": "Model Name",
+            "type": "string",
+            "example": "model A"
+          },
+          "modelYear": {
+            "description": "Model Year",
+            "type": "number",
+            "example": "2020"
+          },
+          "friendlyName": {
+            "description": "friendly name",
+            "type": "string",
+            "example": "my device"
+          },
+          "systemIntegratorName": {
+            "description": "system integrator name",
+            "type": "string",
+            "example": "Christophe A"
+          },
+          "platformName": {
+            "description": "system integrator name",
+            "type": "string",
+            "example": "Christophe A"
+          }
+        }
+      }
+    },
     "systeminfo": {
       "summary": "System general information",
       "readonly": true,

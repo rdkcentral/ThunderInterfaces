@@ -81,7 +81,7 @@ namespace Exchange {
 
 
         virtual uint32_t ModelName(string& value/*@out*/) const = 0; 
-        virtual uint32_t ModelYear(string& value/*@out*/) const = 0; 
+        virtual uint32_t ModelYear(uint32_t& value/*@out*/) const = 0; 
         virtual uint32_t FriendlyName(string& value/*@out*/) const = 0; 
         virtual uint32_t SystemIntegratorName(string& value/*@out*/) const = 0; 
         virtual uint32_t PlatformName(string& value/*@out*/) const = 0; 
