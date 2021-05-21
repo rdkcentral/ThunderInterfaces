@@ -68,7 +68,7 @@ namespace Exchange {
             ONLY_FROM_MAIN_DOCUMENT_DOMAIN = 2,
             EXCLUSIVELY_FROM_MAIN_DOCUMENT_DOMAIN = 3
         };
-        
+
         /* @event @extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
         struct INotification : virtual public Core::IUnknown {
             enum { ID = ID_WEBKITBROWSER_NOTIFICATION };
