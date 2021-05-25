@@ -236,9 +236,9 @@
             "example": "Christophe A"
           },
           "platformName": {
-            "description": "system integrator name",
+            "description": "platform name",
             "type": "string",
-            "example": "Christophe A"
+            "example": "linux"
           }
         }
       }
