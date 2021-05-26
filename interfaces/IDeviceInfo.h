@@ -10,7 +10,7 @@ namespace Exchange {
     struct EXTERNAL IDeviceCapabilities : virtual public Core::IUnknown {
         enum { ID = ID_DEVICE_CAPABILITIES };
 
-        virtual ~IDeviceCapabilities() override = default;
+        ~IDeviceCapabilities() override = default;
 
         enum AudioOutput : uint8_t {
             AUDIO_OTHER,
@@ -77,7 +77,7 @@ namespace Exchange {
     struct EXTERNAL IDeviceMetadata : virtual public Core::IUnknown {
         enum { ID = ID_DEVICE_METADATA };
 
-        virtual ~IDeviceMetadata() override = default;
+        ~IDeviceMetadata() override = default;
 
 
         virtual uint32_t ModelName(string& value/*@out*/) const = 0; 
