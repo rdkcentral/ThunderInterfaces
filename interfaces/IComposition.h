@@ -27,8 +27,6 @@ namespace Exchange {
     struct EXTERNAL IComposition : virtual public Core::IUnknown {
         enum { ID = ID_COMPOSITION };
 
-        using instance_id = uint32_t; // huppel needs to go!
-
         ~IComposition() override = default;
 
         static constexpr uint32_t maxOpacity = 255;
@@ -101,7 +99,7 @@ namespace Exchange {
             virtual instance_id Native() const = 0;
             virtual string Port() const = 0;
 
-            virtual IClient* CreateClient(const string& name, const uint32_t width, const uint32_t height);
+            virtual IClient* CreateClient(const string& name, const uint32_t width, const uint32_t height) = 0;
 
             // Set and get output resolution
             virtual uint32_t Resolution(const ScreenResolution) = 0;
@@ -116,7 +114,11 @@ namespace Exchange {
         // Set and get output resolution
         virtual uint32_t Resolution(const ScreenResolution) = 0;
         virtual ScreenResolution Resolution() const = 0;
+
     };
+
+
+
 }
 }
 
