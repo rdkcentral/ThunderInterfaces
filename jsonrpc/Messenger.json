@@ -9,39 +9,25 @@
   "common": {
     "$ref": "common.json"
   },
-  "methods": {
-    "Messenger.1.create": {
-      "summary": "Creates a messaging room name and URL regex",
-      "description": "Only apps that match the regex will be allowed to join the room",
-      "params": {
-        "type": "object",
-        "properties": {
-          "room": {
-            "description": "Name of the room to create (must not be empty)",
-            "type": "string",
-            "example": "Lounge"
-          },
-          "urlRegex": {
-            "description": "URL regex to match apps (must not be empty)",
-            "type": "string",
-            "example": "*://*.local:*"
-          }
-        },
-        "required": [
-          "room",
-          "urlRegex"
-        ]
-      },
-      "result": {
-        "$ref": "#/common/results/void"
-      },
-      "errors": [
-        {
-          "description": "Room name or URL regex was invalid",
-          "$ref": "#/common/errors/badrequest"
-        }
-      ]
+  "definitions": {
+    "secure": {
+      "type": "string",
+      "enum": [
+        "insecure",
+        "secure"
+      ],
+      "example": "secure"
     },
+    "acl": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "URL origin with possible wildcards",
+        "example": "https://*.github.io"
+      }
+    }
+  },
+  "methods": {
     "Messenger.1.join": {
       "summary": "Joins a messaging room",
       "description": "Use this method to join a room. If the specified room does not exist, then it will be created.",
@@ -60,6 +46,14 @@
             "description": "Name of the room to join (must not be empty)",
             "type": "string",
             "example": "Lounge"
+          },
+          "secure": {
+            "description": "Room security",
+            "$ref": "#/definitions/secure"
+          },
+          "acl": {
+            "description": "Access-control list for secure room",
+            "$ref": "#/definitions/acl"
           }
         },
         "required": [
@@ -85,6 +79,10 @@
         {
           "description": "User name or room name was invalid",
           "$ref": "#/common/errors/badrequest"
+        },
+        {
+          "description": "Room security errors",
+          "$ref": "#/common/errors/privilegedrequest"
         }
       ]
     },
@@ -162,6 +160,10 @@
             "description": "Name of the room this notification relates to",
             "type": "string",
             "example": "Lounge"
+          },
+          "secure": {
+            "description": "Room security",
+            "$ref": "#/definitions/secure"
           },
           "action": {
             "description": "Specifies the room status change, e.g. created or destroyed",
