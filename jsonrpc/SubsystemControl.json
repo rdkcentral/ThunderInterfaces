@@ -16,7 +16,16 @@
         "platform",
         "network",
         "internet",
-        "time"
+        "time",
+        "security",
+        "location",
+        "identifier",
+        "provisioning",
+        "decryption",
+        "bluetooth",
+        "websource",
+        "graphics",
+        "streaming"
       ],
       "description": "The subsystem that needs to be controller",
       "example": "network"
