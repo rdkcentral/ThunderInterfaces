@@ -55,7 +55,7 @@ namespace Exchange {
     struct EXTERNAL IWebBrowser : virtual public Core::IUnknown {
         enum { ID = ID_WEB_BROWSER };
 
-        enum Visibility : uint8_t {
+        enum VisibilityType : uint8_t {
             HIDDEN = 0,
             VISIBLE = 1,
         };
@@ -66,21 +66,21 @@ namespace Exchange {
             ONLY_FROM_MAIN_DOCUMENT_DOMAIN = 2,
             EXCLUSIVELY_FROM_MAIN_DOCUMENT_DOMAIN = 3
         };
-
-        /* @event */
+        
+        /* @event @extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
         struct INotification : virtual public Core::IUnknown {
             enum { ID = ID_WEBKITBROWSER_NOTIFICATION };
 
             // Signal changes on the subscribed namespace..
             // @brief Initial HTML document has been completely loaded and parsed
-            // @param URL The URL that has been loaded
-            // @param code The response code of main resource request
-            virtual void LoadFinished(const string& URL, const int32_t code) = 0;
+            // @param URL The URL that has been loaded (e.g. https://example.com)
+            // @param httpstatus The response code of main resource request (e.g. 200)
+            virtual void LoadFinished(const string& URL, const int32_t httpstatus) = 0;
             // @brief Browser failed to load page
-            // @param URL The URL that has been failed to load
+            // @param URL The URL that has been failed to load (e.g. https://example.com)
             virtual void LoadFailed(const string& URL) = 0;
             // @brief Signals a URL change in the browser
-            // @param URL The URL that has been loaded or requested
+            // @param URL The URL that has been loaded or requested (e.g. https://example.com)
             // @param loaded loaded (true) or not (false)
             virtual void URLChange(const string& URL, const bool loaded) = 0;
             // @brief Signals a visibility change of the browser
@@ -89,7 +89,7 @@ namespace Exchange {
             // @brief Notifies that the web page requests to close its window
             virtual void PageClosure() = 0;
             // @brief Base64 encoded JSON message from legacy $badger bridge
-            virtual void BridgeQuery(const string& message) = 0;
+            virtual void BridgeQueryResponse(const string& message) = 0;
         };
 
         virtual void Register(INotification* sink) = 0;
@@ -97,15 +97,15 @@ namespace Exchange {
 
         // @property
         // @brief Page loaded in the browser
-        // @param url Loaded URL
+        // @param url Loaded URL (e.g. https://example.com)
         virtual uint32_t URL(string& url /* @out */) const = 0;
         virtual uint32_t URL(const string& url) = 0;
 
         // @property
         // @brief Browser window visibility state
-        // @param visible Visiblity state
-        virtual uint32_t Visible(bool& visible /* @out */) const = 0;
-        virtual uint32_t Visible(const bool visible) = 0;
+        // @param visible Visiblity state (e.g. )
+        virtual uint32_t Visibility(VisibilityType& visible /* @out */) const = 0;
+        virtual uint32_t Visibility(const VisibilityType visible) = 0;
 
         // @property
         // @brief Current framerate the browser is rendering at
@@ -114,21 +114,15 @@ namespace Exchange {
 
         // @property
         // @brief Headers to send on all requests that the browser makes
-        // @param header Header Name
-        virtual uint32_t Headers(string& header /* @out */) const = 0;
-        virtual uint32_t Headers(const string& header) = 0;
+        // @param headerlist Header Names 
+        virtual uint32_t HeaderList(string& headerlist /* @out */) const = 0;
+        virtual uint32_t HeaderList(const string& headerlist ) = 0;
 
         // @property
         // @brief UserAgent string used by the browser
-        // @param useragent UserAgent value
-        virtual uint32_t UserAgent(string& ua /* @out */) const = 0;
-        virtual uint32_t UserAgent(const string& ua) = 0;
-
-        // @property
-        // @brief User preferred languages used by the browser
-        // @param language Preferred language
-        virtual uint32_t Languages(string& langs /* @out */) const = 0;
-        virtual uint32_t Languages(const string& langs) = 0;
+        // @param useragent UserAgent value (e.g. Mozilla/5.0 (Linux; x86_64 GNU/Linux) AppleWebKit/601.1 (KHTML, like Gecko) Version/8.0 Safari/601.1 WP)
+        virtual uint32_t UserAgent(string& useragent /* @out */) const = 0;
+        virtual uint32_t UserAgent(const string& useragent) = 0;
 
         // @property
         // @brief Controls the local storage availability
@@ -138,15 +132,18 @@ namespace Exchange {
 
         // @property
         // @brief HTTP cookies accept policy
-        // @param policy HTTP Cookie Accept Policy Type
+        // @param policy HTTP Cookie Accept Policy Type (e.g. always)
         virtual uint32_t HTTPCookieAcceptPolicy(HTTPCookieAcceptPolicyType& policy /* @out */) const = 0;
         virtual uint32_t HTTPCookieAcceptPolicy(const HTTPCookieAcceptPolicyType policy) = 0;
 
+        // @property
         // @brief Response for legacy $badger.
-        // @param payload base64 encoded JSON string response to be delivered to $badger.callback(pid, success, json)
+        // @param payload base64 encoded JSON string response to be delivered to $badger.callback
         virtual uint32_t BridgeReply(const string& payload) = 0;
+
+        // @property
         // @brief Send legacy $badger event.
-        // @param payload base64 encoded JSON string response to be delivered to window.$badger.event(handlerId, json)
+        // @param payload base64 encoded JSON string response to be delivered to window.$badger.event
         virtual uint32_t BridgeEvent(const string& payload) = 0;
 
         // @brief Initiate garbage collection

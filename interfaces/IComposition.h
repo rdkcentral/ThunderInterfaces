@@ -20,6 +20,7 @@
 #pragma once
 
 #include "Module.h"
+#include <com/com.h>
 
 namespace WPEFramework {
 namespace Exchange {
@@ -65,7 +66,7 @@ namespace Exchange {
 
             ~IClient() override = default;
 
-            virtual instance_id Native() const = 0;
+            virtual WPEFramework::RPC::instance_id Native() const = 0;
             virtual string Name() const = 0;
             virtual void Opacity(const uint32_t value) = 0;
             virtual uint32_t Geometry(const Rectangle& rectangle) = 0;
@@ -96,7 +97,7 @@ namespace Exchange {
 
             ~IDisplay() override = default;
 
-            virtual instance_id Native() const = 0;
+            virtual WPEFramework::RPC::instance_id Native() const = 0;
             virtual string Port() const = 0;
 
             virtual IClient* CreateClient(const string& name, const uint32_t width, const uint32_t height) = 0;
@@ -117,8 +118,19 @@ namespace Exchange {
 
     };
 
+    struct EXTERNAL IBrightness : virtual public Core::IUnknown {
+        enum { ID = ID_BRIGHTNESS };
 
-
+        //Brightness of SDR graphics in HDR display
+        enum Brightness : uint8_t {
+            SdrToHdrGraphicsBrightness_Default = 0, /* peak luminance of SDR graphics in HDR display might be less bright than SDR video in HDR display */
+            SdrToHdrGraphicsBrightness_MatchVideo = 1, /* peak luminance of SDR graphics in HDR display will be as bright as SDR video in HDR display */
+            SdrToHdrGraphicsBrightness_Max = 2 /* peak luminance of SDR graphics in HDR display might be more bright than SDR video in HDR display */
+        };
+ 
+        virtual uint32_t SdrToHdrGraphicsBrightness(Brightness& brightness /* @out */) const = 0;
+        virtual uint32_t SdrToHdrGraphicsBrightness(const Brightness& brightness) = 0;
+    };
 }
 }
 
