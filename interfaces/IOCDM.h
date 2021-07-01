@@ -17,13 +17,15 @@
  * limitations under the License.
  */
  
-#ifndef __IOPENCDMI_H
-#define __IOPENCDMI_H
+#pragma once
+
 
 #include "Module.h"
-#include <interfaces/IContentDecryption.h>
 
-namespace OCDM {
+
+namespace WPEFramework {
+namespace Exchange {
+
 
 typedef enum : uint32_t {
     OCDM_SUCCESS = 0,
@@ -118,7 +120,7 @@ struct ISession : virtual public WPEFramework::Core::IUnknown {
     virtual void ResetOutputProtection() = 0;
 
     // During instantiation a callback is set, here we can decouple.
-    virtual void Revoke(OCDM::ISession::ICallback* callback) = 0;
+    virtual void Revoke(ISession::ICallback* callback) = 0;
 };
 
 struct ISessionExt : virtual public WPEFramework::Core::IUnknown {
@@ -247,12 +249,12 @@ public:
     static constexpr uint8_t KEY_LENGTH = 16;
 
     inline KeyId()
-        : _status(::OCDM::ISession::StatusPending)
+        : _status(ISession::StatusPending)
     {
         ::memset(_kid, ~0, sizeof(_kid));
     }
     inline KeyId(const uint8_t kid[], const uint8_t length)
-        : _status(::OCDM::ISession::StatusPending)
+        : _status(ISession::StatusPending)
     {
         uint8_t copyLength(length > sizeof(_kid) ? sizeof(_kid) : length);
 
@@ -264,7 +266,7 @@ public:
     }
     // Microsoft playready XML flavor retrieval of KID
     inline KeyId(const uint32_t a, const uint16_t b, const uint16_t c, const uint8_t d[])
-        : _status(::OCDM::ISession::StatusPending)
+        : _status(ISession::StatusPending)
     {
         // A bit confused on how the mapping of the Microsoft KeyId's should go, looking at the spec:
         // https://msdn.microsoft.com/nl-nl/library/windows/desktop/aa379358(v=vs.85).aspx
@@ -362,21 +364,21 @@ public:
         }
         return (result);
     }
-    void Status(::OCDM::ISession::KeyStatus status)
+    void Status(ISession::KeyStatus status)
     {
         _status = status;
     }
-    ::OCDM::ISession::KeyStatus Status() const
+    ISession::KeyStatus Status() const
     {
         return (_status);
     }
 
 private:
     uint8_t _kid[KEY_LENGTH];
-    ::OCDM::ISession::KeyStatus _status;
+    ISession::KeyStatus _status;
 };
 
 
-}
+} //namespace Exchange
+} //namespace WPEFramework
 
-#endif // __OPENCDMI_
