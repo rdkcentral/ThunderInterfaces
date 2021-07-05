@@ -88,7 +88,7 @@ namespace Exchange {
             virtual void VisibilityChange(const bool hidden) = 0;
             // @brief Notifies that the web page requests to close its window
             virtual void PageClosure() = 0;
-            // @brief Base64 encoded JSON message from legacy $badger bridge
+            /* @json:omit */
             virtual void BridgeQueryResponse(const string& message) = 0;
         };
 
@@ -112,10 +112,9 @@ namespace Exchange {
         // @param fps Current FPS
         virtual uint32_t FPS(uint8_t& fps /* @out */) const = 0;
 
-        // @property
-        // @brief Headers to send on all requests that the browser makes
-        // @param headerlist Header Names 
+        /* @json:omit */
         virtual uint32_t HeaderList(string& headerlist /* @out */) const = 0;
+        /* @json:omit */
         virtual uint32_t HeaderList(const string& headerlist ) = 0;
 
         // @property
