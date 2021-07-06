@@ -43,7 +43,7 @@ typedef enum : uint32_t {
 
 // ISession defines the interface towards a DRM context that can decrypt data
 // using a given key.
-struct ISession : virtual public WPEFramework::Core::IUnknown {
+struct ISession : virtual public Core::IUnknown {
     enum KeyStatus : uint32_t {
         Usable = 0,
         Expired,
@@ -58,8 +58,8 @@ struct ISession : virtual public WPEFramework::Core::IUnknown {
 
     // ICallback defines the callback interface to receive
     // events originated from the session.
-    struct ICallback : virtual public WPEFramework::Core::IUnknown {
-        enum { ID = WPEFramework::RPC::ID_SESSION_CALLBACK };
+    struct ICallback : virtual public Core::IUnknown {
+        enum { ID = RPC::ID_SESSION_CALLBACK };
 
         virtual ~ICallback() {}
 
@@ -79,7 +79,7 @@ struct ISession : virtual public WPEFramework::Core::IUnknown {
         virtual void OnKeyStatusesUpdated() const = 0;
     };
 
-    enum { ID = WPEFramework::RPC::ID_SESSION };
+    enum { ID = RPC::ID_SESSION };
 
     virtual ~ISession(void) {}
 
@@ -123,8 +123,8 @@ struct ISession : virtual public WPEFramework::Core::IUnknown {
     virtual void Revoke(ISession::ICallback* callback) = 0;
 };
 
-struct ISessionExt : virtual public WPEFramework::Core::IUnknown {
-    enum { ID = WPEFramework::RPC::ID_SESSION_EXTENSION };
+struct ISessionExt : virtual public Core::IUnknown {
+    enum { ID = RPC::ID_SESSION_EXTENSION };
 
     enum LicenseTypeExt { Invalid = 0,
         LimitedDuration,
@@ -167,9 +167,9 @@ struct ISessionExt : virtual public WPEFramework::Core::IUnknown {
     virtual OCDM_RESULT CleanDecryptContext() = 0;
 };
 
-struct IAccessorOCDM : virtual public WPEFramework::Core::IUnknown {
+struct IAccessorOCDM : virtual public Core::IUnknown {
 
-    enum { ID = WPEFramework::RPC::ID_ACCESSOROCDM };
+    enum { ID = RPC::ID_ACCESSOROCDM };
 
     virtual ~IAccessorOCDM() {}
 

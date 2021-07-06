@@ -38,7 +38,7 @@ namespace Exchange {
 
 
 
-    class DataExchange : public WPEFramework::Core::SharedBuffer {
+    class DataExchange : public Core::SharedBuffer {
     private:
         DataExchange() = delete;
         DataExchange(const DataExchange&) = delete;
@@ -57,18 +57,18 @@ namespace Exchange {
 
     public:
         DataExchange(const string& name)
-            : WPEFramework::Core::SharedBuffer(name.c_str())
+            : Core::SharedBuffer(name.c_str())
         {
         }
         DataExchange(const string& name, const uint32_t bufferSize)
-            : WPEFramework::Core::SharedBuffer(name.c_str(), 
-                WPEFramework::Core::File::USER_READ    |
-                WPEFramework::Core::File::USER_WRITE   |
-                WPEFramework::Core::File::USER_EXECUTE |
-                WPEFramework::Core::File::GROUP_READ   |
-                WPEFramework::Core::File::GROUP_WRITE  |
-                WPEFramework::Core::File::OTHERS_READ  |
-                WPEFramework::Core::File::OTHERS_WRITE,
+            : Core::SharedBuffer(name.c_str(), 
+                Core::File::USER_READ    |
+                Core::File::USER_WRITE   |
+                Core::File::USER_EXECUTE |
+                Core::File::GROUP_READ   |
+                Core::File::GROUP_WRITE  |
+                Core::File::OTHERS_READ  |
+                Core::File::OTHERS_WRITE,
                 bufferSize,
                 sizeof(Administration))
         {
@@ -121,7 +121,7 @@ namespace Exchange {
         void Write(const uint32_t length, const uint8_t* data)
         {
 
-            if (WPEFramework::Core::SharedBuffer::Size(length) == true) {
+            if (Core::SharedBuffer::Size(length) == true) {
                 SetBuffer(0, length, data);
             }
         }
