@@ -20,6 +20,8 @@
 #pragma once 
 #include "Module.h"
 
+// @stubgen:include <com/IRPCIterator.h>
+
 namespace WPEFramework {
 namespace Exchange {
 
@@ -147,6 +149,32 @@ namespace Exchange {
 
         // @brief Initiate garbage collection
         virtual uint32_t CollectGarbage() = 0;
+    };
+
+    /* @json */
+    struct EXTERNAL IBrowserResources : virtual public Core::IUnknown {
+
+        enum { ID = ID_BROWSER_RESOURCES };
+
+        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
+        // @property
+        // @brief Headers to send on all requests that the browser makes
+        // @param header Header Name
+        virtual uint32_t Headers(IStringIterator*& header /* @out */) const = 0;
+        virtual uint32_t Headers(IStringIterator* const header) = 0;
+
+        // @property
+        // @brief User scripts used by the browser
+        // @param uris JSON array containing URIs pointing to user scripts, supported protocols: file://
+        virtual uint32_t UserScripts(IStringIterator*& uris /* @out */) const = 0;
+        virtual uint32_t UserScripts(IStringIterator* const uris) = 0;
+
+        // @property
+        // @brief User style sheets used by the browser
+        // @param uris JSON array containing URIs pointing to user style sheets, supported protocols: file://
+        virtual uint32_t UserStyleSheets(IStringIterator*& uris /* @out */) const = 0;
+        virtual uint32_t UserStyleSheets(IStringIterator* const uris) = 0;
     };
 
 }
