@@ -120,13 +120,15 @@ namespace Exchange {
             enum { ID = ID_BLUETOOTH_NOTIFICATION };
 
             virtual void Update(IDevice* device) = 0;
+            virtual void Update() = 0;
         };
 
         virtual uint32_t Register(INotification* notification) = 0;
         virtual uint32_t Unregister(INotification* notification) = 0;
 
         virtual bool IsScanning() const = 0;
-        virtual bool Scan(const bool enable) = 0;
+        virtual uint32_t Scan(const bool lowEnergy, const uint16_t duration /* sec */) = 0;
+        virtual uint32_t StopScanning() = 0;
 
         virtual IDevice* Device(const string& address) = 0;
         virtual IDevice::IIterator* Devices() = 0;
