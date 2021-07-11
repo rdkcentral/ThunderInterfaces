@@ -242,9 +242,6 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
 };
 
 class EXTERNAL KeyId {
-private:
-    static const KeyId InvalidKey;
-
 public:
     static constexpr uint8_t KEY_LENGTH = 16;
 
@@ -287,9 +284,7 @@ public:
     {
         ::memcpy(_kid, copy._kid, sizeof(_kid));
     }
-    inline ~KeyId()
-    {
-    }
+    ~KeyId() = default;
 
     inline KeyId& operator=(const KeyId& rhs)
     {
@@ -301,6 +296,7 @@ public:
 public:
     inline bool IsValid() const
     {
+        static const KeyId InvalidKey;
         return (operator!=(InvalidKey));
     }
     inline bool operator==(const uint8_t rhs[]) const
