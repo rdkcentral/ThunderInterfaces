@@ -30,8 +30,8 @@
   },
   "methods": {
     "scan": {
-      "summary": "Starts scanning for Bluetooth devices",
-      "events": [ "scancomplete" ],
+      "summary": "Starts active scanning for Bluetooth devices",
+      "events": [ "scanstarted", "scancomplete" ],
       "params": {
         "type": "object",
         "properties": {
@@ -40,7 +40,14 @@
           },
           "timeout": {
             "description": "Duration of the scan (in seconds); default: 10 seconds",
+            "obsolete": true,
             "type": "number",
+            "example": 60
+          },
+          "duration": {
+            "description": "Duration of the scan (in seconds); default: 10 seconds",
+            "type": "number",
+            "size": 16,
             "example": 60
           }
         },
@@ -60,8 +67,26 @@
         }
       ]
     },
+    "stopscanning": {
+      "summary": "Stops scanning procedure",
+      "events": [ "scancomplete" ],
+      "result": {
+        "$ref": "#/common/results/void"
+      },
+      "errors": [
+        {
+          "description": "Failed to top scanning",
+          "$ref": "#/common/errors/general"
+        },
+        {
+          "description": "No scan is in progress",
+          "$ref": "#/common/errors/illegalstate"
+        }
+      ]
+    },
     "connect": {
       "summary": "Connects to a Bluetooth device",
+      "description": "If the device is not available it will be automatically connected as soon it becomes available.",
       "events": [ "devicestatechange" ],
       "params": {
         "type": "object",
@@ -80,17 +105,26 @@
           "$ref": "#/common/errors/unknownkey"
         },
         {
+          "description": "Device not paired",
+          "$ref": "#/common/errors/illegalstate"
+        },
+        {
           "description": "Device already connected",
           "$ref": "#/common/errors/alreadyconnected"
         },
         {
           "description": "Failed to connect the device",
           "$ref": "#/common/errors/general"
+        },
+        {
+          "description": "Device has not been connected but will be automatically connected when available",
+          "$ref": "#/common/errors/requestsubmitted"
         }
       ]
     },
     "disconnect": {
       "summary": "Disconnects from a connected Bluetooth device",
+      "description": "Device will cease to re-connect automatically.",
       "events": [ "devicestatechange" ],
       "params": {
         "type": "object",
@@ -111,6 +145,10 @@
         {
           "description": "Device not connected",
           "$ref": "#/common/errors/alreadyreleased"
+        },
+        {
+          "description": "Device is currently not connected but it's autoconnection mode has been disabled",
+          "$ref": "#/common/errors/requestsubmitted"
         }
       ]
     },
@@ -421,6 +459,10 @@
     }
   },
   "events": {
+    "scanstarted": {
+      "summary": "Notifies about start scanning",
+      "description": "Register to this event to be notified about device scan start"
+    },
     "scancomplete": {
       "summary": "Notifies about scan completion",
       "description": "Register to this event to be notified about device scan completion"
