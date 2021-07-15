@@ -11,7 +11,7 @@ namespace WPEFramework {
 
 		struct EXTERNAL IGroup : virtual public Core::IUnknown {
 
-			enum { ID = 0x10000045 };
+			enum { ID = ID_BUTLER_GROUP };
 
 			virtual uint32_t Parent() const = 0;
 			virtual string Base() const = 0;
@@ -20,7 +20,7 @@ namespace WPEFramework {
 
 		struct EXTERNAL IButler : virtual public Core::IUnknown {
 
-			enum { ID = 0x10000042 };
+			enum { ID = ID_BUTLER };
 
 			struct EXTERNAL IObserver : virtual public Core::IUnknown {
 
@@ -35,7 +35,7 @@ namespace WPEFramework {
 
 			struct EXTERNAL INotification : virtual public Core::IUnknown {
 
-				enum { ID = 0x10000044 };
+				enum { ID = ID_BUTLER_NOTIFICATION };
 
 				// Push changes. If the Current value changes or the condition of IExternal, the next method is called.
 				virtual void Updated(/* @out */ IExternal* element) = 0;

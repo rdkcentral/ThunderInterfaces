@@ -211,7 +211,20 @@ namespace Exchange {
         ID_LANGUAGETAG_NOTIFICATION,
           
         ID_EXTERNAL_DERIVED,
-        ID_BRIGHTNESS
+        ID_BRIGHTNESS,
+
+        //OCDM
+        ID_ACCESSOROCDM,
+        ID_ACCESSOROCDM_NOTIFICATION,
+        ID_SESSION,
+        ID_SESSION_CALLBACK,
+        ID_SESSION_EXTENSION,
+
+        //Butler
+        ID_GID_BUTLER_GROUPROUP,
+        ID_BUTLER,
+        ID_BUTLER_NOTIFICATION
+
     };
 }
 }
