@@ -35,6 +35,8 @@ namespace Exchange {
 
         virtual void Register(IProvisioning::INotification* provisioning) = 0;
         virtual void Unregister(IProvisioning::INotification* provisioning) = 0;
+        virtual uint32_t DRMId (const string& label /* @in */, string& drmId /* @out */) const = 0;
+        virtual uint32_t DeviceId (string& deviceId /* @out */) const = 0;
     };
 }
 }
