@@ -211,7 +211,8 @@ namespace Exchange {
         ID_LANGUAGETAG_NOTIFICATION,
           
         ID_EXTERNAL_DERIVED,
-        ID_BRIGHTNESS
+        ID_BRIGHTNESS,
+        ID_FOCUS,
     };
 }
 }
