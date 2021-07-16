@@ -11,18 +11,18 @@
   },
   "methods": {
     "Messenger.1.create": {
-      "summary": "Sets URL regex for a messaging room",
+      "summary": "Creates a messaging room name and URL regex",
       "description": "Only apps that match the regex will be allowed to join the room",
       "params": {
         "type": "object",
         "properties": {
           "room": {
-            "description": "Name of the room (must not be empty)",
+            "description": "Name of the room to create (must not be empty)",
             "type": "string",
             "example": "Lounge"
           },
           "urlRegex": {
-            "description": "URL regex (must not be empty)",
+            "description": "URL regex to match apps (must not be empty)",
             "type": "string",
             "example": "*://*.local:*"
           }
@@ -36,10 +36,6 @@
         "$ref": "#/common/results/void"
       },
       "errors": [
-        {
-          "description": "Room is being used (i.e. there are users in it)",
-          "$ref": "#/common/errors/illegalstate"
-        },
         {
           "description": "Room name or URL regex was invalid",
           "$ref": "#/common/errors/badrequest"
