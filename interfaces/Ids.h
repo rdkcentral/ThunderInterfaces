@@ -222,6 +222,7 @@ namespace Exchange {
         ID_SESSION_EXTENSION,
 
         //Butler
+        ID_BUTLER_GROUP,
         ID_BUTLER,
         ID_BUTLER_NOTIFICATION
     };
