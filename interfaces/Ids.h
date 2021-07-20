@@ -212,6 +212,7 @@ namespace Exchange {
           
         ID_EXTERNAL_DERIVED,
         ID_BRIGHTNESS,
+        ID_FOCUS,
 
         //OCDM
         ID_ACCESSOROCDM,
@@ -223,7 +224,6 @@ namespace Exchange {
         //Butler
         ID_BUTLER,
         ID_BUTLER_NOTIFICATION
-
     };
 }
 }
