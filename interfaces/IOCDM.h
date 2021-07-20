@@ -59,7 +59,7 @@ struct ISession : virtual public Core::IUnknown {
     // ICallback defines the callback interface to receive
     // events originated from the session.
     struct ICallback : virtual public Core::IUnknown {
-        enum { ID = RPC::ID_SESSION_CALLBACK };
+        enum { ID = ID_SESSION_CALLBACK };
 
         virtual ~ICallback() {}
 
@@ -79,7 +79,7 @@ struct ISession : virtual public Core::IUnknown {
         virtual void OnKeyStatusesUpdated() const = 0;
     };
 
-    enum { ID = RPC::ID_SESSION };
+    enum { ID = ID_SESSION };
 
     virtual ~ISession(void) {}
 
@@ -124,7 +124,7 @@ struct ISession : virtual public Core::IUnknown {
 };
 
 struct ISessionExt : virtual public Core::IUnknown {
-    enum { ID = RPC::ID_SESSION_EXTENSION };
+    enum { ID = ID_SESSION_EXTENSION };
 
     enum LicenseTypeExt { Invalid = 0,
         LimitedDuration,
@@ -169,7 +169,7 @@ struct ISessionExt : virtual public Core::IUnknown {
 
 struct IAccessorOCDM : virtual public Core::IUnknown {
 
-    enum { ID = RPC::ID_ACCESSOROCDM };
+    enum { ID = ID_ACCESSOROCDM };
 
     virtual ~IAccessorOCDM() {}
 
