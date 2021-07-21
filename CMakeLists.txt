@@ -30,6 +30,7 @@ find_package(${NAMESPACE}Tracing)
 find_package(${NAMESPACE}COM)
 
 option(PROTOCOLS "Include the protocols library." ON)
+option(CDMI      "Create symbolic link from IDRM.h into cdmi.h" OFF)
 
 if (BUILD_REFERENCE)
     add_definitions (-DBUILD_REFERENCE=${BUILD_REFERENCE})

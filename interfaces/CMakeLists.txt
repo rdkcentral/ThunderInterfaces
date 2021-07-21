@@ -68,3 +68,16 @@ install(
         FILES ${JSON_HEADERS}
         DESTINATION include/${NAMESPACE}/interfaces/json
 )
+
+if(CDMI)
+        install(CODE "execute_process(  
+                COMMAND ${CMAKE_COMMAND} -E create_symlink \
+                $ENV{STAGING_DIR}/usr/include/WPEFramework/interfaces/IDRM.h \
+                $ENV{STAGING_DIR}/usr/include/cdmi.h \
+                )"
+        )
+endif()
+
+
+
+
