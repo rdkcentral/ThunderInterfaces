@@ -72,8 +72,8 @@ install(
 if(CDMI)      
         install(CODE "execute_process(  
                 COMMAND ${CMAKE_COMMAND} -E create_symlink \
-                ${CMAKE_SYSROOT}/usr/include/WPEFramework/interfaces/IDRM.h \
-                ${CMAKE_SYSROOT}/usr/include/cdmi.h \
+                ${CMAKE_SYSROOT}/${CMAKE_INSTALL_PREFIX}/include/WPEFramework/interfaces/IDRM.h \
+                ${CMAKE_SYSROOT}/${CMAKE_INSTALL_PREFIX}/include/cdmi.h \
                 )"
         )
 endif()
