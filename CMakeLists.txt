@@ -29,7 +29,8 @@ find_package(${NAMESPACE}Core)
 find_package(${NAMESPACE}Tracing)
 find_package(${NAMESPACE}COM)
 
-option(PROTOCOLS "Include the protocols library." ON)
+set(PROTOCOLS ON CACHE BOOL "Include the protocols library.")
+set(CDMI OFF CACHE BOOL "Create symbolic link from IDRM.h into cdmi.h .")
 
 if (BUILD_REFERENCE)
     add_definitions (-DBUILD_REFERENCE=${BUILD_REFERENCE})
