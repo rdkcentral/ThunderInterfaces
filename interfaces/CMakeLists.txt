@@ -14,6 +14,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 find_package(ProxyStubGenerator REQUIRED)
 
 set(TargetMarshalling ${NAMESPACE}Marshallings)
@@ -69,13 +70,12 @@ install(
         DESTINATION include/${NAMESPACE}/interfaces/json
 )
 
-if(CDMI)      
-        install(CODE "execute_process(  
-                COMMAND ${CMAKE_COMMAND} -E create_symlink \
-                ${CMAKE_SYSROOT}/${CMAKE_INSTALL_PREFIX}/include/WPEFramework/interfaces/IDRM.h \
-                ${CMAKE_SYSROOT}/${CMAKE_INSTALL_PREFIX}/include/cdmi.h \
-                )"
-        )
+include(CreateLink)
+if(CDMI)  
+        CreateLink(
+                LINK "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/cdmi.h"
+                TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/WPEFramework/interfaces/IDRM.h" 
+        )      
 endif()
 
 
