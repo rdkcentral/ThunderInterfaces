@@ -74,7 +74,7 @@ include(CreateLink)
 if(CDMI)  
         CreateLink(
                 LINK "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/cdmi.h"
-                TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/WPEFramework/interfaces/IDRM.h" 
+                TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces/IDRM.h" 
         )      
 endif()
 
