@@ -1,7 +1,7 @@
 # If not stated otherwise in this file or this component's license file the
 # following copyright and licenses apply:
 #
-# Copyright 2020 RDK Management
+# Copyright 2020 Metrological
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -29,7 +29,8 @@ find_package(${NAMESPACE}Core)
 find_package(${NAMESPACE}Tracing)
 find_package(${NAMESPACE}COM)
 
-option(PROTOCOLS "Include the protocols library." ON)
+set(PROTOCOLS ON CACHE BOOL "Include the protocols library.")
+set(CDMI OFF CACHE BOOL "Create symbolic link from IDRM.h into cdmi.h .")
 
 if (BUILD_REFERENCE)
     add_definitions (-DBUILD_REFERENCE=${BUILD_REFERENCE})

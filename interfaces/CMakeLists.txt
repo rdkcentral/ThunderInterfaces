@@ -1,7 +1,7 @@
 # If not stated otherwise in this file or this component's license file the
 # following copyright and licenses apply:
 #
-# Copyright 2020 RDK Management
+# Copyright 2020 Metrological
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,11 +14,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 find_package(ProxyStubGenerator REQUIRED)
 
 set(TargetMarshalling ${NAMESPACE}Marshallings)
 
-set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
+if(NOT GENERATOR_SEARCH_PATH)
+    set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
+endif()
+
 ProxyStubGenerator(INPUT "${CMAKE_CURRENT_SOURCE_DIR}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
 file(GLOB INTERFACES_HEADERS I*.h)
@@ -65,3 +69,15 @@ install(
         FILES ${JSON_HEADERS}
         DESTINATION include/${NAMESPACE}/interfaces/json
 )
+
+include(CreateLink)
+if(CDMI)  
+        CreateLink(
+                LINK "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/cdmi.h"
+                TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces/IDRM.h" 
+        )      
+endif()
+
+
+
+

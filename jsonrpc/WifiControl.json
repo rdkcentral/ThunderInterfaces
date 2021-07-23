@@ -152,7 +152,13 @@
       },
       "result": {
         "$ref": "#/common/results/void"
-      }
+      },
+      "errors": [
+        {
+          "description": "Returned when unable to update config list stored on disk",
+          "$ref": "#/common/errors/unavailable"
+        }
+      ]
     },
     "store": {
       "summary": "Stores the configurations in persistent storage",
@@ -204,6 +210,10 @@
       "errors": [
         {
           "description": "Returned when the network with a the given SSID doesn't exists",
+          "$ref": "#/common/errors/notexist"
+        },
+        {
+          "description": "Returned when the network with a the given security type doesn't exists",
           "$ref": "#/common/errors/unknownkey"
         },
         {

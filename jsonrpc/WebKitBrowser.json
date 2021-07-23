@@ -75,6 +75,7 @@
   "events": {
     "bridgequery": {
       "summary": "A Base64 encoded JSON message from legacy $badger bridge",
+      "obsolete" : true,
       "params": {
         "type": "string",
         "properties": {

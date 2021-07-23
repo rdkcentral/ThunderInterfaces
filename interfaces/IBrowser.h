@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2020 RDK Management
+ * Copyright 2020 Metrological
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
 
 #pragma once 
 #include "Module.h"
+
+// @stubgen:include <com/IRPCIterator.h>
 
 namespace WPEFramework {
 namespace Exchange {
@@ -88,7 +90,7 @@ namespace Exchange {
             virtual void VisibilityChange(const bool hidden) = 0;
             // @brief Notifies that the web page requests to close its window
             virtual void PageClosure() = 0;
-            // @brief Base64 encoded JSON message from legacy $badger bridge
+            /* @json:omit */
             virtual void BridgeQueryResponse(const string& message) = 0;
         };
 
@@ -112,10 +114,9 @@ namespace Exchange {
         // @param fps Current FPS
         virtual uint32_t FPS(uint8_t& fps /* @out */) const = 0;
 
-        // @property
-        // @brief Headers to send on all requests that the browser makes
-        // @param headerlist Header Names 
+        /* @json:omit */
         virtual uint32_t HeaderList(string& headerlist /* @out */) const = 0;
+        /* @json:omit */
         virtual uint32_t HeaderList(const string& headerlist ) = 0;
 
         // @property
@@ -148,6 +149,32 @@ namespace Exchange {
 
         // @brief Initiate garbage collection
         virtual uint32_t CollectGarbage() = 0;
+    };
+
+    /* @json */
+    struct EXTERNAL IBrowserResources : virtual public Core::IUnknown {
+
+        enum { ID = ID_BROWSER_RESOURCES };
+
+        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
+        // @property
+        // @brief Headers to send on all requests that the browser makes
+        // @param header Header Name
+        virtual uint32_t Headers(IStringIterator*& header /* @out */) const = 0;
+        virtual uint32_t Headers(IStringIterator* const header) = 0;
+
+        // @property
+        // @brief User scripts used by the browser
+        // @param uris JSON array containing URIs pointing to user scripts, supported protocols: file://
+        virtual uint32_t UserScripts(IStringIterator*& uris /* @out */) const = 0;
+        virtual uint32_t UserScripts(IStringIterator* const uris) = 0;
+
+        // @property
+        // @brief User style sheets used by the browser
+        // @param uris JSON array containing URIs pointing to user style sheets, supported protocols: file://
+        virtual uint32_t UserStyleSheets(IStringIterator*& uris /* @out */) const = 0;
+        virtual uint32_t UserStyleSheets(IStringIterator* const uris) = 0;
     };
 
 }

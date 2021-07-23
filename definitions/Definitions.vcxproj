@@ -144,7 +144,7 @@
     <CustomBuild Include="..\jsonrpc\TraceControl.json">
       <FileType>Document</FileType>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\VolumeControl.json">
+    <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
       <FileType>Document</FileType>
     </CustomBuild>
     <None Include="..\jsonrpc\WebKitBrowser.json" />

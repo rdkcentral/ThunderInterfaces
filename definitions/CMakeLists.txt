@@ -1,7 +1,7 @@
 # If not stated otherwise in this file or this component's license file the
 # following copyright and licenses apply:
 #
-# Copyright 2020 RDK Management
+# Copyright 2020 Metrological
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +23,10 @@ file(GLOB INTERFACE_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/I*.h")
 
 set(PUBLIC_HEADERS "definitions.h")
 
-set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
+if(NOT GENERATOR_SEARCH_PATH)
+    set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
+endif()
+
 JsonGenerator(CODE INPUT ${JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 JsonGenerator(CODE INPUT ${INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 

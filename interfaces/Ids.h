@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2020 RDK Management
+ * Copyright 2020 Metrological
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -167,6 +167,7 @@ namespace Exchange {
         ID_REMOTEINVOCATION,
 
         ID_WEB_BROWSER,
+        ID_BROWSER_RESOURCES,
 
         ID_AVSCLIENT,
         ID_AVSCONTROLLER,
@@ -201,6 +202,7 @@ namespace Exchange {
         ID_DEVICE_CAPABILITIES_AUDIO,
         ID_DEVICE_CAPABILITIES_VIDEO,
         ID_DEVICE_CAPABILITIES_RESOLUTION,
+        ID_DEVICE_METADATA,
 
         ID_DIALSERVER,
         ID_DIALSERVER_APPLICATION,
@@ -209,7 +211,20 @@ namespace Exchange {
         ID_LANGUAGETAG_NOTIFICATION,
           
         ID_EXTERNAL_DERIVED,
-        ID_BRIGHTNESS
+        ID_BRIGHTNESS,
+        ID_FOCUS,
+
+        //OCDM
+        ID_ACCESSOROCDM,
+        ID_ACCESSOROCDM_NOTIFICATION,
+        ID_SESSION,
+        ID_SESSION_CALLBACK,
+        ID_SESSION_EXTENSION,
+
+        //Butler
+        ID_BUTLER_GROUP,
+        ID_BUTLER,
+        ID_BUTLER_NOTIFICATION
     };
 }
 }
