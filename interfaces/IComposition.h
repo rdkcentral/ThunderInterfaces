@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2020 RDK Management
+ * Copyright 2020 Metrological
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ namespace Exchange {
             virtual string Name() const = 0;
             virtual void Opacity(const uint32_t value) = 0;
             virtual uint32_t Geometry(const Rectangle& rectangle) = 0;
-            virtual Rectangle Geometry() const = 0; 
+            virtual Rectangle Geometry() const = 0;
             virtual uint32_t ZOrder(const uint16_t index) = 0;
             virtual uint32_t ZOrder() const = 0;
         };
@@ -83,6 +83,19 @@ namespace Exchange {
         virtual uint32_t Resolution(const ScreenResolution) = 0;
         virtual ScreenResolution Resolution() const = 0;
     };
-}
-}
 
+    struct EXTERNAL IBrightness : virtual public Core::IUnknown {
+        enum { ID = ID_BRIGHTNESS };
+
+        //Brightness of SDR graphics in HDR display
+        enum Brightness : uint8_t {
+            SdrToHdrGraphicsBrightness_Default = 0, /* peak luminance of SDR graphics in HDR display might be less bright than SDR video in HDR display */
+            SdrToHdrGraphicsBrightness_MatchVideo = 1, /* peak luminance of SDR graphics in HDR display will be as bright as SDR video in HDR display */
+            SdrToHdrGraphicsBrightness_Max = 2 /* peak luminance of SDR graphics in HDR display might be more bright than SDR video in HDR display */
+        };
+
+        virtual uint32_t SdrToHdrGraphicsBrightness(Brightness& brightness /* @out */) const = 0;
+        virtual uint32_t SdrToHdrGraphicsBrightness(const Brightness& brightness) = 0;
+    };
+}
+}

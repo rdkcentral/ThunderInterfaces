@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2020 RDK Management
+ * Copyright 2020 Metrological
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@
 #include <interfaces/IContentDecryption.h>
 #include <interfaces/ICustomerCareOperations.h>
 #include <interfaces/IDeviceIdentification.h>
+#include <interfaces/IDeviceInfo.h>
 #include <interfaces/IDictionary.h>
 #include <interfaces/IDisplayInfo.h>
 #include <interfaces/IDialServer.h>
@@ -159,6 +160,12 @@ ENUM_CONVERSION_BEGIN(Exchange::External::Metadata::protocol)
     { Exchange::External::Metadata::protocol::JSONRPC,  _TXT(_T("JSONRPC"))  },
     { Exchange::External::Metadata::protocol::VIRTUAL,  _TXT(_T("Virtual"))  },
 ENUM_CONVERSION_END(Exchange::External::Metadata::protocol)
+
+ENUM_CONVERSION_BEGIN(Exchange::IBrightness::Brightness)
+    { Exchange::IBrightness::SdrToHdrGraphicsBrightness_Default, _TXT("default") },
+    { Exchange::IBrightness::SdrToHdrGraphicsBrightness_MatchVideo, _TXT("match_video") },
+    { Exchange::IBrightness::SdrToHdrGraphicsBrightness_Max, _TXT("max") },
+ENUM_CONVERSION_END(Exchange::IBrightness::Brightness)
 
 ENUM_CONVERSION_BEGIN(Exchange::IDeviceCapabilities::AudioOutput)
     { Exchange::IDeviceCapabilities::AudioOutput::AUDIO_OTHER, _TXT("other") },

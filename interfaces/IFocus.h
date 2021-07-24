@@ -20,30 +20,15 @@
 #pragma once
 #include "Module.h"
 
-// @stubgen:skip
-
 namespace WPEFramework {
 namespace Exchange {
 
-    // This interface gives direct access to a time synchronize / update
-    struct EXTERNAL ITimeSync : virtual public Core::IUnknown {
-        enum { ID = ID_TIMESYNC };
+    struct EXTERNAL IFocus : virtual public Core::IUnknown {
+        enum { ID = ID_FOCUS };
 
-        struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_TIMESYNC_NOTIFICATION };
-
-            // Some change happened with respect to the Network..
-            virtual void Completed() = 0;
-        };
-
-        virtual void Register(INotification* notification) = 0;
-        virtual void Unregister(INotification* notification) = 0;
-
-        virtual uint32_t Synchronize() = 0;
-        virtual void Cancel() = 0;
-        virtual string Source() const = 0;
-        virtual uint64_t SyncTime() const = 0;
+        // @brief focused state
+        virtual uint32_t Focused(const bool focused) = 0;
     };
 
-} // namespace Exchange
-} // namespace WPEFramework
+}
+}

@@ -1,7 +1,7 @@
 # If not stated otherwise in this file or this component's license file the
 # following copyright and licenses apply:
 #
-# Copyright 2020 RDK Management
+# Copyright 2020 Metrological
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,13 +15,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.3)
-
-project(Interfaces)
+find_package(ProxyStubGenerator REQUIRED)
 
 set(TargetMarshalling ${NAMESPACE}Marshallings)
 
-set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
+if(NOT GENERATOR_SEARCH_PATH)
+    set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
+endif()
+
 ProxyStubGenerator(INPUT "${CMAKE_CURRENT_SOURCE_DIR}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
 file(GLOB INTERFACES_HEADERS I*.h)
@@ -40,27 +41,16 @@ target_link_libraries(${TargetMarshalling}
         PRIVATE
           ${NAMESPACE}Core::${NAMESPACE}Core
           ${NAMESPACE}Tracing::${NAMESPACE}Tracing
+          ${NAMESPACE}COM::${NAMESPACE}COM
           CompileSettingsDebug::CompileSettingsDebug
         )
-
-if (PROTOCOLS)
-    target_link_libraries(${TargetMarshalling}
-            PRIVATE
-              ${NAMESPACE}Protocols::${NAMESPACE}Protocols
-            )
-else()
-    target_link_libraries(${TargetMarshalling}
-            PRIVATE
-              ${NAMESPACE}COM::${NAMESPACE}COM
-            )
-endif ()
 
 set_target_properties(${TargetMarshalling} PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED YES
         FRAMEWORK FALSE
-        VERSION ${VERSION}
-        SOVERSION ${VERSION_MAJOR}
+        VERSION ${PROJECT_VERSION}
+        SOVERSION ${PROJECT_VERSION_MAJOR}
         )
 
 string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
@@ -79,3 +69,15 @@ install(
         FILES ${JSON_HEADERS}
         DESTINATION include/${NAMESPACE}/interfaces/json
 )
+
+include(CreateLink)
+if(CDMI)  
+        CreateLink(
+                LINK "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/cdmi.h"
+                TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces/IDRM.h" 
+        )      
+endif()
+
+
+
+

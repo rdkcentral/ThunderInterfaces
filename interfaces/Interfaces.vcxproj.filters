@@ -115,6 +115,9 @@
     <ClCompile Include="ProxyStubs_DIALServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProxyStubs_DeviceInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
@@ -246,6 +249,12 @@
       <Filter>Interface Files</Filter>
     </ClInclude>
     <ClInclude Include="IDIALServer.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDeviceInfo.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IOCDM.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
   </ItemGroup>

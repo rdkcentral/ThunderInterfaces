@@ -156,7 +156,7 @@
     <CustomBuild Include="..\jsonrpc\TraceControl.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\VolumeControl.json">
+    <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
   </ItemGroup>

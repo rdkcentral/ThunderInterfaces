@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2020 RDK Management
+ * Copyright 2020 Metrological
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -120,13 +120,15 @@ namespace Exchange {
             enum { ID = ID_BLUETOOTH_NOTIFICATION };
 
             virtual void Update(IDevice* device) = 0;
+            virtual void Update() = 0;
         };
 
         virtual uint32_t Register(INotification* notification) = 0;
         virtual uint32_t Unregister(INotification* notification) = 0;
 
         virtual bool IsScanning() const = 0;
-        virtual bool Scan(const bool enable) = 0;
+        virtual uint32_t Scan(const bool lowEnergy, const uint16_t duration /* sec */) = 0;
+        virtual uint32_t StopScanning() = 0;
 
         virtual IDevice* Device(const string& address) = 0;
         virtual IDevice::IIterator* Devices() = 0;

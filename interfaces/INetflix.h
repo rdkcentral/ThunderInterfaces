@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2020 RDK Management
+ * Copyright 2020 Metrological
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,6 @@ namespace Exchange {
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_NETFLIX_NOTIFICATION };
 
-            // Signal changes on the subscribed namespace..
             virtual void StateChange(const INetflix::state state) = 0;
             virtual void Exit(const uint32_t exitCode) = 0;
         };
@@ -44,12 +43,7 @@ namespace Exchange {
         virtual void Register(INetflix::INotification* netflix) = 0;
         virtual void Unregister(INetflix::INotification* netflix) = 0;
 
-        virtual string GetESN() const = 0;
-
-        virtual void FactoryReset() = 0;
         virtual void SystemCommand(const string& command) = 0;
-        virtual void Language(const string& language) = 0;
-        virtual void SetVisible(bool visibility) = 0;
     };
 }
 }

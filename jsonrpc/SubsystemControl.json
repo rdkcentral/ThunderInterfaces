@@ -1,0 +1,72 @@
+{
+  "$schema": "interface.schema.json",
+  "jsonrpc": "2.0",
+  "info": {
+    "title": "Subsystem Control API",
+    "class": "SubsystemControl",
+    "description": "SubsystemControl JSON-RPC interface"
+  },
+  "common": {
+    "$ref": "common.json"
+  },
+  "definitions": {
+    "subsystem": {
+      "type": "string",
+      "enum": [
+        "platform",
+        "network",
+        "internet",
+        "time",
+        "security",
+        "location",
+        "identifier",
+        "provisioning",
+        "decryption",
+        "bluetooth",
+        "websource",
+        "graphics",
+        "streaming"
+      ],
+      "description": "The subsystem that needs to be controller",
+      "example": "network"
+    }
+  },
+  "methods": {
+    "activate": {
+      "summary": "Activates a subsystem",
+      "description": "This method allows a subsystem to be activated from the outside. This is usefull in case Thunder can not determine the availability of a subsystem but it needs to be triggered from the outside.",
+      "params": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "description": "Subsystem to activate",
+            "$ref": "#/definitions/subsystem"
+          },
+          "configuration": {
+            "type": "string",
+            "description": "A JSON string that holds the information applicable to the subsystem to be activated"
+          }
+        },
+        "required": [
+          "system"
+        ]
+      },
+      "result": {
+        "type": "number",
+        "description": "The result of the activating anythin unequal to 0 means somthing failed",
+        "size": 32
+      }
+    },
+    "deactivate": {
+      "summary": "Deactivates a subsystem",
+      "description": "This method allows a subsystem to be deactivated from the outside. This is usefull in case Thunder can not determine the availability of a subsystem but it needs to be triggered from the outside.",
+      "params": {
+        "description": "Subsystem to deactivate",
+        "$ref": "#/definitions/subsystem"
+      },
+      "result": {
+        "$ref": "#/common/results/void"
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2020 RDK Management
+ * Copyright 2020 Metrological
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Exchange {
     struct EXTERNAL IVolumeControl : virtual public Core::IUnknown {
         enum { ID = ID_VOLUMECONTROL };
 
-        // @event
+        /* @event @extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_VOLUMECONTROL_NOTIFICATION };
 
