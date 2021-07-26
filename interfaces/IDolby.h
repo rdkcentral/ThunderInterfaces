@@ -46,7 +46,8 @@ namespace Exchange {
                 MONO,
                 STEREO,
                 SURROUND,
-                PASSTHRU
+                PASSTHRU,
+                SOUNDMODE_AUTO
             };
 
             /* @event */
