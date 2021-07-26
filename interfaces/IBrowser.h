@@ -53,7 +53,7 @@ namespace Exchange {
         virtual void Hide(const bool hidden) = 0;
     };
 
-    /* @json */
+    /* @json @extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
     struct EXTERNAL IWebBrowser : virtual public Core::IUnknown {
         enum { ID = ID_WEB_BROWSER };
 
