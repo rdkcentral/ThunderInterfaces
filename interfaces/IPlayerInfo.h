@@ -26,7 +26,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* @json */
+    /* @json @extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
     struct EXTERNAL IPlayerProperties : virtual public Core::IUnknown {
         enum { ID = ID_PLAYER_PROPERTIES };
 
