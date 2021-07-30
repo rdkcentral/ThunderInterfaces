@@ -50,8 +50,9 @@ namespace Exchange {
             uint8_t KeyId[17];
             uint8_t IVLength;
             uint8_t IV[24];
-            uint16_t SubLength;
-            uint8_t Sub[2048];
+            uint8_t EncScheme;
+            uint32_t PatternEncBlocks;
+            uint32_t PatternClearBlocks;
             bool InitWithLast15;
         };
 
@@ -109,15 +110,32 @@ namespace Exchange {
                     (sizeof(Administration::IV) - admin->IVLength));
             }
         }
-        void SetSubSampleData(const uint16_t length, const uint8_t* data)
+        void SetEncScheme(const uint8_t encScheme)
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            admin->SubLength = (length > sizeof(Administration::Sub) ? sizeof(Administration::Sub)
-                                                                    : length);
-            if (data != nullptr) {
-                ::memcpy(admin->Sub, data, admin->SubLength);
-            }
+            admin->EncScheme = encScheme;
         }
+
+        const uint8_t EncScheme()
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            return admin->EncScheme;
+        }
+
+        void SetEncPattern(const uint32_t encBlocks, const uint32_t clearBlocks)
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            admin->PatternEncBlocks = encBlocks;
+            admin->PatternClearBlocks = clearBlocks;
+        }
+
+        void EncPattern(uint32_t& encBlocks, uint32_t& clearBlocks)
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            encBlocks = admin->PatternEncBlocks;
+            clearBlocks = admin->PatternClearBlocks;
+        }
+
         void Write(const uint32_t length, const uint8_t* data)
         {
 
