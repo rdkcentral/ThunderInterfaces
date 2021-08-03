@@ -53,7 +53,7 @@ namespace Exchange {
         virtual void Hide(const bool hidden) = 0;
     };
 
-    /* @json */
+    /* @json @extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
     struct EXTERNAL IWebBrowser : virtual public Core::IUnknown {
         enum { ID = ID_WEB_BROWSER };
 
@@ -161,7 +161,9 @@ namespace Exchange {
         // @property
         // @brief Headers to send on all requests that the browser makes
         // @param header Header Name
+        // @json:omit
         virtual uint32_t Headers(IStringIterator*& header /* @out */) const = 0;
+        // @json:omit
         virtual uint32_t Headers(IStringIterator* const header) = 0;
 
         // @property

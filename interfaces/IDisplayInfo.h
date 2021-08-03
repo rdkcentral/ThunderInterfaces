@@ -40,7 +40,7 @@ namespace Exchange {
         virtual uint32_t FreeGpuRam(uint64_t& free /* @out */) const = 0;
     };
 
-    /* @json */
+    /* @json @extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
     struct EXTERNAL IConnectionProperties : virtual public Core::IUnknown {
         enum { ID = ID_CONNECTION_PROPERTIES };
 
