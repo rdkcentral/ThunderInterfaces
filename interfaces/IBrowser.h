@@ -161,7 +161,9 @@ namespace Exchange {
         // @property
         // @brief Headers to send on all requests that the browser makes
         // @param header Header Name
+        // @json:omit
         virtual uint32_t Headers(IStringIterator*& header /* @out */) const = 0;
+        // @json:omit
         virtual uint32_t Headers(IStringIterator* const header) = 0;
 
         // @property
