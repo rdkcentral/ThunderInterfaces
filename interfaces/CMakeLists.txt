@@ -30,7 +30,7 @@ file(GLOB JSON_HEADERS json/*.h)
 list(APPEND INTERFACES_HEADERS Module.h)
 
 file(GLOB PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/ProxyStubs*.cpp")
-add_library(${TargetMarshalling} SHARED 
+add_library(${TargetMarshalling} SHARED
         Module.cpp
         ${PROXY_STUB_SOURCES}
         )
@@ -71,12 +71,12 @@ install(
 )
 
 include(CreateLink)
-if(CDMI)  
-        CreateLink(
-                LINK "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/cdmi.h"
-                TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces/IDRM.h" 
-        )      
-endif()
+
+CreateLink(
+        LINK "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/cdmi.h"
+        TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces/IDRM.h"
+)
+
 
 
 
