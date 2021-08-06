@@ -20,11 +20,11 @@
 #pragma once
 #include "Module.h"
 
-// @stubgen:skip
 
 namespace WPEFramework {
 namespace Exchange {
 
+    // @stubgen:omit
     // This interface gives direct access to a time synchronize / update
     struct EXTERNAL ITimeSync : virtual public Core::IUnknown {
         enum { ID = ID_TIMESYNC };

@@ -20,11 +20,10 @@
 #pragma once
 #include "Module.h"
 
- // @stubgen:skip
-
 namespace WPEFramework {
 namespace Exchange {
 
+    // @stubgen:omit
     // This interface allows for retrieval of memory usage specific to the implementor
     // of the interface
     struct EXTERNAL IMemory : virtual public Core::IUnknown {

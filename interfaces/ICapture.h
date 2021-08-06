@@ -20,11 +20,12 @@
 #pragma once
 #include "Module.h"
 
-// @stubgen:skip
+
 
 namespace WPEFramework {
 namespace Exchange {
 
+    // @stubgen:omit
     struct EXTERNAL ICapture : virtual public Core::IUnknown {
         enum { ID = ID_CAPTURE };
 
