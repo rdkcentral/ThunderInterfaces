@@ -58,15 +58,15 @@ namespace Exchange {
         enum { ID = ID_WEB_BROWSER };
 
         enum VisibilityType : uint8_t {
-            HIDDEN = 0,
-            VISIBLE = 1,
+            HIDDEN = 0 /* @text:hidden */,
+            VISIBLE = 1 /* @text:visible */,
         };
 
         enum HTTPCookieAcceptPolicyType : uint8_t {
-            ALWAYS = 0,
-            NEVER  = 1,
-            ONLY_FROM_MAIN_DOCUMENT_DOMAIN = 2,
-            EXCLUSIVELY_FROM_MAIN_DOCUMENT_DOMAIN = 3
+            ALWAYS = 0 /* @text:always */,
+            NEVER  = 1 /* @text:never */,
+            ONLY_FROM_MAIN_DOCUMENT_DOMAIN = 2 /* @text:onlyfrommaindocumentdomain */,
+            EXCLUSIVELY_FROM_MAIN_DOCUMENT_DOMAIN = 3 /* @text:exclusivelyfrommaindocumentdomain */
         };
         
         /* @event @extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
