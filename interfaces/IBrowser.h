@@ -91,7 +91,7 @@ namespace Exchange {
             // @brief Notifies that the web page requests to close its window
             virtual void PageClosure() = 0;
             /* @json:omit */
-            virtual void BridgeQueryResponse(const string& message) = 0;
+            virtual void BridgeQuery(const string& message) = 0;
         };
 
         virtual void Register(INotification* sink) = 0;
