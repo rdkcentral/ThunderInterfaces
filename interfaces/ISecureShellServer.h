@@ -26,7 +26,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @stubgen:omit
+    
     struct EXTERNAL ISecureShellServer : virtual public Core::IUnknown {
         enum { ID = ID_SECURESHELLSERVER };
 
@@ -40,7 +40,7 @@ namespace Exchange {
 
                 enum { ID = ID_SECURESHELLSERVER_CLIENT_ITERATOR };
 
-		virtual ~IIterator() {}
+                virtual ~IIterator() {}
 
                 virtual uint32_t Count() const = 0;
                 virtual void Reset() = 0;
@@ -49,12 +49,12 @@ namespace Exchange {
                 virtual IClient* Current() = 0;
             };
 
-            virtual ~IClient() {}
+        virtual ~IClient() {}
 
-            virtual string RemoteId() const = 0;
-            virtual string TimeStamp() const = 0;
-            virtual string IpAddress() const = 0;
-            virtual void Close() = 0;
+        virtual uint64_t RemoteId() const = 0;
+        virtual string TimeStamp() const = 0;
+        virtual string IpAddress() const = 0;
+        virtual void Close() = 0;
         };
 
         virtual IClient::IIterator* Clients() = 0;
