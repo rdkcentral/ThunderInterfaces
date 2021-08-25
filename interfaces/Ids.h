@@ -224,7 +224,11 @@ namespace Exchange {
         //Butler
         ID_BUTLER_GROUP,
         ID_BUTLER,
-        ID_BUTLER_NOTIFICATION
+        ID_BUTLER_NOTIFICATION,
+
+        ID_LOG_EXPORT,
+        ID_LOGITERATOR,
+        ID_LOG_NOTIFICATION
     };
 }
 }

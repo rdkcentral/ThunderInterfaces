@@ -1,0 +1,68 @@
+{
+  "$schema": "interface.schema.json",
+  "jsonrpc": "2.0",
+  "info": {
+    "title": "Log Export API",
+    "class": "LogExport",
+    "description": "Log Export JSON-RPC interface"
+  },
+  "common": {
+    "$ref": "common.json"
+  },
+  "definitions": {
+    "filepath":{
+      "description": "Absolute filename along with path",
+      "type": "string",
+      "example": "/var/log/messages"
+    },
+    "frombeginning":{
+      "description": "Should upload complete content of the file or new entries only",
+      "type": "boolean",
+      "example": "true"
+    },
+    "watch":{
+      "type": "object",
+      "properties":{
+        "filepath":{
+          "$ref":"#/definitions/filepath"
+        },
+        "frombeginning":{
+          "$ref":"#/definitions/frombeginning"
+        }
+      },
+      "required":["filepath", "frombeginning"]
+    }
+  },
+  "methods": {
+    "watch":{
+      "summary": "Sets filename to watch",
+      "description": "Set the file to be watched via websocket",
+      "params": {
+        "$ref": "#/definitions/watch"
+      },
+      "result": {
+        "$ref": "#/common/results/void"
+      }
+    },
+    "unwatch":{
+      "summary": "Stop watching the file",
+      "description": "Stop watching the file",
+      "params": {
+        "$ref": "#/definitions/filepath"
+      },
+      "result": {
+        "$ref": "#/common/results/void"
+      }
+    },
+    "dump":{
+      "summary": "Sets filename to watch",
+      "description": "Set the file to be watched via websocket",
+      "params": {
+        "$ref": "#/definitions/filepath"
+      },
+      "result": {
+        "$ref": "#/common/results/void"
+      }
+    }
+  }
+}
