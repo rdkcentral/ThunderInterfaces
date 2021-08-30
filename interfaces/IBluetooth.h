@@ -20,12 +20,13 @@
 #pragma once
 #include "Module.h"
 
-// @stubgen:skip
+
 
 namespace WPEFramework {
 
 namespace Exchange {
 
+    // @stubgen:omit
     struct EXTERNAL IBluetooth : virtual public Core::IUnknown {
         enum { ID = ID_BLUETOOTH };
 

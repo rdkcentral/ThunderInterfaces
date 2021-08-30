@@ -19,13 +19,14 @@
 
 #pragma once
 
-// @stubgen:skip
+
 
 #include "Module.h"
 
 namespace WPEFramework {
 namespace Exchange {
 
+    // @stubgen:omit
     struct EXTERNAL ISecureShellServer : virtual public Core::IUnknown {
         enum { ID = ID_SECURESHELLSERVER };
 

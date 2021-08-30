@@ -21,12 +21,12 @@
 
 #include "Module.h"
 
-// @stubgen:skip
 
 namespace WPEFramework {
 
 namespace Exchange {
 
+ 
 struct IRoomAdministrator : virtual public Core::IUnknown {
     enum { ID = ID_ROOMADMINISTRATOR };
 

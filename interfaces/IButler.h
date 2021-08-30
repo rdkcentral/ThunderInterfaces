@@ -21,13 +21,14 @@
 
 #include "Module.h"
 
-// @stubgen:skip
+
 
 namespace WPEFramework {
 	namespace Exchange {
-
+		// @stubgen:omit
         struct IExternal;
 
+		// @stubgen:omit
 		struct EXTERNAL IGroup : virtual public Core::IUnknown {
 
 			enum { ID = ID_BUTLER_GROUP };
@@ -37,6 +38,7 @@ namespace WPEFramework {
 			virtual RPC::IStringIterator* Names() const = 0;
 		};
 
+		// @stubgen:omit
 		struct EXTERNAL IButler : virtual public Core::IUnknown {
 
 			enum { ID = ID_BUTLER };
