@@ -90,7 +90,16 @@
 			"summary": "Close and active SSH client session.",
 			"description": "With this method SecureShell an active SSH client session shall be closed.",
 			"params": {
-				"$ref": "#/definitions/sessioninfo"
+				"type": "object",
+				"properties": {
+					"pid": {
+						"description": "SSH client process ID",
+						"type": "number",
+						"example": 268,
+						"size": 64
+					}
+				
+				}
 			},
 			"errors": [
 				{
