@@ -20,13 +20,12 @@
 #pragma once
 #include "Module.h"
 
-// @stubgen:skip
-
 namespace WPEFramework {
 namespace Exchange {
 
     // This interface gives the possibility to create/defines commmands to be executed by
     // the CommanderPlugin
+    // @stubgen:omit
     struct EXTERNAL ICommand {
 
         struct EXTERNAL IFactory {
@@ -63,7 +62,7 @@ namespace Exchange {
     };
 
     namespace Command {
-
+         
         template <typename COMMAND>
         class FactoryType : public Exchange::ICommand::IFactory {
         private:

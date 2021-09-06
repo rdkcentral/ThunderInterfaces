@@ -21,11 +21,11 @@
 #include "Module.h"
 #include "IExternal.h"
 
-// @stubgen:skip
 
 namespace WPEFramework {
 namespace Exchange {
 
+    // @stubgen:omit
     class ExternalBase : public IExternal {
     private:
         class Job { 
