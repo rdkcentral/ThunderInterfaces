@@ -12,7 +12,7 @@
 	"definitions": {
 		"pid": {
 			"description": "SSH client process ID",
-			"type": "number",
+			"type": "integer",
 			"example": 268,
 			"size": 64
 		},
