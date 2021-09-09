@@ -31,7 +31,7 @@ namespace Exchange {
 
 	    ~ISecureShellServer() override = default;
 
-        struct IClient : virtual public Core::IUnknown {
+        struct IClientSession : virtual public Core::IUnknown {
 
             enum { ID = ID_SECURESHELLSERVER_CLIENT};
 
@@ -45,15 +45,14 @@ namespace Exchange {
                 virtual void Reset() = 0;
                 virtual bool IsValid() const = 0;
                 virtual bool Next() = 0;
-                virtual IClient* Current() = 0;
+                virtual IClientSession* Current() = 0;
             };
 
-            ~IClient() override = default;
+            ~IClientSession() override = default;
 
             virtual uint64_t RemoteId() const = 0;
             virtual string TimeStamp() const = 0;
             virtual string IpAddress() const = 0;
-            virtual void Close() = 0;
         };
 
 
@@ -61,7 +60,7 @@ namespace Exchange {
         virtual uint32_t Deactivate_dropbear() = 0;
         virtual size_t GetActiveSessionsCount() = 0 ;
         virtual uint32_t CloseClientSession(const uint64_t pid) = 0;
-        virtual IClient::IIterator* ActiveClients() = 0;
+        virtual IClientSession::IIterator* ActiveClientsIter() = 0;
 
     };
 
