@@ -296,8 +296,14 @@ public:
 public:
     inline bool IsValid() const
     {
-        static const KeyId InvalidKey;
-        return (operator!=(InvalidKey));
+        bool result = false;
+        for (uint8_t i = 0; i < sizeof(_kid); i++) {
+            if (_kid[i] != static_cast<uint8_t>(~0)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
     inline bool operator==(const uint8_t rhs[]) const
     {
@@ -351,7 +357,7 @@ public:
     }
     inline string ToString() const
     {
-        static const uint8_t HexArray[] = "0123456789ABCDEF";
+        const uint8_t HexArray[] = "0123456789ABCDEF";
 
         string result;
         for (uint8_t teller = 0; teller < sizeof(_kid); teller++) {
