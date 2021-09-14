@@ -168,6 +168,7 @@ namespace Exchange {
 
         ID_WEB_BROWSER,
         ID_BROWSER_RESOURCES,
+        ID_BROWSER_SECURITY,
 
         ID_AVSCLIENT,
         ID_AVSCONTROLLER,
