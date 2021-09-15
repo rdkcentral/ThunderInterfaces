@@ -296,14 +296,8 @@ public:
 public:
     inline bool IsValid() const
     {
-        bool result = false;
-        for (uint8_t i = 0; i < sizeof(_kid); i++) {
-            if (_kid[i] != static_cast<uint8_t>(~0)) {
-                result = true;
-                break;
-            }
-        }
-        return result;
+        const KeyId InvalidKey;
+        return (operator!=(InvalidKey));
     }
     inline bool operator==(const uint8_t rhs[]) const
     {
