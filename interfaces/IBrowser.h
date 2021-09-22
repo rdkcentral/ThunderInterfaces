@@ -179,5 +179,27 @@ namespace Exchange {
         virtual uint32_t UserStyleSheets(IStringIterator* const uris) = 0;
     };
 
+    /* @json */
+    struct EXTERNAL IBrowserSecurity : virtual public Core::IUnknown {
+
+        enum { ID = ID_BROWSER_SECURITY };
+
+        // @property
+        // @brief Security profile for secure connections
+        // @param profile Security profile for secure connections (e.g. compatible)
+        virtual uint32_t SecurityProfile(string& profile /* @out */) const = 0;
+        virtual uint32_t SecurityProfile(const string& profile) = 0;
+
+        enum MixedContentPolicyType : uint8_t {
+            ALLOWED = 0 /* @text:allowed */,
+            BLOCKED  = 1 /* @text:blocked */
+        };
+
+        // @property
+        // @brief Mixed content policy
+        // @param policy Mixed content policy type
+        virtual uint32_t MixedContentPolicy(MixedContentPolicyType& policy /* @out */) const = 0;
+        virtual uint32_t MixedContentPolicy(const MixedContentPolicyType policy) = 0;
+    };
 }
 }
