@@ -69,6 +69,7 @@ namespace Exchange {
             virtual WPEFramework::RPC::instance_id Native() const = 0;
             virtual string Name() const = 0;
             virtual void Opacity(const uint32_t value) = 0;
+            virtual uint32_t Opacity() const = 0;
             virtual uint32_t Geometry(const Rectangle& rectangle) = 0;
             virtual Rectangle Geometry() const = 0; 
             virtual uint32_t ZOrder(const uint16_t index) = 0;
