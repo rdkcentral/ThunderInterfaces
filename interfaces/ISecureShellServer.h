@@ -39,7 +39,7 @@ namespace Exchange {
 
                 enum { ID = ID_SECURESHELLSERVER_CLIENT_ITERATOR };
 
-                virtual ~IIterator() {}
+                ~IIterator() override = default;
 
                 virtual uint32_t Count() const = 0;
                 virtual void Reset() = 0;
@@ -58,7 +58,7 @@ namespace Exchange {
 
         virtual uint32_t Activate_dropbear(const string& inputConfigs) = 0;
         virtual uint32_t Deactivate_dropbear() = 0;
-        virtual size_t GetActiveSessionsCount() = 0 ;
+        virtual uint32_t GetActiveSessionsCount() = 0 ;
         virtual uint32_t CloseClientSession(const int pid) = 0;
         virtual IClientSession::IIterator* ActiveClientsIter() = 0;
 
