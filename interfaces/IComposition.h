@@ -82,6 +82,9 @@ namespace Exchange {
             ~IRender() override = default;
 
             virtual void ScanOut() = 0;
+            virtual void PreScanOut() {};
+            virtual void PostScanOut() {};
+
         };
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
