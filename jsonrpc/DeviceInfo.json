@@ -54,7 +54,7 @@
         4,
         5
       ],
-      "description": "Audio output supported by the STB",
+      "description": "Audio output supported by the device",
       "example": "analog"
     },
     "video_output": {
@@ -79,7 +79,7 @@
         6,
         7
       ],
-      "description": "Video output supported by the STB",
+      "description": "Video output supported by the device",
       "example": "displayport"
     },
     "output_resolution": {
@@ -112,7 +112,7 @@
         10,
         11
       ],
-      "description": "Resolution supported by the STB",
+      "description": "Resolution supported by the device",
       "example": "1080p"
     },
     "copy_protection": {
@@ -154,7 +154,7 @@
     }
   },
   "properties": {
-    "stbcapabilities": {
+    "capabilities": {
       "summary": "Capabilities of the STB",
       "readonly": true,
       "params": {
@@ -209,6 +209,38 @@
           "video_outputs",
           "output_resolutions"
         ]
+      }
+    },
+    "metadata":{
+      "params":{
+        "type": "object",
+        "properties": {
+          "modelName": {
+            "description": "Model Name",
+            "type": "string",
+            "example": "model A"
+          },
+          "modelYear": {
+            "description": "Model Year",
+            "type": "number",
+            "example": "2020"
+          },
+          "friendlyName": {
+            "description": "friendly name",
+            "type": "string",
+            "example": "my device"
+          },
+          "systemIntegratorName": {
+            "description": "system integrator name",
+            "type": "string",
+            "example": "Christophe A"
+          },
+          "platformName": {
+            "description": "platform name",
+            "type": "string",
+            "example": "linux"
+          }
+        }
       }
     },
     "systeminfo": {
