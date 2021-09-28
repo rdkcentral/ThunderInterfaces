@@ -146,9 +146,9 @@ namespace Exchange {
             ~FactoryType() override = default;
 
         public:
-            virtual Core::ProxyType<Exchange::ICommand> Create(const string& label, const string& configuration)
+            Core::ProxyType<Exchange::ICommand> Create(const string& label, const string& configuration) override
             {
-                return Core::proxy_cast<Exchange::ICommand>(Core::ProxyType<CommandType<COMMAND>>::Create(label, configuration));
+                return (Core::ProxyType<Exchange::ICommand>(Core::ProxyType<CommandType<COMMAND>>::Create(label, configuration)));
             }
         };
     }
