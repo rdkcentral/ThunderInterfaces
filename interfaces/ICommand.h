@@ -20,13 +20,12 @@
 #pragma once
 #include "Module.h"
 
-// @stubgen:skip
-
 namespace WPEFramework {
 namespace Exchange {
 
     // This interface gives the possibility to create/defines commmands to be executed by
     // the CommanderPlugin
+    // @stubgen:omit
     struct EXTERNAL ICommand {
 
         struct EXTERNAL IFactory {
@@ -63,7 +62,7 @@ namespace Exchange {
     };
 
     namespace Command {
-
+         
         template <typename COMMAND>
         class FactoryType : public Exchange::ICommand::IFactory {
         private:
@@ -147,9 +146,9 @@ namespace Exchange {
             ~FactoryType() override = default;
 
         public:
-            virtual Core::ProxyType<Exchange::ICommand> Create(const string& label, const string& configuration)
+            Core::ProxyType<Exchange::ICommand> Create(const string& label, const string& configuration) override
             {
-                return Core::proxy_cast<Exchange::ICommand>(Core::ProxyType<CommandType<COMMAND>>::Create(label, configuration));
+                return (Core::ProxyType<Exchange::ICommand>(Core::ProxyType<CommandType<COMMAND>>::Create(label, configuration)));
             }
         };
     }

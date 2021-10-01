@@ -1,4 +1,26 @@
 /*
+ * If not stated otherwise in this file or this component's LICENSE file the
+ * following copyright and licenses apply:
+ *
+ * Copyright 2021 Metrological
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/*
+ * Metrological has done changes to the original interface definition
+ * from Fraunhofer FOKUS
+ */
+/*
  * Copyright 2014 Fraunhofer FOKUS
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -204,6 +226,21 @@ typedef enum {
     InvalidState
 } SessionStateExt;
 
+// ISO/IEC 23001-7 defines two Common Encryption Schemes with Full Sample and Subsample modes
+typedef enum : uint8_t {
+    Clear = 0,
+    AesCtr_Cenc,    // AES-CTR mode and Sub-Sample encryption
+    AesCbc_Cbc1,    // AES-CBC mode and Sub-Sample encryption
+    AesCtr_Cens,    // AES-CTR mode and Sub-Sample + patterned encryption
+    AesCbc_Cbcs     // AES-CBC mode and Sub-Sample + patterned encryption + Constant IV
+} EncryptionScheme;
+
+//CENC3.0 pattern is a number of encrypted blocks followed a number of clear blocks after which the pattern repeats.
+typedef struct {
+    uint32_t encrypted_blocks;
+    uint32_t clear_blocks;
+} EncryptionPattern;
+
 // IMediaKeySessionCallback defines the callback interface to receive
 // events originated from MediaKeySession.
 class IMediaKeySessionCallback {
@@ -269,8 +306,8 @@ public:
     virtual CDMi_RESULT Decrypt(
         const uint8_t* f_pbSessionKey,
         uint32_t f_cbSessionKey,
-        const uint32_t* f_pdwSubSampleMapping,
-        uint32_t f_cdwSubSampleMapping,
+        const EncryptionScheme encryptionScheme,
+        const EncryptionPattern& pattern,
         const uint8_t* f_pbIV,
         uint32_t f_cbIV,
         uint8_t* f_pbData,
