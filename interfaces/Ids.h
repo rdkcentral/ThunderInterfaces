@@ -225,7 +225,11 @@ namespace Exchange {
         //Butler
         ID_BUTLER_GROUP,
         ID_BUTLER,
-        ID_BUTLER_NOTIFICATION
+        ID_BUTLER_NOTIFICATION,
+
+	// Network Tools
+	ID_NETWORKTOOLS,
+	ID_NETWORKTOOLS_CALLBACK
     };
 }
 }
