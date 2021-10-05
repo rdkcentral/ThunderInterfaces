@@ -50,7 +50,7 @@ namespace Exchange {
 
             ~IClientSession() override = default;
 
-            virtual uint64_t RemoteId() const = 0;
+            virtual int RemoteId() const = 0;
             virtual string TimeStamp() const = 0;
             virtual string IpAddress() const = 0;
         };
