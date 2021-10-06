@@ -27,7 +27,7 @@ namespace WPEFramework {
 namespace Exchange {
 
 
-typedef enum : uint32_t {
+enum OCDM_RESULT : uint32_t {
     OCDM_SUCCESS = 0,
     OCDM_S_FALSE = 1,
     OCDM_KEYSYSTEM_NOT_SUPPORTED = 0x80000002,
@@ -39,7 +39,7 @@ typedef enum : uint32_t {
     OCDM_SERVER_INTERNAL_ERROR = 0x8004C600,
     OCDM_SERVER_INVALID_MESSAGE = 0x8004C601,
     OCDM_SERVER_SERVICE_SPECIFIC = 0x8004C604,
-} OCDM_RESULT;
+};
 
 // ISession defines the interface towards a DRM context that can decrypt data
 // using a given key.
