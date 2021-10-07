@@ -32,11 +32,11 @@ namespace Exchange {
 
         enum { ID = ID_BLUETOOTHAUDIOSINK };
 
-        struct EXTERNAL ISession : virtual public Core::IUnknown {
+        struct EXTERNAL IControl : virtual public Core::IUnknown {
 
             // This interface is not exposed via JSON-RPC
 
-            enum { ID = ID_BLUETOOTHAUDIOSINK_SESSION };
+            enum { ID = ID_BLUETOOTHAUDIOSINK_CONTROL };
 
             struct Properties {
                 uint32_t SampleRate     /* @brief Source sample rate in Hz (e.g. 44100)*/ ;
@@ -78,7 +78,7 @@ namespace Exchange {
             CONNECTED_BAD_DEVICE,   // The assigned Bluetooth device connected, but is not an audio sink or has insufficient audio capabilities
             CONNECTED_RESTRICTED,   // Audio sink connected, but content protection criteria are not met
             CONNECTED,              // Audio sink connected, but not yet configured
-            READY                   // Sink ready for streaming
+            READY,                  // Sink ready for streaming
             STREAMING               // Audio is streaming
         };
 
@@ -174,7 +174,7 @@ namespace Exchange {
         // @brief Currently used codec properties
         // @retval ERROR_ILLEGAL_STATE Currently not streaming
         virtual uint32_t CodecInfo(CodecProperties& info /* @out */) const = 0;
-`
+
         // @property
         // @brief Currently used DRM scheme properties
         // @retval ERROR_ILLEGAL_STATE Currently not streaming
