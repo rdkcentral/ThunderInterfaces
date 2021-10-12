@@ -38,7 +38,7 @@ namespace Exchange {
 
             enum { ID = ID_BLUETOOTHAUDIOSINK_CONTROL };
 
-            struct Properties {
+            struct Format {
                 uint32_t SampleRate     /* @brief Source sample rate in Hz (e.g. 44100)*/ ;
                 uint16_t FrameRate      /* @brief Source frame rate in Hz (e.g. 24) */ ;
                 uint8_t Channels        /* @brief Number of audio channels in the source stream (e.g. 2) */ ;
@@ -50,10 +50,10 @@ namespace Exchange {
             // @param connector Name of the shared memory buffer the sample data will be written to
             // @retval ERROR_UNAVAILABLE The audio sink is currently being used by another client
             // @retval ERROR_ILLEGAL_STATE The audio sink is not connected or already open
-            // @retval ERROR_NOT_SUPPORTED Stream properties are not supported by the sink or codec or otherwise invalid
+            // @retval ERROR_NOT_SUPPORTED Stream format is not supported by the sink or codec or otherwise invalid
             // @retval ERROR_OPENING_FAILED Failed to open the shared buffer
             // @retval ERROR_ASYNC_FAILED Device error, failed to open and/or configure
-            virtual uint32_t Open(const Properties& properties, const string& connector) = 0;
+            virtual uint32_t Open(const Format& format, const string& connector) = 0;
 
             // @brief Starts audio stream playback
             // @retval ERROR_ILLEGAL_STATE The audio sink is not open or already streaming
@@ -157,12 +157,12 @@ namespace Exchange {
         // @property
         // @brief Audio codecs supported by the sink
         // @retval ERROR_ILLEGAL_STATE The sink device is not connected
-        virtual uint32_t Codecs(IAudioCodecIterator*& codecs /* @out */) const = 0;
+        virtual uint32_t SupportedCodecs(IAudioCodecIterator*& codecs /* @out */) const = 0;
 
         // @property
         // @brief DRM schemes supported by the sink
         // @retval ERROR_ILLEGAL_STATE The sink device is not connected
-        virtual uint32_t DRMs(IDRMSchemeIterator*& drms /* @out */) const = 0;
+        virtual uint32_t SupportedDRMs(IDRMSchemeIterator*& drms /* @out */) const = 0;
 
         // @property
         // @brief Current playback time
@@ -173,17 +173,17 @@ namespace Exchange {
         // @property
         // @brief Currently used codec properties
         // @retval ERROR_ILLEGAL_STATE Currently not streaming
-        virtual uint32_t CodecInfo(CodecProperties& info /* @out */) const = 0;
+        virtual uint32_t Codec(CodecProperties& properties /* @out */) const = 0;
 
         // @property
         // @brief Currently used DRM scheme properties
         // @retval ERROR_ILLEGAL_STATE Currently not streaming
-        virtual uint32_t DRMInfo(DRMProperties& info /* @out */) const = 0;
+        virtual uint32_t DRM(DRMProperties& properties /* @out */) const = 0;
 
         // @property
         // @brief Current output stream properties
         // @retval ERROR_ILLEGAL_STATE Currently not streaming
-        virtual uint32_t StreamInfo(StreamProperties& info /* @out */) const = 0;
+        virtual uint32_t Stream(StreamProperties& properties /* @out */) const = 0;
     };
 
 }
