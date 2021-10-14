@@ -1,0 +1,711 @@
+{
+  "$schema": "interface.schema.json",
+  "jsonrpc": "2.0",
+  "info": {
+    "title": "LISA API",
+    "class": "LISA",
+    "description": "LISA JSON-RPC interface"
+  },
+  "common": {
+    "$ref": "common.json"
+  },
+  "definitions": {
+    "appId": {
+      "description": "Application ID",
+      "type": "string",
+      "example": "com.lgi.app"
+    },
+    "appName": {
+      "description": "Application name",
+      "type": "string",
+      "example": "Player"
+    },
+    "appCategory": {
+      "description": "Application category",
+      "type": "string",
+      "example": "Web browser"
+    },
+    "appType": {
+      "description": "Application type (mime-type)",
+      "type": "string",
+      "example": "application/vnd.rdk-app.dac.native"
+    },
+    "appVersion": {
+      "description": "Application version",
+      "type": "string",
+      "example": "1.0"
+    },
+    "appUrl": {
+      "description": "Application url",
+      "type": "string",
+      "example": "http://download.com/bundle1.tgz"
+    },
+    "handle": {
+      "description": "Operation handle",
+      "type": "string"
+    },
+    "status": {
+      "description": "Operation status",
+      "type": "string"
+    },
+    "progress": {
+      "description": "Operation progress",
+      "type": "number"
+    },
+    "key": {
+      "description": "Key property",
+      "type": "string"
+    },
+    "value": {
+      "description": "Value property",
+      "type": "string"
+    },
+    "installedApp": {
+      "type": "object",
+      "description": "Installed application variant",
+      "properties": {
+        "version": {
+          "$ref": "#/definitions/appVersion"
+        },
+        "appName": {
+          "$ref": "#/definitions/appName"
+        },
+        "category": {
+          "$ref": "#/definitions/appCategory"
+        },
+        "url": {
+          "$ref": "#/definitions/appUrl"
+        }
+      },
+      "required": [
+        "version",
+        "appName",
+        "url"
+      ]
+    },
+    "keyValue": {
+      "type": "object",
+      "description": "Struct holding key and value",
+      "properties": {
+        "key": {
+          "$ref": "#/definitions/key"
+        },
+        "value": {
+          "$ref": "#/definitions/value"
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ]
+    },
+    "uninstallType": {
+      "description": "Type of the uninstall to perform",
+      "type": "string",
+      "example": "full"
+    },
+    "resetType": {
+      "description": "Type of the reset to perform",
+      "type": "string",
+      "example": "full"
+    },
+    "resKey": {
+      "description": "Key to access given resource file from db entry",
+      "type": "string"
+    },
+    "resUrl": {
+      "description": "Url where to download a resource from",
+      "type": "string"
+    },
+    "app": {
+      "type": "object",
+      "description": "Application entry - used in results",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/appId"
+        },
+        "type": {
+          "$ref": "#/definitions/appType"
+        },
+        "installed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/installedApp"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "installed"
+      ]
+    },
+    "localPath": {
+      "description": "Path in local filesystem",
+      "type": "string"
+    },
+    "occupiedStorage": {
+      "description": "Number of used kilobytes of storage",
+      "type": "string"
+    },
+    "storage": {
+      "type": "object",
+      "description": "Storage entry - used in results",
+      "properties": {
+        "path": {
+          "$ref": "#/definitions/localPath"
+        },
+        "quotaKB": {
+          "$ref": "#/definitions/occupiedStorage"
+        },
+        "usedKB": {
+          "$ref": "#/definitions/occupiedStorage"
+        }
+      },
+      "required": [
+        "path",
+        "usedKB"
+      ]
+    },
+    "storagePayload": {
+      "type": "object",
+      "description": "Storage payload - returned as GetStorageDetails method result",
+      "properties": {
+        "apps": {
+          "type": "object",
+          "readonly": "false",
+          "$ref": "#/definitions/storage"
+        },
+        "persistent": {
+          "type": "object",
+          "$ref": "#/definitions/storage"
+        }
+      },
+      "required": [
+        "apps",
+        "persistent"
+      ]
+    },
+    "appsListPayload": {
+      "type": "object",
+      "description": "Applications payload - returned as GetList method result",
+      "properties": {
+        "apps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/app"
+          }
+        }
+      },
+      "required": [
+        "apps"
+      ]
+    },
+    "keyValueList": {
+      "description": "List of key-value entries",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/keyValue"
+      }
+    },
+    "metadataPayload": {
+      "type": "object",
+      "description": "Metadata payload - returned as GetMetadata method result",
+      "properties": {
+        "appName": {
+          "$ref": "#/definitions/appName"
+        },
+        "category": {
+          "$ref": "#/definitions/appCategory"
+        },
+        "url": {
+          "$ref": "#/definitions/appUrl"
+        },
+        "resources": {
+          "type": "object",
+          "$ref": "#/definitions/keyValueList"
+        },
+        "auxMetadata": {
+          "type": "object",
+          "$ref": "#/definitions/keyValueList"
+        }
+      },
+      "required": [
+        "resources",
+        "auxMetadata"
+      ]
+    }
+  },
+  "methods": {
+    "install": {
+      "summary": "Download the application bundle",
+      "events": [ "operationStatus" ],
+      "params": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/appType"
+          },
+          "id": {
+            "$ref": "#/definitions/appId"
+          },
+          "version": {
+            "$ref": "#/definitions/appVersion"
+          },
+          "url": {
+            "$ref": "#/definitions/appUrl"
+          },
+          "appName": {
+            "$ref": "#/definitions/appName"
+          },
+          "category": {
+            "$ref": "#/definitions/appCategory"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "version",
+          "url",
+          "appName",
+          "category"
+        ]
+      },
+      "result": {
+        "$ref": "#/definitions/handle"
+      },
+      "errors": [
+        {
+          "description": "LISA initialization in progress or other operation pending",
+          "$ref": "#/common/errors/inprogress"
+        },
+        {
+          "description": "Invalid params",
+          "$ref": "#/common/errors/badrequest"
+        },
+        {
+          "description": "App already installed",
+          "$ref": "#/common/errors/illegalstate"
+        }
+      ]
+    },
+    "uninstall": {
+      "summary": "Uninstall the application",
+      "events": [ "operationStatus" ],
+      "params": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/appType"
+          },
+          "id": {
+            "$ref": "#/definitions/appId"
+          },
+          "version": {
+            "$ref": "#/definitions/appVersion"
+          },
+          "uninstallType": {
+            "$ref": "#/definitions/uninstallType"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "version",
+          "uninstallType"
+        ]
+      },
+      "result": {
+        "$ref": "#/definitions/handle"
+      },
+      "errors": [
+        {
+          "description": "LISA initialization in progress or other operation pending",
+          "$ref": "#/common/errors/inprogress"
+        },
+        {
+          "description": "Invalid params",
+          "$ref": "#/common/errors/badrequest"
+        }
+      ]
+    },
+    "download": {
+      "summary": "Download arbitrary application resource file.",
+      "events": [ "operationStatus" ],
+      "params": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/appType"
+          },
+          "id": {
+            "$ref": "#/definitions/appId"
+          },
+          "version": {
+            "$ref": "#/definitions/appVersion"
+          },
+          "resKey": {
+            "$ref": "#/definitions/resKey"
+          },
+          "resUrl": {
+            "$ref": "#/definitions/resUrl"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "version",
+          "resKey",
+          "resUrl"
+        ]
+      },
+      "result": {
+        "$ref": "#/definitions/handle"
+      },
+      "errors": [
+        {
+          "description": "LISA initialization in progress or other operation pending",
+          "$ref": "#/common/errors/inprogress"
+        },
+        {
+          "description": "Invalid params",
+          "$ref": "#/common/errors/badrequest"
+        }
+      ]
+    },
+    "reset": {
+      "summary": "Delete persistent data stored locally",
+      "params": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/appType"
+          },
+          "id": {
+            "$ref": "#/definitions/appId"
+          },
+          "version": {
+            "$ref": "#/definitions/appVersion"
+          },
+          "resetType": {
+            "$ref": "#/definitions/resetType"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "version",
+          "resetType"
+        ]
+      },
+      "result": {
+        "$ref": "#/common/results/void"
+      },
+      "errors": [
+        {
+          "description": "LISA initialization in progress",
+          "$ref": "#/common/errors/inprogress"
+        },
+        {
+          "description": "Invalid params",
+          "$ref": "#/common/errors/badrequest"
+        },
+        {
+          "description": "Filesystem Error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "getStorageDetails": {
+      "summary": "Information on the storage usage",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/appType"
+          },
+          "id": {
+            "$ref": "#/definitions/appId"
+          },
+          "version": {
+            "$ref": "#/definitions/appVersion"
+          }
+        }
+      },
+      "result": {
+        "$ref": "#/definitions/storagePayload"
+      },
+      "errors": [
+        {
+          "description": "LISA initialization in progress",
+          "$ref": "#/common/errors/inprogress"
+        },
+        {
+          "description": "Invalid params",
+          "$ref": "#/common/errors/badrequest"
+        },
+        {
+          "description": "Filesystem Error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "getList": {
+      "summary": "Gets the list of installed applications",
+      "params": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/appType"
+          },
+          "id": {
+            "$ref": "#/definitions/appId"
+          },
+          "version": {
+            "$ref": "#/definitions/appVersion"
+          },
+          "appName": {
+            "$ref": "#/definitions/appName"
+          },
+          "category": {
+            "$ref": "#/definitions/appCategory"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "version"
+        ]
+      },
+      "result": {
+        "$ref": "#/definitions/appsListPayload"
+      },
+      "errors": [
+        {
+          "description": "LISA initialization in progress",
+          "$ref": "#/common/errors/inprogress"
+        },
+        {
+          "description": "Invalid params",
+          "$ref": "#/common/errors/badrequest"
+        }
+      ]
+    },
+    "setAuxMetadata": {
+      "summary": "Set an arbitrary metadata.",
+      "params": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/appType"
+          },
+          "id": {
+            "$ref": "#/definitions/appId"
+          },
+          "version": {
+            "$ref": "#/definitions/appVersion"
+          },
+          "key": {
+            "description": "Metadata key",
+            "type": "string"
+          },
+          "value": {
+            "description": "Metadata value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "version",
+          "key",
+          "value"
+        ]
+      },
+      "result": {
+        "$ref": "#/common/results/void"
+      },
+      "errors": [
+        {
+          "description": "LISA initialization in progress",
+          "$ref": "#/common/errors/inprogress"
+        },
+        {
+          "description": "Invalid params",
+          "$ref": "#/common/errors/badrequest"
+        },
+        {
+          "description": "Metadata Error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "clearAuxMetadata": {
+      "summary": "Clears a single metadata, removing its key.",
+      "params": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/appType"
+          },
+          "id": {
+            "$ref": "#/definitions/appId"
+          },
+          "version": {
+            "$ref": "#/definitions/appVersion"
+          },
+          "key": {
+            "description": "Metadata key",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "version",
+          "key"
+        ]
+      },
+      "result": {
+        "$ref": "#/common/results/void"
+      },
+      "errors": [
+        {
+          "description": "LISA initialization in progress",
+          "$ref": "#/common/errors/inprogress"
+        },
+        {
+          "description": "Invalid params",
+          "$ref": "#/common/errors/badrequest"
+        },
+        {
+          "description": "Metadata Error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "getMetadata": {
+      "summary": "Get application metadata",
+      "params": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/appType"
+          },
+          "id": {
+            "$ref": "#/definitions/appId"
+          },
+          "version": {
+            "$ref": "#/definitions/appVersion"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "version"
+        ]
+      },
+      "result": {
+        "$ref": "#/definitions/metadataPayload"
+      },
+      "errors": [
+        {
+          "description": "LISA initialization in progress",
+          "$ref": "#/common/errors/inprogress"
+        },
+        {
+          "description": "Invalid params",
+          "$ref": "#/common/errors/badrequest"
+        }
+      ]
+    },
+    "cancel": {
+      "summary": "Cancel asynchronous request",
+      "params": {
+        "type": "object",
+        "properties": {
+          "handle": {
+            "$ref": "#/definitions/handle"
+          }
+        },
+        "required": [
+          "handle"
+        ]
+      },
+      "result": {
+        "$ref": "#/definitions/status"
+      },
+      "errors": [
+        {
+          "description": "LISA initialization in progress",
+          "$ref": "#/common/errors/inprogress"
+        },
+        {
+          "description": "Invalid handle",
+          "$ref": "#/common/errors/badrequest"
+        },
+        {
+          "description": "Error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "getProgress": {
+      "summary": "Estimated progress of a request",
+      "params": {
+        "type": "object",
+        "properties": {
+          "handle": {
+            "$ref": "#/definitions/handle"
+          }
+        },
+        "required": [
+          "handle"
+        ]
+      },
+      "result": {
+        "$ref": "#/definitions/progress"
+      },
+      "errors": [
+        {
+          "description": "LISA initialization in progress",
+          "$ref": "#/common/errors/inprogress"
+        },
+        {
+          "description": "Invalid handle",
+          "$ref": "#/common/errors/badrequest"
+        },
+        {
+          "description": "Error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    }
+  },
+  "events": {
+    "operationStatus": {
+      "summary": "Notifies about currently pending operation status",
+      "description": "Register to this event to be notified about current state of the pending operation",
+      "params": {
+        "type": "object",
+        "properties": {
+          "handle": {
+            "$ref": "#/definitions/handle"
+          },
+          "status": {
+            "$ref": "#/definitions/status"
+          },
+          "details": {
+            "description": "If error occurred this property contains details on what happened",
+            "type": "string"
+          }
+        },
+        "required": [
+          "handle",
+          "status"
+        ]
+      }
+    }
+  }
+}
