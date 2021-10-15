@@ -296,7 +296,7 @@ public:
 public:
     inline bool IsValid() const
     {
-        static const KeyId InvalidKey;
+        const KeyId InvalidKey;
         return (operator!=(InvalidKey));
     }
     inline bool operator==(const uint8_t rhs[]) const
@@ -351,7 +351,7 @@ public:
     }
     inline string ToString() const
     {
-        static const uint8_t HexArray[] = "0123456789ABCDEF";
+        const uint8_t HexArray[] = "0123456789ABCDEF";
 
         string result;
         for (uint8_t teller = 0; teller < sizeof(_kid); teller++) {
