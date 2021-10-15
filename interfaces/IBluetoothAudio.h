@@ -41,19 +41,24 @@ namespace Exchange {
             struct Format {
                 uint32_t SampleRate     /* @brief Source sample rate in Hz (e.g. 44100)*/ ;
                 uint16_t FrameRate      /* @brief Source frame rate in Hz (e.g. 24) */ ;
-                uint8_t Channels        /* @brief Number of audio channels in the source stream (e.g. 2) */ ;
                 uint8_t Resolution      /* @brief Sampling resolution in bits per sample (e.g. 16) */ ;
+                uint8_t Channels        /* @brief Number of audio channels in the source stream (e.g. 2) */ ;
             };
 
             // @brief Opens a streaming session and configures the sink device
+            // @param connector Name of the shared location the sample data will be written to
             // @brief properties Audio properties of the input stream
-            // @param connector Name of the shared memory buffer the sample data will be written to
             // @retval ERROR_UNAVAILABLE The audio sink is currently being used by another client
             // @retval ERROR_ILLEGAL_STATE The audio sink is not connected or already open
             // @retval ERROR_NOT_SUPPORTED Stream format is not supported by the sink or codec or otherwise invalid
-            // @retval ERROR_OPENING_FAILED Failed to open the shared buffer
+            // @retval ERROR_OPENING_FAILED Failed to open the shared location
             // @retval ERROR_ASYNC_FAILED Device error, failed to open and/or configure
-            virtual uint32_t Open(const Format& format, const string& connector) = 0;
+            virtual uint32_t Open(const string& connector, const Format& format) = 0;
+
+            // @brief Closes the streaming session
+            // @retval ERROR_ILLEGAL_STATE The audio sink is not currently open
+            // @retval ERROR_ASYNC_FAILED Device error, failed to close the sink
+            virtual uint32_t Close() = 0;
 
             // @brief Starts audio stream playback
             // @retval ERROR_ILLEGAL_STATE The audio sink is not open or already streaming
@@ -66,13 +71,13 @@ namespace Exchange {
             // @retval ERROR_ASYNC_FAILED Device error, failed to start/pause playback
             virtual uint32_t Stop() = 0;
 
-            // @brief Closes the streaming session
+            // @brief Current playback time
+            // @param Playback mileage since sink opening (in miliseconds)
             // @retval ERROR_ILLEGAL_STATE The audio sink is not currently open
-            // @retval ERROR_ASYNC_FAILED Device error, failed to close the sink
-            virtual uint32_t Close() = 0;
+            virtual uint32_t Time(uint32_t& position /* @out */) const = 0;
         };
 
-        enum status : uint8_t {
+        enum state : uint8_t {
             UNASSIGNED,             // No Bluetooth device assigned for audio playback
             DISCONNECTED,           // Sink device assigned but not connected
             CONNECTED_BAD_DEVICE,   // The assigned Bluetooth device connected, but is not an audio sink or has insufficient audio capabilities
@@ -130,7 +135,7 @@ namespace Exchange {
             virtual void Updated() = 0;
         };
 
-        // @brief Registers the status update callback
+        // @brief Registers the state update callback
         // @param Callback to register or nullptr to deregister
         // @retval ERROR_ILLEGAL_STATE A calback is already registered with the audio sink
         virtual uint32_t Callback(ICallback* callback) = 0;
@@ -146,8 +151,8 @@ namespace Exchange {
         virtual uint32_t Revoke() = 0;
 
         // @property
-        // @brief Current audio sink status
-        virtual uint32_t Status(status& sinkStatus /* @out */) const = 0;
+        // @brief Current audio sink state
+        virtual uint32_t State(state& sinkState /* @out */) const = 0;
 
         // @property
         // @brief Audio sink type
@@ -163,12 +168,6 @@ namespace Exchange {
         // @brief DRM schemes supported by the sink
         // @retval ERROR_ILLEGAL_STATE The sink device is not connected
         virtual uint32_t SupportedDRMs(IDRMSchemeIterator*& drms /* @out */) const = 0;
-
-        // @property
-        // @brief Current playback time
-        // @param Playback mileage since sink opening (in miliseconds)
-        // @retval ERROR_ILLEGAL_STATE The sink device is not connected
-        virtual uint32_t Timestamp(uint32_t& position /* @out */) const = 0;
 
         // @property
         // @brief Currently used codec properties
