@@ -27,7 +27,7 @@ namespace WPEFramework {
 namespace Exchange {
 
 
-typedef enum : uint32_t {
+enum OCDM_RESULT : uint32_t {
     OCDM_SUCCESS = 0,
     OCDM_S_FALSE = 1,
     OCDM_KEYSYSTEM_NOT_SUPPORTED = 0x80000002,
@@ -39,7 +39,7 @@ typedef enum : uint32_t {
     OCDM_SERVER_INTERNAL_ERROR = 0x8004C600,
     OCDM_SERVER_INVALID_MESSAGE = 0x8004C601,
     OCDM_SERVER_SERVICE_SPECIFIC = 0x8004C604,
-} OCDM_RESULT;
+};
 
 // ISession defines the interface towards a DRM context that can decrypt data
 // using a given key.
@@ -296,7 +296,7 @@ public:
 public:
     inline bool IsValid() const
     {
-        static const KeyId InvalidKey;
+        const KeyId InvalidKey;
         return (operator!=(InvalidKey));
     }
     inline bool operator==(const uint8_t rhs[]) const
@@ -351,7 +351,7 @@ public:
     }
     inline string ToString() const
     {
-        static const uint8_t HexArray[] = "0123456789ABCDEF";
+        const uint8_t HexArray[] = "0123456789ABCDEF";
 
         string result;
         for (uint8_t teller = 0; teller < sizeof(_kid); teller++) {
