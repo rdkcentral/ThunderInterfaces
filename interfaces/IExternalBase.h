@@ -307,13 +307,9 @@ namespace Exchange {
         END_INTERFACE_MAP
 
     protected:
-        inline void Updated()
+        inline void Updated() const
         {
-            _adminLock.Lock();
-            if (_clients.size() > 0) {
-                _job.Submit();
-            }
-            _adminLock.Unlock();
+            _job.Submit();
         }
         inline bool Schedule(const Core::Time& evaluationPoint)
         {
@@ -358,7 +354,7 @@ namespace Exchange {
         uint32_t _type;
         condition _condition;
         std::list<IExternal::INotification*> _clients;
-        Core::WorkerPool::JobType<Job> _job;
+        mutable Core::WorkerPool::JobType<Job> _job;
         Core::WorkerPool::JobType<Timed> _timed;
     };
 }
