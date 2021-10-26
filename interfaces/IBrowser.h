@@ -20,7 +20,7 @@
 #pragma once 
 #include "Module.h"
 
-// @stubgen:include <com/IRPCIterator.h>
+// @stubgen:include <com/IIteratorType.h>
 
 namespace WPEFramework {
 namespace Exchange {
@@ -58,15 +58,15 @@ namespace Exchange {
         enum { ID = ID_WEB_BROWSER };
 
         enum VisibilityType : uint8_t {
-            HIDDEN = 0,
-            VISIBLE = 1,
+            HIDDEN = 0 /* @text:hidden */,
+            VISIBLE = 1 /* @text:visible */,
         };
 
         enum HTTPCookieAcceptPolicyType : uint8_t {
-            ALWAYS = 0,
-            NEVER  = 1,
-            ONLY_FROM_MAIN_DOCUMENT_DOMAIN = 2,
-            EXCLUSIVELY_FROM_MAIN_DOCUMENT_DOMAIN = 3
+            ALWAYS = 0 /* @text:always */,
+            NEVER  = 1 /* @text:never */,
+            ONLY_FROM_MAIN_DOCUMENT_DOMAIN = 2 /* @text:onlyfrommaindocumentdomain */,
+            EXCLUSIVELY_FROM_MAIN_DOCUMENT_DOMAIN = 3 /* @text:exclusivelyfrommaindocumentdomain */
         };
         
         /* @event @extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
@@ -91,7 +91,7 @@ namespace Exchange {
             // @brief Notifies that the web page requests to close its window
             virtual void PageClosure() = 0;
             /* @json:omit */
-            virtual void BridgeQueryResponse(const string& message) = 0;
+            virtual void BridgeQuery(const string& message) = 0;
         };
 
         virtual void Register(INotification* sink) = 0;
@@ -179,5 +179,27 @@ namespace Exchange {
         virtual uint32_t UserStyleSheets(IStringIterator* const uris) = 0;
     };
 
+    /* @json */
+    struct EXTERNAL IBrowserSecurity : virtual public Core::IUnknown {
+
+        enum { ID = ID_BROWSER_SECURITY };
+
+        // @property
+        // @brief Security profile for secure connections
+        // @param profile Security profile for secure connections (e.g. compatible)
+        virtual uint32_t SecurityProfile(string& profile /* @out */) const = 0;
+        virtual uint32_t SecurityProfile(const string& profile) = 0;
+
+        enum MixedContentPolicyType : uint8_t {
+            ALLOWED = 0 /* @text:allowed */,
+            BLOCKED  = 1 /* @text:blocked */
+        };
+
+        // @property
+        // @brief Mixed content policy
+        // @param policy Mixed content policy type
+        virtual uint32_t MixedContentPolicy(MixedContentPolicyType& policy /* @out */) const = 0;
+        virtual uint32_t MixedContentPolicy(const MixedContentPolicyType policy) = 0;
+    };
 }
 }
