@@ -201,8 +201,28 @@
         "properties": {
           "ssid": {
             "$ref": "#/definitions/ssid"
+          },
+          "autoconnect": {
+           "type": "string",
+           "enum": [
+             "None",
+             "WPS_PBC",
+             "WPS_PIN"
+           ],
+           "example": "WPA_PBC",
+           "description": "Auto Connect mode. WPS_PBC for WPS Push button connection"
+          },
+          "wpspin": {
+           "type": "string",
+           "example": "12345678",
+           "description": "Pin for WPS_PBC mode."
           }
-        }
+        },
+        "required": [
+          "ssid",
+          "autoconnect"
+        ]
+
       },
       "result": {
         "$ref": "#/common/results/void"
