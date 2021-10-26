@@ -34,6 +34,19 @@
         "name",
         "keysystems"
       ]
+    },
+    "session": {
+      "type": "object",
+      "properties": {
+        "drm": {
+          "type": "string",
+          "description": "name of the DRM system used by the session",
+          "example": "PlayReady"
+        }
+      },
+      "required": [
+        "drm"
+      ]
     }
   },
   "properties": {
@@ -66,6 +79,16 @@
           "$ref": "#/common/errors/badrequest"
         }
       ]
+    },
+    "sessions": {
+      "summary": "Active sessions enumerator",
+      "readonly": true,
+      "params": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/session"
+        }
+      }
     }
   }
 }
