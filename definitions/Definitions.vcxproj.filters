@@ -159,5 +159,8 @@
     <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\interfaces\IMath.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>
