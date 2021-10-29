@@ -67,10 +67,10 @@ namespace Exchange {
             // @retval ERROR_ASYNC_FAILED Device error, failed to start/pause playback
             virtual uint32_t Speed(const int8_t speed) = 0;
 
-            // @brief Current playback time
-            // @param position Sets or gets current playback mileage (in miliseconds), value of -1 is ignored
+            // @brief Gets current playback time
+            // @param position Current playback position since acquiring the sink (in miliseconds)
             // @retval ERROR_ILLEGAL_STATE The audio sink has not been acquired
-            virtual uint32_t Time(uint32_t& position /* @inout */) const = 0;
+            virtual uint32_t Time(uint32_t& position /* @out */) const = 0;
         };
 
         enum state : uint8_t {
