@@ -35,18 +35,27 @@
         "keysystems"
       ]
     },
+    "drmName": {
+      "type": "string",
+      "description": "Name of the DRM system",
+      "example": "PlayReady"
+    },
     "session": {
       "type": "object",
       "properties": {
         "drm": {
-          "type": "string",
-          "description": "name of the DRM system used by the session",
-          "example": "PlayReady"
+          "$ref": "#/definitions/drmName"
         }
       },
       "required": [
         "drm"
       ]
+    },
+    "status": {
+      "description": "BUSY - drm is used by another process, SUCCESS - recovered from BUSY state after retry, FAILED - not recovered after re-trying from BUSY",
+      "type": "string",
+      "enum": [ "BUSY", "SUCCESS", "FAILED"],
+      "example": "SUCCESS"
     }
   },
   "properties": {
@@ -88,6 +97,34 @@
         "items": {
           "$ref": "#/definitions/session"
         }
+      }
+    }
+  },
+  "events": {
+    "drmalreadyinitialized": {
+      "summary": "Signals that the specified DRM system could not be initialized because it is already initialized by another process",
+      "description": "When this event is received, the application owning given DRM system should release it immediately.",
+      "params": {
+        "$ref": "#/definitions/session"
+      }
+    },
+    "drminitializationstatus": {
+      "summary": "Notifies about DRM initialization status",
+      "description": "Register to this event to be notified about DRM retrying status busy/failure/success",
+      "params": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/definitions/status"
+          },
+          "drm": {
+            "$ref": "#/definitions/drmName"
+          }
+        },
+        "required": [
+          "status",
+          "drm"
+        ]
       }
     }
   }

@@ -34,6 +34,25 @@ namespace Exchange {
         virtual RPC::IStringIterator* Systems() const = 0;
         virtual RPC::IStringIterator* Designators(const string& keySystem) const = 0;
         virtual RPC::IStringIterator* Sessions(const string& keySystem) const = 0;
+
+        enum Status : uint8_t {
+            BUSY,
+            SUCCESS,
+            FAILED
+        };
+
+        /* @event */
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
+
+            enum {ID = ID_CONTENTDECRYPTION_NOTIFICATION};
+
+            /* @brief initialization status. */
+            virtual void initializationStatus(const std::string& drm,
+                                              const Status status) = 0;
+        };
+
+        virtual uint32_t Register(IContentDecryption::INotification* notification) { return Core::ERROR_NONE; };
+        virtual uint32_t Unregister(IContentDecryption::INotification* notification) { return Core::ERROR_NONE; };
     };
 }
 }
