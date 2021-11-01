@@ -49,7 +49,7 @@ namespace Exchange {
             enum { ID = ID_PACKAGER_INSTALLATIONINFO };
             virtual state State() const = 0;
             virtual uint8_t Progress() const = 0;
-	    virtual string AppName() const = 0;
+            virtual string AppName() const = 0;
             virtual uint32_t ErrorCode() const = 0;
             virtual uint32_t Abort() = 0;
         };
