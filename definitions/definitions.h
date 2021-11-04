@@ -35,6 +35,7 @@
 #endif
 
 #include <interfaces/IComposition.h>
+#include <interfaces/IExternal.h>
 #include <interfaces/IStream.h>
 #include <interfaces/IVoiceHandler.h>
 #include <interfaces/IPower.h>
