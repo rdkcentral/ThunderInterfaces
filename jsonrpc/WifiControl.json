@@ -389,6 +389,23 @@
         "description": "SSID of the connected network in case of connect or empty in case of disconnect",
         "$ref": "#/definitions/ssid"
       }
+    },
+    "wpsresult": {
+      "summary": "Notifies about the result of the WPS request",
+      "params": {
+        "type": "object",
+        "properties": {
+          "result": {
+             "type": "string",
+             "description": "Result of the WPS request - success/failed/timeout/overlap"
+          },
+          "ssid": {
+            "type": "string",
+            "description": "SSID of the connected network in case of success or empty in case of error",
+            "$ref": "#/definitions/ssid"
+          }
+        }
+      }
     }
   }
 }
