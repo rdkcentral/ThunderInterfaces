@@ -209,13 +209,13 @@
              "WPS_PBC",
              "WPS_PIN"
            ],
-           "example": "WPA_PBC",
+           "example": "WPS_PBC",
            "description": "Auto Connect mode. WPS_PBC for WPS Push button connection"
           },
           "wpspin": {
            "type": "string",
            "example": "12345678",
-           "description": "Pin for WPS_PBC mode."
+           "description": "Pin for WPS_PIN mode."
           }
         },
         "required": [
