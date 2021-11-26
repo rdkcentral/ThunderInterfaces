@@ -71,18 +71,14 @@ namespace Exchange {
             }
             inline void Period(const uint32_t periodicity)
             {
+                _parent.Lock();
                 _periodicity = 0;
+                _parent.Unlock();
 
                 // If we are going to change the periodicity, we need to remove 
                 // the current action, if ongoing, anyway..
                 // First attempt to remove the Job. The job might currently be
                 // executing....
-                _parent._timed.Revoke();
-
-                // It could be that we where waiting for the Job to complete
-                // in the previous Revoke. Than we assume thathe the job left
-                // the queue, however the job, reschedules itself so for these
-                // rare cases, we need to revoke the job....again !!!
                 _parent._timed.Revoke();
 
                 if (periodicity != 0) {
@@ -95,10 +91,12 @@ namespace Exchange {
             {
                 _parent.Evaluate();
 
+                _parent.Lock();
                 if (_periodicity != 0) {
                     _nextTime.Add(_periodicity);
                     _parent._timed.Schedule(_nextTime);
                 }
+                _parent.Unlock();
             }
 
         private:
@@ -132,7 +130,11 @@ namespace Exchange {
             : ExternalBase(id, IExternal::Type(base, spec, dim, decimals))
         {
         }
-        ~ExternalBase() override = default;
+        ~ExternalBase() override {
+            ASSERT(_clients.size() == 0);
+            ASSERT(_condition == IExternal::deactivated);
+            _job.Revoke();
+    	}
 
     public:
         // ------------------------------------------------------------------------
