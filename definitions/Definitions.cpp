@@ -39,7 +39,6 @@
 #include <interfaces/IDolby.h>
 #include <interfaces/IDRM.h>
 #include <interfaces/IDsgccClient.h>
-#include <interfaces/IExternal.h>
 #include <interfaces/IExternalBase.h>
 #include <interfaces/IGuide.h>
 #include <interfaces/IInputPin.h>
@@ -221,6 +220,33 @@ namespace Exchange
     uint32_t IComposition::HeightFromResolution(const IComposition::ScreenResolution resolution)
     {
         return ((static_cast<uint32_t>(resolution) < sizeof(resolutionWidthHeightTable) / sizeof(ScreenResolutionWidthHeight)) ? resolutionWidthHeightTable[static_cast<uint32_t>(resolution)].height : 0);
+    }
+
+    // ------------------------------------------------------------------------
+    // Convenience methods to extract interesting information from the Type()
+    // ------------------------------------------------------------------------
+    /* static */ IExternal::basic IExternal::Basic(const uint32_t instanceType)
+    {
+        return (static_cast<basic>((instanceType >> 12) & 0xF));
+    }
+
+    /* static */ IExternal::dimension IExternal::Dimension(const uint32_t instanceType)
+    {
+        return (static_cast<dimension>((instanceType >> 19) & 0x1FFF));
+    }
+
+    /* static */ IExternal::specific IExternal::Specific(const uint32_t instanceType)
+    {
+        return (static_cast<specific>(instanceType & 0xFFF));
+    }
+
+    /* static */ uint8_t IExternal::Decimals(const uint32_t instanceType)
+    {
+        return ((instanceType >> 16) & 0x07);
+    }
+
+    /* static */ uint32_t IExternal::Type(const IExternal::basic base, const IExternal::specific spec, const IExternal::dimension dim, const uint8_t decimals) {
+        return ((dim << 19) | ((decimals & 0x07) << 16) | (base << 12) | spec);
     }
 }
 }
