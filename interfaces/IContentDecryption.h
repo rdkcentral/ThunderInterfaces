@@ -116,7 +116,7 @@ namespace Exchange {
             admin->EncScheme = encScheme;
         }
 
-        const uint8_t EncScheme()
+        uint8_t EncScheme()
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
             return admin->EncScheme;
