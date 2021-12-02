@@ -47,6 +47,8 @@ namespace Exchange {
                 STEREO,
                 SURROUND,
                 PASSTHRU,
+                DOLBYDIGITAL,
+                DOLBYDIGITALPLUS,
                 SOUNDMODE_AUTO
             };
 

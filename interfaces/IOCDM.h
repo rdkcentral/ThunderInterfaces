@@ -144,18 +144,18 @@ struct ISessionExt : virtual public Core::IUnknown {
     virtual std::string BufferIdExt() const = 0;
 
     virtual OCDM_RESULT SetDrmHeader(const uint8_t drmHeader[] /* @length:drmHeaderLength */,
-        uint32_t drmHeaderLength)
+        uint16_t drmHeaderLength)
         = 0;
 
     virtual OCDM_RESULT GetChallengeDataExt(uint8_t* challenge /* @inout @length:challengeSize */,
-        uint32_t& challengeSize /* @inout */,
+        uint16_t& challengeSize /* @inout */,
         uint32_t isLDL)
         = 0;
 
     virtual OCDM_RESULT CancelChallengeDataExt() = 0;
 
     virtual OCDM_RESULT StoreLicenseData(const uint8_t licenseData[] /* @length:licenseDataSize */,
-        uint32_t licenseDataSize,
+        uint16_t licenseDataSize,
         uint8_t* secureStopId /* @out @length:16 */)
         = 0;
 
@@ -215,15 +215,15 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
 
     virtual OCDM_RESULT GetSecureStop(const std::string& keySystem,
         const uint8_t sessionID[] /* @length:sessionIDLength */,
-        uint32_t sessionIDLength, uint8_t* rawData /* @out @length:rawSize */,
+        uint16_t sessionIDLength, uint8_t* rawData /* @out @length:rawSize */,
         uint16_t& rawSize /* @inout */)
         = 0;
 
     virtual OCDM_RESULT CommitSecureStop(const std::string& keySystem,
         const uint8_t sessionID[] /* @length:sessionIDLength */,
-        uint32_t sessionIDLength,
+        uint16_t sessionIDLength,
         const uint8_t serverResponse[] /* @length:serverResponseLength */,
-        uint32_t serverResponseLength)
+        uint16_t serverResponseLength)
         = 0;
 
     virtual OCDM_RESULT DeleteKeyStore(const std::string& keySystem) = 0;
@@ -232,12 +232,12 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
 
     virtual OCDM_RESULT GetKeyStoreHash(const std::string& keySystem,
         uint8_t keyStoreHash[] /* @out @length:keyStoreHashLength */,
-        uint32_t keyStoreHashLength)
+        uint16_t keyStoreHashLength)
         = 0;
 
     virtual OCDM_RESULT GetSecureStoreHash(const std::string& keySystem,
         uint8_t secureStoreHash[] /* @out @length:secureStoreHashLength */,
-        uint32_t secureStoreHashLength)
+        uint16_t secureStoreHashLength)
         = 0;
 };
 

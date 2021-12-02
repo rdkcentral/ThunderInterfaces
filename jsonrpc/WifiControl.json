@@ -15,6 +15,16 @@
       "example": "MyCorporateNetwork",
       "description": "Identifier of a network"
     },
+    "pin": {
+      "type": "string",
+      "example": "12345678",
+      "description": "WPS Device Pin or Registrar(AP/Router) Pin for pin mode."
+    },
+    "bssid": {
+      "type": "string",
+      "example": "94:b4:0f:77:cc:71",
+      "description": "48-bits long BSS identifier (might be MAC format)"
+    },
     "key": {
       "type": "string",
       "example": "psk",
@@ -55,9 +65,7 @@
           }
         },
         "bssid": {
-          "type": "string",
-          "example": "94:b4:0f:77:cc:71",
-          "description": "48-bits long BSS identifier (might be MAC format)"
+          "$ref": "#/definitions/bssid"
         },
         "frequency": {
           "type": "number",
@@ -201,8 +209,27 @@
         "properties": {
           "ssid": {
             "$ref": "#/definitions/ssid"
+          },
+          "bssid": {
+            "$ref": "#/definitions/bssid"
+          },
+          "autoconnect": {
+           "type": "string",
+           "enum": [
+             "none",
+             "pbc",
+             "pin"
+           ],
+           "example": "pbc",
+           "description": "Auto Connect mode. pbc for WPS Push button connection"
+          },
+          "pin": {
+           "$ref": "#/definitions/pin"
           }
-        }
+        },
+        "required": [
+          "autoconnect"
+        ]
       },
       "result": {
         "$ref": "#/common/results/void"
@@ -295,6 +322,19 @@
           "$ref": "#/definitions/network"
         }
       }
+    },
+    "pin": {
+      "readonly": true,
+      "summary": "Generates a Random Device Pin",
+      "params": {
+        "$ref": "#/definitions/pin"
+      },
+      "errors": [
+        {
+          "description": "Returned when pin could not be generated",
+          "$ref": "#/common/errors/unavailable"
+        }
+      ]
     },
     "configs": {
       "summary": "All WiFi configurations",
