@@ -20,6 +20,11 @@
       "example": "12345678",
       "description": "WPS Device Pin or Registrar(AP/Router) Pin for pin mode."
     },
+    "bssid": {
+      "type": "string",
+      "example": "94:b4:0f:77:cc:71",
+      "description": "48-bits long BSS identifier (might be MAC format)"
+    },
     "key": {
       "type": "string",
       "example": "psk",
@@ -60,9 +65,7 @@
           }
         },
         "bssid": {
-          "type": "string",
-          "example": "94:b4:0f:77:cc:71",
-          "description": "48-bits long BSS identifier (might be MAC format)"
+          "$ref": "#/definitions/bssid"
         },
         "frequency": {
           "type": "number",
@@ -207,6 +210,9 @@
           "ssid": {
             "$ref": "#/definitions/ssid"
           },
+          "bssid": {
+            "$ref": "#/definitions/bssid"
+          },
           "autoconnect": {
            "type": "string",
            "enum": [
@@ -224,7 +230,6 @@
         "required": [
           "autoconnect"
         ]
-
       },
       "result": {
         "$ref": "#/common/results/void"
