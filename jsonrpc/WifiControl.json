@@ -210,9 +210,6 @@
           "ssid": {
             "$ref": "#/definitions/ssid"
           },
-          "bssid": {
-            "$ref": "#/definitions/bssid"
-          },
           "autoconnect": {
            "type": "string",
            "enum": [
