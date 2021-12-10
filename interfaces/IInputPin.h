@@ -35,6 +35,12 @@ namespace Exchange {
             virtual void Marker(const uint32_t marker) = 0;
         };
 
+        struct EXTERNAL ICatalog : virtual public Core::IUnknown {
+            enum { ID = ID_INPUT_PIN_CATALOG };
+
+            virtual IInputPin* IInputPinResource(const uint32_t id) = 0;
+        };
+
         virtual ~IInputPin() { }
 
         virtual void Register(IInputPin::INotification* sink) = 0;
