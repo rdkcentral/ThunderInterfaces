@@ -23,6 +23,7 @@ find_package(WPEFramework)
 project_version(1.0.0)
 
 set(INTERFACES_PATTERNS "I*.h" CACHE STRING "Patterns matching files for which stubs should be generated")
+set(JSONRPC_PATTERNS "*.json" CACHE STRING "Patterns matching files for which json stubs should be generated")
 
 message(STATUS "Setting up ${PROJECT_NAME} v${PROJECT_VERSION}")
 
