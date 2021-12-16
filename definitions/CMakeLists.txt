@@ -20,7 +20,9 @@ cmake_minimum_required(VERSION 3.12)
 
 set(Target ${NAMESPACE}Definitions)
 
-file(GLOB JSON_FILE      "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/*.json")
+separate_arguments(JSONRPC_PATTERNS)
+list(TRANSFORM JSONRPC_PATTERNS PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/")
+file(GLOB JSON_FILE ${JSONRPC_PATTERNS})
 
 separate_arguments(INTERFACES_PATTERNS)
 list(TRANSFORM INTERFACES_PATTERNS PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/")

@@ -17,8 +17,6 @@
 
 find_package(ProxyStubGenerator REQUIRED)
 
-cmake_minimum_required(VERSION 3.3)
-
 set(TargetMarshalling ${NAMESPACE}Marshallings)
 
 if(NOT GENERATOR_SEARCH_PATH)
