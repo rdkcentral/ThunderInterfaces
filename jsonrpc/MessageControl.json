@@ -1,0 +1,82 @@
+{
+	"$schema":"interface.schema.json",
+	"jsonrpc":"2.0",
+	"info":{
+		"title":"Message Control API",
+		"class":"MessageControl",
+		"description":"MessageControl JSON-RPC interface"
+	},
+	"common":{
+		"$ref":"common.json"
+	},
+	"definitions":{
+		"message_type": {
+            "type": "string",
+            "enum": [
+              "Tracing",
+              "Logging",
+              "Warning_reporting"
+            ],
+            "enumvalues": [
+              0,
+              1,
+              2
+            ],
+            "description": "Type of message",
+            "example": "Tracing"
+          },
+		"module":{
+			"description":"Module name",
+			"type":"string",
+			"example":"Plugin_Monitor"
+		},
+		"category":{
+			"description":"Category name",
+			"type":"string",
+			"example":"Information"
+		},
+		"state":{
+			"type":"string",
+			"enum":[
+				"enabled",
+				"disabled",
+				"tristated"
+			],
+			"description":"State value",
+			"example":"disabled"
+		},
+		"message":{
+			"type":"object",
+			"properties":{
+				"type":{
+					"$ref":"#/definitions/message_type"
+				},
+				"module":{
+					"$ref":"#/definitions/module"
+				},
+				"category":{
+					"$ref":"#/definitions/category"
+				},
+				"state":{
+					"$ref":"#/definitions/state"
+				}
+			},
+			"required":[
+				"message_type",
+				"state"
+			]
+		}
+	},
+	"methods":{
+		"set":{
+			"summary":"Sets messages",
+			"description":"Disables/enables all/select category messages for particular module.",
+			"params":{
+				"$ref":"#/definitions/message"
+			},
+			"result":{
+				"$ref":"#/common/results/void"
+			}
+		}
+	}
+}
