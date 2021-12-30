@@ -145,6 +145,7 @@ namespace Exchange {
 
         ID_INPUT_PIN,
         ID_INPUT_PIN_NOTIFICATION,
+        ID_INPUT_PIN_CATALOG,
 
         ID_MATH,
 
