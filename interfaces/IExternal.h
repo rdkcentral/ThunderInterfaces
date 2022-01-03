@@ -127,25 +127,11 @@ namespace Exchange {
         // ------------------------------------------------------------------------
         // Convenience methods to extract interesting information from the Type()
         // ------------------------------------------------------------------------
-        static basic Basic(const uint32_t instanceType)
-        {
-            return (static_cast<basic>((instanceType >> 12) & 0xF));
-        }
-        static dimension Dimension(const uint32_t instanceType)
-        {
-            return (static_cast<dimension>((instanceType >> 19) & 0x1FFF));
-        }
-        static specific Specific(const uint32_t instanceType)
-        {
-            return (static_cast<specific>(instanceType & 0xFFF));
-        }
-        static uint8_t Decimals(const uint32_t instanceType)
-        {
-            return ((instanceType >> 16) & 0x07);
-        }
-        static uint32_t Type(const basic base, const specific spec, const dimension dim, const uint8_t decimals) {
-            return ((dim << 19) | ((decimals & 0x07) << 16) | (base << 12) | spec);
-        }
+        static basic Basic(const uint32_t instanceType);
+        static dimension Dimension(const uint32_t instanceType);
+        static specific Specific(const uint32_t instanceType);
+        static uint8_t Decimals(const uint32_t instanceType);
+        static uint32_t Type(const basic base, const specific spec, const dimension dim, const uint8_t decimals);
     };
 
 } } // Namespace Exchange

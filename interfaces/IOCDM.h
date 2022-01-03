@@ -27,7 +27,7 @@ namespace WPEFramework {
 namespace Exchange {
 
 
-typedef enum : uint32_t {
+enum OCDM_RESULT : uint32_t {
     OCDM_SUCCESS = 0,
     OCDM_S_FALSE = 1,
     OCDM_KEYSYSTEM_NOT_SUPPORTED = 0x80000002,
@@ -39,7 +39,7 @@ typedef enum : uint32_t {
     OCDM_SERVER_INTERNAL_ERROR = 0x8004C600,
     OCDM_SERVER_INVALID_MESSAGE = 0x8004C601,
     OCDM_SERVER_SERVICE_SPECIFIC = 0x8004C604,
-} OCDM_RESULT;
+};
 
 // ISession defines the interface towards a DRM context that can decrypt data
 // using a given key.
@@ -144,18 +144,18 @@ struct ISessionExt : virtual public Core::IUnknown {
     virtual std::string BufferIdExt() const = 0;
 
     virtual OCDM_RESULT SetDrmHeader(const uint8_t drmHeader[] /* @length:drmHeaderLength */,
-        uint32_t drmHeaderLength)
+        uint16_t drmHeaderLength)
         = 0;
 
     virtual OCDM_RESULT GetChallengeDataExt(uint8_t* challenge /* @inout @length:challengeSize */,
-        uint32_t& challengeSize /* @inout */,
+        uint16_t& challengeSize /* @inout */,
         uint32_t isLDL)
         = 0;
 
     virtual OCDM_RESULT CancelChallengeDataExt() = 0;
 
     virtual OCDM_RESULT StoreLicenseData(const uint8_t licenseData[] /* @length:licenseDataSize */,
-        uint32_t licenseDataSize,
+        uint16_t licenseDataSize,
         uint8_t* secureStopId /* @out @length:16 */)
         = 0;
 
@@ -215,15 +215,15 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
 
     virtual OCDM_RESULT GetSecureStop(const std::string& keySystem,
         const uint8_t sessionID[] /* @length:sessionIDLength */,
-        uint32_t sessionIDLength, uint8_t* rawData /* @out @length:rawSize */,
+        uint16_t sessionIDLength, uint8_t* rawData /* @out @length:rawSize */,
         uint16_t& rawSize /* @inout */)
         = 0;
 
     virtual OCDM_RESULT CommitSecureStop(const std::string& keySystem,
         const uint8_t sessionID[] /* @length:sessionIDLength */,
-        uint32_t sessionIDLength,
+        uint16_t sessionIDLength,
         const uint8_t serverResponse[] /* @length:serverResponseLength */,
-        uint32_t serverResponseLength)
+        uint16_t serverResponseLength)
         = 0;
 
     virtual OCDM_RESULT DeleteKeyStore(const std::string& keySystem) = 0;
@@ -232,12 +232,12 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
 
     virtual OCDM_RESULT GetKeyStoreHash(const std::string& keySystem,
         uint8_t keyStoreHash[] /* @out @length:keyStoreHashLength */,
-        uint32_t keyStoreHashLength)
+        uint16_t keyStoreHashLength)
         = 0;
 
     virtual OCDM_RESULT GetSecureStoreHash(const std::string& keySystem,
         uint8_t secureStoreHash[] /* @out @length:secureStoreHashLength */,
-        uint32_t secureStoreHashLength)
+        uint16_t secureStoreHashLength)
         = 0;
 };
 
@@ -296,7 +296,7 @@ public:
 public:
     inline bool IsValid() const
     {
-        static const KeyId InvalidKey;
+        const KeyId InvalidKey;
         return (operator!=(InvalidKey));
     }
     inline bool operator==(const uint8_t rhs[]) const
@@ -351,7 +351,7 @@ public:
     }
     inline string ToString() const
     {
-        static const uint8_t HexArray[] = "0123456789ABCDEF";
+        const uint8_t HexArray[] = "0123456789ABCDEF";
 
         string result;
         for (uint8_t teller = 0; teller < sizeof(_kid); teller++) {
