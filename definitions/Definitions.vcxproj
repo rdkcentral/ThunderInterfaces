@@ -40,6 +40,8 @@
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</TreatOutputAsContent>
     </CustomBuild>
+    <ClInclude Include="..\interfaces\IExternal.h" />
+    <ClInclude Include="..\interfaces\IZigWave.h" />
     <ClInclude Include="..\interfaces\json\ExternalMetadata.h" />
     <ClInclude Include="definitions.h" />
   </ItemGroup>

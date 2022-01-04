@@ -21,12 +21,10 @@
 
 #include "Module.h"
 
-
-
 namespace WPEFramework {
 	namespace Exchange {
 		// @stubgen:omit
-        struct IExternal;
+        	struct IVariable;
 
 		// @stubgen:omit
 		struct EXTERNAL IGroup : virtual public Core::IUnknown {
@@ -49,17 +47,17 @@ namespace WPEFramework {
 
 				enum { ID = 0x10000043 };
 
-				// Push changes. If the Current value changes or the condition of IExternal, the next method is called.
-				virtual void Added(/* @out */ IExternal* element) = 0;
-				virtual void Removed(/* @out */ IExternal* element) = 0;
+				// Push changes. If the Current value changes or the condition of IVariable, the next method is called.
+				virtual void Added(/* @out */ IVariable* element) = 0;
+				virtual void Removed(/* @out */ IVariable* element) = 0;
 			};
 
 			struct EXTERNAL INotification : virtual public Core::IUnknown {
 
 				enum { ID = ID_BUTLER_NOTIFICATION };
 
-				// Push changes. If the Current value changes or the condition of IExternal, the next method is called.
-				virtual void Updated(/* @out */ IExternal* element) = 0;
+				// Push changes. If the Current value changes or the condition of IVariable, the next method is called.
+				virtual void Updated(/* @out */ IVariable* element) = 0;
 			};
 
 			// Register for new/modified or deleted extenals.
@@ -70,9 +68,9 @@ namespace WPEFramework {
 			virtual void Register(INotification* sink) = 0;
 			virtual void Unregister(INotification* sink) = 0;
 
-			// Get Access to a specific IExternal, by specifying a proper identifaction. 
-			virtual IExternal* Element(const string& name) = 0;
-			virtual IExternal* Element(const uint32_t id) = 0;
+			// Get Access to a specific IVariable, by specifying a proper identifaction. 
+			virtual IVariable* Element(const string& name) = 0;
+			virtual IVariable* Element(const uint32_t id) = 0;
 			virtual string Source(const uint32_t module) const = 0;
 
 			virtual uint32_t Branch(const string& path) = 0;
