@@ -19,14 +19,14 @@
 
 #pragma once
 #include "Module.h"
-#include "IVariable.h"
+#include "IValuePoint.h"
 
 
 namespace WPEFramework {
 namespace Exchange {
 
     // @stubgen:omit
-    class VariableBase : public IVariable {
+    class ValuePoint : public IValuePoint {
     private:
         class Job { 
         public: 
@@ -34,7 +34,7 @@ namespace Exchange {
             Job(const Job&) = delete;
             Job& operator=(const Job&) = delete;
 
-            Job(VariableBase& parent)
+            Job(ValuePoint& parent)
                 : _parent(parent) 
             {
             }
@@ -47,7 +47,7 @@ namespace Exchange {
             }
 
         private:
-            VariableBase& _parent;
+            ValuePoint& _parent;
         };
         class Timed {
         public:
@@ -55,7 +55,7 @@ namespace Exchange {
             Timed(const Timed&) = delete;
             Timed& operator=(const Timed&) = delete;
 
-            Timed(VariableBase& parent)
+            Timed(ValuePoint& parent)
                 : _parent(parent)
                 , _nextTime(0)
                 , _periodicity(0)
@@ -100,24 +100,24 @@ namespace Exchange {
             }
 
         private:
-            VariableBase& _parent;
+            ValuePoint& _parent;
             Core::Time _nextTime;
             uint32_t _periodicity;
         };
 
     public:
-        VariableBase() = delete;
-        VariableBase(const VariableBase&) = delete;
-        VariableBase& operator=(const VariableBase&) = delete;
+        ValuePoint() = delete;
+        ValuePoint(const ValuePoint&) = delete;
+        ValuePoint& operator=(const ValuePoint&) = delete;
 
         #ifdef __WINDOWS__
         #pragma warning(disable : 4355)
         #endif
-        VariableBase(const uint32_t id, const uint32_t type)
+        ValuePoint(const uint32_t id, const uint32_t type)
             : _adminLock()
             , _id(id & 0x00FFFFFF)
             , _type(type)
-            , _condition(IVariable::constructing)
+            , _condition(IValuePoint::constructing)
             , _clients()
             , _job(*this)
             , _timed(*this)
@@ -126,13 +126,13 @@ namespace Exchange {
         #ifdef __WINDOWS__
         #pragma warning(default : 4355)
         #endif
-        inline VariableBase(const uint32_t id, const basic base, const specific spec, const dimension dim, const uint8_t decimals)
-            : VariableBase(id, IVariable::Type(base, spec, dim, decimals))
+        inline ValuePoint(const uint32_t id, const basic base, const specific spec, const dimension dim, const uint8_t decimals)
+            : ValuePoint(id, IValuePoint::Type(base, spec, dim, decimals))
         {
         }
-        ~VariableBase() override {
+        ~ValuePoint() override {
             ASSERT(_clients.size() == 0);
-            ASSERT(_condition == IVariable::deactivated);
+            ASSERT(_condition == IValuePoint::deactivated);
             _job.Revoke();
     	}
 
@@ -142,19 +142,19 @@ namespace Exchange {
         // ------------------------------------------------------------------------
         inline basic Basic() const
         {
-            return (IVariable::Basic(_type));
+            return (IValuePoint::Basic(_type));
         }
         inline dimension Dimension() const
         {
-            return (IVariable::Dimension(_type));
+            return (IValuePoint::Dimension(_type));
         }
         inline specific Specific() const
         {
-            return (IVariable::Specific(_type));
+            return (IValuePoint::Specific(_type));
         }
         inline uint8_t Decimals() const
         {
-            return (IVariable::Decimals(_type));
+            return (IValuePoint::Decimals(_type));
         }
 
         // ------------------------------------------------------------------------
@@ -173,14 +173,14 @@ namespace Exchange {
         }
 
         // ------------------------------------------------------------------------
-        // IVariable default interface implementation
+        // IValuePoint default interface implementation
         // ------------------------------------------------------------------------
         // Pushing notifications to interested sinks
-        void Register(IVariable::INotification* sink) override
+        void Register(IValuePoint::INotification* sink) override
         {
             _adminLock.Lock();
 
-            std::list<IVariable::INotification*>::iterator index = std::find(_clients.begin(), _clients.end(), sink);
+            std::list<IValuePoint::INotification*>::iterator index = std::find(_clients.begin(), _clients.end(), sink);
 
             if (index == _clients.end()) {
                 sink->AddRef();
@@ -190,12 +190,12 @@ namespace Exchange {
 
             _adminLock.Unlock();
         }
-        void Unregister(IVariable::INotification* sink) override
+        void Unregister(IValuePoint::INotification* sink) override
         {
 
             _adminLock.Lock();
 
-            std::list<IVariable::INotification*>::iterator index = std::find(_clients.begin(), _clients.end(), sink);
+            std::list<IValuePoint::INotification*>::iterator index = std::find(_clients.begin(), _clients.end(), sink);
 
             if (index != _clients.end()) {
                 sink->Release();
@@ -272,8 +272,8 @@ namespace Exchange {
         {
             _adminLock.Lock();
 
-            if ((_condition == IVariable::deactivated) || (_condition == IVariable::constructing)) {
-                _condition = IVariable::activated;
+            if ((_condition == IValuePoint::deactivated) || (_condition == IValuePoint::constructing)) {
+                _condition = IValuePoint::activated;
 
                 if (_clients.size() > 0) {
                     _job.Submit();
@@ -285,10 +285,10 @@ namespace Exchange {
         virtual void Deactivate() {
             _adminLock.Lock();
 
-            if ( (_condition == IVariable::activated) || (_condition == IVariable::constructing) ) {
+            if ( (_condition == IValuePoint::activated) || (_condition == IValuePoint::constructing) ) {
 
                 static_cast<Timed&>(_timed).Period(0);
-                _condition = IVariable::deactivated;
+                _condition = IValuePoint::deactivated;
 
                 if (_clients.size() > 0) {
                     _job.Submit();
@@ -302,8 +302,8 @@ namespace Exchange {
         virtual uint32_t Value(int32_t& value) const = 0;
         virtual uint32_t Value(const int32_t value) = 0;
 
-        BEGIN_INTERFACE_MAP(VariableBase)
-            INTERFACE_ENTRY(Exchange::IVariable)
+        BEGIN_INTERFACE_MAP(ValuePoint)
+            INTERFACE_ENTRY(Exchange::IValuePoint)
         END_INTERFACE_MAP
 
     protected:
@@ -331,15 +331,15 @@ namespace Exchange {
         void Notify()
         {
             _adminLock.Lock();
-            std::list<IVariable::INotification*>::iterator index(_clients.begin());
+            std::list<IValuePoint::INotification*>::iterator index(_clients.begin());
             RecursiveCall(index);
         }
-        void RecursiveCall(std::list<IVariable::INotification*>::iterator& position)
+        void RecursiveCall(std::list<IValuePoint::INotification*>::iterator& position)
         {
             if (position == _clients.end()) {
                 _adminLock.Unlock();
             } else {
-                IVariable::INotification* client(*position);
+                IValuePoint::INotification* client(*position);
                 client->AddRef();
                 position++;
                 RecursiveCall(position);
@@ -353,7 +353,7 @@ namespace Exchange {
         uint32_t _id;
         uint32_t _type;
         condition _condition;
-        std::list<IVariable::INotification*> _clients;
+        std::list<IValuePoint::INotification*> _clients;
         mutable Core::WorkerPool::JobType<Job> _job;
         Core::WorkerPool::JobType<Timed> _timed;
     };

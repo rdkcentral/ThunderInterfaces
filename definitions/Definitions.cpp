@@ -40,7 +40,7 @@
 #include <interfaces/IDRM.h>
 #include <interfaces/IDsgccClient.h>
 #include <interfaces/IExternalBase.h>
-#include <interfaces/IvariableBase.h>
+#include <interfaces/ValuePoint.h>
 #include <interfaces/IGuide.h>
 #include <interfaces/IInputPin.h>
 #include <interfaces/IInputSwitch.h>
@@ -253,27 +253,27 @@ namespace Exchange
     // ------------------------------------------------------------------------
     // Convenience methods to extract interesting information from the Type()
     // ------------------------------------------------------------------------
-    /* static */ IVariable::basic IVariable::Basic(const uint32_t instanceType)
+    /* static */ IValuePoint::basic IValuePoint::Basic(const uint32_t instanceType)
     {
         return (static_cast<basic>((instanceType >> 12) & 0xF));
     }
 
-    /* static */ IVariable::dimension IVariable::Dimension(const uint32_t instanceType)
+    /* static */ IValuePoint::dimension IValuePoint::Dimension(const uint32_t instanceType)
     {
         return (static_cast<dimension>((instanceType >> 19) & 0x1FFF));
     }
 
-    /* static */ IVariable::specific IVariable::Specific(const uint32_t instanceType)
+    /* static */ IValuePoint::specific IValuePoint::Specific(const uint32_t instanceType)
     {
         return (static_cast<specific>(instanceType & 0xFFF));
     }
 
-    /* static */ uint8_t IVariable::Decimals(const uint32_t instanceType)
+    /* static */ uint8_t IValuePoint::Decimals(const uint32_t instanceType)
     {
         return ((instanceType >> 16) & 0x07);
     }
 
-    /* static */ uint32_t IVariable::Type(const IVariable::basic base, const IVariable::specific spec, const IVariable::dimension dim, const uint8_t decimals) {
+    /* static */ uint32_t IValuePoint::Type(const IValuePoint::basic base, const IValuePoint::specific spec, const IValuePoint::dimension dim, const uint8_t decimals) {
         return ((dim << 19) | ((decimals & 0x07) << 16) | (base << 12) | spec);
     }
 }

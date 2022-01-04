@@ -38,7 +38,7 @@
 
 #include <interfaces/IComposition.h>
 #include <interfaces/IExternal.h>
-#include <interfaces/IVariable.h>
+#include <interfaces/IValuePoint.h>
 #include <interfaces/IStream.h>
 #include <interfaces/IVoiceHandler.h>
 #include <interfaces/IPower.h>

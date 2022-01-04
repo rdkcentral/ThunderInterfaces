@@ -24,7 +24,7 @@ namespace WPEFramework {
 namespace Exchange {
 
     /* %json */
-    struct EXTERNAL IVariable : virtual public Core::IUnknown {
+    struct EXTERNAL IValuePoint : virtual public Core::IUnknown {
         enum { ID = ID_VARIABLE };
 
         /* %json omit */
@@ -34,14 +34,14 @@ namespace Exchange {
             struct EXTERNAL INotification : virtual public Core::IUnknown {
                 enum { ID = ID_VARIABLE_CATALOG_NOTIFICATION };
 
-                virtual void Activated(IVariable* source) = 0;
-                virtual void Deactivated(IVariable* source) = 0;
+                virtual void Activated(IValuePoint* source) = 0;
+                virtual void Deactivated(IValuePoint* source) = 0;
             };
 
             // Pushing notifications to interested sinks
             virtual void Register(ICatalog::INotification* sink) = 0;
             virtual void Unregister(ICatalog::INotification* sink) = 0;
-            virtual IVariable* Resource(const uint32_t id) = 0;
+            virtual IValuePoint* Resource(const uint32_t id) = 0;
         };
 
         /* %event */
@@ -107,40 +107,40 @@ namespace Exchange {
         virtual void Unregister(INotification* sink) = 0;
 
         // @property
-        // @brief Each IVariable instance has a unique identifier that identifies the instance. The 
-        //        value returned here return the unique ID of this IVariable.
+        // @brief Each IValuePoint instance has a unique identifier that identifies the instance. The 
+        //        value returned here return the unique ID of this IValuePoint.
         // @param ID is the unique identification of this element.
         virtual uint32_t Identifier(uint32_t& ID /* @out */) const = 0;
 
         // @property
-        // @brief Current state/condition of this IVariable
-        // @param value is the current condition of this IVariable 
+        // @brief Current state/condition of this IValuePoint
+        // @param value is the current condition of this IValuePoint 
         virtual uint32_t Condition(condition& value /* @out */) const = 0;
 
         // @property
         // @brief Characteristics of this IElement
-        // @param value represent the characteristics of this IVariable 
+        // @param value represent the characteristics of this IValuePoint 
         virtual uint32_t Type(uint32_t& value /* @out */) const = 0;
 
         // @property
         // @brief The minimum value this IElement can reach.
-        // @param value represent the minimum value this IVariable can reach.
+        // @param value represent the minimum value this IValuePoint can reach.
         virtual uint32_t Minimum(int32_t& value /* @out */) const = 0;
 
         // @property
         // @brief The maximum value this IElement can reach.
-        // @param value represent the maxium value this IVariable can reach.
+        // @param value represent the maxium value this IValuePoint can reach.
         virtual uint32_t Maximum(int32_t& value /* @out */) const = 0;
 
         // @property
-        // @brief The current value of this IVariable.
-        // @param value represent the current value of this IVariable.
+        // @brief The current value of this IValuePoint.
+        // @param value represent the current value of this IValuePoint.
         virtual uint32_t Value(int32_t& value /* @out */) const = 0;
         virtual uint32_t Value(const int32_t value) = 0;
 
         // @property
         // @brief There most be more than meets the eye, report it as a JSON string.
-        // @param value represent the metadata associated with this IVariable.
+        // @param value represent the metadata associated with this IValuePoint.
         // 
         virtual uint32_t Metadata(string& value /* @out */) const = 0;
 
