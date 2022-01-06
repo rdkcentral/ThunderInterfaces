@@ -94,7 +94,7 @@ namespace Exchange {
                 _parent.Lock();
                 if (_periodicity != 0) {
                     _nextTime.Add(_periodicity);
-                    _parent._timed.Schedule(_nextTime);
+                    _parent._timed.Reschedule(_nextTime);
                 }
                 _parent.Unlock();
             }
