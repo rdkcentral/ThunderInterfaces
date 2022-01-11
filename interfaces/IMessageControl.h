@@ -45,6 +45,12 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
                                  const string &moduleName,
                                  const string &categoryName,
                                  const bool enable) = 0;
+
+  virtual uint32_t PrepareEnabledMessagesList() = 0;
+  virtual bool EnabledMessage(MessageType &type /*@out*/,
+                              string &moduleName /*@out*/,
+                              string &categoryName /*@out*/,
+                              bool &enable /*@out*/) = 0;
 };
 
 } // namespace Exchange

@@ -10,21 +10,21 @@
 		"$ref":"common.json"
 	},
 	"definitions":{
-		"message_type": {
-            "type": "string",
-            "enum": [
-              "Tracing",
-              "Logging",
-              "Warning_reporting"
-            ],
-            "enumvalues": [
-              0,
-              1,
-              2
-            ],
-            "description": "Type of message",
-            "example": "Tracing"
-          },
+		"message_type":{
+			"type":"string",
+			"enum":[
+				"Tracing",
+				"Logging",
+				"Warning_reporting"
+			],
+			"enumvalues":[
+				0,
+				1,
+				2
+			],
+			"description":"Type of message",
+			"example":"Tracing"
+		},
 		"module":{
 			"description":"Module name",
 			"type":"string",
@@ -76,6 +76,39 @@
 			},
 			"result":{
 				"$ref":"#/common/results/void"
+			}
+		},
+		"status":{
+			"summary":"Retrieves general information",
+			"description":"Retrieves the actual trace status information for targeted module and category, if either category nor module is given, all information is returned. It will retrieves the details about console status and remote address(port and binding address), if these are configured.",
+			"params":{
+				"type":"object",
+				"properties":{
+					"module":{
+						"$ref":"#/definitions/module"
+					},
+					"category":{
+						"$ref":"#/definitions/category"
+					}
+				},
+				"required":[
+					"module",
+					"category"
+				]
+			},
+			"result":{
+				"type":"object",
+				"properties":{
+					"settings":{
+						"type":"array",
+						"items":{
+							"$ref":"#/definitions/message"
+						}
+					}
+				},
+				"required":[
+					"settings"
+				]
 			}
 		}
 	}
