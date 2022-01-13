@@ -73,6 +73,7 @@
 #include <interfaces/IWebPA.h>
 #include <interfaces/IWebServer.h>
 #include <interfaces/IDeviceInfo.h>
+#include <interfaces/IZigWave.h>
 #endif
 
 MODULE_NAME_DECLARATION(BUILD_REFERENCE);

@@ -27,19 +27,18 @@ namespace WPEFramework {
         	struct IValuePoint;
 
 		// @stubgen:omit
-		struct EXTERNAL IGroup : virtual public Core::IUnknown {
-
-			enum { ID = ID_BUTLER_GROUP };
-
-			virtual uint32_t Parent() const = 0;
-			virtual string Base() const = 0;
-			virtual RPC::IStringIterator* Names() const = 0;
-		};
-
-		// @stubgen:omit
 		struct EXTERNAL IButler : virtual public Core::IUnknown {
 
 			enum { ID = ID_BUTLER };
+
+			struct EXTERNAL IGroup : virtual public Core::IUnknown {
+
+				enum { ID = ID_BUTLER_GROUP };
+
+				virtual uint32_t Parent() const = 0;
+				virtual string Base() const = 0;
+				virtual RPC::IStringIterator* Names() const = 0;
+			};
 
 			struct EXTERNAL IObserver : virtual public Core::IUnknown {
 

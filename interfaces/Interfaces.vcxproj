@@ -101,6 +101,7 @@
     <ClInclude Include="ISystemCommands.h" />
     <ClInclude Include="ITestController.h" />
     <ClInclude Include="ITimeSync.h" />
+    <ClInclude Include="IValuePoint.h" />
     <ClInclude Include="IVoiceHandler.h" />
     <ClInclude Include="IWebDriver.h" />
     <ClInclude Include="IWebServer.h" />
