@@ -35,22 +35,20 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
   virtual ~IMessageControl() = default;
 
-  virtual void Start() = 0;
-  virtual void Activated(const uint32_t id) = 0;
-  virtual void Deactivated(const uint32_t id) = 0;
-  virtual void Configure(const bool isBackground, const string &configuration,
-                         const string &volatilePath) = 0;
+  virtual uint32_t Configure(const bool isBackground,
+                             const string &configuration,
+                             const string &volatilePath) = 0;
+  virtual void RegisterConnection(const uint32_t id) = 0;
+  virtual void UnregisterConnection(const uint32_t id) = 0;
 
-  virtual uint32_t EnableMessage(MessageType type,
-                                 const string &moduleName,
+  virtual uint32_t EnableMessage(MessageType type, const string &moduleName,
                                  const string &categoryName,
                                  const bool enable) = 0;
 
-  virtual uint32_t PrepareEnabledMessagesList() = 0;
-  virtual bool EnabledMessage(MessageType &type /*@out*/,
-                              string &moduleName /*@out*/,
-                              string &categoryName /*@out*/,
-                              bool &enable /*@out*/) = 0;
+  virtual uint32_t ActiveMessages(const bool first, MessageType &type /*@out*/,
+                                  string &moduleName /*@out*/,
+                                  string &categoryName /*@out*/,
+                                  bool &enable /*@out*/) = 0; // rename
 };
 
 } // namespace Exchange
