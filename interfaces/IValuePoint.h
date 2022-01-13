@@ -23,14 +23,15 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* %json */
+    /* json */
     struct EXTERNAL IValuePoint : virtual public Core::IUnknown {
         enum { ID = ID_VARIABLE };
 
-        /* %json omit */
+        /* json omit */
         struct EXTERNAL ICatalog : virtual public Core::IUnknown {
             enum { ID = ID_VARIABLE_CATALOG };
 
+            /* json omit */
             struct EXTERNAL INotification : virtual public Core::IUnknown {
                 enum { ID = ID_VARIABLE_CATALOG_NOTIFICATION };
 
@@ -40,11 +41,11 @@ namespace Exchange {
 
             // Pushing notifications to interested sinks
             virtual void Register(ICatalog::INotification* sink) = 0;
-            virtual void Unregister(ICatalog::INotification* sink) = 0;
+            virtual void Unregister(const ICatalog::INotification* sink) = 0;
             virtual IValuePoint* Resource(const uint32_t id) = 0;
         };
 
-        /* %event */
+        /* event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_VARIABLE_NOTIFICATION };
 
@@ -63,7 +64,8 @@ namespace Exchange {
         //
         enum basic : uint8_t { /* 4 bits (16)*/
             regulator = 0x0,
-            measurement = 0x1
+            measurement = 0x1,
+            group = 0x0F
         };
 
         enum specific : uint16_t { /* 12 bits (4096) */
@@ -82,7 +84,8 @@ namespace Exchange {
             system = 0x00C,
             emergency = 0x00D,
             clock = 0x00E,
-            light = 0x00F
+            light = 0x00F,
+            identification = 0xFFF
         };
 
         enum dimension : uint16_t { /* 13 bits (8192) */
@@ -111,6 +114,13 @@ namespace Exchange {
         //        value returned here return the unique ID of this IValuePoint.
         // @param ID is the unique identification of this element.
         virtual uint32_t Identifier(uint32_t& ID /* @out */) const = 0;
+
+        // @property
+        // @brief If this IValuePoint belongs to a group that has multiple IValuePoints the id that
+        //        identifies the group and the result will be Core::ERROR_NONE. If it does not belong
+        //        to a group, this call returns Core::ERROR_UNAVAILABLE,
+        // @param ID is the unique identification of the parent element.
+        virtual uint32_t Group(uint32_t& ID /* @out */) const = 0;
 
         // @property
         // @brief Current state/condition of this IValuePoint
@@ -151,15 +161,15 @@ namespace Exchange {
         // ------------------------------------------------------------------------
         // Convenience methods to extract interesting information from the Type()
         // ------------------------------------------------------------------------
-        /* %json:omit */
+        /* json:omit */
         static basic Basic(const uint32_t instanceType);
-        /* %json:omit */
+        /* json:omit */
         static dimension Dimension(const uint32_t instanceType);
-        /* %json:omit */
+        /* json:omit */
         static specific Specific(const uint32_t instanceType);
-        /* %json:omit */
+        /* json:omit */
         static uint8_t Decimals(const uint32_t instanceType);
-        /* %json:omit */
+        /* json:omit */
         static uint32_t Type(const basic base, const specific spec, const dimension dim, const uint8_t decimals);
     };
 

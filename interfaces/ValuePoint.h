@@ -192,7 +192,6 @@ namespace Exchange {
         }
         void Unregister(IValuePoint::INotification* sink) override
         {
-
             _adminLock.Lock();
 
             std::list<IValuePoint::INotification*>::iterator index = std::find(_clients.begin(), _clients.end(), sink);
@@ -208,6 +207,10 @@ namespace Exchange {
         uint32_t Identifier(uint32_t& ID /* @out */) const override {
             ID = _id;
             return (Core::ERROR_NONE);
+        }
+
+        uint32_t Group(uint32_t& ID /* @out */) const override {
+            return (Core::ERROR_UNAVAILABLE);
         }
 
         uint32_t Condition(condition& value /* @out */) const  override {
