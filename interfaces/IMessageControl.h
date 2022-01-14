@@ -35,9 +35,7 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
   virtual ~IMessageControl() = default;
 
-  virtual uint32_t Configure(const bool isBackground,
-                             const string &configuration,
-                             const string &volatilePath) = 0;
+  virtual uint32_t Configure(PluginHost::IShell *service) = 0;
   virtual void RegisterConnection(const uint32_t id) = 0;
   virtual void UnregisterConnection(const uint32_t id) = 0;
 
