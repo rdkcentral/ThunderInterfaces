@@ -306,7 +306,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -355,7 +355,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -408,7 +408,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -461,7 +461,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>

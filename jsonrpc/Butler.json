@@ -105,8 +105,8 @@
           "type": "integer",
           "example": 123456
         },
-        "group": {
-          "description": "If this value point belongs to a group a group id will be set here",
+        "bundle": {
+          "description": "If this value point belongs to a bundle of more value points",
           "type": "integer",
           "example": 342
         },
@@ -168,6 +168,22 @@
       "index": {
         "name": "module index",
         "description": "0 = any module, >0 orphans from the requested module",
+        "example": "[ {}, {}, {} ]"
+      },
+      "params": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/device"
+        }
+      }
+    },
+    "bundle": {
+      "readonly": true,
+      "summary": "List of devices not attached to any nodes",
+      "descrption": "Use this property to get all devices available to the butler. It returns for eacht device its name and its Id within the Butler context",
+      "index": {
+        "name": "bundle id",
+        "description": "The id of the bundle for which you would like to have the value points",
         "example": "[ {}, {}, {} ]"
       },
       "params": {
@@ -249,7 +265,7 @@
                   "type": "integer",
                   "example": "123443"
                 },
-                "group": {
+                "bundle": {
                   "description": "If this value point belongs to a group a group id will be set here",
                   "type": "integer",
                   "example": 342
