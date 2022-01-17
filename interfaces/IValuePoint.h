@@ -116,11 +116,11 @@ namespace Exchange {
         virtual uint32_t Identifier(uint32_t& ID /* @out */) const = 0;
 
         // @property
-        // @brief If this IValuePoint belongs to a group that has multiple IValuePoints the id that
-        //        identifies the group and the result will be Core::ERROR_NONE. If it does not belong
-        //        to a group, this call returns Core::ERROR_UNAVAILABLE,
+        // @brief If this IValuePoint belongs to a bundle that has multiple IValuePoints the id
+        //        that identifies the bundle and the result will be Core::ERROR_NONE. If it does 
+        //        not belong to a bundle, this call returns Core::ERROR_UNAVAILABLE,
         // @param ID is the unique identification of the parent element.
-        virtual uint32_t Group(uint32_t& ID /* @out */) const = 0;
+        virtual uint32_t Bundle(uint32_t& ID /* @out */) const = 0;
 
         // @property
         // @brief Current state/condition of this IValuePoint

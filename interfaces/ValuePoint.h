@@ -209,7 +209,7 @@ namespace Exchange {
             return (Core::ERROR_NONE);
         }
 
-        uint32_t Group(uint32_t& ID /* @out */) const override {
+        uint32_t Bundle(uint32_t& ID /* @out */) const override {
             return (Core::ERROR_UNAVAILABLE);
         }
 
