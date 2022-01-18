@@ -260,47 +260,26 @@
                   "type": "string",
                   "example": "living"
                 },
-                "id": {
-                  "description": "Identifier of this memeber",
-                  "type": "integer",
-                  "example": "123443"
-                },
-                "bundle": {
-                  "description": "If this value point belongs to a group a group id will be set here",
-                  "type": "integer",
-                  "example": 342
-                },
-                "type": {
-                  "description": "Type ot this member",
-                  "type": "string",
-                  "example": "group"
-                },
                 "callsign": {
                   "description": "The callsign that owns this external",
                   "example": "VirtualControl",
                   "type": "string"
                 },
-                "basic": {
-                  "$ref": "#/definitions/basicenum"
-                },
-                "specific": {
-                  "$ref": "#/definitions/specificenum"
-                },
-                "dimension": {
-                  "$ref": "#/definitions/dimensionenum"
-                },
-                "decimals": {
-                  "description": "Number of digits that should be considered fractional",
-                  "type": "integer",
-                  "example": 0
-                },
-                "value": {
-                  "$ref": "#/definitions/devicevalue"
-                },
                 "children": {
-                  "description": "number of children, this element has",
+                  "description": "The number of children in a group",
                   "type": "integer",
-                  "example": "5"
+                  "example": 19
+                },
+                "bundle": {
+                  "description": "The bundle id if this is a bundle",
+                  "type": "integer",
+                  "example": 19
+                },
+                "point": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/device"
+                  }
                 }
               }
             }
