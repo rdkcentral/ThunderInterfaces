@@ -84,6 +84,9 @@
 			"params":{
 				"type":"object",
 				"properties":{
+					"type":{
+						"$ref":"#/definitions/message_type"
+					},
 					"module":{
 						"$ref":"#/definitions/module"
 					},
@@ -92,8 +95,7 @@
 					}
 				},
 				"required":[
-					"module",
-					"category"
+					"type"
 				]
 			},
 			"result":{
