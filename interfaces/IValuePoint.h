@@ -51,6 +51,7 @@ namespace Exchange {
 
             // Push changes. If the Current value changes, the next method is called.
             virtual void Update(const uint32_t id) = 0;
+            virtual void Metadata(const uint32_t id) = 0;
         };
 
         //  Basic/specific and dimension together define the Type.
@@ -65,7 +66,8 @@ namespace Exchange {
         enum basic : uint8_t { /* 4 bits (16)*/
             regulator = 0x0,
             measurement = 0x1,
-            group = 0x0F
+            group = 0xE,
+            identification = 0xF
         };
 
         enum specific : uint16_t { /* 12 bits (4096) */
@@ -84,8 +86,7 @@ namespace Exchange {
             system = 0x00C,
             emergency = 0x00D,
             clock = 0x00E,
-            light = 0x00F,
-            identification = 0xFFF
+            light = 0x00F
         };
 
         enum dimension : uint16_t { /* 13 bits (8192) */

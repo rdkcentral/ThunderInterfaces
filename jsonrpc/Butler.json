@@ -23,11 +23,13 @@
       "enum": [
         "control",
         "measure",
-        "group"
+        "group",
+        "identification"
       ],
       "enumvalues": [
         0,
         1,
+        14,
         15
       ]
     },
@@ -51,8 +53,7 @@
         "system",
         "emergency",
         "clock",
-        "light",
-        "identification"
+        "light"
       ],
       "enumvalues": [
         0,
@@ -70,8 +71,7 @@
         12,
         13,
         14,
-        15,
-        4095
+        15
       ]
     },
     "dimensionenum": {
@@ -257,8 +257,10 @@
               "properties": {
                 "name": {
                   "description": "Name of a room or sensor",
-                  "type": "string",
-                  "example": "living"
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "callsign": {
                   "description": "The callsign that owns this external",
@@ -272,6 +274,11 @@
                 },
                 "bundle": {
                   "description": "The bundle id if this is a bundle",
+                  "type": "integer",
+                  "example": 19
+                },
+                "id": {
+                  "description": "The id of the single point in this meber, it is not a bundle ",
                   "type": "integer",
                   "example": 19
                 },

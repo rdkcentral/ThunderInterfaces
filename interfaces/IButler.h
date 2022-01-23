@@ -55,8 +55,11 @@ namespace WPEFramework {
 
 				enum { ID = ID_BUTLER_NOTIFICATION };
 
-				// Push changes. If the Current value changes or the condition of IValuePoint, the next method is called.
+				// Push changes. If the Current value changes.
 				virtual void Updated(/* @out */ IValuePoint* element) = 0;
+
+				// Push changes. If the Current metadata of the value point changes
+				virtual void Metadata(/* @out */ IValuePoint* element) = 0;
 			};
 
 			// Register for new/modified or deleted extenals.
