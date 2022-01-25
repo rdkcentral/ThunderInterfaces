@@ -25,6 +25,7 @@ namespace WPEFramework {
 namespace Exchange {
 
 struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
+  virtual ~IMessageControl() = default;
   enum { ID = ID_MESSAGE_CONTROL };
 
   enum MessageType : uint8_t {
@@ -33,7 +34,18 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
     WarningReporting = 2,
   };
 
-  virtual ~IMessageControl() = default;
+  /* @event */
+  struct EXTERNAL INotification : virtual public Core::IUnknown {
+    enum { ID = ID_MESSAGE_CONTROL_NOTIFICATION };
+    virtual ~INotification() = default;
+    virtual void ReceiveRawMessage(MessageType type, const string &category,
+                                   const string &module, const string &fileName,
+                                   uint16_t lineNumber, uint64_t timestamp,
+                                   const string &message) = 0;
+  };
+
+  virtual void RegisterOutputNotification(IMessageControl::INotification *notification) = 0;
+  virtual void UnregisterOutputNotification(const IMessageControl::INotification *notification) = 0;
 
   virtual uint32_t Configure(PluginHost::IShell *service) = 0;
   virtual void RegisterConnection(const uint32_t id) = 0;
