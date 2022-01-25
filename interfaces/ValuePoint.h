@@ -123,6 +123,7 @@ namespace Exchange {
             , _id(id & 0x00FFFFFF)
             , _type(type)
             , _condition(IValuePoint::constructing)
+            , _notify(notify::NONE)
             , _clients()
             , _job(*this)
             , _timed(*this)
@@ -317,11 +318,20 @@ namespace Exchange {
         inline void Updated() const
         {
             if (_clients.size() > 0) {
-                notify metadata = notify::METADATA;
-                notify none     = notify::NONE;
 
-                if ((_notify.compare_exchange_strong(none, notify::UPDATE) == true) ||
-                    (_notify.compare_exchange_strong(metadata, static_cast<notify>(notify::METADATA | notify::UPDATE)) == true)) {
+                _adminLock.Lock();
+
+                if ((_notify & notify::UPDATE) != 0) {
+                    _adminLock.Unlock();
+                }
+                else if (_notify != notify::NONE) {
+                    _notify = static_cast<notify>(_notify|notify::UPDATE);
+                    _adminLock.Unlock();
+                }
+                else {
+                    _notify = notify::UPDATE;
+                    _adminLock.Unlock();
+
                     _job.Submit();
                 }
             }
@@ -329,11 +339,19 @@ namespace Exchange {
         inline void Metadata() const
         {
             if (_clients.size() > 0) {
-                notify update = notify::UPDATE;
-                notify none   = notify::NONE;
+                _adminLock.Lock();
 
-                if ((_notify.compare_exchange_strong(none, notify::METADATA) == true) ||
-                    (_notify.compare_exchange_strong(update, static_cast<notify>(notify::METADATA | notify::UPDATE)) == true)) {
+                if ((_notify & notify::METADATA) != 0) {
+                    _adminLock.Unlock();
+                }
+                else if (_notify != notify::NONE) {
+                    _notify = static_cast<notify>(_notify | notify::METADATA);
+                    _adminLock.Unlock();
+                }
+                else {
+                    _notify = notify::METADATA;
+                    _adminLock.Unlock();
+
                     _job.Submit();
                 }
             }
@@ -357,10 +375,15 @@ namespace Exchange {
     private:
         void Notify()
         {
-            uint8_t mode = _notify.exchange(notify::NONE);
+            _adminLock.Lock();
 
-            if (mode != notify::NONE) {
-                _adminLock.Lock();
+            uint8_t mode = _notify;
+            _notify = notify::NONE;
+
+            if (mode == notify::NONE) {
+                _adminLock.Unlock();
+            }
+            else {
                 std::list<IValuePoint::INotification*>::iterator index(_clients.begin());
                 RecursiveCall(index, mode);
             }
@@ -375,10 +398,10 @@ namespace Exchange {
                 position++;
                 RecursiveCall(position, mode);
 
-                if ((mode & notify::UPDATE) == 0) {
+                if ((mode & notify::UPDATE) != 0) {
                     client->Update(_id);
                 }
-                if ((mode & notify::METADATA) == 0) {
+                if ((mode & notify::METADATA) != 0) {
                     client->Metadata(_id);
                 }
 
@@ -391,7 +414,7 @@ namespace Exchange {
         uint32_t _id;
         uint32_t _type;
         condition _condition;
-        mutable std::atomic<notify> _notify;
+        mutable notify _notify;
         std::list<IValuePoint::INotification*> _clients;
         mutable Core::WorkerPool::JobType<Job> _job;
         Core::WorkerPool::JobType<Timed> _timed;
