@@ -18,13 +18,17 @@
  */
 
 #pragma once
+
 #include "Module.h"
+#include <com/com.h>
 
 namespace WPEFramework {
 namespace Exchange {
 
     struct EXTERNAL IComposition : virtual public Core::IUnknown {
         enum { ID = ID_COMPOSITION };
+
+        ~IComposition() override = default;
 
         static constexpr uint32_t maxOpacity = 255;
         static constexpr uint32_t minOpacity = 0;
@@ -48,6 +52,7 @@ namespace Exchange {
 
         static uint32_t WidthFromResolution(const ScreenResolution resolution);
         static uint32_t HeightFromResolution(const ScreenResolution resolution);
+        static ScreenResolution ResolutionFromHeightWidth(const uint32_t height, const uint32_t width);
 
         struct Rectangle {
             uint32_t x;
@@ -59,19 +64,51 @@ namespace Exchange {
         struct EXTERNAL IClient : virtual public Core::IUnknown {
             enum { ID = ID_COMPOSITION_CLIENT };
 
+            ~IClient() override = default;
+
+            virtual WPEFramework::RPC::instance_id Native() const {return 0;};
             virtual string Name() const = 0;
             virtual void Opacity(const uint32_t value) = 0;
+            virtual uint32_t Opacity() const {return 0;};
             virtual uint32_t Geometry(const Rectangle& rectangle) = 0;
-            virtual Rectangle Geometry() const = 0;
+            virtual Rectangle Geometry() const = 0; 
             virtual uint32_t ZOrder(const uint16_t index) = 0;
             virtual uint32_t ZOrder() const = 0;
+        };
+
+        struct EXTERNAL IRender : virtual public Core::IUnknown {
+            enum { ID = ID_COMPOSITION_RENDER };
+
+            ~IRender() override = default;
+
+            virtual void ScanOut() = 0;
+            virtual void PreScanOut() {};
+            virtual void PostScanOut() {};
+
         };
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_COMPOSITION_NOTIFICATION };
 
+            ~INotification() override = default;
+
             virtual void Attached(const string& name, IClient* client) = 0;
             virtual void Detached(const string& name) = 0;
+        };
+
+        struct EXTERNAL IDisplay : virtual public Core::IUnknown {
+            enum { ID = ID_COMPOSITION_DISPLAY };
+
+            ~IDisplay() override = default;
+
+            virtual WPEFramework::RPC::instance_id Native() const = 0;
+            virtual string Port() const = 0;
+
+            virtual IClient* CreateClient(const string& name, const uint32_t width, const uint32_t height) = 0;
+
+            // Set and get output resolution
+            virtual uint32_t Resolution(const ScreenResolution) = 0;
+            virtual ScreenResolution Resolution() const = 0;
         };
 
         virtual void Register(IComposition::INotification* notification) = 0;
@@ -82,6 +119,7 @@ namespace Exchange {
         // Set and get output resolution
         virtual uint32_t Resolution(const ScreenResolution) = 0;
         virtual ScreenResolution Resolution() const = 0;
+
     };
 
     struct EXTERNAL IBrightness : virtual public Core::IUnknown {
@@ -93,9 +131,10 @@ namespace Exchange {
             SdrToHdrGraphicsBrightness_MatchVideo = 1, /* peak luminance of SDR graphics in HDR display will be as bright as SDR video in HDR display */
             SdrToHdrGraphicsBrightness_Max = 2 /* peak luminance of SDR graphics in HDR display might be more bright than SDR video in HDR display */
         };
-
+ 
         virtual uint32_t SdrToHdrGraphicsBrightness(Brightness& brightness /* @out */) const = 0;
         virtual uint32_t SdrToHdrGraphicsBrightness(const Brightness& brightness) = 0;
     };
 }
 }
+

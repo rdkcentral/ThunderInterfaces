@@ -22,6 +22,36 @@
     <ClCompile Include="Definitions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <CustomBuild Include="..\interfaces\IMath.h">
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JMath.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JMath.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JMath.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JMath.h</Outputs>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">None</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">None</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">None</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">None</OutputItemType>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IValuePoint.h">
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JValuePoint.h</Outputs>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">None</OutputItemType>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JValuePoint.h</Outputs>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">None</OutputItemType>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JValuePoint.h</Outputs>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">None</OutputItemType>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JValuePoint.h</Outputs>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">None</OutputItemType>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IZigWave.h">
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JZigWave.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JZigWave.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JZigWave.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JZigWave.h</Outputs>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">None</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">None</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">None</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">None</OutputItemType>
+    </CustomBuild>
     <ClInclude Include="..\interfaces\json\ExternalMetadata.h" />
     <ClInclude Include="definitions.h" />
   </ItemGroup>
@@ -276,7 +306,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -325,7 +355,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -378,7 +408,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -431,7 +461,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -448,4 +478,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties _1_1_4jsonrpc_4Butler_1json__JsonSchema="&quot;" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

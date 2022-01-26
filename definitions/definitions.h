@@ -24,6 +24,8 @@
 #endif
 
 #include <core/core.h>
+#include <tracing/tracing.h>
+#include <com/com.h>
 
 #if defined(__WINDOWS__) 
 #if defined(DEFINITIONS_EXPORTS)
@@ -35,6 +37,8 @@
 #endif
 
 #include <interfaces/IComposition.h>
+#include <interfaces/IExternal.h>
+#include <interfaces/IValuePoint.h>
 #include <interfaces/IStream.h>
 #include <interfaces/IVoiceHandler.h>
 #include <interfaces/IPower.h>

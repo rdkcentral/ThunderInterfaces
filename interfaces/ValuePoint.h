@@ -19,14 +19,14 @@
 
 #pragma once
 #include "Module.h"
-#include "IExternal.h"
+#include "IValuePoint.h"
 
 
 namespace WPEFramework {
 namespace Exchange {
 
     // @stubgen:omit
-    class ExternalBase : public IExternal {
+    class ValuePoint : public IValuePoint {
     private:
         class Job { 
         public: 
@@ -34,7 +34,7 @@ namespace Exchange {
             Job(const Job&) = delete;
             Job& operator=(const Job&) = delete;
 
-            Job(ExternalBase& parent)
+            Job(ValuePoint& parent)
                 : _parent(parent) 
             {
             }
@@ -47,7 +47,7 @@ namespace Exchange {
             }
 
         private:
-            ExternalBase& _parent;
+            ValuePoint& _parent;
         };
         class Timed {
         public:
@@ -55,7 +55,7 @@ namespace Exchange {
             Timed(const Timed&) = delete;
             Timed& operator=(const Timed&) = delete;
 
-            Timed(ExternalBase& parent)
+            Timed(ValuePoint& parent)
                 : _parent(parent)
                 , _nextTime(0)
                 , _periodicity(0)
@@ -100,24 +100,24 @@ namespace Exchange {
             }
 
         private:
-            ExternalBase& _parent;
+            ValuePoint& _parent;
             Core::Time _nextTime;
             uint32_t _periodicity;
         };
 
     public:
-        ExternalBase() = delete;
-        ExternalBase(const ExternalBase&) = delete;
-        ExternalBase& operator=(const ExternalBase&) = delete;
+        ValuePoint() = delete;
+        ValuePoint(const ValuePoint&) = delete;
+        ValuePoint& operator=(const ValuePoint&) = delete;
 
         #ifdef __WINDOWS__
         #pragma warning(disable : 4355)
         #endif
-        ExternalBase(const uint32_t id, const uint32_t type)
+        ValuePoint(const uint32_t id, const uint32_t type)
             : _adminLock()
             , _id(id & 0x00FFFFFF)
             , _type(type)
-            , _condition(IExternal::constructing)
+            , _condition(IValuePoint::constructing)
             , _clients()
             , _job(*this)
             , _timed(*this)
@@ -126,13 +126,13 @@ namespace Exchange {
         #ifdef __WINDOWS__
         #pragma warning(default : 4355)
         #endif
-        inline ExternalBase(const uint32_t id, const basic base, const specific spec, const dimension dim, const uint8_t decimals)
-            : ExternalBase(id, IExternal::Type(base, spec, dim, decimals))
+        inline ValuePoint(const uint32_t id, const basic base, const specific spec, const dimension dim, const uint8_t decimals)
+            : ValuePoint(id, IValuePoint::Type(base, spec, dim, decimals))
         {
         }
-        ~ExternalBase() override {
+        ~ValuePoint() override {
             ASSERT(_clients.size() == 0);
-            ASSERT(_condition == IExternal::deactivated);
+            ASSERT(_condition == IValuePoint::deactivated);
             _job.Revoke();
     	}
 
@@ -142,19 +142,19 @@ namespace Exchange {
         // ------------------------------------------------------------------------
         inline basic Basic() const
         {
-            return (IExternal::Basic(_type));
+            return (IValuePoint::Basic(_type));
         }
         inline dimension Dimension() const
         {
-            return (IExternal::Dimension(_type));
+            return (IValuePoint::Dimension(_type));
         }
         inline specific Specific() const
         {
-            return (IExternal::Specific(_type));
+            return (IValuePoint::Specific(_type));
         }
         inline uint8_t Decimals() const
         {
-            return (IExternal::Decimals(_type));
+            return (IValuePoint::Decimals(_type));
         }
 
         // ------------------------------------------------------------------------
@@ -173,14 +173,14 @@ namespace Exchange {
         }
 
         // ------------------------------------------------------------------------
-        // IExternal default interface implementation
+        // IValuePoint default interface implementation
         // ------------------------------------------------------------------------
         // Pushing notifications to interested sinks
-        void Register(IExternal::INotification* sink) override
+        void Register(IValuePoint::INotification* sink) override
         {
             _adminLock.Lock();
 
-            std::list<IExternal::INotification*>::iterator index = std::find(_clients.begin(), _clients.end(), sink);
+            std::list<IValuePoint::INotification*>::iterator index = std::find(_clients.begin(), _clients.end(), sink);
 
             if (index == _clients.end()) {
                 sink->AddRef();
@@ -190,12 +190,11 @@ namespace Exchange {
 
             _adminLock.Unlock();
         }
-        void Unregister(IExternal::INotification* sink) override
+        void Unregister(IValuePoint::INotification* sink) override
         {
-
             _adminLock.Lock();
 
-            std::list<IExternal::INotification*>::iterator index = std::find(_clients.begin(), _clients.end(), sink);
+            std::list<IValuePoint::INotification*>::iterator index = std::find(_clients.begin(), _clients.end(), sink);
 
             if (index != _clients.end()) {
                 sink->Release();
@@ -205,77 +204,79 @@ namespace Exchange {
             _adminLock.Unlock();
         }
 
-        condition Condition() const override
-        {
-            return (_condition);
+        uint32_t Identifier(uint32_t& ID /* @out */) const override {
+            ID = _id;
+            return (Core::ERROR_NONE);
         }
 
-        // Identification of this element.
-        uint32_t Identifier() const override
-        {
-            return (_id);
+        uint32_t Bundle(uint32_t& ID /* @out */) const override {
+            return (Core::ERROR_UNAVAILABLE);
         }
 
-        // Characteristics of this element
-        uint32_t Type() const override
-        {
-            return (_type);
+        uint32_t Condition(condition& value /* @out */) const  override {
+            value = _condition;
+            return (Core::ERROR_NONE);
         }
 
-        int32_t Minimum() const override
-        {
-            int32_t result = 0;
+        uint32_t Type(uint32_t& value /* @out */) const  override {
+            value = _type;
+            return (Core::ERROR_NONE);
+        }
 
+        uint32_t Minimum(int32_t& value /* @out */) const  override {
             switch (Dimension()) {
             case logic:
             case percentage:
             case kwh:
             case kvah:
             case pulses: {
+                value = 0;
                 break;
             }
             case degrees: {
-                result = -127;
+                value = -127;
                 break;
             }
             case units: {
-                result = Core::NumberType<int32_t>::Min();
+                value = Core::NumberType<int32_t>::Min();
                 break;
             }
             }
-            return (result);
+ 
+            return (Core::ERROR_NONE);
         }
-        int32_t Maximum() const override
-        {
-            int32_t result = 1;
+
+        uint32_t Maximum(int32_t& value /* @out */) const  override {
             switch (Dimension()) {
             case logic: {
+                value = 1;
                 break;
             }
             case percentage: {
-                result = 100;
+                value = 100;
                 break;
             }
             case kwh:
             case kvah:
             case pulses:
             case units: {
-                result = Core::NumberType<int32_t>::Max();
+                value = Core::NumberType<int32_t>::Max();
                 break;
             }
             case degrees: {
-                result = +512;
+                value = +512;
                 break;
             }
             }
-            return (result);
+ 
+            return (Core::ERROR_NONE);
         }
         virtual void Activate()
         {
             _adminLock.Lock();
 
-            if ((_condition == IExternal::deactivated) || (_condition == IExternal::constructing)) {
-                _condition = IExternal::activated;
+            if ((_condition == IValuePoint::deactivated) || (_condition == IValuePoint::constructing)) {
+                _condition = IValuePoint::activated;
 
                 if (_clients.size() > 0) {
                     _job.Submit();
@@ -287,10 +288,10 @@ namespace Exchange {
         virtual void Deactivate() {
             _adminLock.Lock();
 
-            if ( (_condition == IExternal::activated) || (_condition == IExternal::constructing) ) {
+            if ( (_condition == IValuePoint::activated) || (_condition == IValuePoint::constructing) ) {
 
                 static_cast<Timed&>(_timed).Period(0);
-                _condition = IExternal::deactivated;
+                _condition = IValuePoint::deactivated;
 
                 if (_clients.size() > 0) {
                     _job.Submit();
@@ -301,11 +302,11 @@ namespace Exchange {
         }
 
         virtual void Evaluate() = 0;
-        virtual uint32_t Get(int32_t& value) const = 0;
-        virtual uint32_t Set(const int32_t value) = 0;
+        virtual uint32_t Value(int32_t& value) const = 0;
+        virtual uint32_t Value(const int32_t value) = 0;
 
-        BEGIN_INTERFACE_MAP(ExternalBase)
-            INTERFACE_ENTRY(Exchange::IExternal)
+        BEGIN_INTERFACE_MAP(ValuePoint)
+            INTERFACE_ENTRY(Exchange::IValuePoint)
         END_INTERFACE_MAP
 
     protected:
@@ -333,15 +334,15 @@ namespace Exchange {
         void Notify()
         {
             _adminLock.Lock();
-            std::list<IExternal::INotification*>::iterator index(_clients.begin());
+            std::list<IValuePoint::INotification*>::iterator index(_clients.begin());
             RecursiveCall(index);
         }
-        void RecursiveCall(std::list<IExternal::INotification*>::iterator& position)
+        void RecursiveCall(std::list<IValuePoint::INotification*>::iterator& position)
         {
             if (position == _clients.end()) {
                 _adminLock.Unlock();
             } else {
-                IExternal::INotification* client(*position);
+                IValuePoint::INotification* client(*position);
                 client->AddRef();
                 position++;
                 RecursiveCall(position);
@@ -355,7 +356,7 @@ namespace Exchange {
         uint32_t _id;
         uint32_t _type;
         condition _condition;
-        std::list<IExternal::INotification*> _clients;
+        std::list<IValuePoint::INotification*> _clients;
         mutable Core::WorkerPool::JobType<Job> _job;
         Core::WorkerPool::JobType<Timed> _timed;
     };

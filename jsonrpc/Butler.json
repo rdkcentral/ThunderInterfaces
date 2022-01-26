@@ -9,354 +9,384 @@
     "common": {
         "$ref": "common.json"
     },
-    "definitions": {
-        "devicevalue": {
-            "type": "number",
-            "signed": true,
-            "string": "Value of the device",
-            "example": "1"
-        },
-        "device": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "description": "Identifier of the device",
-                    "type": "integer",
-                    "example": 123456
-                },
-                "name": {
-                    "description": "Name given to this device",
-                    "example": "/kitchen/ceiling/dimmer",
-                    "type": "string"
-                },
-                "callsign": {
-                    "description": "The callsign that owns this external",
-                    "example": "VirtualControl",
-                    "type": "string"
-                },
-                "basic": {
-                    "description": "Basic description of the device (measure or control)",
-                    "type": "string",
-                    "example": "measure",
-                    "enum": [
-                        "control",
-                        "measure"
-                    ],
-                    "enumvalues": [
-                        0,
-                        1
-                    ]
-                },
-                "specific": {
-                    "description": "More eleborated description of the device",
-                    "type": "string",
-                    "example": "electricity",
-                    "enum": [
-                        "general",
-                        "electricity",
-                        "water",
-                        "gas",
-                        "air",
-                        "smoke",
-                        "carbonMonoxide",
-                        "carbonDioxide",
-                        "temperature",
-                        "accessControl",
-                        "burglar",
-                        "powerManagement",
-                        "system",
-                        "emergency",
-                        "clock"
-                    ],
-                    "enumvalues": [
-                        0,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6,
-                        7,
-                        8,
-                        9,
-                        10,
-                        11,
-                        12,
-                        13,
-                        14
-                    ]
-                },
-                "dimension": {
-                    "description": "What is the dimension of the value that is returned by the device",
-                    "type": "string",
-                    "example": "logic",
-                    "enum": [
-                        "logic",
-                        "percentage",
-                        "kwh",
-                        "kvah",
-                        "pulses",
-                        "degrees",
-                        "units"
-                    ],
-                    "enumvalues": [
-                        0,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6
-                    ]
-                },
-                "minimum": {
-                    "description": "Minimum value that the device can reach",
-                    "type": "integer",
-                    "example": -80
-                },
-                "decimals": {
-                    "description": "Number of digits that should be considered fractional",
-                    "type": "integer",
-                    "example": 0
-                },
-                "maximum": {
-                    "description": "Maximum value that the device can reach",
-                    "type": "integer",
-                    "example": 200
-                },
-                "value": {
-                    "$ref": "#/definitions/devicevalue"
-                }
-            },
-            "required": [
-                "id",
-                "name",
-                "basic",
-                "specific",
-                "dimension",
-                "decimals",
-                "minimum",
-                "maximum"
-            ]
-        }
+  "definitions": {
+    "devicevalue": {
+      "type": "number",
+      "signed": true,
+      "string": "Value of the device",
+      "example": "1"
     },
-    "properties": {
-        "orphans": {
-            "readonly": true,
-            "summary": "List of devices not attached to any nodes",
-            "descrption": "Use this property to get all devices available to the butler. It returns for eacht device its name and its Id within the Butler context",
-            "index": {
-                "name": "module index",
-                "description": "0 = any module, >0 orphans from the requested module",
-                "example": "[ {}, {}, {} ]"
-            },
-            "params": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/definitions/device"
-                }
-            }
+    "basicenum": {
+      "description": "Basic description of the device (measure or control)",
+      "type": "string",
+      "example": "measure",
+      "enum": [
+        "control",
+        "measure",
+        "group"
+      ],
+      "enumvalues": [
+        0,
+        1,
+        15
+      ]
+    },
+    "specificenum": {
+      "description": "More eleborated description of the device",
+      "type": "string",
+      "example": "electricity",
+      "enum": [
+        "general",
+        "electricity",
+        "water",
+        "gas",
+        "air",
+        "smoke",
+        "carbonMonoxide",
+        "carbonDioxide",
+        "temperature",
+        "accessControl",
+        "burglar",
+        "powerManagement",
+        "system",
+        "emergency",
+        "clock",
+        "light",
+        "identification"
+      ],
+      "enumvalues": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        4095
+      ]
+    },
+    "dimensionenum": {
+      "description": "What is the dimension of the value that is returned by the device",
+      "type": "string",
+      "example": "logic",
+      "enum": [
+        "logic",
+        "percentage",
+        "kwh",
+        "kvah",
+        "pulses",
+        "degrees",
+        "units"
+      ],
+      "enumvalues": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "device": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier of the device",
+          "type": "integer",
+          "example": 123456
         },
-        "device": {
-            "readonly": true,
-            "summary": "Device specific information",
-            "index": {
-                "name": "Device name",
-                "example": "The name of the device or the Id of the device"
-            },
-            "params": {
-                "$ref": "#/definitions/device"
-            },
-            "errors": [
-                {
-                    "description": "Unknown device",
-                    "$ref": "#/common/errors/unknownkey"
-                }
-            ]
+        "bundle": {
+          "description": "If this value point belongs to a bundle of more value points",
+          "type": "integer",
+          "example": 342
+        },
+        "name": {
+          "description": "Name given to this device",
+          "example": "/kitchen/ceiling/dimmer",
+          "type": "string"
+        },
+        "callsign": {
+          "description": "The callsign that owns this external",
+          "example": "VirtualControl",
+          "type": "string"
+        },
+        "basic": {
+          "$ref": "#/definitions/basicenum"
+        },
+        "specific": {
+          "$ref": "#/definitions/specificenum"
+        },
+        "dimension": {
+          "$ref": "#/definitions/dimensionenum"
+        },
+        "decimals": {
+          "description": "Number of digits that should be considered fractional",
+          "type": "integer",
+          "example": 0
+        },
+        "minimum": {
+          "description": "Minimum value that the device can reach",
+          "type": "integer",
+          "example": -80
+        },
+        "maximum": {
+          "description": "Maximum value that the device can reach",
+          "type": "integer",
+          "example": 200
         },
         "value": {
-            "summary": "Set or Get the value of the device",
-            "index": {
-                "name": "Device name",
-                "example": "The name of the device (name) or the numerical identifier of the device"
-            },
-            "params": {
-                "$ref": "#/definitions/devicevalue"
-            },
-            "errors": [
-                {
-                    "description": "Unknown device",
-                    "$ref": "#/common/errors/unknownkey"
-                }
-            ]
-        },
-        "group": {
-            "summary": "Get the names  part of a group",
-            "index": {
-                "path": "The path leading up to the group",
-                "example": "/ground"
-            },
-            "params": {
-                "type": "object",
-                "properties": {
-                    "parent": {
-                        "description": "Identifier of the group to wich this group belongs",
-                        "type": "integer",
-                        "example": 2
-                    },
-                    "id": {
-                        "description": "Identifier of this group",
-                        "type": "integer",
-                        "example": 19
-                    },
-                    "base": {
-                        "description": "Path identifier leading up to this group",
-                        "type": "string",
-                        "example": "/ground/kitchen/"
-                    },
-                    "members": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "description": "Name of a room or sensor",
-                                    "type": "string",
-                                    "example": "living"
-                                },
-                                "id": {
-                                    "description": "Identifier of this memeber",
-                                    "type": "integer",
-                                    "example": "123443"
-                                },
-                                "type": {
-                                    "description": "Type ot this member",
-                                    "type": "string",
-                                    "example": "group"
-                                },
-                                "callsign": {
-                                    "description": "The callsign that owns this external",
-                                    "example": "VirtualControl",
-                                    "type": "string"
-                                },
-                                "basic": {
-                                    "description": "Basic description of the device (measure or control)",
-                                    "type": "string",
-                                    "example": "measure",
-                                    "enum": [
-                                        "control",
-                                        "measure"
-                                    ],
-                                    "enumvalues": [
-                                        0,
-                                        1
-                                    ]
-                                },
-                                "value": {
-                                    "$ref": "#/definitions/devicevalue"
-                                },
-                                "children": {
-                                    "description": "number of children, this element has",
-                                    "type": "integer",
-                                    "example": "5"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "errors": [
-                {
-                    "description": "Unknown device",
-                    "$ref": "#/common/errors/unknownkey"
-                }
-            ]
-        },
-        "link": {
-            "summary": "link an external ID to a node",
-            "params": {
-                "type": "object",
-                "properties": {
-                    "node": {
-                        "description": "Path identifying the the node to which we should link the id",
-                        "type": "string",
-                        "example": "/Ground/Kitchen"
-                    },
-                    "id": {
-                        "description": "Identifier of the External to be linked",
-                        "type": "integer",
-                        "example": 7998724
-                    }
-                }
-            },
-            "errors": [
-                {
-                    "description": "Unknown group",
-                    "$ref": "#/common/errors/unknownkey"
-                }
-            ]
-        },
-        "move": {
-            "summary": "move a node to another location",
-            "params": {
-                "type": "object",
-                "properties": {
-                    "origin": {
-                        "description": "Path identifying the the node that will be moved",
-                        "type": "string",
-                        "example": "/Ground/Kitchen"
-                    },
-                    "node": {
-                        "description": "Path identifying where the node it too be placed",
-                        "type": "string",
-                        "example": "/Outside/Kitchen"
-                    }
-                }
-            },
-            "errors": [
-                {
-                    "description": "Unknown group",
-                    "$ref": "#/common/errors/unknownkey"
-                }
-            ]
-        },
-        "branch": {
-            "summary": "create a new group",
-            "index": {
-                "path": "The path leading up to the group",
-                "example": "/ground"
-            },
-            "params": {
-                "description": "name of the group to be created",
-                "type": "string",
-                "example": "Living"
-            },
-            "errors": [
-                {
-                    "description": "Unknown group",
-                    "$ref": "#/common/errors/unknownkey"
-                }
-            ]
-        },
-        "delete": {
-            "summary": "destroy an existing, empty group",
-            "index": {
-                "path": "The path leading up to the group",
-                "example": "/ground"
-            },
-            "params": {
-                "description": "name of the element to be removed from the group",
-                "type": "string",
-                "example": "MainSwitch"
-            },
-            "errors": [
-                {
-                    "description": "Unknown group",
-                    "$ref": "#/common/errors/unknownkey"
-                }
-            ]
+          "$ref": "#/definitions/devicevalue"
         }
+      },
+      "required": [
+        "id",
+        "name",
+        "basic",
+        "specific",
+        "dimension",
+        "decimals",
+        "minimum",
+        "maximum"
+      ]
+    }
+  },
+  "properties": {
+    "orphans": {
+      "readonly": true,
+      "summary": "List of devices not attached to any nodes",
+      "descrption": "Use this property to get all devices available to the butler. It returns for eacht device its name and its Id within the Butler context",
+      "index": {
+        "name": "module index",
+        "description": "0 = any module, >0 orphans from the requested module",
+        "example": "[ {}, {}, {} ]"
+      },
+      "params": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/device"
+        }
+      }
     },
+    "bundle": {
+      "readonly": true,
+      "summary": "List of devices not attached to any nodes",
+      "descrption": "Use this property to get all devices available to the butler. It returns for eacht device its name and its Id within the Butler context",
+      "index": {
+        "name": "bundle id",
+        "description": "The id of the bundle for which you would like to have the value points",
+        "example": "[ {}, {}, {} ]"
+      },
+      "params": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/device"
+        }
+      }
+    },
+    "device": {
+      "readonly": true,
+      "summary": "Device specific information",
+      "index": {
+        "name": "Device name",
+        "example": "The name of the device or the Id of the device"
+      },
+      "params": {
+        "$ref": "#/definitions/device"
+      },
+      "errors": [
+        {
+          "description": "Unknown device",
+          "$ref": "#/common/errors/unknownkey"
+        }
+      ]
+    },
+    "value": {
+      "summary": "Set or Get the value of the device",
+      "index": {
+        "name": "Device name",
+        "example": "The name of the device (name) or the numerical identifier of the device"
+      },
+      "params": {
+        "$ref": "#/definitions/devicevalue"
+      },
+      "errors": [
+        {
+          "description": "Unknown device",
+          "$ref": "#/common/errors/unknownkey"
+        }
+      ]
+    },
+    "group": {
+      "summary": "Get the names  part of a group",
+      "index": {
+        "path": "The path leading up to the group",
+        "example": "/ground"
+      },
+      "params": {
+        "type": "object",
+        "properties": {
+          "parent": {
+            "description": "Identifier of the group to wich this group belongs",
+            "type": "integer",
+            "example": 2
+          },
+          "id": {
+            "description": "Identifier of this group",
+            "type": "integer",
+            "example": 19
+          },
+          "base": {
+            "description": "Path identifier leading up to this group",
+            "type": "string",
+            "example": "/ground/kitchen/"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "description": "Name of a room or sensor",
+                  "type": "string",
+                  "example": "living"
+                },
+                "callsign": {
+                  "description": "The callsign that owns this external",
+                  "example": "VirtualControl",
+                  "type": "string"
+                },
+                "children": {
+                  "description": "The number of children in a group",
+                  "type": "integer",
+                  "example": 19
+                },
+                "bundle": {
+                  "description": "The bundle id if this is a bundle",
+                  "type": "integer",
+                  "example": 19
+                },
+                "point": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/device"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "errors": [
+        {
+          "description": "Unknown device",
+          "$ref": "#/common/errors/unknownkey"
+        }
+      ]
+    },
+    "link": {
+      "summary": "link an external ID to a node",
+      "params": {
+        "type": "object",
+        "properties": {
+          "node": {
+            "description": "Path identifying the the node to which we should link the id",
+            "type": "string",
+            "example": "/Ground/Kitchen"
+          },
+          "id": {
+            "description": "Identifier of the External to be linked",
+            "type": "integer",
+            "example": 7998724
+          }
+        }
+      },
+      "errors": [
+        {
+          "description": "Unknown group",
+          "$ref": "#/common/errors/unknownkey"
+        }
+      ]
+    },
+    "move": {
+      "summary": "move a node to another location",
+      "params": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "description": "Path identifying the the node that will be moved",
+            "type": "string",
+            "example": "/Ground/Kitchen"
+          },
+          "node": {
+            "description": "Path identifying where the node it too be placed",
+            "type": "string",
+            "example": "/Outside/Kitchen"
+          }
+        }
+      },
+      "errors": [
+        {
+          "description": "Unknown group",
+          "$ref": "#/common/errors/unknownkey"
+        }
+      ]
+    },
+    "branch": {
+      "summary": "create a new group",
+      "index": {
+        "path": "The path leading up to the group",
+        "example": "/ground"
+      },
+      "params": {
+        "description": "name of the group to be created",
+        "type": "string",
+        "example": "Living"
+      },
+      "errors": [
+        {
+          "description": "Unknown group",
+          "$ref": "#/common/errors/unknownkey"
+        }
+      ]
+    },
+    "delete": {
+      "summary": "destroy an existing, empty group",
+      "index": {
+        "path": "The path leading up to the group",
+        "example": "/ground"
+      },
+      "params": {
+        "description": "name of the element to be removed from the group",
+        "type": "string",
+        "example": "MainSwitch"
+      },
+      "errors": [
+        {
+          "description": "Unknown group",
+          "$ref": "#/common/errors/unknownkey"
+        }
+      ]
+    },
+    "persist": {
+      "summary": "Make sure the current information is persisted, so it survives a reboot",
+      "errors": [
+        {
+          "description": "Storage failed",
+          "$ref": "#/common/errors/badrequest"
+        }
+      ]
+    }
+  },
     "events": {
         "activity": {
             "summary": "Notifies about device activity",

@@ -21,27 +21,24 @@
 
 #include "Module.h"
 
-
-
 namespace WPEFramework {
 	namespace Exchange {
 		// @stubgen:omit
-        struct IExternal;
-
-		// @stubgen:omit
-		struct EXTERNAL IGroup : virtual public Core::IUnknown {
-
-			enum { ID = ID_BUTLER_GROUP };
-
-			virtual uint32_t Parent() const = 0;
-			virtual string Base() const = 0;
-			virtual RPC::IStringIterator* Names() const = 0;
-		};
+        	struct IValuePoint;
 
 		// @stubgen:omit
 		struct EXTERNAL IButler : virtual public Core::IUnknown {
 
 			enum { ID = ID_BUTLER };
+
+			struct EXTERNAL IGroup : virtual public Core::IUnknown {
+
+				enum { ID = ID_BUTLER_GROUP };
+
+				virtual uint32_t Parent() const = 0;
+				virtual string Base() const = 0;
+				virtual RPC::IStringIterator* Names() const = 0;
+			};
 
 			struct EXTERNAL IObserver : virtual public Core::IUnknown {
 
@@ -49,17 +46,17 @@ namespace WPEFramework {
 
 				enum { ID = 0x10000043 };
 
-				// Push changes. If the Current value changes or the condition of IExternal, the next method is called.
-				virtual void Added(/* @out */ IExternal* element) = 0;
-				virtual void Removed(/* @out */ IExternal* element) = 0;
+				// Push changes. If the Current value changes or the condition of IValuePoint, the next method is called.
+				virtual void Added(/* @out */ IValuePoint* element) = 0;
+				virtual void Removed(/* @out */ IValuePoint* element) = 0;
 			};
 
 			struct EXTERNAL INotification : virtual public Core::IUnknown {
 
 				enum { ID = ID_BUTLER_NOTIFICATION };
 
-				// Push changes. If the Current value changes or the condition of IExternal, the next method is called.
-				virtual void Updated(/* @out */ IExternal* element) = 0;
+				// Push changes. If the Current value changes or the condition of IValuePoint, the next method is called.
+				virtual void Updated(/* @out */ IValuePoint* element) = 0;
 			};
 
 			// Register for new/modified or deleted extenals.
@@ -70,9 +67,9 @@ namespace WPEFramework {
 			virtual void Register(INotification* sink) = 0;
 			virtual void Unregister(INotification* sink) = 0;
 
-			// Get Access to a specific IExternal, by specifying a proper identifaction. 
-			virtual IExternal* Element(const string& name) = 0;
-			virtual IExternal* Element(const uint32_t id) = 0;
+			// Get Access to a specific IValuePoint, by specifying a proper identifaction. 
+			virtual IValuePoint* Element(const string& name) = 0;
+			virtual IValuePoint* Element(const uint32_t id) = 0;
 			virtual string Source(const uint32_t module) const = 0;
 
 			virtual uint32_t Branch(const string& path) = 0;

@@ -40,7 +40,7 @@ namespace Exchange {
 
             struct Format {
                 uint32_t SampleRate     /* @brief Source sample rate in Hz (e.g. 44100)*/ ;
-                uint16_t FrameRate      /* @brief Source frame rate in centiseconds (e.g. 2400) */ ;
+                uint16_t FrameRate      /* @brief Source frame rate in cHz (e.g. 2400) */ ;
                 uint8_t Resolution      /* @brief Sampling resolution in bits per sample (e.g. 16) */ ;
                 uint8_t Channels        /* @brief Number of audio channels in the source stream (e.g. 2) */ ;
             };
@@ -67,10 +67,15 @@ namespace Exchange {
             // @retval ERROR_ASYNC_FAILED Device error, failed to start/pause playback
             virtual uint32_t Speed(const int8_t speed) = 0;
 
-            // @brief Current playback time
-            // @param position Sets or gets current playback mileage (in miliseconds), value of -1 is ignored
+            // @brief Gets current playback time
+            // @param position Current playback position since acquiring the sink (in miliseconds)
             // @retval ERROR_ILLEGAL_STATE The audio sink has not been acquired
-            virtual uint32_t Time(uint32_t& position /* @inout */) const = 0;
+            virtual uint32_t Time(uint32_t& position /* @out */) const = 0;
+
+            // @brief Gets current audio delay
+            // @param delay Time for the next audio sample to become audible (in samples)
+            // @retval ERROR_ILLEGAL_STATE The audio sink has not been acquired
+            virtual uint32_t Delay(uint32_t& delay /* @out */) const = 0;
         };
 
         enum state : uint8_t {
@@ -144,6 +149,13 @@ namespace Exchange {
         // @brief Revokes a Bluetooth device from audio playback
         // @retval ERROR_ALREADY_RELEASED No device is currently assigned
         virtual uint32_t Revoke() = 0;
+
+        // @property
+        // @brief Sink audio latency
+        // @param latency Audio latency of the sink in milliseconds (e.g. 20)
+        // @retval ERROR_ILLEGAL_STATE No device is currently assigned
+        virtual uint32_t Latency(const int16_t latency) = 0;
+        virtual uint32_t Latency(int16_t& latency /* @out */) const = 0;
 
         // @property
         // @brief Current audio sink state
