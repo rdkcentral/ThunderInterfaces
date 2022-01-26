@@ -227,11 +227,10 @@ namespace Exchange {
         ID_SESSION_EXTENSION,
 
         //Butler
-        ID_BUTLER_GROUP,
         ID_BUTLER,
         ID_BUTLER_NOTIFICATION,
 
-	// Network Tools
+	    // Network Tools
         ID_NETWORKTOOLS,
         ID_NETWORKTOOLS_CALLBACK,
 
@@ -241,10 +240,10 @@ namespace Exchange {
         ID_BLUETOOTHAUDIOSINK_DRMSCHEMEITERATOR,
         ID_BLUETOOTHAUDIOSINK_CONTROL,
 
-        ID_VARIABLE,
-        ID_VARIABLE_NOTIFICATION,
-        ID_VARIABLE_CATALOG,
-        ID_VARIABLE_CATALOG_NOTIFICATION,
+        ID_VALUE_POINT,
+        ID_VALUE_POINT_NOTIFICATION,
+        ID_VALUE_POINT_CATALOG,
+        ID_VALUE_POINT_CATALOG_NOTIFICATION,
         ID_ZIGWAVE
     };
 }

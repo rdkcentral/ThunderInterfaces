@@ -19,6 +19,7 @@
 
 #pragma once
 #include "Module.h"
+#include "IValuePoint.h"
 
 namespace WPEFramework {
 namespace Exchange {
@@ -48,49 +49,9 @@ namespace Exchange {
             virtual IExternal* Resource(const uint32_t id) = 0;
         };
 
-        //  Basic/specific and dimension together define the Type.
-        // 32     13    | 3 |  4  |     12     |
-        //  +---------------+------------------+
-        //  | dimension |FLT|basic|  specific  |
-        //  +---------------+------------------+
-        //  FLT = Floating point. The number of decimals thats
-        //        should be considerd to be the remainder.
-        //        3 bits (0..7)
-        //
-        enum basic : uint8_t { /* 4 bits (16)*/
-            regulator = 0x0,
-            measurement = 0x1
-        };
-
-        enum specific : uint16_t { /* 12 bits (4096) */
-            general = 0x000,
-            electricity = 0x001,
-            water = 0x002,
-            gas = 0x003,
-            air = 0x004,
-            smoke = 0x005,
-            carbonMonoxide = 0x006,
-            carbonDioxide = 0x007,
-            temperature = 0x008,
-            accessControl = 0x009,
-            burglar = 0x00A,
-            powerManagement = 0x00B,
-            system = 0x00C,
-            emergency = 0x00D,
-            clock = 0x00E,
-            light = 0x00F
-        };
-
-        enum dimension : uint16_t { /* 13 bits (8192) */
-            logic = 0x0000, /* values 0 or 1  */
-            percentage = 0x0001, /* values 0 - 100 */
-            kwh = 0x0002, /* kilo Watt hours  */
-            kvah = 0x0003, /* kilo Volt Ampere hours */
-            pulses = 0x0004, /* counter */
-            degrees = 0x0005, /* temperture in degrees celsius */
-            units = 0x0006, /* unqualified value, just units */
-            lux = 0x0007
-        };
+        using basic = IValuePoint::basic;
+        using specific = IValuePoint::specific;
+        using dimension = IValuePoint::dimension;
 
         enum condition : uint8_t {
             constructing = 0x00,

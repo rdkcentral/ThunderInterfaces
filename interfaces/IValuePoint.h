@@ -25,15 +25,15 @@ namespace Exchange {
 
     /* json */
     struct EXTERNAL IValuePoint : virtual public Core::IUnknown {
-        enum { ID = ID_VARIABLE };
+        enum { ID = ID_VALUE_POINT };
 
         /* json omit */
         struct EXTERNAL ICatalog : virtual public Core::IUnknown {
-            enum { ID = ID_VARIABLE_CATALOG };
+            enum { ID = ID_VALUE_POINT_CATALOG };
 
             /* json omit */
             struct EXTERNAL INotification : virtual public Core::IUnknown {
-                enum { ID = ID_VARIABLE_CATALOG_NOTIFICATION };
+                enum { ID = ID_VALUE_POINT_CATALOG_NOTIFICATION };
 
                 virtual void Activated(IValuePoint* source) = 0;
                 virtual void Deactivated(IValuePoint* source) = 0;
@@ -47,7 +47,7 @@ namespace Exchange {
 
         /* event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_VARIABLE_NOTIFICATION };
+            enum { ID = ID_VALUE_POINT_NOTIFICATION };
 
             // Push changes. If the Current value changes, the next method is called.
             virtual void Update(const uint32_t id) = 0;
