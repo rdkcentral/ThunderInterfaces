@@ -112,10 +112,12 @@
 						"example": true
 					},
 					"fileNameOutput":{
+						"description": "Filepath where messages are stored",
 						"type":"string",
 						"example": "/tmp/MessageControl/messages.log"
 					},
 					"maxexportconnections":{
+						"description": "To how many websocked should the messages be outputted",
 						"type":"number",
 						"example": 5
 					},
@@ -125,6 +127,7 @@
 						"example": true
 					},
 					"messages":{
+						"description": "List of currently announced message controls",
 						"type":"array",
 						"items":{
 							"$ref":"#/definitions/message"
