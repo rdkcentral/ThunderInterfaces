@@ -44,10 +44,15 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
                                    const string &message) = 0;
   };
 
-  virtual void RegisterOutputNotification(IMessageControl::INotification *notification) = 0;
-  virtual void UnregisterOutputNotification(const IMessageControl::INotification *notification) = 0;
+  virtual void
+  RegisterOutputNotification(IMessageControl::INotification *notification) = 0;
+  virtual void UnregisterOutputNotification(
+      const IMessageControl::INotification *notification) = 0;
 
-  virtual uint32_t Configure(PluginHost::IShell *service) = 0;
+  virtual uint32_t Configure(bool isBackground, bool abbreviate,
+                             bool outputToConsole, bool outputToSysLog,
+                             const string &outputFileName) = 0;
+
   virtual void RegisterConnection(const uint32_t id) = 0;
   virtual void UnregisterConnection(const uint32_t id) = 0;
 
@@ -58,7 +63,7 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
   virtual uint32_t ActiveMessages(const bool first, MessageType &type /*@out*/,
                                   string &moduleName /*@out*/,
                                   string &categoryName /*@out*/,
-                                  bool &enable /*@out*/) = 0; // rename
+                                  bool &enable /*@out*/) = 0;
 };
 
 } // namespace Exchange
