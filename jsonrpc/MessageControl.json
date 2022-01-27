@@ -101,7 +101,30 @@
 			"result":{
 				"type":"object",
 				"properties":{
-					"settings":{
+					"console": {
+						"description": "Output message to console (config attribute)",
+						"type": "boolean",
+						"example": true
+					},
+					"syslog":{
+						"description": "Output message to syslog (config attribute)",
+						"type": "boolean",
+						"example": true
+					},
+					"fileNameOutput":{
+						"type":"string",
+						"example": "/tmp/MessageControl/messages.log"
+					},
+					"maxexportconnections":{
+						"type":"number",
+						"example": 5
+					},
+					"abbreviated": {
+						"description": "Should messages be shortened",
+						"type": "boolean",
+						"example": true
+					},
+					"messages":{
 						"type":"array",
 						"items":{
 							"$ref":"#/definitions/message"
@@ -109,7 +132,12 @@
 					}
 				},
 				"required":[
-					"settings"
+					"console",
+					"syslog",
+					"fileNameOutput",
+					"maxexportconnections",
+					"abbreviated",
+					"messages"
 				]
 			}
 		}
