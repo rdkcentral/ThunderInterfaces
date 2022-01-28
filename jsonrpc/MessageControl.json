@@ -14,13 +14,11 @@
 			"type":"string",
 			"enum":[
 				"Tracing",
-				"Logging",
-				"Warning_reporting"
+				"Logging"
 			],
 			"enumvalues":[
 				0,
-				1,
-				2
+				1
 			],
 			"description":"Type of message",
 			"example":"Tracing"
