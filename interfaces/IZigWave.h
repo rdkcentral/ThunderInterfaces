@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- *  Copyright 2020 Metrological
+ * Copyright 2021 Metrological
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,13 +21,45 @@
 
 #include "Module.h"
 
+ // @stubgen:include <com/IIteratorType.h>
+
 namespace WPEFramework {
 	namespace Exchange {
+
         struct EXTERNAL IZigWave : virtual public Core::IUnknown {
             enum { ID = ID_ZIGWAVE };
 
-            virtual void Include(const string& config) = 0;
-            virtual void Exclude(const string& config) = 0;
+            // @property
+            // @brief To allow new devices to the network, the controller should be placed
+            //        into an accepting mode. By enabling this mode, the controller can 
+            //        accept new devices.
+            // @param enabled (true) or disable (false) the accepting mode.
+            // 
+            virtual uint32_t Accepting(bool& enabled /* @out */) const = 0;
+            virtual uint32_t Accepting(const bool enabled) = 0;
+
+            // @property
+            // @brief To allow new devices to the network, the controller should be placed
+            //        into an accepting mode. By enabling this mode, the controller can 
+            //        accept new devices.
+            // @param enabled (true) or disable (false) the accepting mode.
+            // 
+            virtual uint32_t Metadata(const uint32_t id, string& metadata /* @out */) const = 0;
+
+            // @brief All devices currently available
+            // @return devices: array of ids from the available devices.
+            /* @json:omit */
+            virtual uint32_t Devices(RPC::IValueIterator*& devices /* @out */) const = 0;
+
+            // @brief Bind the *out* from the soure to the *in* of the destination
+            // @return: The success of the binding action.
+            /* @json:omit */
+            virtual uint32_t Bind(const uint32_t source, const uint32_t destination) = 0;
+
+            // @brief Unbind the *out* from the soure to the *in* of the destination
+            // @return: The success of the unbinding action.
+            /* @json:omit */
+            virtual uint32_t Unbind(const uint32_t source, const uint32_t destination) = 0;
         };
     }
 }
