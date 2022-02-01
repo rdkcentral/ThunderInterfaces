@@ -50,7 +50,8 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
   virtual uint32_t Configure(bool isBackground, bool abbreviate,
                              bool outputToConsole, bool outputToSysLog,
-                             const string &outputFileName) = 0;
+                             const string &outputFileName,
+                             const string &binding, uint32_t port) = 0;
 
   virtual void RegisterConnection(const uint32_t id) = 0;
   virtual void UnregisterConnection(const uint32_t id) = 0;

@@ -114,16 +114,36 @@
 						"type":"string",
 						"example": "/tmp/MessageControl/messages.log"
 					},
-					"maxexportconnections":{
-						"description": "To how many websocked should the messages be outputted",
-						"type":"number",
-						"example": 5
-					},
 					"abbreviated": {
 						"description": "Should messages be shortened",
 						"type": "boolean",
 						"example": true
 					},
+					"maxexportconnections":{
+						"description": "To how many websocked should the messages be outputted",
+						"type":"number",
+						"example": 5
+					},
+					"remote": {
+						"type": "object",
+						"properties": {
+						  "port": {
+							"description": "Config attribute (port)",
+							"size": 16,
+							"type": "number",
+							"example": 2200
+						  },
+						  "binding": {
+							"description": "Config attribute (binding)",
+							"type": "string",
+							"example": "0.0.0.0"
+						  }
+						},
+						"required": [
+						  "port",
+						  "binding"
+						]
+					  },
 					"messages":{
 						"description": "List of currently announced message controls",
 						"type":"array",
@@ -136,9 +156,10 @@
 					"console",
 					"syslog",
 					"fileNameOutput",
-					"maxexportconnections",
 					"abbreviated",
-					"messages"
+					"messages",
+					"maxexportconnections",
+					"remote"
 				]
 			}
 		}
