@@ -28,6 +28,11 @@ namespace Exchange {
     // @stubgen:omit
     class ValuePoint : public IValuePoint {
     private:
+        enum notify : uint8_t {
+            NONE     = 0x00,
+            UPDATE   = 0x01,
+            METADATA = 0x02
+        };
         class Job { 
         public: 
             Job() = delete;
@@ -118,6 +123,7 @@ namespace Exchange {
             , _id(id & 0x00FFFFFF)
             , _type(type)
             , _condition(IValuePoint::constructing)
+            , _notify(notify::NONE)
             , _clients()
             , _job(*this)
             , _timed(*this)
@@ -140,6 +146,9 @@ namespace Exchange {
         // ------------------------------------------------------------------------
         // Convenience methods to extract interesting information from the type
         // ------------------------------------------------------------------------
+        inline uint32_t Id() const {
+            return (_id);
+        }
         inline basic Basic() const
         {
             return (IValuePoint::Basic(_type));
@@ -278,9 +287,7 @@ namespace Exchange {
             if ((_condition == IValuePoint::deactivated) || (_condition == IValuePoint::constructing)) {
                 _condition = IValuePoint::activated;
 
-                if (_clients.size() > 0) {
-                    _job.Submit();
-                }
+                Metadata();
             }
 
             _adminLock.Unlock();
@@ -293,9 +300,7 @@ namespace Exchange {
                 static_cast<Timed&>(_timed).Period(0);
                 _condition = IValuePoint::deactivated;
 
-                if (_clients.size() > 0) {
-                    _job.Submit();
-                }
+                Metadata();
             }
 
             _adminLock.Unlock();
@@ -312,7 +317,44 @@ namespace Exchange {
     protected:
         inline void Updated() const
         {
-            _job.Submit();
+            if (_clients.size() > 0) {
+
+                _adminLock.Lock();
+
+                if ((_notify & notify::UPDATE) != 0) {
+                    _adminLock.Unlock();
+                }
+                else if (_notify != notify::NONE) {
+                    _notify = static_cast<notify>(_notify|notify::UPDATE);
+                    _adminLock.Unlock();
+                }
+                else {
+                    _notify = notify::UPDATE;
+                    _adminLock.Unlock();
+
+                    _job.Submit();
+                }
+            }
+        }
+        inline void Metadata() const
+        {
+            if (_clients.size() > 0) {
+                _adminLock.Lock();
+
+                if ((_notify & notify::METADATA) != 0) {
+                    _adminLock.Unlock();
+                }
+                else if (_notify != notify::NONE) {
+                    _notify = static_cast<notify>(_notify | notify::METADATA);
+                    _adminLock.Unlock();
+                }
+                else {
+                    _notify = notify::METADATA;
+                    _adminLock.Unlock();
+
+                    _job.Submit();
+                }
+            }
         }
         inline bool Schedule(const Core::Time& evaluationPoint)
         {
@@ -334,10 +376,19 @@ namespace Exchange {
         void Notify()
         {
             _adminLock.Lock();
-            std::list<IValuePoint::INotification*>::iterator index(_clients.begin());
-            RecursiveCall(index);
+
+            uint8_t mode = _notify;
+            _notify = notify::NONE;
+
+            if (mode == notify::NONE) {
+                _adminLock.Unlock();
+            }
+            else {
+                std::list<IValuePoint::INotification*>::iterator index(_clients.begin());
+                RecursiveCall(index, mode);
+            }
         }
-        void RecursiveCall(std::list<IValuePoint::INotification*>::iterator& position)
+        void RecursiveCall(std::list<IValuePoint::INotification*>::iterator& position, uint8_t mode)
         {
             if (position == _clients.end()) {
                 _adminLock.Unlock();
@@ -345,8 +396,15 @@ namespace Exchange {
                 IValuePoint::INotification* client(*position);
                 client->AddRef();
                 position++;
-                RecursiveCall(position);
-                client->Update(_id);
+                RecursiveCall(position, mode);
+
+                if ((mode & notify::UPDATE) != 0) {
+                    client->Update(_id);
+                }
+                if ((mode & notify::METADATA) != 0) {
+                    client->Metadata(_id);
+                }
+
                 client->Release();
             }
         }
@@ -356,6 +414,7 @@ namespace Exchange {
         uint32_t _id;
         uint32_t _type;
         condition _condition;
+        mutable notify _notify;
         std::list<IValuePoint::INotification*> _clients;
         mutable Core::WorkerPool::JobType<Job> _job;
         Core::WorkerPool::JobType<Timed> _timed;
