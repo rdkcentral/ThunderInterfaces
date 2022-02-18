@@ -208,6 +208,9 @@ namespace Exchange {
         ID_DIALSERVER,
         ID_DIALSERVER_APPLICATION,
         ID_ESSOS_SAMPLE,
+
+        ID_STORE,
+        ID_STORE_NOTIFICATION,
     };
 }
 }
