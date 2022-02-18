@@ -244,7 +244,10 @@ namespace Exchange {
         ID_VALUE_POINT_NOTIFICATION,
         ID_VALUE_POINT_CATALOG,
         ID_VALUE_POINT_CATALOG_NOTIFICATION,
-        ID_ZIGWAVE
+        ID_ZIGWAVE,
+
+        ID_STORE,
+        ID_STORE_NOTIFICATION,
     };
 }
 }
