@@ -37,9 +37,9 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
   struct EXTERNAL INotification : virtual public Core::IUnknown {
     enum { ID = ID_MESSAGE_CONTROL_NOTIFICATION };
     virtual ~INotification() = default;
-    virtual void ReceiveRawMessage(MessageType type, const string &category,
+    virtual void ReceiveRawMessage(const MessageType type, const string &category,
                                    const string &module, const string &fileName,
-                                   uint16_t lineNumber, uint64_t timestamp,
+                                   const uint16_t lineNumber, const uint64_t timestamp,
                                    const string &message) = 0;
   };
 
@@ -48,15 +48,15 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
   virtual void UnregisterOutputNotification(
       const IMessageControl::INotification *notification) = 0;
 
-  virtual uint32_t Configure(bool isBackground, bool abbreviate,
-                             bool outputToConsole, bool outputToSysLog,
+  virtual uint32_t Configure(const bool isBackground, const bool abbreviate,
+                             const bool outputToConsole, const bool outputToSysLog,
                              const string &outputFileName,
-                             const string &binding, uint32_t port) = 0;
+                             const string &binding, const uint32_t port) = 0;
 
   virtual void RegisterConnection(const uint32_t id) = 0;
   virtual void UnregisterConnection(const uint32_t id) = 0;
 
-  virtual uint32_t EnableMessage(MessageType type, const string &moduleName,
+  virtual uint32_t EnableMessage(const MessageType type, const string &moduleName,
                                  const string &categoryName,
                                  const bool enable) = 0;
 
