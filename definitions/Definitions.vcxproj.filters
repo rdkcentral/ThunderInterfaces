@@ -26,12 +26,6 @@
     <ClInclude Include="..\interfaces\json\ExternalMetadata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\interfaces\IExternal.h">
-      <Filter>Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="..\interfaces\IZigWave.h">
-      <Filter>Interfaces</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jsonrpc\common.json">
@@ -166,6 +160,12 @@
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IMath.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IZigWave.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IValuePoint.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
   </ItemGroup>
