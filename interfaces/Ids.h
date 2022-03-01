@@ -230,7 +230,7 @@ namespace Exchange {
         ID_BUTLER,
         ID_BUTLER_NOTIFICATION,
 
-	    // Network Tools
+	      // Network Tools
         ID_NETWORKTOOLS,
         ID_NETWORKTOOLS_CALLBACK,
 
@@ -248,6 +248,9 @@ namespace Exchange {
 
         ID_TIMEZONE,
         ID_TIMEZONE_NOTIFICATION,
+      
+        ID_MESSAGE_CONTROL,
+        ID_MESSAGE_CONTROL_NOTIFICATION
     };
 }
 }
