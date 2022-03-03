@@ -24,22 +24,10 @@
 namespace WPEFramework {
 namespace Exchange {
 
-struct EXTERNAL IStore : virtual public Core::IUnknown {
-    enum { ID = ID_STORE };
+struct EXTERNAL IStoreCache : virtual public Core::IUnknown {
+    enum { ID = ID_STORE_CACHE };
 
-    struct EXTERNAL INotification : virtual public Core::IUnknown {
-        enum { ID = ID_STORE_NOTIFICATION };
-
-        virtual void ValueChanged(const string &ns, const string &key, const string &value) = 0;
-        virtual void StorageExceeded() = 0;
-    };
-
-    virtual uint32_t Register(Exchange::IStore::INotification *notification) = 0;
-    virtual uint32_t Unregister(Exchange::IStore::INotification *notification) = 0;
-    virtual uint32_t SetValue(const string &ns, const string &key, const string &value) = 0;
-    virtual uint32_t GetValue(const string &ns, const string &key, string &value /* @out */) = 0;
-    virtual uint32_t DeleteKey(const string &ns, const string &key) = 0;
-    virtual uint32_t DeleteNamespace(const string &ns) = 0;
+    virtual uint32_t FlushCache() = 0;
 };
 
 } // namespace Exchange
