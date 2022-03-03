@@ -208,9 +208,6 @@ namespace Exchange {
         ID_DIALSERVER,
         ID_DIALSERVER_APPLICATION,
         ID_ESSOS_SAMPLE,
-
-        ID_TIMEZONE,
-        ID_TIMEZONE_NOTIFICATION,
     };
 }
 }
