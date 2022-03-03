@@ -248,6 +248,7 @@ namespace Exchange {
 
         ID_STORE,
         ID_STORE_NOTIFICATION,
+        ID_STORE_CACHE,
     };
 }
 }
