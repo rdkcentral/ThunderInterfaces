@@ -248,9 +248,13 @@ namespace Exchange {
 
         ID_TIMEZONE,
         ID_TIMEZONE_NOTIFICATION,
-      
+
         ID_MESSAGE_CONTROL,
-        ID_MESSAGE_CONTROL_NOTIFICATION
+        ID_MESSAGE_CONTROL_NOTIFICATION,
+
+        ID_STORE,
+        ID_STORE_NOTIFICATION,
+        ID_STORE_CACHE,
     };
 }
 }
