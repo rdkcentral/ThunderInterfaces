@@ -211,6 +211,10 @@ namespace Exchange {
 
         ID_TIMEZONE,
         ID_TIMEZONE_NOTIFICATION,
+
+        ID_STORE,
+        ID_STORE_NOTIFICATION,
+        ID_STORE_CACHE,
     };
 }
 }
