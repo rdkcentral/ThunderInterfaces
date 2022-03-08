@@ -255,6 +255,20 @@ namespace Exchange {
         ID_STORE,
         ID_STORE_NOTIFICATION,
         ID_STORE_CACHE,
+
+        ID_LISA,
+        ID_LISA_NOTIFICATION,
+        ID_LISA_APP_VERSION,
+        ID_LISA_APP_VERSION_ITERATOR,
+        ID_LISA_APP,
+        ID_LISA_APP_ITERATOR,
+        ID_LISA_APPS_PAYLOAD,
+        ID_LISA_STORAGE,
+        ID_LISA_STORAGE_PAYLOAD,
+        ID_LISA_PROGRESS,
+        ID_LISA_KEY_VALUE,
+        ID_LISA_KEY_VALUE_ITERATOR,
+        ID_LISA_METADATA_PAYLOAD,
     };
 }
 }
