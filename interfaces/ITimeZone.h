@@ -24,20 +24,26 @@
 namespace WPEFramework {
 namespace Exchange {
 
-struct EXTERNAL ITimeZone : virtual public Core::IUnknown {
-  enum { ID = ID_TIMEZONE };
+    /* @json */
+    struct EXTERNAL ITimeZone : virtual public Core::IUnknown {
+        enum { ID = ID_TIMEZONE };
 
-  struct EXTERNAL INotification : virtual public Core::IUnknown {
-    enum { ID = ID_TIMEZONE_NOTIFICATION };
+        /* @event */
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
+            enum { ID = ID_TIMEZONE_NOTIFICATION };
 
-    virtual void TimeZoneChanged(const string& timeZone) = 0;
-  };
+            virtual void TimeZoneChanged(const string& timeZone) = 0;
+      };
 
-  virtual uint32_t Register(ITimeZone::INotification* sink) = 0;
-  virtual uint32_t Unregister(ITimeZone::INotification* sink) = 0;
-  virtual uint32_t GetTimeZone(string& timeZone /* @out */) const = 0;
-  virtual uint32_t SetTimeZone(const string& timeZone) = 0;
-};
+      virtual uint32_t Register(ITimeZone::INotification* sink) = 0;
+      virtual uint32_t Unregister(ITimeZone::INotification* sink) = 0;
+
+      // @property
+      // @brief TimeZone for system
+      // @param value: timezone
+      virtual uint32_t TimeZone(string& timeZone /* @out */) const = 0;
+      virtual uint32_t TimeZone(const string& timeZone) = 0;
+    };
 
 } // namespace Exchange
 } // namespace WPEFramework
