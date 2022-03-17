@@ -29,7 +29,7 @@ namespace Exchange {
 
         enum { ID = ID_RESOURCEMONITOR };
 
-        virtual ~IResourceMonitor() {}
+        virtual ~IResourceMonitor() = default;
         
         virtual uint32_t Configure(PluginHost::IShell* framework) = 0;
 

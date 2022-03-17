@@ -61,7 +61,7 @@ struct ISession : virtual public Core::IUnknown {
     struct ICallback : virtual public Core::IUnknown {
         enum { ID = ID_SESSION_CALLBACK };
 
-        virtual ~ICallback() {}
+        virtual ~ICallback() = default;
 
         // Event fired when a key message is successfully created.
         virtual void OnKeyMessage(const uint8_t* keyMessage /* @length:keyLength */, //__in_bcount(f_cbKeyMessage)
@@ -81,7 +81,7 @@ struct ISession : virtual public Core::IUnknown {
 
     enum { ID = ID_SESSION };
 
-    virtual ~ISession(void) {}
+    virtual ~ISession(void) = default;
 
     // Loads the data stored for the specified session into the cdm object
     virtual OCDM_RESULT Load() = 0;
@@ -171,7 +171,7 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
 
     enum { ID = ID_ACCESSOROCDM };
 
-    virtual ~IAccessorOCDM() {}
+    virtual ~IAccessorOCDM() = default;
 
     virtual bool IsTypeSupported(const std::string& keySystem,
         const std::string& mimeType) const = 0;

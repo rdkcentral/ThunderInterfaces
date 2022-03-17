@@ -30,7 +30,7 @@ namespace Exchange {
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_INPUT_PIN_NOTIFICATION };
 
-            virtual ~INotification() { }
+            virtual ~INotification() = default;
 
             virtual void Marker(const uint32_t marker) = 0;
         };
@@ -41,7 +41,7 @@ namespace Exchange {
             virtual IInputPin* IInputPinResource(const uint32_t id) = 0;
         };
 
-        virtual ~IInputPin() { }
+        virtual ~IInputPin() = default;
 
         virtual void Register(IInputPin::INotification* sink) = 0;
         virtual void Unregister(IInputPin::INotification* sink) = 0;

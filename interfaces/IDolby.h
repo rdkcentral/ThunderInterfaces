@@ -56,7 +56,7 @@ namespace Exchange {
             struct EXTERNAL INotification : virtual public Core::IUnknown {
                 enum { ID = ID_DOLBY_OUTPUT_NOTIFICATION };
 
-                virtual ~INotification() {}
+                virtual ~INotification() = default;
                 virtual void AudioModeChanged(const Dolby::IOutput::SoundModes mode, const bool enabled) = 0;
             };
 
