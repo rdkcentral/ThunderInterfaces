@@ -32,6 +32,9 @@ namespace Exchange {
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_TIMEZONE_NOTIFICATION };
 
+            // Signal that the TimeZone has been changed for the system
+            // @brief TimeZone was set for the system
+            // @param timeZone the new TimeZone
             virtual void TimeZoneChanged(const string& timeZone) = 0;
       };
 
