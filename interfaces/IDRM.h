@@ -459,7 +459,7 @@ public:
         , _instance()
     {
     }
-    virtual ~SystemFactoryType() = default;
+    ~SystemFactoryType() override = default;
 
 public:
     virtual IMediaKeys* Instance()
