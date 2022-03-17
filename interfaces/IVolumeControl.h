@@ -32,7 +32,7 @@ namespace Exchange {
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_VOLUMECONTROL_NOTIFICATION };
 
-            virtual ~INotification() {}
+            ~INotification() override = default;
 
             // @brief Signals volume change
             // @param volume New bolume level in percent (e.g. 100)
@@ -43,7 +43,7 @@ namespace Exchange {
             virtual void Muted(const bool muted) = 0;
         };
 
-        virtual ~IVolumeControl() {}
+        ~IVolumeControl() override = default;
 
         virtual void Register(IVolumeControl::INotification* sink) = 0;
         virtual void Unregister(const IVolumeControl::INotification* sink) = 0;
