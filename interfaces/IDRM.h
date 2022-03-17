@@ -439,6 +439,7 @@ public:
 };
 
 struct ISystemFactory {
+    virtual ~ISystemFactory() = default;
     virtual IMediaKeys* Instance() = 0;
     virtual const char* KeySystem() const = 0;
     virtual const std::vector<std::string>& MimeTypes() const = 0;
