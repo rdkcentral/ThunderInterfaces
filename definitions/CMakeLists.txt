@@ -16,8 +16,6 @@
 # limitations under the License.
 find_package(JsonGenerator REQUIRED)
 
-cmake_minimum_required(VERSION 3.12)
-
 set(Target ${NAMESPACE}Definitions)
 
 separate_arguments(JSONRPC_PATTERNS)
