@@ -28,13 +28,13 @@ namespace Exchange {
 
         enum { ID = ID_APPLICATION };
 
-        virtual ~IApplication() = default;
+        ~IApplication() override = default;
 
         /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_APPLICATION_NOTIFICATION };
 
-            virtual ~INotification() = default;
+            ~INotification() override = default;
 
             /* @brief Application visibility changes */
             /* @param hidden Denotes if application is currently hidden */
