@@ -115,9 +115,7 @@ namespace Exchange {
         ValuePoint(const ValuePoint&) = delete;
         ValuePoint& operator=(const ValuePoint&) = delete;
 
-        #ifdef __WINDOWS__
-        #pragma warning(disable : 4355)
-        #endif
+PUSH_WARNING(DISABLE_WARNING_THIS_IN_MEMBER_INITIALIZER_LIST)
         ValuePoint(const uint32_t id, const uint32_t type)
             : _adminLock()
             , _id(id & 0x00FFFFFF)
@@ -129,9 +127,7 @@ namespace Exchange {
             , _timed(*this)
         {
         }
-        #ifdef __WINDOWS__
-        #pragma warning(default : 4355)
-        #endif
+POP_WARNING()
         inline ValuePoint(const uint32_t id, const basic base, const specific spec, const dimension dim, const uint8_t decimals)
             : ValuePoint(id, IValuePoint::Type(base, spec, dim, decimals))
         {
