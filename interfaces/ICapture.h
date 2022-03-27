@@ -30,6 +30,7 @@ namespace Exchange {
         enum { ID = ID_CAPTURE };
 
         struct EXTERNAL IStore {
+            virtual ~IStore() = default;
             virtual bool R8_G8_B8_A8(const unsigned char* buffer, const unsigned int width, const unsigned int height) = 0;
         };
 

@@ -32,7 +32,7 @@ namespace Exchange {
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_LANGUAGETAG_NOTIFICATION };
 
-            virtual ~INotification() {}
+            ~INotification() override = default;
 
             // @brief Notify that the Language tag has been changed
             // @param language new LangauageTag value.
@@ -40,7 +40,7 @@ namespace Exchange {
 
         };
 
-        virtual ~ILanguageTag() {}
+        ~ILanguageTag() override = default;
 
         virtual void Register(ILanguageTag::INotification* sink) = 0;
         virtual void Unregister(const ILanguageTag::INotification* sink) = 0;

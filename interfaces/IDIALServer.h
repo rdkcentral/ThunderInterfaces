@@ -31,13 +31,13 @@ namespace Exchange {
 
             enum { ID = ID_DIALSERVER_APPLICATION };
 
-            virtual ~IApplication() = default;
+            ~IApplication() override = default;
 
             virtual uint32_t AdditionalDataURL(string& url /* @out */) const = 0;
 
         };
 
-        virtual ~IDIALServer() = default;
+        ~IDIALServer() override = default;
 
         virtual IApplication* Application(const string& name) = 0;
     };

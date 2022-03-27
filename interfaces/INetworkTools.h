@@ -40,7 +40,7 @@ namespace Exchange {
             virtual void Report (const string& source, const string& metadata) = 0;
         };
 
-        virtual ~INetworkTools() override = default;
+        ~INetworkTools() override = default;
 
         // @brief Ping the given destination with ICMP packages.
 	// @param reportOn interface for receiving information back.
