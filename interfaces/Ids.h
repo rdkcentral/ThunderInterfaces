@@ -269,6 +269,8 @@ namespace Exchange {
         ID_LISA_KEY_VALUE,
         ID_LISA_KEY_VALUE_ITERATOR,
         ID_LISA_METADATA_PAYLOAD,
+
+        ID_CONTENTDECRYPTION_NOTIFICATION,
     };
 }
 }
