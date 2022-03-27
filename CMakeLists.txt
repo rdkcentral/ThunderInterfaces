@@ -15,12 +15,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.12)
 
 project(Interfaces)
 find_package(WPEFramework)
 
 project_version(1.0.0)
+
+set(INTERFACES_PATTERNS "I*.h" CACHE STRING "Patterns matching files for which stubs should be generated")
+set(JSONRPC_PATTERNS "*.json" CACHE STRING "Patterns matching files for which json stubs should be generated")
 
 message(STATUS "Setting up ${PROJECT_NAME} v${PROJECT_VERSION}")
 
