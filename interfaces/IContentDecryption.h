@@ -51,8 +51,8 @@ namespace Exchange {
                                               const Status status) = 0;
         };
 
-        virtual uint32_t Register(IContentDecryption::INotification* notification) { return Core::ERROR_NOT_SUPPORTED; };
-        virtual uint32_t Unregister(IContentDecryption::INotification* notification) { return Core::ERROR_NOT_SUPPORTED; };
+        virtual uint32_t Register(IContentDecryption::INotification* notification VARIABLE_IS_NOT_USED) { return Core::ERROR_NOT_SUPPORTED; };
+        virtual uint32_t Unregister(IContentDecryption::INotification* notification VARIABLE_IS_NOT_USED) { return Core::ERROR_NOT_SUPPORTED; };
     };
 
 
