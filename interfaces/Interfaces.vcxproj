@@ -56,6 +56,7 @@
     <ClCompile Include="ProxyStubs_Stream.cpp" />
     <ClCompile Include="ProxyStubs_TestController.cpp" />
     <ClCompile Include="ProxyStubs_TestUtility.cpp" />
+    <ClCompile Include="ProxyStubs_TimeZone.cpp" />
     <ClCompile Include="ProxyStubs_VoiceHandler.cpp" />
     <ClCompile Include="ProxyStubs_VolumeControl.cpp" />
     <ClCompile Include="ProxyStubs_WebDriver.cpp" />
@@ -101,6 +102,7 @@
     <ClInclude Include="ISystemCommands.h" />
     <ClInclude Include="ITestController.h" />
     <ClInclude Include="ITimeSync.h" />
+    <ClInclude Include="ITimeZone.h" />
     <ClInclude Include="IValuePoint.h" />
     <ClInclude Include="IVoiceHandler.h" />
     <ClInclude Include="IWebDriver.h" />
@@ -202,6 +204,7 @@
       <PreprocessorDefinitions>PROXYSTUB_BUILDING;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -235,6 +238,7 @@
       <PreprocessorDefinitions>PROXYSTUB_BUILDING;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -266,6 +270,7 @@
       <PreprocessorDefinitions>PROXYSTUB_BUILDING;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -299,6 +304,7 @@
       <PreprocessorDefinitions>PROXYSTUB_BUILDING;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

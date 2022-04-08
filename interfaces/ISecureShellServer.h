@@ -30,7 +30,7 @@ namespace Exchange {
     struct EXTERNAL ISecureShellServer : virtual public Core::IUnknown {
         enum { ID = ID_SECURESHELLSERVER };
 
-	virtual ~ISecureShellServer() {}
+	~ISecureShellServer() override = default;
 
 	struct IClient : virtual public Core::IUnknown {
 
@@ -40,7 +40,7 @@ namespace Exchange {
 
                 enum { ID = ID_SECURESHELLSERVER_CLIENT_ITERATOR };
 
-		virtual ~IIterator() {}
+		~IIterator() override = default;
 
                 virtual uint32_t Count() const = 0;
                 virtual void Reset() = 0;
@@ -49,7 +49,7 @@ namespace Exchange {
                 virtual IClient* Current() = 0;
             };
 
-            virtual ~IClient() {}
+            ~IClient() override = default;
 
             virtual string RemoteId() const = 0;
             virtual string TimeStamp() const = 0;

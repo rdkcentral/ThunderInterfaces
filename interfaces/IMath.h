@@ -30,7 +30,7 @@ namespace WPEFramework {
 
             enum { ID = ID_MATH };
 
-            virtual ~IMath() {}
+            ~IMath() override = default;
 
             virtual uint32_t Add(const uint16_t A, const uint16_t B, uint16_t& sum /* @out */)  const = 0;
             virtual uint32_t Sub(const uint16_t A, const uint16_t B, uint16_t& sum /* @out */)  const = 0;
