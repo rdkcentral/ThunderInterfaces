@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.12)
 
 project(WPEFramework)
 
@@ -25,6 +25,8 @@ set(VERSION_PATCH 0)
 
 set(VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
 set(NAMESPACE ${PROJECT_NAME} CACHE STRING "Namespace of the project")
+set(INTERFACES_PATTERNS "I*.h" CACHE STRING "Patterns matching files for which stubs should be generated")
+set(JSONRPC_PATTERNS "*.json" CACHE STRING "Patterns matching files for which json stubs should be generated")
 
 message(STATUS "Setting up ${PROJECT_NAME} v${VERSION}")
 
