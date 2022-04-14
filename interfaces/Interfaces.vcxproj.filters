@@ -118,6 +118,9 @@
     <ClCompile Include="ProxyStubs_DeviceInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProxyStubs_TimeZone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
@@ -258,6 +261,9 @@
       <Filter>Interface Files</Filter>
     </ClInclude>
     <ClInclude Include="IValuePoint.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ITimeZone.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
   </ItemGroup>

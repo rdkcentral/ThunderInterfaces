@@ -67,6 +67,7 @@
 #include <interfaces/ITestController.h>
 #include <interfaces/ITestUtility.h>
 #include <interfaces/ITimeSync.h>
+#include <interfaces/ITimeZone.h>
 #include <interfaces/IVoiceHandler.h>
 #include <interfaces/IVolumeControl.h>
 #include <interfaces/IWebDriver.h>
