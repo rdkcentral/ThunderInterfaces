@@ -105,7 +105,7 @@ namespace Exchange {
             virtual string Port() const = 0;
 
             virtual IClient* CreateClient(const string& name, const uint32_t width, const uint32_t height) = 0;
-            virtual void InvalidateClient ( IClient * ) = 0;
+            virtual void InvalidateClient ( string const & name ) = 0;
 
             // Set and get output resolution
             virtual uint32_t Resolution(const ScreenResolution) = 0;
