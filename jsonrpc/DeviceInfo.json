@@ -151,6 +151,88 @@
       "items": {
         "$ref": "#/definitions/output_resolution"
       }
+    },
+    "devicetype": {
+      "type": "string",
+      "enum": [
+        "tv",
+        "IpStb",
+        "QamIpStb"
+      ],
+      "description": "Device type",
+      "example": "IpStb"
+    },
+    "make": {
+      "type": "string",
+      "enum": [
+        "platco",
+        "llama",
+        "hisense",
+        "element",
+        "sky",
+        "sercomm",
+        "commscope",
+        "arris",
+        "cisco",
+        "pace",
+        "samsung",
+        "technicolor"
+      ],
+      "description": "Device manufacturer",
+      "example": "pace"
+    },
+    "sku": {
+      "type": "string",
+      "enum": [
+        "PLTL11AEI",
+        "ZWCN11MWI",
+        "SKTL11AEI",
+        "LS301",
+        "HSTP11MWR",
+        "HSTP11MWRFX50",
+        "ELTE11MWR",
+        "SKXI11ADS",
+        "SKXI11AIS",
+        "SKXI11ANS",
+        "SCXI11AIC",
+        "SCXI11BEI",
+        "CMXI11BEI",
+        "AX013AN",
+        "AX014AN",
+        "AX061AEI",
+        "MX011AN",
+        "CS011AN",
+        "CXD01ANI",
+        "PX001AN",
+        "PX013AN",
+        "PX022AN",
+        "PX032ANI",
+        "PX051AEI",
+        "PXD01ANI",
+        "SX022AN",
+        "TX061AEI"
+      ],
+      "description": "Device model number or SKU",
+      "example": "PX051AEI"
+    },
+    "yocto": {
+      "type": "string",
+      "enum": [
+        "dunfell",
+        "morty",
+        "daisy"
+      ],
+      "description": "Yocto version",
+      "example": "dunfell"
+    },
+    "distributorid": {
+      "type": "string",
+      "enum": [
+        "comcast",
+        "xglobal"
+      ],
+      "description": "Partner ID or distributor ID for device",
+      "example": "comcast"
     }
   },
   "properties": {
@@ -360,6 +442,222 @@
         },
         "required": [
           "runs"
+        ]
+      }
+    },
+    "firmwareversion": {
+      "summary": "Versions maintained in version.txt",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "imagename": {
+            "type": "string",
+            "example": "PX051AEI_VBN_2203_sprint_20220331225312sdy_NG"
+          },
+          "sdk": {
+            "type": "string",
+            "example": "17.3"
+          },
+          "mediarite": {
+            "type": "string",
+            "example": "8.3.53"
+          },
+          "yocto": {
+            "type": "string",
+            "$ref": "#/definitions/yocto"
+          }
+        },
+        "required": [
+          "firmware"
+        ]
+      }
+    },
+    "serialnumber": {
+      "summary": "Serial number set by manufacturer",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "serialnumber": {
+            "type": "string",
+            "example": "PAW400003744"
+          }
+        },
+        "required": [
+          "serialnumber"
+        ]
+      }
+    },
+    "modelid": {
+      "summary": "Device model number or SKU",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "$ref": "#/definitions/sku"
+          }
+        },
+        "required": [
+          "sku"
+        ]
+      }
+    },
+    "make": {
+      "summary": "Device manufacturer",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "make": {
+            "$ref": "#/definitions/make"
+          }
+        },
+        "required": [
+          "make"
+        ]
+      }
+    },
+    "modelname": {
+      "summary": "Friendly device model name",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string",
+            "example": "Pace Xi5"
+          }
+        },
+        "required": [
+          "model"
+        ]
+      }
+    },
+    "devicetype": {
+      "summary": "Device type",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "devicetype": {
+            "$ref": "#/definitions/devicetype"
+          }
+        },
+        "required": [
+          "devicetype"
+        ]
+      }
+    },
+    "distributorid": {
+      "summary": "Partner ID or distributor ID for device",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "distributorid": {
+            "$ref": "#/definitions/distributorid"
+          }
+        },
+        "required": [
+          "distributorid"
+        ]
+      }
+    },
+    "estbmac": {
+      "summary": "Embedded set-top box MAC address",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "estbmac": {
+            "type": "string",
+            "example": "44:AA:F5:39:D3:42"
+          }
+        },
+        "required": [
+          "estbmac"
+        ]
+      }
+    },
+    "wifimac": {
+      "summary": "Wifi MAC address",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "wifimac": {
+            "type": "string",
+            "example": "44:AA:F5:39:D3:44"
+          }
+        },
+        "required": [
+          "wifimac"
+        ]
+      }
+    },
+    "bluetoothmac": {
+      "summary": "Bluetooth MAC address",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "bluetoothmac": {
+            "type": "string",
+            "example": "44:AA:F5:39:D3:45"
+          }
+        },
+        "required": [
+          "bluetoothmac"
+        ]
+      }
+    },
+    "mocamac": {
+      "summary": "MOCA MAC address",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "mocamac": {
+            "type": "string",
+            "example": "00:15:5F:00:20:5E:57:77"
+          }
+        },
+        "required": [
+          "mocamac"
+        ]
+      }
+    },
+    "ethmac": {
+      "summary": "Ethernet MAC address",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "ethmac": {
+            "type": "string",
+            "example": "44:AA:F5:39:D3:43"
+          }
+        },
+        "required": [
+          "ethmac"
+        ]
+      }
+    },
+    "rf4cemac": {
+      "summary": "Rf4ce MAC address",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "rf4cemac": {
+            "type": "string",
+            "example": "00:15:5F:00:3C:04:90:D7"
+          }
+        },
+        "required": [
+          "rf4cemac"
         ]
       }
     }
