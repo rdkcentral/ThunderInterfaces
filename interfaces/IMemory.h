@@ -20,10 +20,14 @@
 #pragma once
 #include "Module.h"
 
+// @stubgen:skip
+
+//already added the below so it is not forgotten when to start generating proxy/stubs for this
+// @stubgen:include <com/IIteratorType.h>
+ 
 namespace WPEFramework {
 namespace Exchange {
 
-    // @stubgen:omit
     // This interface allows for retrieval of memory usage specific to the implementor
     // of the interface
     struct EXTERNAL IMemory : virtual public Core::IUnknown {
@@ -35,6 +39,25 @@ namespace Exchange {
         virtual uint8_t Processes() const = 0;
         virtual bool IsOperational() const = 0;
     };
+
+    struct EXTERNAL IProcessMemory : public IMemory {
+        enum { ID = ID_PROCESSMEMORY };
+
+        virtual uint32_t Identifier() const = 0;
+        virtual string Name() const = 0;
+    };
+
+    struct EXTERNAL IMemoryExtended : virtual public Core::IUnknown {
+        enum { ID = ID_MEMORYEXTENDED };
+
+        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
+        virtual uint32_t Processes(IStringIterator*& processnames /* @out */) const = 0;
+
+        virtual uint32_t Process(const string& processname, IProcessMemory*& process /* @out */ ) const = 0;
+    };
+
+
 }
 }
 

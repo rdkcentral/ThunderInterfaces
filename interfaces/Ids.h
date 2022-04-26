@@ -39,6 +39,8 @@ namespace Exchange {
         ID_KEYHANDLER,
         ID_KEYPRODUCER,
         ID_MEMORY,
+        ID_PROCESSMEMORY,
+        ID_MEMORYEXTENDED,
         ID_NETFLIX,
         ID_NETFLIX_NOTIFICATION,
         ID_CONTENTDECRYPTION,
