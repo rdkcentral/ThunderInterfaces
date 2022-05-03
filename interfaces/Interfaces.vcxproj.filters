@@ -266,6 +266,9 @@
     <ClInclude Include="ITimeZone.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
+    <ClInclude Include="IMessageControl.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
