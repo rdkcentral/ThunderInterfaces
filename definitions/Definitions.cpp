@@ -49,6 +49,7 @@
 #include <interfaces/IMath.h>
 #include <interfaces/IMemory.h>
 #include <interfaces/IMessenger.h>
+#include <interfaces/IMessageControl.h>
 #include <interfaces/INetflix.h>
 #include <interfaces/IPackager.h>
 #include <interfaces/IPerformance.h>
