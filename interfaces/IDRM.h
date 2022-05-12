@@ -82,7 +82,7 @@ public:
         , pos_(0)
     {
     }
-    inline ~BufferReader() {}
+    inline ~BufferReader() = default;
 
 public:
     inline bool HasBytes(size_t count) const { return pos_ + count <= size_; }
@@ -205,6 +205,7 @@ typedef enum {
     CDMi_SERVER_INTERNAL_ERROR = 0x8004C600,
     CDMi_SERVER_INVALID_MESSAGE = 0x8004C601,
     CDMi_SERVER_SERVICE_SPECIFIC = 0x8004C604,
+    CDMi_BUSY_CANNOT_INITIALIZE = 0x8004DD00,
 } CDMi_RESULT;
 
 typedef enum {
@@ -245,7 +246,7 @@ typedef struct {
 // events originated from MediaKeySession.
 class IMediaKeySessionCallback {
 public:
-    virtual ~IMediaKeySessionCallback(void) {}
+    virtual ~IMediaKeySessionCallback(void) = default;
 
     // Event fired when a key message is successfully created.
     virtual void OnKeyMessage(
@@ -269,8 +270,8 @@ public:
 // IMediaKeySession defines the MediaKeySession interface.
 class IMediaKeySession {
 public:
-    IMediaKeySession(void) {}
-    virtual ~IMediaKeySession(void) {}
+    IMediaKeySession(void) = default;
+    virtual ~IMediaKeySession(void) = default;
 
     // Retrieves keysystem-specific metadata of the session
     virtual std::string GetMetadata() const { return std::string(); }
@@ -332,8 +333,8 @@ public:
 // IMediaKeySession defines the MediaKeySession interface.
 class IMediaKeySessionExt {
 public:
-    IMediaKeySessionExt(void) {}
-    virtual ~IMediaKeySessionExt(void) {}
+    IMediaKeySessionExt(void) = default;
+    virtual ~IMediaKeySessionExt(void) = default;
 
     virtual uint32_t GetSessionIdExt(void) const = 0;
 
@@ -354,8 +355,8 @@ public:
 // IMediaKeys defines the MediaKeys interface.
 class IMediaKeys {
 public:
-    IMediaKeys(void) {}
-    virtual ~IMediaKeys(void) {}
+    IMediaKeys(void) = default;
+    virtual ~IMediaKeys(void) = default;
 
     // Retrieves keysystem-specific metadata
     virtual std::string GetMetadata() const { return std::string(); }
@@ -387,8 +388,8 @@ public:
 // IMediaKeySession defines the MediaKeySessionExt interface.
 class IMediaKeysExt {
 public:
-    IMediaKeysExt(void) {}
-    virtual ~IMediaKeysExt(void) {}
+    IMediaKeysExt(void) = default;
+    virtual ~IMediaKeysExt(void) = default;
 
     virtual uint64_t GetDrmSystemTime() const = 0;
 
@@ -438,6 +439,7 @@ public:
 };
 
 struct ISystemFactory {
+    virtual ~ISystemFactory() = default;
     virtual IMediaKeys* Instance() = 0;
     virtual const char* KeySystem() const = 0;
     virtual const std::vector<std::string>& MimeTypes() const = 0;
@@ -458,9 +460,7 @@ public:
         , _instance()
     {
     }
-    virtual ~SystemFactoryType()
-    {
-    }
+    ~SystemFactoryType() override = default;
 
 public:
     virtual IMediaKeys* Instance()

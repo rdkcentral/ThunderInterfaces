@@ -110,29 +110,25 @@ namespace Exchange {
         ExternalBase(const ExternalBase&) = delete;
         ExternalBase& operator=(const ExternalBase&) = delete;
 
-        #ifdef __WINDOWS__
-        #pragma warning(disable : 4355)
-        #endif
+PUSH_WARNING(DISABLE_WARNING_THIS_IN_MEMBER_INITIALIZER_LIST)
         ExternalBase(const uint32_t id, const uint32_t type)
             : _adminLock()
             , _id(id & 0x00FFFFFF)
             , _type(type)
-            , _condition(IExternal::constructing)
+            , _condition(IExternal::condition::constructing)
             , _clients()
             , _job(*this)
             , _timed(*this)
         {
         }
-        #ifdef __WINDOWS__
-        #pragma warning(default : 4355)
-        #endif
+POP_WARNING()
         inline ExternalBase(const uint32_t id, const basic base, const specific spec, const dimension dim, const uint8_t decimals)
             : ExternalBase(id, IExternal::Type(base, spec, dim, decimals))
         {
         }
         ~ExternalBase() override {
             ASSERT(_clients.size() == 0);
-            ASSERT(_condition == IExternal::deactivated);
+            ASSERT(_condition == IExternal::condition::deactivated);
             _job.Revoke();
     	}
 
@@ -227,18 +223,18 @@ namespace Exchange {
             int32_t result = 0;
 
             switch (Dimension()) {
-            case logic:
-            case percentage:
-            case kwh:
-            case kvah:
-            case pulses: {
+            case dimension::logic:
+            case dimension::percentage:
+            case dimension::kwh:
+            case dimension::kvah:
+            case dimension::pulses: {
                 break;
             }
-            case degrees: {
+            case dimension::degrees: {
                 result = -127;
                 break;
             }
-            case units: {
+            case dimension::units: {
                 result = Core::NumberType<int32_t>::Min();
                 break;
             }
@@ -249,21 +245,21 @@ namespace Exchange {
         {
             int32_t result = 1;
             switch (Dimension()) {
-            case logic: {
+            case dimension::logic: {
                 break;
             }
-            case percentage: {
+            case dimension::percentage: {
                 result = 100;
                 break;
             }
-            case kwh:
-            case kvah:
-            case pulses:
-            case units: {
+            case dimension::kwh:
+            case dimension::kvah:
+            case dimension::pulses:
+            case dimension::units: {
                 result = Core::NumberType<int32_t>::Max();
                 break;
             }
-            case degrees: {
+            case dimension::degrees: {
                 result = +512;
                 break;
             }
@@ -274,8 +270,8 @@ namespace Exchange {
         {
             _adminLock.Lock();
 
-            if ((_condition == IExternal::deactivated) || (_condition == IExternal::constructing)) {
-                _condition = IExternal::activated;
+            if ((_condition == IExternal::condition::deactivated) || (_condition == IExternal::condition::constructing)) {
+                _condition = IExternal::condition::activated;
 
                 if (_clients.size() > 0) {
                     _job.Submit();
@@ -287,10 +283,10 @@ namespace Exchange {
         virtual void Deactivate() {
             _adminLock.Lock();
 
-            if ( (_condition == IExternal::activated) || (_condition == IExternal::constructing) ) {
+            if ( (_condition == IExternal::condition::activated) || (_condition == IExternal::condition::constructing) ) {
 
                 static_cast<Timed&>(_timed).Period(0);
-                _condition = IExternal::deactivated;
+                _condition = IExternal::condition::deactivated;
 
                 if (_clients.size() > 0) {
                     _job.Submit();

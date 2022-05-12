@@ -24,44 +24,27 @@
 namespace WPEFramework {
 	namespace Exchange {
 		// @stubgen:omit
-        	struct IValuePoint;
+        struct IValuePoint;
 
 		// @stubgen:omit
 		struct EXTERNAL IButler : virtual public Core::IUnknown {
 
 			enum { ID = ID_BUTLER };
 
-			struct EXTERNAL IGroup : virtual public Core::IUnknown {
-
-				enum { ID = ID_BUTLER_GROUP };
-
-				virtual uint32_t Parent() const = 0;
-				virtual string Base() const = 0;
-				virtual RPC::IStringIterator* Names() const = 0;
-			};
-
-			struct EXTERNAL IObserver : virtual public Core::IUnknown {
-
-				~IObserver() override = default;
-
-				enum { ID = 0x10000043 };
-
-				// Push changes. If the Current value changes or the condition of IValuePoint, the next method is called.
-				virtual void Added(/* @out */ IValuePoint* element) = 0;
-				virtual void Removed(/* @out */ IValuePoint* element) = 0;
-			};
-
 			struct EXTERNAL INotification : virtual public Core::IUnknown {
 
 				enum { ID = ID_BUTLER_NOTIFICATION };
 
-				// Push changes. If the Current value changes or the condition of IValuePoint, the next method is called.
-				virtual void Updated(/* @out */ IValuePoint* element) = 0;
-			};
+				// Push changes. If we a new IValuePoint is offered or revoked
+				virtual void Added(/* @out */ IValuePoint* element) = 0;
+				virtual void Removed(/* @out */ IValuePoint* element) = 0;
 
-			// Register for new/modified or deleted extenals.
-			virtual void Register(IObserver* sink) = 0;
-			virtual void Unregister(IObserver* sink) = 0;
+				// Push changes. If the Current value changes.
+				virtual void Updated(/* @out */ IValuePoint* element) = 0;
+
+				// Push changes. If the Current metadata of the value point changes
+				virtual void Metadata(/* @out */ IValuePoint* element) = 0;
+			};
 
 			// Register for any changes on the elements the butler knows.
 			virtual void Register(INotification* sink) = 0;

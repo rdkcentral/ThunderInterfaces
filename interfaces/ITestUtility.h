@@ -27,19 +27,19 @@ namespace Exchange {
     struct EXTERNAL ITestUtility : virtual public Core::IUnknown {
         enum { ID = ID_TESTUTILITY };
 
-        virtual ~ITestUtility(){};
+        ~ITestUtility() override = default;
 
         struct EXTERNAL ICommand : virtual public Core::IUnknown {
 
             enum { ID = ID_TESTUTILITY_COMMAND };
 
-            virtual ~ICommand(){};
+            ~ICommand() override = default;
 
             struct EXTERNAL IIterator : virtual public Core::IUnknown {
 
                 enum { ID = ID_TESTUTILITY_ITERATOR };
 
-                virtual ~IIterator(){};
+                ~IIterator() override = default;
 
                 virtual void Reset() = 0;
                 virtual bool IsValid() const = 0;

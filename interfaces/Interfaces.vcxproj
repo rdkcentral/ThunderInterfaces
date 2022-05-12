@@ -56,6 +56,7 @@
     <ClCompile Include="ProxyStubs_Stream.cpp" />
     <ClCompile Include="ProxyStubs_TestController.cpp" />
     <ClCompile Include="ProxyStubs_TestUtility.cpp" />
+    <ClCompile Include="ProxyStubs_TimeZone.cpp" />
     <ClCompile Include="ProxyStubs_VoiceHandler.cpp" />
     <ClCompile Include="ProxyStubs_VolumeControl.cpp" />
     <ClCompile Include="ProxyStubs_WebDriver.cpp" />
@@ -87,6 +88,7 @@
     <ClInclude Include="IIPNetwork.h" />
     <ClInclude Include="IKeyHandler.h" />
     <ClInclude Include="IMemory.h" />
+    <ClInclude Include="IMessageControl.h" />
     <ClInclude Include="INetflix.h" />
     <ClInclude Include="IOCDM.h" />
     <ClInclude Include="IPackager.h" />
@@ -101,6 +103,7 @@
     <ClInclude Include="ISystemCommands.h" />
     <ClInclude Include="ITestController.h" />
     <ClInclude Include="ITimeSync.h" />
+    <ClInclude Include="ITimeZone.h" />
     <ClInclude Include="IValuePoint.h" />
     <ClInclude Include="IVoiceHandler.h" />
     <ClInclude Include="IWebDriver.h" />
@@ -118,26 +121,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -202,6 +205,7 @@
       <PreprocessorDefinitions>PROXYSTUB_BUILDING;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -235,6 +239,7 @@
       <PreprocessorDefinitions>PROXYSTUB_BUILDING;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -266,6 +271,7 @@
       <PreprocessorDefinitions>PROXYSTUB_BUILDING;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -299,6 +305,7 @@
       <PreprocessorDefinitions>PROXYSTUB_BUILDING;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

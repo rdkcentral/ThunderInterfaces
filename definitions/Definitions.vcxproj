@@ -52,6 +52,16 @@
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">None</OutputItemType>
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">None</OutputItemType>
     </CustomBuild>
+    <CustomBuild Include="..\interfaces\ITimeZone.h">
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JTimeZone.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JTimeZone.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JTimeZone.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JTimeZone.h</Outputs>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">None</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">None</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">None</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">None</OutputItemType>
+    </CustomBuild>
     <ClInclude Include="..\interfaces\json\ExternalMetadata.h" />
     <ClInclude Include="definitions.h" />
   </ItemGroup>
@@ -177,6 +187,9 @@
     <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
       <FileType>Document</FileType>
     </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\MessageControl.json">
+      <FileType>Document</FileType>
+    </CustomBuild>
     <None Include="..\jsonrpc\WebKitBrowser.json" />
     <CustomBuild Include="..\jsonrpc\WifiControl.json">
       <FileType>Document</FileType>
@@ -194,26 +207,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -280,6 +293,7 @@
       <PreprocessorDefinitions>DEFINITIONS_EXPORTS;_CRT_SECURE_NO_WARNINGS;_DEBUG;DEFINITIONS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>.;..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -329,6 +343,7 @@
       <PreprocessorDefinitions>DEFINITIONS_EXPORTS;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;DEFINITIONS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>.;..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -380,6 +395,7 @@
       <PreprocessorDefinitions>DEFINITIONS_EXPORTS;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;DEFINITIONS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>.;..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -433,6 +449,7 @@
       <PreprocessorDefinitions>DEFINITIONS_EXPORTS;_CRT_SECURE_NO_WARNINGS;NDEBUG;DEFINITIONS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>.;..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

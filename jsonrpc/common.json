@@ -1,5 +1,5 @@
 {
-  "sourcelocation": "https://github.com/rdkcentral/ThunderInterfaces/tree/master/jsonrpc/{interfacefile}",
+  "sourcelocation": "https://github.com/rdkcentral/ThunderInterfaces/blob/{revision}/jsonrpc/{interfacefile}",
   "errors": {
     "general": {
       "code": 1,

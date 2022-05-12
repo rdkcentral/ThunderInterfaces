@@ -49,6 +49,7 @@
 #include <interfaces/IMath.h>
 #include <interfaces/IMemory.h>
 #include <interfaces/IMessenger.h>
+#include <interfaces/IMessageControl.h>
 #include <interfaces/INetflix.h>
 #include <interfaces/IPackager.h>
 #include <interfaces/IPerformance.h>
@@ -67,6 +68,7 @@
 #include <interfaces/ITestController.h>
 #include <interfaces/ITestUtility.h>
 #include <interfaces/ITimeSync.h>
+#include <interfaces/ITimeZone.h>
 #include <interfaces/IVoiceHandler.h>
 #include <interfaces/IVolumeControl.h>
 #include <interfaces/IWebDriver.h>

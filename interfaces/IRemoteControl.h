@@ -28,12 +28,12 @@ namespace Exchange {
     struct EXTERNAL IRemoteControl : virtual public Core::IUnknown {
         enum { ID = ID_REMOTECONTROL };
 
-        virtual ~IRemoteControl(){};
+        ~IRemoteControl() override = default;
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_REMOTECONTROL_NOTIFICATION };
 
-            virtual ~INotification(){};
+            ~INotification() override = default;
             virtual void Event(const string& producer, const uint32_t event) = 0;
         };
 

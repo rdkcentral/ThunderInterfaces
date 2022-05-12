@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2020 Metrological
+ * Copyright 2022 Metrological
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,28 +18,17 @@
  */
 
 #pragma once
+
 #include "Module.h"
-
-
 
 namespace WPEFramework {
 namespace Exchange {
 
-    // @stubgen:omit
-    struct EXTERNAL ICapture : virtual public Core::IUnknown {
-        enum { ID = ID_CAPTURE };
+struct EXTERNAL IStoreCache : virtual public Core::IUnknown {
+    enum { ID = ID_STORE_CACHE };
 
-        struct EXTERNAL IStore {
-            virtual ~IStore() = default;
-            virtual bool R8_G8_B8_A8(const unsigned char* buffer, const unsigned int width, const unsigned int height) = 0;
-        };
+    virtual uint32_t FlushCache() = 0;
+};
 
-        virtual const TCHAR* Name() const = 0;
-        virtual bool Capture(ICapture::IStore& storer) = 0;
-
-        // Get the interface so we can Capture a screen
-        static ICapture* Instance();
-    };
-}
-}
-
+} // namespace Exchange
+} // namespace WPEFramework
