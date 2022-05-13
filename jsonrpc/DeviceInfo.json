@@ -151,6 +151,88 @@
       "items": {
         "$ref": "#/definitions/output_resolution"
       }
+    },
+    "devicetype": {
+      "type": "string",
+      "enum": [
+        "tv",
+        "IpStb",
+        "QamIpStb"
+      ],
+      "description": "Device type",
+      "example": "IpStb"
+    },
+    "make": {
+      "type": "string",
+      "enum": [
+        "platco",
+        "llama",
+        "hisense",
+        "element",
+        "sky",
+        "sercomm",
+        "commscope",
+        "arris",
+        "cisco",
+        "pace",
+        "samsung",
+        "technicolor"
+      ],
+      "description": "Device manufacturer",
+      "example": "pace"
+    },
+    "sku": {
+      "type": "string",
+      "enum": [
+        "PLTL11AEI",
+        "ZWCN11MWI",
+        "SKTL11AEI",
+        "LS301",
+        "HSTP11MWR",
+        "HSTP11MWRFX50",
+        "ELTE11MWR",
+        "SKXI11ADS",
+        "SKXI11AIS",
+        "SKXI11ANS",
+        "SCXI11AIC",
+        "SCXI11BEI",
+        "CMXI11BEI",
+        "AX013AN",
+        "AX014AN",
+        "AX061AEI",
+        "MX011AN",
+        "CS011AN",
+        "CXD01ANI",
+        "PX001AN",
+        "PX013AN",
+        "PX022AN",
+        "PX032ANI",
+        "PX051AEI",
+        "PXD01ANI",
+        "SX022AN",
+        "TX061AEI"
+      ],
+      "description": "Device model number or SKU",
+      "example": "PX051AEI"
+    },
+    "yocto": {
+      "type": "string",
+      "enum": [
+        "dunfell",
+        "morty",
+        "daisy"
+      ],
+      "description": "Yocto version",
+      "example": "dunfell"
+    },
+    "distributorid": {
+      "type": "string",
+      "enum": [
+        "comcast",
+        "xglobal"
+      ],
+      "description": "Partner ID or distributor ID for device",
+      "example": "comcast"
     }
   },
   "properties": {
@@ -360,6 +442,126 @@
         },
         "required": [
           "runs"
+        ]
+      }
+    },
+    "firmwareversion": {
+      "summary": "Versions maintained in version.txt",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "imagename": {
+            "type": "string",
+            "example": "PX051AEI_VBN_2203_sprint_20220331225312sdy_NG"
+          },
+          "sdk": {
+            "type": "string",
+            "example": "17.3"
+          },
+          "mediarite": {
+            "type": "string",
+            "example": "8.3.53"
+          },
+          "yocto": {
+            "type": "string",
+            "$ref": "#/definitions/yocto"
+          }
+        },
+        "required": [
+          "firmware"
+        ]
+      }
+    },
+    "serialnumber": {
+      "summary": "Serial number set by manufacturer",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "serialnumber": {
+            "type": "string",
+            "example": "PAW400003744"
+          }
+        },
+        "required": [
+          "serialnumber"
+        ]
+      }
+    },
+    "modelid": {
+      "summary": "Device model number or SKU",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "$ref": "#/definitions/sku"
+          }
+        },
+        "required": [
+          "sku"
+        ]
+      }
+    },
+    "make": {
+      "summary": "Device manufacturer",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "make": {
+            "$ref": "#/definitions/make"
+          }
+        },
+        "required": [
+          "make"
+        ]
+      }
+    },
+    "modelname": {
+      "summary": "Friendly device model name",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string",
+            "example": "Pace Xi5"
+          }
+        },
+        "required": [
+          "model"
+        ]
+      }
+    },
+    "devicetype": {
+      "summary": "Device type",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "devicetype": {
+            "$ref": "#/definitions/devicetype"
+          }
+        },
+        "required": [
+          "devicetype"
+        ]
+      }
+    },
+    "distributorid": {
+      "summary": "Partner ID or distributor ID for device",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "distributorid": {
+            "$ref": "#/definitions/distributorid"
+          }
+        },
+        "required": [
+          "distributorid"
         ]
       }
     }
