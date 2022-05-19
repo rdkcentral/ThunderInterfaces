@@ -315,6 +315,9 @@ namespace Exchange {
         ID_LISA_KEY_VALUE_ITERATOR                 = ID_LISA + 11,
         ID_LISA_METADATA_PAYLOAD                   = ID_LISA + 12,
 
+        ID_RUST_BRIDGE                             = 0x000004B0,
+        ID_RUST_BRIDGE_NOTIFICATION                = ID_RUST_BRIDGE + 1
+
     };
 }
 }
