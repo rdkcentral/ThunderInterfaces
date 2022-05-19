@@ -88,6 +88,7 @@
     <ClInclude Include="IIPNetwork.h" />
     <ClInclude Include="IKeyHandler.h" />
     <ClInclude Include="IMemory.h" />
+    <ClInclude Include="IMessageControl.h" />
     <ClInclude Include="INetflix.h" />
     <ClInclude Include="IOCDM.h" />
     <ClInclude Include="IPackager.h" />

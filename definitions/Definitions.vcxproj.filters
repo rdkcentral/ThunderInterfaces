@@ -171,5 +171,8 @@
     <CustomBuild Include="..\interfaces\ITimeZone.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\MessageControl.json">
+      <Filter>Contracts</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>
