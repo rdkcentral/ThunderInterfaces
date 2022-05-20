@@ -35,10 +35,15 @@ namespace Exchange {
             PowerOff = 6, // S5.
         };
 
+        enum PCPhase : uint8_t {
+            Before = 1,
+            After  = 2
+        };
+
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_POWER_NOTIFICATION };
 
-            virtual void StateChange(const PCState) = 0;
+            virtual void StateChange(const PCState origin, const PCState destination, const PCPhase phase) = 0;
         };
 
         virtual void Register(IPower::INotification* sink) = 0;
