@@ -356,6 +356,7 @@ public:
         const uint8_t*           IV,              // IV to be used for decryption
         const uint8_t            IVLength,        // IV length of the IV above
         const EncryptionScheme   scheme,          // Encryption scheme if needed
+        const EncryptionPattern* schemePattern,   // pattern used for the encryption scheme
         const EncryptionPattern* subSample,       // Mapping of the clear bytes in the inData
         uint32_t                 subSampleLength, // Number of mappings in the list above.
         const IStreamProperties* properties) {
