@@ -247,10 +247,11 @@ typedef enum : uint8_t {
     AesCbc_Cbcs     // AES-CBC mode and Sub-Sample + patterned encryption + Constant IV
 } EncryptionScheme;
 
-//CENC3.0 pattern is a number of encrypted blocks followed a number of clear blocks after which the pattern repeats.
+// CBC & CENC3.0 pattern is a number of encrypted blocks/bytes followed a number of clear 
+// blocks/bytes after which the pattern repeats.
 typedef struct {
-    uint32_t encrypted_blocks;
-    uint32_t clear_blocks;
+    uint32_t encrypted_size;
+    uint32_t clear_size;
 } EncryptionPattern;
 
 // IStreamProperties to provide information about the current stream
