@@ -134,14 +134,16 @@
           "type": "integer",
           "example": 0
         },
-        "minimum": {
+        "minimum": { 
           "description": "Minimum value that the device can reach",
           "type": "integer",
+          "signed": true,
           "example": -80
         },
         "maximum": {
           "description": "Maximum value that the device can reach",
           "type": "integer",
+          "signed": true,
           "example": 200
         },
         "value": {
