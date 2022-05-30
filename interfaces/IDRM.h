@@ -247,7 +247,7 @@ typedef enum : uint8_t {
     AesCbc_Cbcs     // AES-CBC mode and Sub-Sample + patterned encryption + Constant IV
 } EncryptionScheme;
 
-// CBC & CENC3.0 pattern is a number of encrypted blocks/bytes followed a number of clear 
+// CBCS & CENC3.0 pattern is a number of encrypted blocks/bytes followed a number of clear 
 // blocks/bytes after which the pattern repeats.
 typedef struct {
     uint32_t encrypted_size;
@@ -359,7 +359,7 @@ public:
         const EncryptionScheme   scheme,          // Encryption scheme if needed
         const EncryptionPattern* schemePattern,   // pattern used for the encryption scheme
         const EncryptionPattern* subSample,       // Mapping of the clear bytes in the inData
-        uint32_t                 subSampleLength, // Number of mappings in the list above.
+        const uint8_t            subSampleLength, // Number of mappings in the list above.
         const IStreamProperties* properties) {
 
         Decrypt(keyId, keyIdLength, scheme, *subSample, IV, IVLength, inData, inDataLength, outDataLength, outData, keyIdLength, keyId,properties->InitLength());
