@@ -25,45 +25,45 @@ namespace WPEFramework {
 namespace Exchange {
 
 struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
-  ~IMessageControl() override = default;
-  enum { ID = ID_MESSAGE_CONTROL };
 
-  enum MessageType : uint8_t {
-    Tracing = 0,
-    Logging = 1,
-  };
+    ~IMessageControl() override = default;
+  
+    enum { ID = ID_MESSAGE_CONTROL };
 
-  /* @event */
-  struct EXTERNAL INotification : virtual public Core::IUnknown {
-    enum { ID = ID_MESSAGE_CONTROL_NOTIFICATION };
-    ~INotification() override = default;
-    virtual void ReceiveRawMessage(const MessageType type, const string &category,
-                                   const string &module, const string &fileName,
-                                   const uint16_t lineNumber, const uint64_t timestamp,
-                                   const string &message) = 0;
-  };
+    enum MessageType : uint8_t {
+        Tracing = 0,
+        Logging = 1,
+    };
 
-  virtual void
-  RegisterOutputNotification(IMessageControl::INotification *notification) = 0;
-  virtual void UnregisterOutputNotification(
-      const IMessageControl::INotification *notification) = 0;
+    struct EXTERNAL ICallback : virtual public Core::IUnknown {
 
-  virtual uint32_t Configure(const bool isBackground, const bool abbreviate,
-                             const bool outputToConsole, const bool outputToSysLog,
-                             const string &outputFileName,
-                             const string &binding, const uint32_t port) = 0;
+        ~ICallback() override = default;
 
-  virtual void RegisterConnection(const uint32_t id) = 0;
-  virtual void UnregisterConnection(const uint32_t id) = 0;
+        enum { ID = ID_MESSAGE_CONTROL_CALLBACK };
 
-  virtual uint32_t EnableMessage(const MessageType type, const string &moduleName,
-                                 const string &categoryName,
-                                 const bool enable) = 0;
+        virtual void Message(const MessageType type, const string& category,
+                             const string& module, const string& fileName,
+                             const uint16_t lineNumber, const uint64_t timestamp,
+                             const string& message) = 0;
+    };
 
-  virtual uint32_t ActiveMessages(const bool first, MessageType &type /*@out*/,
-                                  string &moduleName /*@out*/,
-                                  string &categoryName /*@out*/,
-                                  bool &enable /*@out*/) = 0;
+    virtual uint32_t Configure(ICallback* callback) = 0;
+
+    virtual uint32_t Attach(const uint32_t id) = 0;
+    virtual uint32_t Detach(const uint32_t id) = 0;
+
+    virtual uint32_t Enable(
+        const MessageType type, 
+        const string& moduleName,
+        const string& categoryName,
+        const bool enable) = 0;
+
+    virtual uint32_t Setting (
+        const bool initialize, 
+        MessageType& type /* @out */, 
+        string& category /* @out */,
+        string& module /* @out */,
+        bool& enabled /* @out */) = 0;
 };
 
 } // namespace Exchange

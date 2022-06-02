@@ -295,7 +295,7 @@ namespace Exchange {
         ID_TIMEZONE_NOTIFICATION                   = ID_TIMEZONE + 1,
 
         ID_MESSAGE_CONTROL                         = 0x00000470,
-        ID_MESSAGE_CONTROL_NOTIFICATION            = ID_MESSAGE_CONTROL + 1,
+        ID_MESSAGE_CONTROL_CALLBACK                = ID_MESSAGE_CONTROL + 1,
 
         ID_STORE                                   = 0x00000480,
         ID_STORE_NOTIFICATION                      = ID_STORE + 1,
