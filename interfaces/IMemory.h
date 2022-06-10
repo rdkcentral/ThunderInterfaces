@@ -20,8 +20,6 @@
 #pragma once
 #include "Module.h"
 
-// @stubgen:skip
-
 //already added the below so it is not forgotten when to start generating proxy/stubs for this
 // @stubgen:include <com/IIteratorType.h>
  
@@ -30,6 +28,7 @@ namespace Exchange {
 
     // This interface allows for retrieval of memory usage specific to the implementor
     // of the interface
+    // @stubgen:omit
     struct EXTERNAL IMemory : virtual public Core::IUnknown {
         enum { ID = ID_MEMORY };
 
@@ -40,6 +39,7 @@ namespace Exchange {
         virtual bool IsOperational() const = 0;
     };
 
+    // @stubgen:omit
     struct EXTERNAL IProcessMemory : public IMemory {
         enum { ID = ID_PROCESSMEMORY };
 
@@ -47,6 +47,7 @@ namespace Exchange {
         virtual string Name() const = 0;
     };
 
+    // @stubgen:omit
     struct EXTERNAL IMemoryExtended : virtual public Core::IUnknown {
         enum { ID = ID_MEMORYEXTENDED };
 
@@ -56,8 +57,6 @@ namespace Exchange {
 
         virtual uint32_t Process(const string& processname, IProcessMemory*& process /* @out */ ) const = 0;
     };
-
-
 }
 }
 
