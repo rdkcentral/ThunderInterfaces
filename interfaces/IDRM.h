@@ -250,8 +250,8 @@ typedef enum : uint8_t {
 // CBCS & CENC3.0 pattern is a number of encrypted blocks/bytes followed a number of clear 
 // blocks/bytes after which the pattern repeats.
 typedef struct {
-    uint32_t encrypted_size;
     uint32_t clear_size;
+    uint32_t encrypted_size;
 } EncryptionPattern;
 
 // IStreamProperties to provide information about the current stream
@@ -265,6 +265,9 @@ public:
 
     // Get stream type
     virtual MediaType GetMediaType() const = 0;
+
+    // Deprecated method for backwards compatibility. 
+    virtual uint8_t InitLength() const = 0;
 };
 
 // IMediaKeySessionCallback defines the callback interface to receive
@@ -358,11 +361,11 @@ public:
         const uint8_t            IVLength,        // IV length of the IV above
         const EncryptionScheme   scheme,          // Encryption scheme if needed
         const EncryptionPattern* schemePattern,   // pattern used for the encryption scheme
-        const EncryptionPattern* subSample,       // Mapping of the clear bytes in the inData
         const uint8_t            subSampleLength, // Number of mappings in the list above.
+        const uint32_t*          subSample,       // Mapping of the clear bytes in the inData
         const IStreamProperties* properties) {
 
-        Decrypt(keyId, keyIdLength, scheme, *subSample, IV, IVLength, inData, inDataLength, outDataLength, outData, keyIdLength, keyId,properties->InitLength());
+        Decrypt(keyId, keyIdLength, scheme, *subSample, IV, IVLength, inData, inDataLength, outDataLength, outData, keyIdLength, keyId, properties->InitLength());
     }
 
     virtual CDMi_RESULT ReleaseClearContent(
