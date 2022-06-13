@@ -111,6 +111,30 @@
         "4320p30",
         "4320p60"
       ],
+      "enumids": [
+        "RESOLUTION_UNKNOWN",
+        "RESOLUTION_480I",
+        "RESOLUTION_480P",
+        "RESOLUTION_576I",
+        "RESOLUTION_576P",
+        "RESOLUTION_576P50",
+        "RESOLUTION_720P",
+        "RESOLUTION_720P50",
+        "RESOLUTION_1080I",
+        "RESOLUTION_1080I25",
+        "RESOLUTION_1080I50",
+        "RESOLUTION_1080P",
+        "RESOLUTION_1080P24",
+        "RESOLUTION_1080P25",
+        "RESOLUTION_1080P30",
+        "RESOLUTION_1080P50",
+        "RESOLUTION_1080P60",
+        "RESOLUTION_2160P30",
+        "RESOLUTION_2160P50",
+        "RESOLUTION_2160P60",
+        "RESOLUTION_4320P30",
+        "RESOLUTION_4320P60"
+      ],
       "description": "Resolution supported by the STB",
       "example": "1080p"
     },
@@ -124,7 +148,7 @@
         "2.2"
       ],
       "enumids": [
-        "UNAVAILABLE",
+        "HDCP_UNAVAILABLE",
         "HDCP_14",
         "HDCP_20",
         "HDCP_21",
