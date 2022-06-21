@@ -295,7 +295,7 @@ namespace Exchange {
         ID_TIMEZONE_NOTIFICATION                   = ID_TIMEZONE + 1,
 
         ID_MESSAGE_CONTROL                         = 0x00000470,
-        ID_MESSAGE_CONTROL_NOTIFICATION            = ID_MESSAGE_CONTROL + 1,
+        ID_MESSAGE_CONTROL_CALLBACK                = ID_MESSAGE_CONTROL + 1,
 
         ID_STORE                                   = 0x00000480,
         ID_STORE_NOTIFICATION                      = ID_STORE + 1,
@@ -314,6 +314,9 @@ namespace Exchange {
         ID_LISA_KEY_VALUE                          = ID_LISA + 10,
         ID_LISA_KEY_VALUE_ITERATOR                 = ID_LISA + 11,
         ID_LISA_METADATA_PAYLOAD                   = ID_LISA + 12,
+
+        ID_RUST_BRIDGE                             = 0x000004B0,
+        ID_RUST_BRIDGE_NOTIFICATION                = ID_RUST_BRIDGE + 1
 
     };
 }
