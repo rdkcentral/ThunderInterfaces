@@ -37,21 +37,9 @@ namespace Exchange {
             DIALOGUEENHANCER
         };
 
-        struct EXTERNAL IFirmwareVersion : virtual public Core::IUnknown {
-            enum { ID = ID_DEVICE_CAPABILITIES_FIRMWARE_VERSION };
-
-            virtual ~IFirmwareVersion() override = default;
-
-            virtual string Imagename() const = 0;
-            virtual string Sdk() const = 0;
-            virtual string Mediarite() const = 0;
-            virtual string Yocto() const = 0;
-        };
-
         typedef RPC::IIteratorType<AudioCapability, ID_DEVICE_CAPABILITIES_AUDIO_CAPABILITY> IAudioCapabilityIterator;
         typedef RPC::IIteratorType<MS12Capability, ID_DEVICE_CAPABILITIES_MS12_CAPABILITY> IMS12CapabilityIterator;
 
-        virtual uint32_t FirmwareVersion(IFirmwareVersion*& firmwareVersion /* @out */) const = 0;
         virtual uint32_t SerialNumber(string& serialNumber /* @out */) const = 0;
         virtual uint32_t Sku(string& sku /* @out */) const = 0;
         virtual uint32_t Make(string& make /* @out */) const = 0;
