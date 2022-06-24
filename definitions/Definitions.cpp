@@ -38,6 +38,7 @@
 #include <interfaces/IExternal.h>
 #include <interfaces/IExternalBase.h>
 #include <interfaces/IGuide.h>
+#include <interfaces/IInputMethodContext.h>
 #include <interfaces/IInputPin.h>
 #include <interfaces/IInputSwitch.h>
 #include <interfaces/IIPNetwork.h>
