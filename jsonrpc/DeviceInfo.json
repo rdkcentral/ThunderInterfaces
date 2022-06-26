@@ -6,6 +6,9 @@
     "class": "DeviceInfo",
     "description": "DeviceInfo JSON-RPC interface"
   },
+  "common": {
+    "$ref": "common.json"
+  },
   "definitions": {
     "cpuloadavgs": {
       "description": "cpu 1min, 5min,15min load avg",
@@ -36,52 +39,6 @@
         "avg15min"
       ]
     },
-    "audio_output": {
-      "type": "string",
-      "enum": [
-        "other",
-        "rf_modulator",
-        "analog",
-        "spdif",
-        "hdmi",
-        "displayport"
-      ],
-      "enumvalues": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "description": "Audio output supported by the STB",
-      "example": "analog"
-    },
-    "video_output": {
-      "type": "string",
-      "enum": [
-        "other",
-        "rf_modulator",
-        "composite",
-        "svideo",
-        "component",
-        "scart_rgb",
-        "hdmi",
-        "displayport"
-      ],
-      "enumvalues": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "description": "Video output supported by the STB",
-      "example": "displayport"
-    },
     "output_resolution": {
       "type": "string",
       "enum": [
@@ -90,27 +47,47 @@
         "480p",
         "576i",
         "576p",
+        "576p50",
         "720p",
+        "720p50",
         "1080i",
+        "1080i25",
+        "1080i50",
         "1080p",
+        "1080p24",
+        "1080p25",
+        "1080p30",
+        "1080p50",
+        "1080p60",
         "2160p30",
+        "2160p50",
         "2160p60",
         "4320p30",
         "4320p60"
       ],
-      "enumvalues": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+      "enumids": [
+        "RESOLUTION_UNKNOWN",
+        "RESOLUTION_480I",
+        "RESOLUTION_480P",
+        "RESOLUTION_576I",
+        "RESOLUTION_576P",
+        "RESOLUTION_576P50",
+        "RESOLUTION_720P",
+        "RESOLUTION_720P50",
+        "RESOLUTION_1080I",
+        "RESOLUTION_1080I25",
+        "RESOLUTION_1080I50",
+        "RESOLUTION_1080P",
+        "RESOLUTION_1080P24",
+        "RESOLUTION_1080P25",
+        "RESOLUTION_1080P30",
+        "RESOLUTION_1080P50",
+        "RESOLUTION_1080P60",
+        "RESOLUTION_2160P30",
+        "RESOLUTION_2160P50",
+        "RESOLUTION_2160P60",
+        "RESOLUTION_4320P30",
+        "RESOLUTION_4320P60"
       ],
       "description": "Resolution supported by the STB",
       "example": "1080p"
@@ -119,32 +96,20 @@
       "type": "string",
       "enum": [
         "unavailable",
-        "hdcp_14",
-        "hdcp_20",
-        "hdcp_21",
-        "hdcp_22"
+        "1.4",
+        "2.0",
+        "2.1",
+        "2.2"
       ],
-      "enumvalues": [
-        0,
-        1,
-        2,
-        3,
-        4
+      "enumids": [
+        "HDCP_UNAVAILABLE",
+        "HDCP_14",
+        "HDCP_20",
+        "HDCP_21",
+        "HDCP_22"
       ],
       "description": "HDCP support",
-      "example": "hdcp_20"
-    },
-    "audio_outputs": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/audio_output"
-      }
-    },
-    "video_outputs": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/video_output"
-      }
+      "example": "2.0"
     },
     "output_resolutions": {
       "type": "array",
@@ -233,66 +198,63 @@
       ],
       "description": "Partner ID or distributor ID for device",
       "example": "comcast"
+    },
+    "audiocapability": {
+      "type": "string",
+      "enum": [
+        "none",
+        "ATMOS",
+        "DOLBY DIGITAL",
+        "DOLBY DIGITAL PLUS",
+        "Dual Audio Decode",
+        "DAPv2",
+        "MS12"
+      ],
+      "enumids": [
+        "NONE",
+        "ATMOS",
+        "DD",
+        "DDPLUS",
+        "DAD",
+        "DAPV2",
+        "MS12"
+      ],
+      "description": "Audio capability",
+      "example": "none"
+    },
+    "audiocapabilities": {
+      "summary": "An array of audio capabilities",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/audiocapability"
+      }
+    },
+    "ms12capability": {
+      "type": "string",
+      "enum": [
+        "none",
+        "Dolby Volume",
+        "Inteligent Equalizer",
+        "Dialogue Enhancer"
+      ],
+      "enumids": [
+        "NONE",
+        "DOLBYVOLUME",
+        "INTELIGENTEQUALIZER",
+        "DIALOGUEENHANCER"
+      ],
+      "description": "MS12 audio capability",
+      "example": "Dolby Volume"
+    },
+    "ms12capabilities": {
+      "summary": "An array of MS12 audio capabilities",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ms12capability"
+      }
     }
   },
   "properties": {
-    "stbcapabilities": {
-      "summary": "Capabilities of the STB",
-      "readonly": true,
-      "params": {
-        "type": "object",
-        "properties": {
-          "hdr": {
-            "description": "Is HDR supported by this device",
-            "type": "boolean",
-            "example": false
-          },
-          "atmos": {
-            "description": "Is Atmos supported by this device",
-            "type": "boolean",
-            "example": false
-          },
-          "cec": {
-            "description": "Is CEC supported by this device",
-            "type": "boolean",
-            "example": true
-          },
-          "hdcp": {
-            "description": "HDCP support",
-            "type": "string",
-            "$ref": "#/definitions/copy_protection",
-            "example": "hdcp_20"
-          },
-          "audio_outputs": {
-            "description": "Audio Output support",
-            "type": "string",
-            "$ref": "#/definitions/audio_outputs",
-            "example": "[hdmi, spdif]"
-          },
-          "video_outputs": {
-            "description": "Video Output support",
-            "type": "string",
-            "$ref": "#/definitions/video_outputs",
-            "example": "[hdmi, displayport]"
-          },
-          "output_resolutions": {
-            "description": "Supported resolutions",
-            "type": "string",
-            "$ref": "#/definitions/output_resolutions",
-            "example": "[1080p, 720p]"
-          }
-        },
-        "required": [
-          "hdr",
-          "atmos",
-          "cec",
-          "hdcp",
-          "audio_outputs",
-          "video_outputs",
-          "output_resolutions"
-        ]
-      }
-    },
     "systeminfo": {
       "summary": "System general information",
       "readonly": true,
@@ -414,26 +376,6 @@
       "params": {
         "type": "object",
         "properties": {
-          "total": {
-            "type": "number",
-            "example": 0
-          },
-          "open": {
-            "type": "number",
-            "example": 0
-          },
-          "link": {
-            "type": "number",
-            "example": 0
-          },
-          "exception": {
-            "type": "number",
-            "example": 0
-          },
-          "shutdown": {
-            "type": "number",
-            "example": 0
-          },
           "runs": {
             "description": "Number of runs",
             "type": "number",
@@ -469,9 +411,15 @@
           }
         },
         "required": [
-          "firmware"
+          "imagename"
         ]
-      }
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
     },
     "serialnumber": {
       "summary": "Serial number set by manufacturer",
@@ -487,7 +435,13 @@
         "required": [
           "serialnumber"
         ]
-      }
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
     },
     "modelid": {
       "summary": "Device model number or SKU",
@@ -502,7 +456,13 @@
         "required": [
           "sku"
         ]
-      }
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
     },
     "make": {
       "summary": "Device manufacturer",
@@ -517,7 +477,13 @@
         "required": [
           "make"
         ]
-      }
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
     },
     "modelname": {
       "summary": "Friendly device model name",
@@ -533,7 +499,13 @@
         "required": [
           "model"
         ]
-      }
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
     },
     "devicetype": {
       "summary": "Device type",
@@ -548,7 +520,13 @@
         "required": [
           "devicetype"
         ]
-      }
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
     },
     "distributorid": {
       "summary": "Partner ID or distributor ID for device",
@@ -563,7 +541,291 @@
         "required": [
           "distributorid"
         ]
-      }
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "supportedaudioports": {
+      "summary": "Audio ports supported on the device (all ports that are physically present)",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "supportedAudioPorts": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "HDMI0"
+            }
+          }
+        },
+        "required": [
+          "supportedAudioPorts"
+        ]
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "supportedvideodisplays": {
+      "summary": "Video ports supported on the device (all ports that are physically present)",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "supportedVideoDisplays": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "HDMI0"
+            }
+          }
+        },
+        "required": [
+          "supportedVideoDisplays"
+        ]
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "hostedid": {
+      "summary": "EDID of the host",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "EDID": {
+            "summary": "A base64 encoded byte array string representing the EDID",
+            "type": "string",
+            "example": "AP///////wAQrMLQVEJTMQUdAQOANR546q11qVRNnSYPUFSlSwCBALMA0QBxT6lAgYDRwAEBVl4AoKCgKVAwIDUADighAAAaAAAA/wBNWTNORDkxVjFTQlQKAAAA/ABERUxMIFAyNDE4RAogAAAA/QAxVh1xHAAKICAgICAgARsCAxuxUJAFBAMCBxYBBhESFRMUHyBlAwwAEAACOoAYcTgtQFgsRQAOKCEAAB4BHYAYcRwWIFgsJQAOKCEAAJ6/FgCggDgTQDAgOgAOKCEAABp+OQCggDgfQDAgOgAOKCEAABoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2A"
+          }
+        },
+        "required": [
+          "EDID"
+        ]
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    }
+  },
+  "methods": {
+    "DeviceInfo.1.supportedresolutions": {
+      "summary": "Supported resolutions on the selected video display port",
+      "params": {
+        "type": "object",
+        "properties": {
+          "videoDisplay": {
+            "description": "Video display port name",
+            "type": "string",
+            "example": "HDMI0",
+            "default": "HDMI0"
+          }
+        },
+        "required": [
+        ]
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "supportedResolutions": {
+            "$ref": "#/definitions/output_resolutions"
+          }
+        },
+        "required": [
+          "supportedResolutions"
+        ]
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "DeviceInfo.1.defaultresolution": {
+      "summary": "Default resolution on the selected video display port",
+      "params": {
+        "type": "object",
+        "properties": {
+          "videoDisplay": {
+            "description": "Video display port name",
+            "type": "string",
+            "example": "HDMI0",
+            "default": "HDMI0"
+          }
+        },
+        "required": [
+        ]
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "defaultResolution": {
+            "$ref": "#/definitions/output_resolution"
+          }
+        },
+        "required": [
+          "defaultResolution"
+        ]
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "DeviceInfo.1.supportedhdcp": {
+      "summary": "Supported HDCP version on the selected video display port",
+      "params": {
+        "type": "object",
+        "properties": {
+          "videoDisplay": {
+            "description": "Video display port name",
+            "type": "string",
+            "example": "HDMI0",
+            "default": "HDMI0"
+          }
+        },
+        "required": [
+        ]
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "supportedHDCPVersion": {
+            "$ref": "#/definitions/copy_protection"
+          }
+        },
+        "required": [
+          "supportedHDCPVersion"
+        ]
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "DeviceInfo.1.audiocapabilities": {
+      "summary": "Audio capabilities for the specified audio port",
+      "params": {
+        "type": "object",
+        "properties": {
+          "audioPort": {
+            "description": "Audio port name",
+            "type": "string",
+            "example": "HDMI0",
+            "default": "HDMI0"
+          }
+        },
+        "required": [
+        ]
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "AudioCapabilities": {
+            "$ref": "#/definitions/audiocapabilities"
+          }
+        },
+        "required": [
+          "AudioCapabilities"
+        ]
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "DeviceInfo.1.ms12capabilities": {
+      "summary": "MS12 audio capabilities for the specified audio port",
+      "params": {
+        "type": "object",
+        "properties": {
+          "audioPort": {
+            "description": "Audio port name",
+            "type": "string",
+            "example": "HDMI0",
+            "default": "HDMI0"
+          }
+        },
+        "required": [
+        ]
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "MS12Capabilities": {
+            "$ref": "#/definitions/ms12capabilities"
+          }
+        },
+        "required": [
+          "MS12Capabilities"
+        ]
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
+    "DeviceInfo.1.supportedms12audioprofiles": {
+      "summary": "Supported MS12 audio profiles for the specified audio port",
+      "params": {
+        "type": "object",
+        "properties": {
+          "audioPort": {
+            "description": "Audio port name",
+            "type": "string",
+            "example": "HDMI0",
+            "default": "HDMI0"
+          }
+        },
+        "required": [
+        ]
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "supportedMS12AudioProfiles": {
+            "summary": "An array of MS12 audio profiles",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Movie"
+            }
+          }
+        },
+        "required": [
+          "supportedMS12AudioProfiles"
+        ]
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
     }
   }
 }
