@@ -20,7 +20,7 @@
 #pragma once
 
 #include "Module.h"
-#include <com/com.h>
+#include <core/core.h>
 
 namespace WPEFramework {
 namespace Exchange {
@@ -66,7 +66,7 @@ namespace Exchange {
 
             ~IClient() override = default;
 
-            virtual WPEFramework::RPC::instance_id Native() const {return 0;};
+            virtual WPEFramework::Core::instance_id Native() const {return 0;};
             virtual string Name() const = 0;
             virtual void Opacity(const uint32_t value) = 0;
             virtual uint32_t Opacity() const {return 0;};
@@ -101,7 +101,7 @@ namespace Exchange {
 
             ~IDisplay() override = default;
 
-            virtual WPEFramework::RPC::instance_id Native() const = 0;
+            virtual WPEFramework::Core::instance_id Native() const = 0;
             virtual string Port() const = 0;
 
             virtual IClient* CreateClient(const string& name, const uint32_t width, const uint32_t height) = 0;
