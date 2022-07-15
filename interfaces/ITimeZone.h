@@ -24,11 +24,11 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* @json */
+    /* @json @uncompliant:collapsed */
     struct EXTERNAL ITimeZone : virtual public Core::IUnknown {
         enum { ID = ID_TIMEZONE };
 
-        /* @event */
+        /* @event @uncompliant:collapsed */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_TIMEZONE_NOTIFICATION };
 

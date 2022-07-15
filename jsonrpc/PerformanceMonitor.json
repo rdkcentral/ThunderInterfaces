@@ -4,6 +4,7 @@
   "info": {
     "title": "Performance Monitor API",
     "class": "PerformanceMonitor",
+    "format": "uncompliant-collapsed",
     "description": "Performance Monitor JSON-RPC interface"
   },
   "common": {

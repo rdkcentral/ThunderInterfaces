@@ -4,6 +4,7 @@
   "info": {
     "title": "Device Info API",
     "class": "DeviceInfo",
+    "format": "uncompliant-extended",
     "description": "DeviceInfo JSON-RPC interface"
   },
   "definitions": {

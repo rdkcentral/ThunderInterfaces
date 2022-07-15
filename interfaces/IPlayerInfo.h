@@ -26,7 +26,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* @json @extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
+    // @json
     struct EXTERNAL IPlayerProperties : virtual public Core::IUnknown {
         enum { ID = ID_PLAYER_PROPERTIES };
 
@@ -56,12 +56,6 @@ namespace Exchange {
             VIDEO_VP9,
             VIDEO_VP10
         };
-
-        typedef RPC::IIteratorType<AudioCodec, ID_PLAYER_PROPERTIES_AUDIO> IAudioCodecIterator;
-        typedef RPC::IIteratorType<VideoCodec, ID_PLAYER_PROPERTIES_VIDEO> IVideoCodecIterator;
-
-        virtual uint32_t AudioCodecs(IAudioCodecIterator*& codec /* @out */) const = 0;
-        virtual uint32_t VideoCodecs(IVideoCodecIterator*& codec /* @out */) const = 0;
 
         enum PlaybackResolution : uint8_t {
             RESOLUTION_UNKNOWN,
@@ -107,6 +101,15 @@ namespace Exchange {
             RESOLUTION_2160P60,
             RESOLUTION_2160P
         };
+
+        typedef RPC::IIteratorType<AudioCodec, ID_PLAYER_PROPERTIES_AUDIO> IAudioCodecIterator;
+        typedef RPC::IIteratorType<VideoCodec, ID_PLAYER_PROPERTIES_VIDEO> IVideoCodecIterator;
+
+        // @property
+        virtual uint32_t AudioCodecs(IAudioCodecIterator*& codec /* @out */) const = 0;
+
+        // @property
+        virtual uint32_t VideoCodecs(IVideoCodecIterator*& codec /* @out */) const = 0;
 
         // @property
         // @brief Current Video playback resolution

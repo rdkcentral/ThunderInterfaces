@@ -4,6 +4,7 @@
   "info": {
     "title": "IO Control API",
     "class": "IOControl",
+    "format": "uncompliant-extended",
     "description": "IO Control JSON-RPC interface"
   },
   "common": {

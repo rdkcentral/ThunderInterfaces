@@ -4,6 +4,7 @@
   "info": {
     "title": "Compositor API",
     "class": "Compositor",
+    "format": "uncompliant-extended",
     "description": "Compositor JSON-RPC interface"
   },
   "common": {

@@ -23,14 +23,14 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json
+    // @json @uncompliant:collapsed
     struct EXTERNAL IApplication : virtual public Core::IUnknown {
 
         enum { ID = ID_APPLICATION };
 
         ~IApplication() override = default;
 
-        /* @event */
+        // @event @uncompliant:collapsed
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_APPLICATION_NOTIFICATION };
 
