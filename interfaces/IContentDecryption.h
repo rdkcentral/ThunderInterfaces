@@ -64,12 +64,15 @@ namespace Exchange {
             uint8_t  EncScheme;
             uint8_t  IVLength;
             uint8_t  KeyIdLength;
-            uint8_t  SubSampleLength;
+            uint16_t  SubSampleLength;
             uint32_t PatternEncBlocks;
             uint32_t PatternClearBlocks;
             uint8_t  IV[24];
             uint8_t  KeyId[17];
             uint32_t SubSamples[100];
+            uint16_t StreamHeight;
+            uint16_t StreamWidth;
+            uint8_t  StreamType;
         };
 
     public:
@@ -106,6 +109,9 @@ namespace Exchange {
             admin->SubSampleLength = 0;
             admin->IVLength = 0;
             admin->KeyIdLength = 0;
+            admin->StreamHeight = 0;
+            admin->StreamWidth = 0;
+            admin->StreamType = 0;
         }
         void Status(uint32_t status)
         {
@@ -131,7 +137,7 @@ namespace Exchange {
         void SetIV(const uint8_t ivDataLength, const uint8_t ivData[])
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            ASSERT(ivDataLength <= sizeof(Administration::IV));
+            VERIFY(ivDataLength <= sizeof(Administration::IV));
             admin->IVLength = (ivDataLength > sizeof(Administration::IV) ? sizeof(Administration::IV)
                                                                         : ivDataLength);
             ::memcpy(admin->IV, ivData, admin->IVLength);
@@ -164,21 +170,36 @@ namespace Exchange {
         }
         uint8_t SubSampleLength() const 
         {
-            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
             return (admin->SubSampleLength);
         }
         const uint32_t* SubSamples() const
         {
-            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
             return (&(admin->SubSamples[0]));
         }
-        void SubSample(const uint8_t length, const uint32_t encryptedBytes[]) 
+        void SubSample(const uint16_t length, const uint32_t encryptedBytes[]) 
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            admin->SubSamplesLength = std::min(sizeof(Administration::SubSamples)/sizeof(uint32_t), length);
+            VERIFY(sizeof(Administration::SubSamples)/sizeof(uint32_t) <= length);
+            admin->SubSampleLength = std::min(static_cast<uint16_t>(sizeof(Administration::SubSamples)/sizeof(uint32_t)), length);
             for(uint8_t index = 0; index < admin->SubSampleLength; index++) {
-                admin->SubSamples[index] = encryptionBytes[index];
+                admin->SubSamples[index] = encryptedBytes[index];
             }
+        }
+        void SetMediaProperties(const uint16_t height, const uint16_t width, const uint8_t type)
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            admin->StreamHeight = height;
+            admin->StreamWidth = width;
+            admin->StreamType = type;
+        }
+        void MediaProperties(uint16_t& height, uint16_t& width, uint8_t& type)
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            height = admin->StreamHeight;
+            width = admin->StreamWidth;
+            type = admin->StreamType;
         }
         void Write(const uint32_t length, const uint8_t* data)
         {
@@ -203,8 +224,8 @@ namespace Exchange {
         void KeyId(const uint8_t length, const uint8_t buffer[])
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            ASSERT(length <= sizeof(Administrator::KeyId));
-            admin->KeyId[0] = (length <= sizeof(Administrator::KeyId) ? length : sizeof(Administrator::KeyId));
+            VERIFY(length <= sizeof(Administration::KeyId));
+            admin->KeyId[0] = (length <= sizeof(Administration::KeyId) ? length : sizeof(Administration::KeyId));
             if (length != 0) {
                 ::memcpy(&(admin->KeyId[1]), buffer, admin->KeyId[0]);
             }
@@ -213,7 +234,7 @@ namespace Exchange {
         {
             const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
             length = admin->KeyId[0];
-            ASSERT(length <= 16);
+            VERIFY(length <= 16);
             return (length > 0 ? &admin->KeyId[1] : nullptr);
         }
     };

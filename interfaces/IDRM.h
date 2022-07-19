@@ -365,7 +365,7 @@ public:
         const uint32_t*          subSample,       // Mapping of the clear bytes in the inData
         const IStreamProperties* properties) {
 
-        Decrypt(keyId, keyIdLength, scheme, *subSample, IV, IVLength, inData, inDataLength, outDataLength, outData, keyIdLength, keyId, properties->InitLength());
+        return (Decrypt(keyId, keyIdLength, scheme, *schemePattern, IV, IVLength, inData, inDataLength, outDataLength, outData, keyIdLength, keyId, properties->InitLength()));
     }
 
     virtual CDMi_RESULT ReleaseClearContent(
@@ -601,6 +601,7 @@ private:
     }
 
     CDMi_RESULT Enable(std::false_type) {
+        return(CDMi_SUCCESS);
     }
 
     template <typename T>
@@ -620,6 +621,7 @@ private:
     }
 
     CDMi_RESULT Disable(std::false_type) {
+        return(CDMi_SUCCESS);
     }
 
     const std::vector<std::string> _mimes;
