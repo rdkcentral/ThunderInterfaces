@@ -247,12 +247,23 @@ typedef enum : uint8_t {
     AesCbc_Cbcs     // AES-CBC mode and Sub-Sample + patterned encryption + Constant IV
 } EncryptionScheme;
 
-// CBCS & CENC3.0 pattern is a number of encrypted blocks/bytes followed a number of clear 
-// blocks/bytes after which the pattern repeats.
+// CBCS & CENC3.0 pattern is a number of encrypted blocks followed a number of clear
+// blocks after which the pattern repeats.
 typedef struct {
-    uint32_t clear_size;
-    uint32_t encrypted_size;
+    uint32_t clear_blocks;
+    uint32_t encrypted_blocks;
 } EncryptionPattern;
+
+typedef struct {
+    EncryptionScheme   scheme;          // Encryption scheme used in this sample
+    EncryptionPattern pattern;   // Encryption Pattern used in this sample
+    uint8_t*           iv;              // Initialization vector(IV) to decrypt this sample
+    uint8_t            ivLength;        // Length of IV
+    uint8_t*           keyId;           // ID of Key required to decrypt this sample
+    uint8_t            keyIdLength;     // Length of KeyId
+    uint8_t            subSampleCount; // Number or Sub-Samples in this sample
+    uint32_t*          subSample;       // SubSample mapping - Repeating pair of Clear bytes and Encrypted Bytes representing each subsample.
+} SampleInfo;
 
 // IStreamProperties to provide information about the current stream
 class IStreamProperties {
@@ -345,7 +356,7 @@ public:
         uint8_t** f_ppbOpaqueClearContent,
         const uint8_t keyIdLength,
         const uint8_t* keyId,
-        bool initWithLast15) {
+        bool initWithLast15 /*=0*/) {
 
         return (CDMi_METHOD_NOT_IMPLEMENTED);
     }
@@ -355,17 +366,17 @@ public:
         const uint32_t           inDataLength,    // Incoming encrypted data length
         uint8_t**                outData,         // Outgoing decrypted data
         uint32_t*                outDataLength,   // Outgoing decrypted data length
-        const uint8_t*           keyId,           // Key to be used for decryption
-        const uint8_t            keyIdLength,     // Key length of the key above
-        const uint8_t*           IV,              // IV to be used for decryption
-        const uint8_t            IVLength,        // IV length of the IV above
-        const EncryptionScheme   scheme,          // Encryption scheme if needed
-        const EncryptionPattern* schemePattern,   // pattern used for the encryption scheme
-        const uint8_t            subSampleLength, // Number of mappings in the list above.
-        const uint32_t*          subSample,       // Mapping of the clear bytes in the inData
-        const IStreamProperties* properties) {
+        const SampleInfo*        sampleInfo,      // Information required to decrypt Sample
+        const IStreamProperties* properties) {    // Stream Properties
 
-        return (Decrypt(keyId, keyIdLength, scheme, *schemePattern, IV, IVLength, inData, inDataLength, outDataLength, outData, keyIdLength, keyId, properties->InitLength()));
+
+        return (Decrypt(sampleInfo->keyId, sampleInfo->keyIdLength,
+                sampleInfo->scheme, sampleInfo->pattern,
+                sampleInfo->iv, sampleInfo->ivLength,
+                inData, inDataLength,
+                outDataLength, outData,
+                sampleInfo->keyIdLength, sampleInfo->keyId,
+                properties->InitLength()));
     }
 
     virtual CDMi_RESULT ReleaseClearContent(
