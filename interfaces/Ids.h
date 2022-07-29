@@ -232,6 +232,9 @@ namespace Exchange {
         ID_LISA_METADATA_PAYLOAD,
 
         ID_CONTENTDECRYPTION_NOTIFICATION,
+        
+	ID_WATERMARK,
+        ID_WATERMARK_NOTIFICATION,
     };
 }
 }

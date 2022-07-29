@@ -1,0 +1,297 @@
+{
+  "$schema": "interface.schema.json",
+  "jsonrpc": "2.0",
+  "info": {
+    "title": "Watermark API",
+    "class": "Watermark",
+    "description": "Watermark JSON-RPC interface"
+  },
+  "common": {
+    "$ref": "common.json"
+  },
+  "definitions": {
+    "id": {
+      "type": "number",
+      "size": 32
+    },
+    "zorder": {
+      "type": "number",
+      "size": 32
+    },
+    "key": {
+      "type": "number",
+      "size": 32
+    },
+    "size": {
+      "type": "number",
+      "size": 32
+    },
+    "palettedwatermarkdata": {
+        "type":"object",
+        "properties": {
+          "imagekey": {
+            "type": "number",
+            "description": "shared memory key where image data is stored"
+          },
+          "imagewidth": {
+            "type": "number",
+            "description": "shared memory key where image data is stored"
+          },
+          "imageheight": {
+            "type": "number",
+            "description": "shared memory key where image data is stored"
+          },
+          "clutkey": {
+            "type": "number"
+          },
+          "clutsize": {
+            "type": "number"
+          }
+        }
+    },	    
+    "initializerequest":{
+        "type": "object",
+        "properties": {
+            "waylanddisplay": {
+              "type": "string"
+            },
+            "synchronized": {
+              "type": "boolean",
+	      "default": false
+            }
+      },
+      "required": [
+        "waylanddisplay"
+      ]
+    },
+    "createrequest":{
+        "type": "object",
+        "properties": {
+            "id": {
+              "$ref": "#/definitions/id"
+            },
+            "zorder": {
+              "$ref": "#/definitions/zorder"
+            }
+      },
+      "required": [
+        "id",
+        "zorder"
+      ]
+    },
+    "updaterequest":{
+        "type": "object",
+        "properties": {
+            "id": {
+              "$ref": "#/definitions/id"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            },
+            "size": {
+              "$ref": "#/definitions/size"
+            }
+      },
+      "required": [
+        "id",
+        "key",
+        "size"
+      ]
+    },
+    "setpalettedwatermarkrequest":{
+        "type": "object",
+        "properties": {
+            "id": {
+              "$ref": "#/definitions/id"
+            },
+            "data": {
+              "$ref": "#/definitions/palettedwatermarkdata"
+            }
+      },
+      "required": [
+        "id",
+        "data"
+      ]
+    },
+    "adjustrequest":{
+        "type": "object",
+        "properties": {
+            "id": {
+              "$ref": "#/definitions/id"
+            },
+            "zorder": {
+              "$ref": "#/definitions/zorder"
+            }
+      },
+      "required": [
+        "id",
+        "zorder"
+      ]
+    }
+  },
+  "properties": {
+    "waylanddisplay": {
+      "summary": "wayland display to be used for rendering",
+      "params": {
+        "type": "string",
+        "example": "wayland-0"
+      }
+    }
+  },
+  "methods": {
+     "initialize": {
+      "summary": "initialize",
+      "description": "pass wayland display if to use",
+      "params": {
+        "$ref": "#/definitions/initializerequest"
+      },
+      "result": {
+        "type": "number"
+      },
+      "errors": [
+      ]
+     },
+     "deinitialize": {
+      "summary": "deinitialize",
+      "description": "disconnect from display",
+      "params": {
+        "$ref": "#/common/results/void"
+      },
+      "result": {
+        "type": "number"
+      },
+      "errors": [
+      ]
+     },
+     "showwatermark": {
+      "summary": "display or hide the watermark",
+      "description": "either draw or hide the watermark",
+      "params": {
+        "$ref": "#/common/results/void"
+      },
+      "result": {
+        "type": "boolean"
+      },
+      "errors": [
+      ]
+     },
+     "createwatermark": {
+      "summary": "create the watermark",
+      "description": "create watermark entry",
+      "params": {
+        "$ref": "#/definitions/createrequest"
+      },
+      "result": {
+        "type": "boolean"
+      },
+      "errors": [
+      ]
+    },
+    "updatewatermark": {
+     "summary": "update the watermark",
+     "description": "update the created watermark entry with image data",
+     "params": {
+       "$ref": "#/definitions/updaterequest"
+     },
+     "result": {
+       "type": "boolean"
+     },
+     "errors": [
+     ]
+    },
+    "adjustwatermark": {
+     "summary": "adjust the watermark",
+     "description": "adjust the created watermark zorder",
+     "params": {
+       "$ref": "#/definitions/adjustrequest"
+     },
+     "result": {
+       "type": "boolean"
+     },
+     "errors": [
+     ]
+    },
+    "deletewatermark": {
+     "summary": "delete the watermark",
+     "description": "delete the watermark entry",
+     "params": {
+       "$ref": "#/definitions/id"
+     },
+     "result": {
+       "type": "boolean"
+     },
+     "errors": [
+     ]
+    },
+    "getpalettedwatermark": {
+     "summary": "get the paletted watermark data",
+     "description": "get the paletted watermark data for given id",
+     "params": {
+       "$ref": "#/definitions/id"
+     },
+     "result": {
+       "$ref": "#/definitions/palettedwatermarkdata"
+     },
+     "errors": [
+     ]
+    },
+    "setpalettedwatermark": {
+     "summary": "set the image and palette data for watermark",
+     "description": "update the created watermark entry with new palette data",
+     "params": {
+       "$ref": "#/definitions/setpalettedwatermarkrequest"
+     },
+     "result": {
+       "type": "boolean"
+     },
+     "errors": [
+     ]
+    }
+  },
+  "events": {
+  "onwatermarkrequeststatus": {
+    "summary": "shares watermark operation status",
+    "params": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "request id whose status is returned",
+          "type": "number",
+          "example": 123
+        },
+        "request": {
+          "description": "name of the request whose status is returned",
+          "type": "string",
+          "example": "createWatermark"
+        },
+        "status": {
+          "description": "status of request",
+          "type": "boolean",
+          "example": false
+        }
+      },
+      "required": [
+        "id",
+        "request",
+	"status"
+      ]
+    }
+  },
+  "onwatermarkrenderfailed": {
+    "summary": "indicates watermark drawing failed",
+    "params": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "description": "image id whose draw is failed",
+          "type": "number",
+          "example": 123
+        }
+      },
+      "required": [
+        "image"
+      ]
+    }
+  }
+  }
+}
