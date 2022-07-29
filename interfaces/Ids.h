@@ -377,6 +377,9 @@ namespace Exchange {
         ID_CONTENTPROTECTION                         = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x500,
         ID_CONTENTPROTECTION_NOTIFICATION            = ID_CONTENTPROTECTION + 1,
 
+        ID_WATERMARK                                 = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x510,
+        ID_WATERMARK_NOTIFICATION                    = ID_WATERMARK + 2,
+
     };
 }
 }
