@@ -121,6 +121,9 @@
     <ClCompile Include="ProxyStubs_TimeZone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProxyStubs_Butler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

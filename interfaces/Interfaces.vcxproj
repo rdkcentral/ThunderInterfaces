@@ -26,6 +26,7 @@
     <ClCompile Include="ProxyStubs_AVNClient.cpp" />
     <ClCompile Include="ProxyStubs_AVSClient.cpp" />
     <ClCompile Include="ProxyStubs_Browser.cpp" />
+    <ClCompile Include="ProxyStubs_Butler.cpp" />
     <ClCompile Include="ProxyStubs_Composition.cpp" />
     <ClCompile Include="ProxyStubs_Configuration.cpp" />
     <ClCompile Include="ProxyStubs_ContentDecryption.cpp" />
