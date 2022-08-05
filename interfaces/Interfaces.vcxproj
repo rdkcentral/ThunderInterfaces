@@ -30,7 +30,6 @@
     <ClCompile Include="ProxyStubs_Composition.cpp" />
     <ClCompile Include="ProxyStubs_Configuration.cpp" />
     <ClCompile Include="ProxyStubs_ContentDecryption.cpp" />
-    <ClCompile Include="ProxyStubs_DeviceIdentification.cpp" />
     <ClCompile Include="ProxyStubs_DeviceInfo.cpp" />
     <ClCompile Include="ProxyStubs_DIALServer.cpp" />
     <ClCompile Include="ProxyStubs_Dictionary.cpp" />

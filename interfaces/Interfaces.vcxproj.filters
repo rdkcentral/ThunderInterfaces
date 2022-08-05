@@ -64,9 +64,6 @@
     <ClCompile Include="ProxyStubs_AVSClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProxyStubs_DeviceIdentification.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ProxyStubs_Dictionary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
