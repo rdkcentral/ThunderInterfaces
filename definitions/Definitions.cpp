@@ -31,7 +31,6 @@
 #include <interfaces/IConfiguration.h>
 #include <interfaces/IContentDecryption.h>
 #include <interfaces/ICustomerCareOperations.h>
-#include <interfaces/IDeviceIdentification.h>
 #include <interfaces/IDeviceInfo.h>
 #include <interfaces/IDictionary.h>
 #include <interfaces/IDisplayInfo.h>

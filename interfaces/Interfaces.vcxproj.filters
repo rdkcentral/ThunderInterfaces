@@ -64,9 +64,6 @@
     <ClCompile Include="ProxyStubs_AVSClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProxyStubs_DeviceIdentification.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ProxyStubs_Dictionary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -119,6 +116,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ProxyStubs_TimeZone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProxyStubs_Butler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
