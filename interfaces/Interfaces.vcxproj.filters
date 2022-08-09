@@ -272,6 +272,9 @@
     <ClInclude Include="IRustBridge.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
+    <ClInclude Include="ValuePoint.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
