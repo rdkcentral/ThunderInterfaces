@@ -4,6 +4,7 @@
   "info": {
     "title": "Cobalt API",
     "class": "Cobalt",
+    "format": "uncompliant-extended",
     "description": "Cobalt JSON-RPC interface"
   },
   "common": {

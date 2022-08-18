@@ -4,6 +4,7 @@
     "info": {
         "title": "DTV API",
         "class": "DTV",
+        "format": "uncompliant-collapsed",
         "description": "The `DTV` plugin provides access to DVB services provided by a DVB stack."
     },
     "common": {

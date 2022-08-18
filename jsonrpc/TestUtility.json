@@ -4,6 +4,7 @@
   "info": {
     "title": "Test Utility API",
     "class": "TestUtility",
+    "format": "uncompliant-extended",
     "description": "TestUtility JSON-RPC interface"
   },
   "common": {

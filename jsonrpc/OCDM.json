@@ -4,6 +4,7 @@
   "info": {
     "title": "OpenCDMi API",
     "class": "OCDM",
+    "format": "uncompliant-extended",
     "description": "OpenCDMi JSON-RPC interface"
   },
   "common": {

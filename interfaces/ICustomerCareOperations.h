@@ -22,6 +22,7 @@
 
 namespace WPEFramework {
 namespace Exchange {
+
     // @json
     struct EXTERNAL ICustomerCareOperations : virtual public Core::IUnknown {
 
@@ -29,6 +30,7 @@ namespace Exchange {
 
         // @brief Executes all operations needed for a plugin's factory reset.
         virtual uint32_t FactoryReset() = 0;
-};
+    };
+
 }
 }

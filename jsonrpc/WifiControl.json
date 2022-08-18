@@ -4,6 +4,7 @@
   "info": {
     "title": "WiFi Control API",
     "class": "WifiControl",
+    "format": "uncompliant-collapsed",
     "description": "WifiControl JSON-RPC interface"
   },
   "common": {
