@@ -202,7 +202,7 @@ namespace Exchange {
         virtual uint32_t MixedContentPolicy(const MixedContentPolicyType policy) = 0;
     };
 
-    /* @json */
+    /* @json @uncompliant:extended */
     struct EXTERNAL IBrowserScripting : virtual public Core::IUnknown {
         enum { ID = ID_BROWSER_SCRIPTING };
 
