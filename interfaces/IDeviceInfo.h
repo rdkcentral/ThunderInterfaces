@@ -7,54 +7,45 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    struct EXTERNAL IDeviceInfo : virtual public Core::IUnknown {
-        enum { ID = ID_DEVICE_INFO };
+    struct EXTERNAL IDeviceCapabilities : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICE_CAPABILITIES };
 
-        virtual ~IDeviceInfo() override = default;
+        virtual ~IDeviceCapabilities() {}
 
-        virtual uint32_t SerialNumber(string& serialNumber /* @out */) const = 0;
-        virtual uint32_t Sku(string& sku /* @out */) const = 0;
-        virtual uint32_t Make(string& make /* @out */) const = 0;
-        virtual uint32_t Model(string& model /* @out */) const = 0;
-        virtual uint32_t DeviceType(string& deviceType /* @out */) const = 0;
-        virtual uint32_t DistributorId(string& distributorId /* @out */) const = 0;
-    };
-
-    struct EXTERNAL IDeviceAudioCapabilities : virtual public Core::IUnknown {
-        enum { ID = ID_DEVICE_AUDIO_CAPABILITIES };
-
-        virtual ~IDeviceAudioCapabilities() override = default;
-
-        enum AudioCapability : uint8_t {
-            AUDIOCAPABILITY_NONE,
-            ATMOS,
-            DD,
-            DDPLUS,
-            DAD,
-            DAPV2,
-            MS12
+        enum AudioOutput : uint8_t {
+            AUDIO_OTHER,
+            AUDIO_RF_MODULATOR,
+            AUDIO_ANALOG,
+            AUDIO_SPDIF, //over RCA or TOSLINK
+            AUDIO_HDMI,
+            AUDIO_DISPLAYPORT
         };
 
-        enum MS12Capability : uint8_t {
-            MS12CAPABILITY_NONE,
-            DOLBYVOLUME,
-            INTELIGENTEQUALIZER,
-            DIALOGUEENHANCER
+        enum VideoOutput : uint8_t {
+            VIDEO_OTHER,
+            VIDEO_RF_MODULATOR,
+            VIDEO_COMPOSITE, // also composite over SCART
+            VIDEO_SVIDEO,
+            VIDEO_COMPONENT,
+            VIDEO_SCART_RGB,
+            VIDEO_HDMI,
+            VIDEO_DISPLAYPORT // also DisplayPort over USB-C
         };
 
-        typedef RPC::IIteratorType<AudioCapability, ID_DEVICE_AUDIO_CAPABILITIES_AUDIO_CAPABILITY> IAudioCapabilityIterator;
-        typedef RPC::IIteratorType<MS12Capability, ID_DEVICE_AUDIO_CAPABILITIES_MS12_CAPABILITY> IMS12CapabilityIterator;
-
-        virtual uint32_t SupportedAudioPorts(RPC::IStringIterator*& supportedAudioPorts /* @out */) const = 0;
-        virtual uint32_t AudioCapabilities(const string& audioPort /* @in */, IAudioCapabilityIterator*& audioCapabilities /* @out */) const = 0;
-        virtual uint32_t MS12Capabilities(const string& audioPort /* @in */, IMS12CapabilityIterator*& ms12Capabilities /* @out */) const = 0;
-        virtual uint32_t SupportedMS12AudioProfiles(const string& audioPort /* @in */, RPC::IStringIterator*& supportedMS12AudioProfiles /* @out */) const = 0;
-    };
-
-    struct EXTERNAL IDeviceVideoCapabilities : virtual public Core::IUnknown {
-        enum { ID = ID_DEVICE_VIDEO_CAPABILITIES };
-
-        virtual ~IDeviceVideoCapabilities() override = default;
+        enum OutputResolution : uint8_t {
+            RESOLUTION_UNKNOWN,
+            RESOLUTION_480I,
+            RESOLUTION_480P,
+            RESOLUTION_576I,
+            RESOLUTION_576P,
+            RESOLUTION_720P,
+            RESOLUTION_1080I,
+            RESOLUTION_1080P,
+            RESOLUTION_2160P30,
+            RESOLUTION_2160P60,
+            RESOLUTION_4320P30,
+            RESOLUTION_4320P60,
+        };
 
         enum CopyProtection : uint8_t {
             HDCP_UNAVAILABLE,
@@ -64,11 +55,22 @@ namespace Exchange {
             HDCP_22
         };
 
-        virtual uint32_t SupportedVideoDisplays(RPC::IStringIterator*& supportedVideoDisplays /* @out */) const = 0;
-        virtual uint32_t HostEDID(string& edid /* @out */) const = 0;
-        virtual uint32_t DefaultResolution(const string& videoDisplay /* @in */, string& defaultResolution /* @out */) const = 0;
-        virtual uint32_t SupportedResolutions(const string& videoDisplay /* @in */, RPC::IStringIterator*& supportedResolutions /* @out */) const = 0;
-        virtual uint32_t SupportedHdcp(const string& videoDisplay /* @in */, CopyProtection& supportedHDCPVersion /* @out */) const = 0;
+        typedef RPC::IIteratorType<AudioOutput, ID_DEVICE_CAPABILITIES_AUDIO> IAudioOutputIterator;
+        typedef RPC::IIteratorType<VideoOutput, ID_DEVICE_CAPABILITIES_VIDEO> IVideoOutputIterator;
+        typedef RPC::IIteratorType<OutputResolution, ID_DEVICE_CAPABILITIES_RESOLUTION> IOutputResolutionIterator;
+
+        virtual uint32_t Configure(const PluginHost::IShell* service) = 0;
+
+        virtual uint32_t AudioOutputs(IAudioOutputIterator*& res /* @out */) const = 0;
+        virtual uint32_t VideoOutputs(IVideoOutputIterator*& res /* @out */) const = 0;
+        virtual uint32_t Resolutions(IOutputResolutionIterator*& res /* @out */) const = 0;
+
+        virtual uint32_t HDR(bool& supportsHDR /*@out*/) const = 0;
+        virtual uint32_t Atmos(bool& supportsAtmos /*@out*/) const = 0;
+        virtual uint32_t CEC(bool& supportsCEC /*@out*/) const = 0;
+        virtual uint32_t HDCP(CopyProtection& supportedHDCP /*@out*/) const = 0;
+
+
     };
 }
 }
