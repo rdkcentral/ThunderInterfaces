@@ -201,5 +201,43 @@ namespace Exchange {
         virtual uint32_t MixedContentPolicy(MixedContentPolicyType& policy /* @out */) const = 0;
         virtual uint32_t MixedContentPolicy(const MixedContentPolicyType policy) = 0;
     };
+
+    /* @json @uncompliant:extended */
+    struct EXTERNAL IBrowserScripting : virtual public Core::IUnknown {
+        enum { ID = ID_BROWSER_SCRIPTING };
+
+        // @brief Run javascript in main frame.
+        // @param script Utf8 encoded JS code string.
+        virtual uint32_t RunJavaScript(const string& script) = 0;
+
+        // @brief Add user script to be executed at document start.
+        // @param script Utf8 encoded JS code string.
+        virtual uint32_t AddUserScript(const string& script, const bool topFrameOnly) = 0;
+
+        // @brief Remove all user scripts.
+        virtual uint32_t RemoveAllUserScripts() = 0;
+    };
+
+    /* @json */
+    struct EXTERNAL IBrowserCookieJar : virtual public Core::IUnknown {
+        enum { ID = ID_BROWSER_COOKIEJAR };
+
+        /* @event */
+        struct INotification : virtual public Core::IUnknown {
+            enum { ID = ID_BROWSER_COOKIEJAR_NOTIFICATION };
+
+            // @brief Notifies that cookies were added, removed or modified.
+            virtual void CookieJarChanged() = 0;
+        };
+
+        virtual void Register(INotification* sink) = 0;
+        virtual void Unregister(INotification* sink) = 0;
+
+        /* @json:omit */
+        virtual uint32_t CookieJar(uint32_t& version /* @out */, uint32_t& checksum /* @out */, string& payload /* @out */) const = 0;
+        /* @json:omit */
+        virtual uint32_t CookieJar(const uint32_t version, const uint32_t checksum, const string& payload) = 0;
+    };
+
 }
 }
