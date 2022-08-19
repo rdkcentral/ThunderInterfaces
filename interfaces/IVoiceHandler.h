@@ -59,7 +59,7 @@ namespace Exchange {
 
         virtual void Start(const IVoiceProducer::IProfile* profile) = 0;
         virtual void Stop() = 0;
-        virtual void Data(const uint32_t sequenceNo, const uint8_t data[] /* @length:length */, const uint16_t length) = 0;
+        virtual void Data(const uint32_t sequenceNo, const uint8_t data[] /* @in @length:length */, const uint16_t length) = 0;
     };
 
 } // Exchange
