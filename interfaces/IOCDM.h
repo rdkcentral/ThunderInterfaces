@@ -64,7 +64,7 @@ struct ISession : virtual public Core::IUnknown {
         ~ICallback() override = default;
 
         // Event fired when a key message is successfully created.
-        virtual void OnKeyMessage(const uint8_t* keyMessage /* @length:keyLength */, //__in_bcount(f_cbKeyMessage)
+        virtual void OnKeyMessage(const uint8_t* keyMessage /* @in @length:keyLength */, //__in_bcount(f_cbKeyMessage)
             const uint16_t keyLength, //__in
             const std::string& URL) = 0; //__in_z_opt
 
@@ -72,7 +72,7 @@ struct ISession : virtual public Core::IUnknown {
         virtual void OnError(const int16_t error, const OCDM_RESULT sysError, const std::string& errorMessage) = 0;
 
         // Event fired on key status update
-        virtual void OnKeyStatusUpdate(const uint8_t keyID[] /* @length:keyIDLength */,
+        virtual void OnKeyStatusUpdate(const uint8_t keyID[] /* @in @length:keyIDLength */,
                                        const uint8_t keyIDLength,
                                        const ISession::KeyStatus status) = 0;
 
@@ -88,7 +88,7 @@ struct ISession : virtual public Core::IUnknown {
 
     // Process a key message response.
     virtual void
-    Update(const uint8_t* keyMessage /* @length:keyLength */, //__in_bcount(f_cbKeyMessageResponse)
+    Update(const uint8_t* keyMessage /* @in @length:keyLength */, //__in_bcount(f_cbKeyMessageResponse)
         const uint16_t keyLength)
         = 0; //__in
 
@@ -100,7 +100,7 @@ struct ISession : virtual public Core::IUnknown {
 
     // Report the current status of the Session with respect to the KeyExchange.
     virtual KeyStatus Status() const = 0;
-    virtual KeyStatus Status(const uint8_t keyID[] /* @length:keyIDLength */, const uint8_t keyIDLength) const = 0;
+    virtual KeyStatus Status(const uint8_t keyID[] /* @in @length:keyIDLength */, const uint8_t keyIDLength) const = 0;
 
     // Lazy Create the decryption buffer
     virtual OCDM_RESULT CreateSessionBuffer(string& bufferID /* @out */ ) = 0;
@@ -143,7 +143,7 @@ struct ISessionExt : virtual public Core::IUnknown {
     // Encrypted fragements.
     virtual std::string BufferIdExt() const = 0;
 
-    virtual OCDM_RESULT SetDrmHeader(const uint8_t drmHeader[] /* @length:drmHeaderLength */,
+    virtual OCDM_RESULT SetDrmHeader(const uint8_t drmHeader[] /* @in @length:drmHeaderLength */,
         uint16_t drmHeaderLength)
         = 0;
 
@@ -154,13 +154,13 @@ struct ISessionExt : virtual public Core::IUnknown {
 
     virtual OCDM_RESULT CancelChallengeDataExt() = 0;
 
-    virtual OCDM_RESULT StoreLicenseData(const uint8_t licenseData[] /* @length:licenseDataSize */,
+    virtual OCDM_RESULT StoreLicenseData(const uint8_t licenseData[] /* @in @length:licenseDataSize */,
         uint16_t licenseDataSize,
         uint8_t* secureStopId /* @out @length:16 */)
         = 0;
 
     virtual OCDM_RESULT SelectKeyId(const uint8_t keyLength,
-        const uint8_t keyId[] /* @length:keyLength */) 
+        const uint8_t keyId[] /* @in @length:keyLength */)
         = 0;
 
 
@@ -182,15 +182,15 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
     // Create a MediaKeySession using the supplied init data and CDM data.
     virtual OCDM_RESULT
     CreateSession(const string& keySystem, const int32_t licenseType,
-        const std::string& initDataType, const uint8_t* initData /* @length:initDataLength */,
-        const uint16_t initDataLength, const uint8_t* CDMData /* @length:CDMDataLength */,
+        const std::string& initDataType, const uint8_t* initData /* @in @length:initDataLength */,
+        const uint16_t initDataLength, const uint8_t* CDMData /* @in @length:CDMDataLength */,
         const uint16_t CDMDataLength, ISession::ICallback* callback,
         std::string& sessionId /* @out */, ISession*& session /* @out */)
         = 0;
 
     // Set Server Certificate
     virtual OCDM_RESULT
-    SetServerCertificate(const string& keySystem, const uint8_t* serverCertificate /* @length:serverCertificateLength */,
+    SetServerCertificate(const string& keySystem, const uint8_t* serverCertificate /* @in @length:serverCertificateLength */,
         const uint16_t serverCertificateLength)
         = 0;
 
@@ -214,15 +214,15 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
         = 0;
 
     virtual OCDM_RESULT GetSecureStop(const std::string& keySystem,
-        const uint8_t sessionID[] /* @length:sessionIDLength */,
+        const uint8_t sessionID[] /* @in @length:sessionIDLength */,
         uint16_t sessionIDLength, uint8_t* rawData /* @out @length:rawSize */,
         uint16_t& rawSize /* @inout */)
         = 0;
 
     virtual OCDM_RESULT CommitSecureStop(const std::string& keySystem,
-        const uint8_t sessionID[] /* @length:sessionIDLength */,
+        const uint8_t sessionID[] /* @in @length:sessionIDLength */,
         uint16_t sessionIDLength,
-        const uint8_t serverResponse[] /* @length:serverResponseLength */,
+        const uint8_t serverResponse[] /* @in @length:serverResponseLength */,
         uint16_t serverResponseLength)
         = 0;
 
