@@ -64,12 +64,12 @@ namespace Exchange {
             uint8_t  EncScheme;
             uint8_t  IVLength;
             uint8_t  KeyIdLength;
-            uint16_t  SubSampleLength;
+            uint16_t SubSampleLength;
             uint32_t PatternEncBlocks;
             uint32_t PatternClearBlocks;
             uint8_t  IV[24];
             uint8_t  KeyId[17];
-            uint32_t SubSamples[100];
+            CDMi::SubSampleInfo SubSamples[100];
             uint16_t StreamHeight;
             uint16_t StreamWidth;
             uint8_t  StreamType;
@@ -173,18 +173,19 @@ namespace Exchange {
             const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
             return (admin->SubSampleLength);
         }
-        const uint32_t* SubSamples() const
+        const CDMi::SubSampleInfo* SubSamples() const
         {
             const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
             return (&(admin->SubSamples[0]));
         }
-        void SubSample(const uint16_t length, const uint32_t encryptedBytes[]) 
+        void SubSample(const uint16_t length, const CDMi::SubSampleInfo subSampleInfo[])
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            VERIFY(sizeof(Administration::SubSamples)/sizeof(uint32_t) <= length);
-            admin->SubSampleLength = std::min(static_cast<uint16_t>(sizeof(Administration::SubSamples)/sizeof(uint32_t)), length);
+            VERIFY(sizeof(Administration::SubSamples)/sizeof(CDMi::SubSampleInfo) >= length);
+            admin->SubSampleLength = std::min(static_cast<uint16_t>(sizeof(Administration::SubSamples)/sizeof(CDMi::SubSampleInfo)), length);
             for(uint8_t index = 0; index < admin->SubSampleLength; index++) {
-                admin->SubSamples[index] = encryptedBytes[index];
+                admin->SubSamples[index].encrypted_bytes = subSampleInfo[index].encrypted_bytes;
+                admin->SubSamples[index].clear_bytes = subSampleInfo[index].clear_bytes;
             }
         }
         void SetMediaProperties(const uint16_t height, const uint16_t width, const uint8_t type)
