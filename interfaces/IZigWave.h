@@ -35,8 +35,8 @@ namespace WPEFramework {
             //        accept new devices.
             // @param enabled (true) or disable (false) the accepting mode.
             // 
-            virtual uint32_t Accepting(bool& enabled /* @out */) const = 0;
-            virtual uint32_t Accepting(const bool enabled) = 0;
+            virtual uint32_t Accept(const uint32_t address, bool& enabled /* @out */) const = 0;
+            virtual uint32_t Accept(const uint32_t address, const bool enabled) = 0;
 
             // @property
             // @brief To allow new devices to the network, the controller should be placed
@@ -44,7 +44,7 @@ namespace WPEFramework {
             //        accept new devices.
             // @param enabled (true) or disable (false) the accepting mode.
             // 
-            virtual uint32_t Metadata(const uint32_t id, string& metadata /* @out */) const = 0;
+            virtual uint32_t Device(const uint32_t id, string& metadata /* @out */) const = 0;
 
             // @brief All devices currently available
             // @return devices: array of ids from the available devices.
@@ -53,12 +53,10 @@ namespace WPEFramework {
 
             // @brief Bind the *out* from the soure to the *in* of the destination
             // @return: The success of the binding action.
-            /* @json:omit */
             virtual uint32_t Bind(const uint32_t source, const uint32_t destination) = 0;
 
             // @brief Unbind the *out* from the soure to the *in* of the destination
             // @return: The success of the unbinding action.
-            /* @json:omit */
             virtual uint32_t Unbind(const uint32_t source, const uint32_t destination) = 0;
         };
     }
