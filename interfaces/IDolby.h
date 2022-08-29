@@ -25,7 +25,8 @@ namespace WPEFramework {
 namespace Exchange {
 
     namespace Dolby {
-        /* @json */
+
+        // @json @uncompliant:extended
         struct EXTERNAL IOutput : virtual public Core::IUnknown {
 
             enum { ID = ID_DOLBY_OUTPUT };
@@ -52,7 +53,7 @@ namespace Exchange {
                 SOUNDMODE_AUTO
             };
 
-            /* @event */
+            // @event @uncompliant:extended
             struct EXTERNAL INotification : virtual public Core::IUnknown {
                 enum { ID = ID_DOLBY_OUTPUT_NOTIFICATION };
 

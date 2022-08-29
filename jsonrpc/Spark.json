@@ -4,6 +4,7 @@
   "info": {
     "title": "Spark API",
     "class": "Spark",
+    "format": "uncompliant-extended",
     "description": "Spark JSON-RPC interface"
   },
   "common": {

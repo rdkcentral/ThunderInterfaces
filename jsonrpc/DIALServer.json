@@ -4,6 +4,7 @@
   "info": {
     "title": "DIAL Server API",
     "class": "DIALServer",
+    "format": "uncompliant-extended",
     "description": "DIAL Server JSON-RPC interface"
   },
   "common": {

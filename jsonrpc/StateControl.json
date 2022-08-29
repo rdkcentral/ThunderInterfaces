@@ -4,6 +4,7 @@
   "info": {
     "title": "StateControl API",
     "class": "StateControl",
+    "format": "uncompliant-extended",
     "description": "StateControl JSON-RPC interface"
   },
   "common": {

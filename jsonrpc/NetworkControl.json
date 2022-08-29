@@ -4,6 +4,7 @@
   "info": {
     "title": "Network Control API",
     "class": "NetworkControl",
+    "format": "uncompliant-extended",
     "description": "Network Control JSON-RPC interface"
   },
   "definitions": {

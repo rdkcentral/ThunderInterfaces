@@ -4,6 +4,7 @@
   "info": {
     "title": "LISA API",
     "class": "LISA",
+    "format": "uncompliant-extended",
     "description": "LISA JSON-RPC interface"
   },
   "common": {

@@ -4,6 +4,7 @@
   "info": {
     "title": "Netflix API",
     "class": "Netflix",
+    "format": "uncompliant-extended",
     "description": "Netflix JSON-RPC interface"
   },
   "common": {

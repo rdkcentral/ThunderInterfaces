@@ -4,6 +4,7 @@
 	"info":{
 		"title":"Message Control API",
 		"class":"MessageControl",
+                "format":"uncompliant-collapsed",
 		"description":"MessageControl JSON-RPC interface"
 	},
 	"common":{
