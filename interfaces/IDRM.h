@@ -617,7 +617,7 @@ private:
     }
 
     CDMi_RESULT Enable(std::false_type) {
-        return(CDMi_SUCCESS);
+        return(CDMi_KEYSYSTEM_NOT_SUPPORTED);
     }
 
     template <typename T>
@@ -637,7 +637,7 @@ private:
     }
 
     CDMi_RESULT Disable(std::false_type) {
-        return(CDMi_SUCCESS);
+        return(CDMi_KEYSYSTEM_NOT_SUPPORTED);
     }
 
     const std::vector<std::string> _mimes;
