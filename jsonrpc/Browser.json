@@ -4,6 +4,7 @@
   "info": {
     "title": "Browser API",
     "class": "Browser",
+    "format": "uncompliant-extended",
     "description": "Browser JSON-RPC interface"
   },
   "common": {

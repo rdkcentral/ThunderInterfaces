@@ -4,6 +4,7 @@
   "info": {
     "title": "Time Sync API",
     "class": "TimeSync",
+    "format": "uncompliant-extended",
     "description": "TimeSync JSON-RPC interface"
   },
   "common": {
@@ -66,8 +67,7 @@
         }
       ]
     }
-  }
-  ,
+  },
   "events": {
     "timechange": {
       "summary": "Signals a time change"

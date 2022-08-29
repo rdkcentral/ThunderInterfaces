@@ -4,6 +4,7 @@
     "info": {
         "title": "Butler API",
         "class": "Butler",
+        "format": "uncompliant-extended",
         "description": "Butler JSON-RPC interface"
     },
     "common": {
@@ -385,7 +386,9 @@
           "$ref": "#/common/errors/unknownkey"
         }
       ]
-    },
+    }
+  },
+  "methods": {
     "persist": {
       "summary": "Make sure the current information is persisted, so it survives a reboot",
       "errors": [

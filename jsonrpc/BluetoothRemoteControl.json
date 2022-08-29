@@ -4,6 +4,7 @@
   "info": {
     "title": "Bluetooth Remote Control API",
     "class": "BluetoothRemoteControl",
+    "format": "uncompliant-extended",
     "description": "Bluetooth Remote Control JSON-RPC interface"
   },
   "common": {

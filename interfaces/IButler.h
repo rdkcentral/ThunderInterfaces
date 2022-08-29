@@ -20,13 +20,16 @@
 #pragma once
 
 #include "Module.h"
+#include <plugins/IShell.h>
+#include <interfaces/IValuePoint.h>
+
+// @stubgen:include <com/IIteratorType.h>
 
 namespace WPEFramework {
 	namespace Exchange {
-		// @stubgen:omit
-        struct IValuePoint;
 
-		// @stubgen:omit
+		struct IValuePoint;
+
 		struct EXTERNAL IButler : virtual public Core::IUnknown {
 
 			enum { ID = ID_BUTLER };

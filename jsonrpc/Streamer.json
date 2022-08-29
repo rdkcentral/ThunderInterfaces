@@ -4,6 +4,7 @@
   "info": {
     "title": "Streamer API",
     "class": "Streamer",
+    "format": "uncompliant-extended",
     "description": "Streamer JSON-RPC interface"
   },
   "common": {
@@ -376,7 +377,7 @@
     }
   },
   "methods": {
-    "Streamer.1.create": {
+    "create": {
       "summary": "Creates a stream instance.",
       "params": {
         "type": "object",
@@ -400,7 +401,7 @@
         }
       ]
     },
-    "Streamer.1.destroy": {
+    "destroy": {
       "summary": "Destroys a stream instance.",
       "params": {
         "$ref": "#/definitions/id"
@@ -415,7 +416,7 @@
         }
       ]
     },
-    "Streamer.1.load": {
+    "load": {
       "summary": "Loads a source into a stream.",
       "events": ["statechange"],
       "params": {
@@ -457,7 +458,7 @@
         }
       ]
     },
-    "Streamer.1.attach": {
+    "attach": {
       "summary": "Attaches a decoder to the streamer.",
       "params": {
         "$ref": "#/definitions/id"
@@ -484,7 +485,7 @@
         }
       ]
     },
-    "Streamer.1.detach": {
+    "detach": {
       "summary": "Detaches a decoder from the streamer.",
       "params": {
         "$ref": "#/definitions/id"
