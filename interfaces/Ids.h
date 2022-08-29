@@ -56,6 +56,9 @@ namespace Exchange {
         ID_BROWSER_RESOURCES                       = ID_BROWSER + 4,
         ID_BROWSER_SECURITY                        = ID_BROWSER + 5,
         ID_WEBKITBROWSER_NOTIFICATION              = ID_BROWSER + 6,
+        ID_BROWSER_SCRIPTING                       = ID_BROWSER + 7,
+        ID_BROWSER_COOKIEJAR                       = ID_BROWSER + 8,
+        ID_BROWSER_COOKIEJAR_NOTIFICATION          = ID_BROWSER + 9,
 
         ID_POWER                                   = 0x00000050,
         ID_POWER_NOTIFICATION                      = ID_POWER + 1,

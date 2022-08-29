@@ -4,6 +4,7 @@
   "info": {
     "title": "Bluetooth Control API",
     "class": "BluetoothControl",
+    "format": "uncompliant-extended",
     "description": "Bluetooth Control JSON-RPC interface"
   },
   "common": {

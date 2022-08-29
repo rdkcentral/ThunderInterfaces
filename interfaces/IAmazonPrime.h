@@ -22,12 +22,13 @@
 
 namespace WPEFramework {
 namespace Exchange {
-    // @json
+
+    // @json @uncompliant:collapsed
     struct EXTERNAL IAmazonPrime : virtual public Core::IUnknown {
 
         enum { ID = ID_AMAZONPRIME };
 
-        /* @event */
+        // @event @uncompliant:collapsed
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_AMAZONPRIME_NOTIFICATION };
 
@@ -43,6 +44,7 @@ namespace Exchange {
         // @param messsage the message to send according the amazon spec found
         //        in the parter portal.
         virtual uint32_t Send(const string& message) = 0;
-};
+    };
+
 }
 }

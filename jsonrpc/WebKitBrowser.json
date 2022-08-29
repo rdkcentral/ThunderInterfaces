@@ -4,6 +4,7 @@
   "info": {
     "title": "WebKit Browser API",
     "class": "WebKitBrowser",
+    "format": "uncompliant-collapsed",
     "description": "WebKitBrowser JSON-RPC interface"
   },
     "common": {

@@ -4,6 +4,7 @@
   "info": {
     "title": "Subsystem Control API",
     "class": "SubsystemControl",
+    "format": "uncompliant-collapsed",
     "description": "SubsystemControl JSON-RPC interface"
   },
   "common": {

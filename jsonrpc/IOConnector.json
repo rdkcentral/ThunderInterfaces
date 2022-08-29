@@ -4,6 +4,7 @@
   "info": {
     "title": "IO Connector API",
     "class": "IOConnector",
+    "format": "uncompliant-extended",
     "description": "IO Connector JSON-RPC interface"
   },
   "common": {

@@ -24,11 +24,11 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json
+    // @json @uncompliant:collapsed
     struct EXTERNAL ILanguageTag : virtual public Core::IUnknown {
         enum { ID = ID_LANGUAGETAG };
 
-        // @event
+        // @event @uncompliant:collapsed
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_LANGUAGETAG_NOTIFICATION };
 
@@ -44,6 +44,7 @@ namespace Exchange {
 
         virtual void Register(ILanguageTag::INotification* sink) = 0;
         virtual void Unregister(const ILanguageTag::INotification* sink) = 0;
+
         // @property
         // @brief Current application user interface language tag
         // @param language Language string as per RFC5646 (e.g. en)

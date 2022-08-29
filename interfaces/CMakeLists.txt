@@ -38,7 +38,7 @@ add_library(${TargetMarshalling} SHARED
         ${PROXY_STUB_SOURCES}
         )
 
-target_include_directories(${TargetMarshalling} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+target_include_directories(${TargetMarshalling} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/..)
 
 target_link_libraries(${TargetMarshalling}
         PRIVATE
