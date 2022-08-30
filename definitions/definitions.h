@@ -50,4 +50,7 @@ namespace WPEFramework {
 	ENUM_CONVERSION_HANDLER(Exchange::IComposition::ScreenResolution);
 	ENUM_CONVERSION_HANDLER(Exchange::IStream::streamtype);
 	ENUM_CONVERSION_HANDLER(Exchange::IStream::state);
+	ENUM_CONVERSION_HANDLER(Exchange::IValuePoint::basic);
+	ENUM_CONVERSION_HANDLER(Exchange::IValuePoint::specific);
+	ENUM_CONVERSION_HANDLER(Exchange::IValuePoint::dimension);
 }
