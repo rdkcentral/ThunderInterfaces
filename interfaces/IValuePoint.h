@@ -97,7 +97,9 @@ namespace Exchange {
             pulses = 0x0004, /* counter */
             degrees = 0x0005, /* temperture in degrees celsius */
             units = 0x0006, /* unqualified value, just units */
-            lux = 0x0007
+            lux = 0x0007,
+            volt = 0x0008,
+            ampere = 0x0009
         };
 
         enum condition : uint8_t {
