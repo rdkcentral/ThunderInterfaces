@@ -52,6 +52,8 @@ namespace Exchange {
             VIDEO_H265,
             VIDEO_H265_10,
             VIDEO_MPEG,
+            VIDEO_MPEG2,
+            VIDEO_MPEG4,
             VIDEO_VP8,
             VIDEO_VP9,
             VIDEO_VP10
