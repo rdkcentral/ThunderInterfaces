@@ -43,7 +43,6 @@ target_include_directories(${TargetMarshalling} PRIVATE $<BUILD_INTERFACE:${CMAK
 target_link_libraries(${TargetMarshalling}
         PRIVATE
           ${NAMESPACE}Core::${NAMESPACE}Core
-          ${NAMESPACE}Tracing::${NAMESPACE}Tracing
           ${NAMESPACE}COM::${NAMESPACE}COM
           CompileSettingsDebug::CompileSettingsDebug
         )
