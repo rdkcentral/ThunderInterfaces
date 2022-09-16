@@ -43,8 +43,8 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
         virtual void Message(const MessageType type, const string& category,
                              const string& module, const string& fileName,
-                             const uint16_t lineNumber, const uint64_t timestamp,
-                             const string& message) = 0;
+                             const uint16_t lineNumber, const string& className,
+                             const uint64_t timeStamp, const string& message) = 0;
     };
 
     virtual uint32_t Configure(ICallback* callback) = 0;
