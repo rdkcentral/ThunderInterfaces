@@ -21,50 +21,63 @@
 
 #include "Module.h"
 
+// @insert <com/IIteratorType.h>
+
 namespace WPEFramework {
 namespace Exchange {
 
+// @json
 struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
-    ~IMessageControl() override = default;
-  
     enum { ID = ID_MESSAGE_CONTROL };
 
-    enum MessageType : uint8_t {
-        Tracing = 0,
-        Logging = 1,
+    enum messagetype : uint8_t {
+        TRACING = 0,
+        LOGGING = 1,
     };
 
-    struct EXTERNAL ICallback : virtual public Core::IUnknown {
-
-        ~ICallback() override = default;
-
-        enum { ID = ID_MESSAGE_CONTROL_CALLBACK };
-
-        virtual void Message(const MessageType type, const string& category,
-                             const string& module, const string& fileName,
-                             const uint16_t lineNumber, const string& className,
-                             const uint64_t timeStamp, const string& message) = 0;
+    struct Control {
+        messagetype type /* @brief Type of message */;
+        string category /* @brief Name of the message category (e.g. Information) */;
+        string module /* @brief Name of the module the message is originating from (e.g. Plugin_BluetoothControl) */;
+        bool enabled /* @brief Denotes if the control is enabled (true) or disabled (false) */;
     };
 
-    virtual uint32_t Configure(ICallback* callback) = 0;
+    // Interface not exposed over JSON-RPC
+    struct EXTERNAL ICollect : virtual public Core::IUnknown {
 
-    virtual uint32_t Attach(const uint32_t id) = 0;
-    virtual uint32_t Detach(const uint32_t id) = 0;
+        enum { ID = ID_MESSAGE_CONTROL_COLLECT };
 
-    virtual uint32_t Enable(
-        const MessageType type, 
-        const string& moduleName,
-        const string& categoryName,
-        const bool enable) = 0;
+        struct EXTERNAL ICallback : virtual public Core::IUnknown {
 
-    virtual uint32_t Setting (
-        const bool initialize, 
-        MessageType& type /* @out */, 
-        string& category /* @out */,
-        string& module /* @out */,
-        bool& enabled /* @out */) = 0;
-};
+            enum { ID = ID_MESSAGE_CONTROL_COLLECT_CALLBACK };
+
+            virtual void Message(const messagetype type, const string& category,
+                                const string& module, const string& fileName,
+                                const uint16_t lineNumber, const string& className,
+                                const uint64_t timeStamp, const string& text) = 0;
+        };
+
+        virtual uint32_t Configure(ICallback* callback) = 0;
+
+        virtual uint32_t Attach(const uint32_t id) = 0;
+
+        virtual uint32_t Detach(const uint32_t id) = 0;
+    };
+
+    using IControlIterator = RPC::IIteratorType<Control, ID_MESSAGE_CONTROL_ITERATOR>;
+
+    // @brief Enables/disables a message control
+    // @param type Message type
+    // @param module Name of the module the message is originating from (e.g. Plugin_BluetoothControl)
+    // @param category Name of the message category (e.g. Information)
+    // @param enabled Denotes if control should be enabled (true) or disabled (false)
+    virtual uint32_t Enable(const messagetype type, const string& category, const string& module, const bool enabled) = 0;
+
+    // @property
+    // @brief Retrieves a list of current message controls
+    virtual uint32_t Controls(IControlIterator*& control /* @out */) const = 0;
+  };
 
 } // namespace Exchange
 } // namespace WPEFramework
