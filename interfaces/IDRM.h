@@ -47,7 +47,7 @@
 #include <typeinfo>
 #include <vector>
 
-#include <core/core.h>
+#include <interfaces/Portability.h>
 
 class BufferReader {
 private:
