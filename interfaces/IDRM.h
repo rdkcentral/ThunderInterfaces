@@ -349,19 +349,19 @@ public:
     virtual const char* GetKeySystem(void) const = 0;
 
     DEPRECATED virtual CDMi_RESULT Decrypt(
-        const uint8_t* f_pbSessionKey,
-        uint32_t f_cbSessionKey,
-        const EncryptionScheme encryptionScheme,
-        const EncryptionPattern& pattern,
-        const uint8_t* f_pbIV,
-        uint32_t f_cbIV,
-        uint8_t* f_pbData,
-        uint32_t f_cbData,
-        uint32_t* f_pcbOpaqueClearContent,
-        uint8_t** f_ppbOpaqueClearContent,
-        const uint8_t keyIdLength,
-        const uint8_t* keyId,
-        bool initWithLast15 /*=0*/) {
+        const uint8_t* f_pbSessionKey VARIABLE_IS_NOT_USED,
+        uint32_t f_cbSessionKey VARIABLE_IS_NOT_USED,
+        const EncryptionScheme encryptionScheme VARIABLE_IS_NOT_USED,
+        const EncryptionPattern& pattern VARIABLE_IS_NOT_USED,
+        const uint8_t* f_pbIV VARIABLE_IS_NOT_USED,
+        uint32_t f_cbIV VARIABLE_IS_NOT_USED,
+        uint8_t* f_pbData VARIABLE_IS_NOT_USED,
+        uint32_t f_cbData VARIABLE_IS_NOT_USED,
+        uint32_t* f_pcbOpaqueClearContent VARIABLE_IS_NOT_USED,
+        uint8_t** f_ppbOpaqueClearContent VARIABLE_IS_NOT_USED,
+        const uint8_t keyIdLength VARIABLE_IS_NOT_USED,
+        const uint8_t* keyId VARIABLE_IS_NOT_USED,
+        bool initWithLast15 /*=0*/ VARIABLE_IS_NOT_USED) {
 
         return (CDMi_METHOD_NOT_IMPLEMENTED);
     }
@@ -374,7 +374,7 @@ public:
         const SampleInfo*        sampleInfo,      // Information required to decrypt Sample
         const IStreamProperties* properties) {    // Stream Properties
 
-
+PUSH_WARNING(DISABLE_WARNING_DEPRECATED_USE)
         return (Decrypt(sampleInfo->keyId, sampleInfo->keyIdLength,
                 sampleInfo->scheme, sampleInfo->pattern,
                 sampleInfo->iv, sampleInfo->ivLength,
@@ -382,6 +382,7 @@ public:
                 outDataLength, outData,
                 sampleInfo->keyIdLength, sampleInfo->keyId,
                 properties->InitLength()));
+POP_WARNING()
     }
 
     virtual CDMi_RESULT ReleaseClearContent(
@@ -392,7 +393,7 @@ public:
         = 0;
 
     virtual CDMi_RESULT ResetOutputProtection() { return (CDMi_METHOD_NOT_IMPLEMENTED); }
-    virtual CDMi_RESULT SetParameter(const std::string& name, const std::string& value) { return (CDMi_METHOD_NOT_IMPLEMENTED); }
+    virtual CDMi_RESULT SetParameter(const std::string& name VARIABLE_IS_NOT_USED, const std::string& value VARIABLE_IS_NOT_USED) { return (CDMi_METHOD_NOT_IMPLEMENTED); }
 };
 
 // IMediaKeySession defines the MediaKeySession interface.
