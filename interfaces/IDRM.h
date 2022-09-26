@@ -47,13 +47,7 @@
 #include <typeinfo>
 #include <vector>
 
-#ifdef __GNUC__
-#define WARN_UNUSED_RESULT __attribute__((warn_unused_result))
-#define DEPRECATED __attribute__((deprecated))
-#else
-#define WARN_UNUSED_RESULT
-#define DEPRECATED
-#endif
+#include <core/core.h>
 
 class BufferReader {
 private:
@@ -95,15 +89,15 @@ public:
 
     // Read a value from the stream, performing endian correction,
     // and advance the stream pointer.
-    inline bool Read1(uint8_t* v) WARN_UNUSED_RESULT { return Read(v); }
-    inline bool Read2(uint16_t* v) WARN_UNUSED_RESULT { return Read(v); }
-    inline bool Read2s(int16_t* v) WARN_UNUSED_RESULT { return Read(v); }
-    inline bool Read4(uint32_t* v) WARN_UNUSED_RESULT { return Read(v); }
-    inline bool Read4s(int32_t* v) WARN_UNUSED_RESULT { return Read(v); }
-    inline bool Read8(uint64_t* v) WARN_UNUSED_RESULT { return Read(v); }
-    inline bool Read8s(int64_t* v) WARN_UNUSED_RESULT { return Read(v); }
+    inline bool Read1(uint8_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
+    inline bool Read2(uint16_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
+    inline bool Read2s(int16_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
+    inline bool Read4(uint32_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
+    inline bool Read4s(int32_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
+    inline bool Read8(uint64_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
+    inline bool Read8s(int64_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
 
-    inline bool ReadString(std::string* str, size_t count) WARN_UNUSED_RESULT
+    inline bool ReadString(std::string* str, size_t count) WARNING_RESULT_NOT_USED
     {
         if ((str != nullptr) && (HasBytes(count) == true)) {
             str->assign(buf_ + pos_, buf_ + pos_ + count);
@@ -112,7 +106,7 @@ public:
         }
         return false;
     }
-    inline bool ReadVec(std::vector<uint8_t>* vec, size_t count) WARN_UNUSED_RESULT
+    inline bool ReadVec(std::vector<uint8_t>* vec, size_t count) WARNING_RESULT_NOT_USED
     {
         if ((vec != nullptr) && (HasBytes(count) == true)) {
             vec->clear();
@@ -125,7 +119,7 @@ public:
 
     // These variants read a 4-byte integer of the corresponding signedness and
     // store it in the 8-byte return type.
-    inline bool Read4Into8(uint64_t* v) WARN_UNUSED_RESULT
+    inline bool Read4Into8(uint64_t* v) WARNING_RESULT_NOT_USED
     {
         uint32_t tmp;
         if ((v != nullptr) && (Read4(&tmp) == true)) {
@@ -134,7 +128,7 @@ public:
         }
         return false;
     }
-    inline bool Read4sInto8s(int64_t* v) WARN_UNUSED_RESULT
+    inline bool Read4sInto8s(int64_t* v) WARNING_RESULT_NOT_USED
     {
         int32_t tmp;
         if ((v != nullptr) && (Read4s(&tmp) == true)) {
@@ -145,7 +139,7 @@ public:
     }
 
     // Advance the stream by this many bytes.
-    inline bool SkipBytes(size_t bytes) WARN_UNUSED_RESULT
+    inline bool SkipBytes(size_t bytes) WARNING_RESULT_NOT_USED
     {
         if (HasBytes(bytes) == true) {
             pos_ += bytes;
