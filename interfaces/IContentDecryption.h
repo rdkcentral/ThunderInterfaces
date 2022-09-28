@@ -168,7 +168,7 @@ namespace Exchange {
             encBlocks = admin->PatternEncBlocks;
             clearBlocks = admin->PatternClearBlocks;
         }
-        uint8_t SubSampleLength() const 
+        uint16_t SubSampleLength() const 
         {
             const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
             return (admin->SubSampleLength);
