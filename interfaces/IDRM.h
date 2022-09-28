@@ -48,11 +48,19 @@
 #include <vector>
 
 #ifdef __GNUC__
+#if !defined WARN_UNUSED_RESULT
 #define WARN_UNUSED_RESULT __attribute__((warn_unused_result))
+#endif
+#if !defined DEPRECATED
 #define DEPRECATED __attribute__((deprecated))
+#endif
 #else
+#if !defined WARN_UNUSED_RESULT
 #define WARN_UNUSED_RESULT
+#endif
+#if !defined DEPRECATED
 #define DEPRECATED
+#endif
 #endif
 
 class BufferReader {
@@ -374,7 +382,7 @@ public:
         const SampleInfo*        sampleInfo,      // Information required to decrypt Sample
         const IStreamProperties* properties) {    // Stream Properties
 
-
+        PUSH_WARNING(DISABLE_WARNING_DEPRECATED_USE);
         return (Decrypt(sampleInfo->keyId, sampleInfo->keyIdLength,
                 sampleInfo->scheme, sampleInfo->pattern,
                 sampleInfo->iv, sampleInfo->ivLength,
@@ -382,6 +390,7 @@ public:
                 outDataLength, outData,
                 sampleInfo->keyIdLength, sampleInfo->keyId,
                 properties->InitLength()));
+        POP_WARNING();
     }
 
     virtual CDMi_RESULT ReleaseClearContent(
