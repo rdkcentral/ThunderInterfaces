@@ -30,9 +30,15 @@
 #define WARNING_RESULT_NOT_USED __attribute__((warn_unused_result))
 #endif
 #else
+#ifndef DEPRECATED
 #define DEPRECATED
+#endif
+#ifndef VARIABLE_IS_NOT_USED
 #define VARIABLE_IS_NOT_USED
+#endif
+#ifndef WARNING_RESULT_NOT_USED
 #define WARNING_RESULT_NOT_USED
+#endif
 #endif
 
 #if !defined(PUSH_WARNING) && !defined(POP_WARNING)
