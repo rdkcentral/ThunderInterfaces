@@ -9,6 +9,8 @@ cmake-build-*/
 CMakeCache.txt
 Makefile
 uninstall.cmake
+install_manifest.txt
+cmake_install.cmake
 */cmake_install.cmake
 *.pc
 *.so.*
@@ -22,3 +24,6 @@ workspace/
 *.user
 /artifacts/Release
 *.pyc
+*/*Config.cmake
+*/*ConfigVersion.cmake
+*/generated
