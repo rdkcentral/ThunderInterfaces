@@ -10,6 +10,32 @@
   "common": {
     "$ref": "common.json"
   },
+  "errors": {
+    "wrongparams": {
+      "code": 1001,
+      "message": "ERROR_WRONG_PARAMS"
+    },
+    "toomanyrequests": {
+      "code": 1002,
+      "message": "ERROR_TOO_MANY_REQUESTS"
+    },
+    "alreadyinstalled": {
+      "code": 1003,
+      "message": "ERROR_ALREADY_INSTALLED"
+    },
+    "wronghandle": {
+      "code": 1007,
+      "message": "ERROR_WRONG_HANDLE"
+    },
+    "applocked": {
+      "code": 1009,
+      "message": "ERROR_APP_LOCKED"
+    },
+    "appuninstalling": {
+      "code": 1010,
+      "message": "ERROR_APP_UNINSTALLING"
+    }
+  },
   "definitions": {
     "appId": {
       "description": "Application ID",
@@ -45,9 +71,35 @@
       "description": "Operation handle",
       "type": "string"
     },
+    "handleResult": {
+      "type": "object",
+      "description": "Struct holding handle",
+      "properties": {
+        "handle": {
+          "$ref": "#/definitions/handle"
+        }
+      },
+      "required": [
+        "handle"
+      ]
+    },
+    "emptyResult": {
+      "type": "object",
+      "description": "Struct holding nothing i.e. {}",
+      "properties": {
+      },
+      "required": [
+      ]
+    },
     "status": {
       "description": "Operation status",
-      "type": "string"
+      "type": "string",
+      "example": "Success"
+    },
+    "operation": {
+      "description": "Operation",
+      "type": "string",
+      "example": "Installing"
     },
     "progress": {
       "description": "Operation progress",
@@ -60,6 +112,30 @@
     "value": {
       "description": "Value property",
       "type": "string"
+    },
+    "reason": {
+      "description": "Reason for lock",
+      "type": "string",
+      "example": "active"
+    },
+    "owner": {
+      "description": "Owner of lock",
+      "type": "string",
+      "example": "awc"
+    },
+    "lockInfo": {
+      "type": "object",
+      "description": "Struct holding lock info",
+      "properties": {
+        "reason": {
+          "$ref": "#/definitions/reason"
+        },
+        "owner": {
+          "$ref": "#/definitions/owner"
+        }
+      },
+      "required": [
+      ]
     },
     "installedApp": {
       "type": "object",
@@ -682,6 +758,114 @@
           "$ref": "#/common/errors/general"
         }
       ]
+    },
+    "lock": {
+      "summary": "Lock an application",
+      "params": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/appType"
+          },
+          "id": {
+            "$ref": "#/definitions/appId"
+          },
+          "version": {
+            "$ref": "#/definitions/appVersion"
+          },
+          "reason": {
+            "$ref": "#/definitions/reason"
+          },
+          "owner": {
+            "$ref": "#/definitions/owner"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "version"
+        ]
+      },
+      "result": {
+        "$ref": "#/definitions/handleResult"
+      },
+      "errors": [
+        {
+          "description": "LISA initialization in progress or other operation pending",
+          "$ref": "#/errors/toomanyrequests"
+        },
+        {
+          "description": "Invalid params or app not unstalled",
+          "$ref": "#/errors/wrongparams"
+        },
+        {
+          "description": "App is currently being uninstalled",
+          "$ref": "#/errors/appuninstalling"
+        },
+        {
+          "description": "App is already locked",
+          "$ref": "#/errors/applocked"
+        }
+      ]
+    },
+    "unlock": {
+      "summary": "Unlock an application",
+      "params": {
+        "type": "object",
+        "$ref": "#/common/results/void",
+        "properties": {
+          "handle": {
+            "$ref": "#/definitions/handle"
+          }
+        },
+        "required": [
+          "handle"
+        ]
+      },
+      "result": {
+        "$ref": "#/definitions/emptyResult"
+      },
+      "errors": [
+        {
+          "description": "Wrong handle or app not locked anymore",
+          "$ref": "#/errors/wronghandle"
+        }
+      ]
+    },
+    "getLockInfo": {
+      "summary": "Get lock info",
+      "params": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/appType"
+          },
+          "id": {
+            "$ref": "#/definitions/appId"
+          },
+          "version": {
+            "$ref": "#/definitions/appVersion"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "version"
+        ]
+      },
+      "result": {
+        "$ref": "#/definitions/lockInfo"
+      },
+      "errors": [
+        {
+          "description": "Invalid params or app not unstalled",
+          "$ref": "#/errors/wrongparams"
+        },
+        {
+          "description": "Wrong handle or app not locked anymore",
+          "$ref": "#/errors/wronghandle"
+        }
+      ]
     }
   },
   "events": {
@@ -694,6 +878,18 @@
           "handle": {
             "$ref": "#/definitions/handle"
           },
+          "operation": {
+            "$ref": "#/definitions/operation"
+          },
+          "type": {
+            "$ref": "#/definitions/appType"
+          },
+          "id": {
+            "$ref": "#/definitions/appId"
+          },
+          "version": {
+            "$ref": "#/definitions/appVersion"
+          },
           "status": {
             "$ref": "#/definitions/status"
           },
@@ -704,7 +900,11 @@
         },
         "required": [
           "handle",
-          "status"
+          "status",
+          "operation",
+          "id",
+          "type",
+          "version"
         ]
       }
     }
