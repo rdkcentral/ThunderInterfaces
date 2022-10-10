@@ -1,0 +1,140 @@
+{
+  "$schema": "interface.schema.json",
+  "jsonrpc": "2.0",
+  "info": {
+    "title": "Airplay API",
+    "class": "AirplayJSONRPC",
+    "description": "Airplay JSON-RPC interface"
+  },
+  "common": {
+    "$ref": "common.json"
+  },
+  "include": {
+    "statecontrol": {
+      "$ref": "StateControl.json#"
+    }
+  },
+  "properties": {
+    "visibility": {
+      "summary": "Current Airplay visibility",
+      "writeonly":true,
+      "events": [
+        "visibilitychange"
+      ],
+      "params": {
+        "type": "string",
+        "enum": [
+          "visible",
+          "hidden"
+        ]
+      }
+    }
+  },
+  "methods": {
+    "startapp": {
+      "summary": "Start airplay application",
+      "params": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "description": "Command to send to Airplay",
+            "type": "string",
+            "example": "config"
+          }
+        }
+      },
+      "result": {
+        "type": "number"
+      },
+      "errors": [
+        {
+          "description": "Airplay is unavailable",
+          "$ref": "#/common/errors/unavailable"
+        },
+        {
+          "description": "Command is not set",
+          "$ref": "#/common/errors/unknownkey"
+        }
+      ]
+    },
+    "stopapp": {
+      "summary": "Stop airplay application",
+      "params": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "description": "Command to send to Airplay",
+            "type": "string",
+            "example": "config"
+          }
+        }
+      },
+      "result": {
+        "type": "number"
+      },
+      "errors": [
+        {
+          "description": "Airplay is unavailable",
+          "$ref": "#/common/errors/unavailable"
+        },
+        {
+          "description": "Command is not set",
+          "$ref": "#/common/errors/unknownkey"
+        }
+      ]
+    },
+    "factoryreset": {
+      "summary": "Does Airplay factory reset",
+      "result": {
+        "$ref": "#/common/results/void"
+      },
+      "errors": [
+        {
+          "description": "Airplay is unavailable",
+          "$ref": "#/common/errors/unavailable"
+        }
+      ]
+    },
+    "systemcommand": {
+      "summary": "Does Airplay app specific system command",
+      "params": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "description": "Command to send to airplay",
+            "type": "string",
+            "example": "config"
+          }
+        }
+      },
+      "result": {
+        "type": "number"
+      },
+      "errors": [
+        {
+          "description": "Airplay is unavailable",
+          "$ref": "#/common/errors/unavailable"
+        },
+        {
+          "description": "Command is not set",
+          "$ref": "#/common/errors/unknownkey"
+        }
+      ]
+    }
+  },
+  "events": {
+    "visibilitychange": {
+      "summary": "Signals a visibility change of the Airplay",
+      "params": {
+        "type": "object",
+        "properties": {
+          "hidden": {
+            "description": "Determines if the Airplay has been hidden (true) or made visible (false)",
+            "type": "boolean",
+            "example": false
+          }
+        }
+      }
+    }
+  }
+}
