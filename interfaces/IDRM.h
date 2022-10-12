@@ -200,6 +200,7 @@ typedef enum {
     CDMi_INVALID_SESSION = 0x80000003,
     CDMi_INVALID_DECRYPT_BUFFER = 0x80000004,
     CDMi_OUT_OF_MEMORY = 0x80000005,
+    CDMi_METHOD_NOT_IMPLEMENTED = 0x80000006,
     CDMi_FAIL = 0x80004005,
     CDMi_INVALID_ARG = 0x80070057,
     CDMi_SERVER_INTERNAL_ERROR = 0x8004C600,
@@ -227,6 +228,14 @@ typedef enum {
     InvalidState
 } SessionStateExt;
 
+typedef enum
+{
+    Unknown = 0,
+    Video,
+    Audio,
+    Data
+} MediaType;
+
 // ISO/IEC 23001-7 defines two Common Encryption Schemes with Full Sample and Subsample modes
 typedef enum : uint8_t {
     Clear = 0,
@@ -236,11 +245,44 @@ typedef enum : uint8_t {
     AesCbc_Cbcs     // AES-CBC mode and Sub-Sample + patterned encryption + Constant IV
 } EncryptionScheme;
 
-//CENC3.0 pattern is a number of encrypted blocks followed a number of clear blocks after which the pattern repeats.
+// CBCS & CENC3.0 pattern is a number of encrypted blocks followed a number of clear
+// blocks after which the pattern repeats.
 typedef struct {
-    uint32_t encrypted_blocks;
     uint32_t clear_blocks;
+    uint32_t encrypted_blocks;
 } EncryptionPattern;
+
+typedef struct {
+    uint16_t clear_bytes;
+    uint32_t encrypted_bytes;
+} SubSampleInfo;
+
+typedef struct {
+    EncryptionScheme   scheme;          // Encryption scheme used in this sample
+    EncryptionPattern pattern;          // Encryption Pattern used in this sample
+    uint8_t*           iv;              // Initialization vector(IV) to decrypt this sample
+    uint8_t            ivLength;        // Length of IV
+    uint8_t*           keyId;           // ID of Key required to decrypt this sample
+    uint8_t            keyIdLength;     // Length of KeyId
+    uint8_t            subSampleCount;  // Number or Sub-Samples in this sample
+    SubSampleInfo*     subSample;       // SubSample mapping - Repeating pair of Clear bytes and Encrypted Bytes representing each subsample.
+} SampleInfo;
+
+// IStreamProperties to provide information about the current stream
+class IStreamProperties {
+public:
+    virtual ~IStreamProperties (void) = default;
+
+    // Get stream video size
+    virtual uint16_t GetHeight() const = 0;
+    virtual uint16_t GetWidth() const = 0;
+
+    // Get stream type
+    virtual MediaType GetMediaType() const = 0;
+
+    // Deprecated method for backwards compatibility.
+    virtual uint8_t InitLength() const = 0;
+};
 
 // IMediaKeySessionCallback defines the callback interface to receive
 // events originated from MediaKeySession.
@@ -317,8 +359,27 @@ public:
         uint8_t** f_ppbOpaqueClearContent,
         const uint8_t keyIdLength,
         const uint8_t* keyId,
-        bool initWithLast15)
-        = 0;
+        bool initWithLast15 /*=0*/) {
+
+        return (CDMi_METHOD_NOT_IMPLEMENTED);
+    }
+
+    virtual CDMi_RESULT Decrypt(
+        uint8_t*                 inData,          // Incoming encrypted data
+        const uint32_t           inDataLength,    // Incoming encrypted data length
+        uint8_t**                outData,         // Outgoing decrypted data
+        uint32_t*                outDataLength,   // Outgoing decrypted data length
+        const SampleInfo*        sampleInfo,      // Information required to decrypt Sample
+        const IStreamProperties* properties) {    // Stream Properties
+
+        return (Decrypt(sampleInfo->keyId, sampleInfo->keyIdLength,
+                sampleInfo->scheme, sampleInfo->pattern,
+                sampleInfo->iv, sampleInfo->ivLength,
+                inData, inDataLength,
+                outDataLength, outData,
+                sampleInfo->keyIdLength, sampleInfo->keyId,
+                properties->InitLength()));
+    }
 
     virtual CDMi_RESULT ReleaseClearContent(
         const uint8_t* f_pbSessionKey,
@@ -327,7 +388,8 @@ public:
         uint8_t* f_pbClearContentOpaque)
         = 0;
 
-    virtual CDMi_RESULT ResetOutputProtection() {return CDMi_SUCCESS;}
+    virtual CDMi_RESULT ResetOutputProtection() { return (CDMi_METHOD_NOT_IMPLEMENTED); }
+    virtual CDMi_RESULT SetParameter(const std::string& name, const std::string& value) { return (CDMi_METHOD_NOT_IMPLEMENTED); }
 };
 
 // IMediaKeySession defines the MediaKeySession interface.
@@ -343,7 +405,6 @@ public:
     virtual CDMi_RESULT GetChallengeDataExt(uint8_t* challenge, uint32_t& challengeSize, uint32_t isLDL) = 0;
 
     virtual CDMi_RESULT CancelChallengeDataExt() = 0;
-    ;
 
     virtual CDMi_RESULT StoreLicenseData(const uint8_t licenseData[], uint32_t licenseDataSize, uint8_t* secureStopId) = 0;
 
@@ -445,6 +506,8 @@ struct ISystemFactory {
     virtual const std::vector<std::string>& MimeTypes() const = 0;
     virtual void Initialize(const WPEFramework::PluginHost::IShell * shell, const std::string& configline) = 0;
     virtual void Deinitialize(const WPEFramework::PluginHost::IShell * shell) = 0;
+    virtual CDMi_RESULT Enable() = 0;
+    virtual CDMi_RESULT Disable() = 0;
 };
 
 template <typename IMPLEMENTATION>
@@ -463,26 +526,35 @@ public:
     ~SystemFactoryType() override = default;
 
 public:
-    virtual IMediaKeys* Instance()
+    IMediaKeys* Instance() override
     {
         return (&_instance);
     }
-    virtual const std::vector<std::string>& MimeTypes() const
+    const std::vector<std::string>& MimeTypes() const override
     {
         return (_mimes);
     }
-    virtual const char* KeySystem() const
+    const char* KeySystem() const override
     {
         return (typeid(IMPLEMENTATION).name());
     }
 
-    virtual void Initialize(const WPEFramework::PluginHost::IShell * shell, const std::string& configline)
+    void Initialize(const WPEFramework::PluginHost::IShell * shell, const std::string& configline) override
     {
         Initialize(shell, configline, std::integral_constant<bool, HasOnShellAndSystemInitialize<IMPLEMENTATION>::Has>());
     }
-    virtual void Deinitialize(const WPEFramework::PluginHost::IShell * shell)
+    void Deinitialize(const WPEFramework::PluginHost::IShell * shell) override
     {
         Deinitialize(shell, std::integral_constant<bool, HasOnShellAndSystemDeinitialize<IMPLEMENTATION>::Has>());
+    }
+
+    CDMi_RESULT Enable() override
+    {
+        return (Enable(std::integral_constant<bool, HasEnable<IMPLEMENTATION>::Has>()));
+    }
+    CDMi_RESULT Disable() override
+    {
+        return (Disable (std::integral_constant<bool, HasDisable<IMPLEMENTATION>::Has>()));
     }
 
 private:
@@ -511,22 +583,58 @@ private:
     };
 
 
-    void Initialize(const WPEFramework::PluginHost::IShell * service, const std::string& configline, std::true_type)
-    {
+    void Initialize(const WPEFramework::PluginHost::IShell * service, const std::string& configline, std::true_type) {
         _instance.Initialize(service, configline);
     }
 
-    void Initialize(const WPEFramework::PluginHost::IShell *, const std::string&, std::false_type)
-    {
+    void Initialize(const WPEFramework::PluginHost::IShell *, const std::string&, std::false_type) {
     }
 
-    void Deinitialize(const WPEFramework::PluginHost::IShell * service, std::true_type)
-    {
+    void Deinitialize(const WPEFramework::PluginHost::IShell * service, std::true_type) {
         _instance.Deinitialize(service);
     }
 
-    void Deinitialize(const WPEFramework::PluginHost::IShell *, std::false_type)
-    {
+    void Deinitialize(const WPEFramework::PluginHost::IShell *, std::false_type) {
+    }
+
+    template <typename T>
+    struct HasEnable{
+        template <typename U, CDMi_RESULT (U::*)()>
+        struct SFINAE {
+        };
+        template <typename U>
+        static uint8_t Test(SFINAE<U, &U::Enable>*);
+        template <typename U>
+        static uint32_t Test(...);
+        static const bool Has = sizeof(Test<T>(0)) == sizeof(uint8_t);
+    };
+
+    CDMi_RESULT Enable(std::true_type) {
+        return(_instance.Enable());
+    }
+
+    CDMi_RESULT Enable(std::false_type) {
+        return(CDMi_KEYSYSTEM_NOT_SUPPORTED);
+    }
+
+    template <typename T>
+    struct HasDisable{
+        template <typename U, CDMi_RESULT (U::*)()>
+        struct SFINAE {
+        };
+        template <typename U>
+        static uint8_t Test(SFINAE<U, &U::Disable>*);
+        template <typename U>
+        static uint32_t Test(...);
+        static const bool Has = sizeof(Test<T>(0)) == sizeof(uint8_t);
+    };
+
+    CDMi_RESULT Disable(std::true_type) {
+        return(_instance.Enable());
+    }
+
+    CDMi_RESULT Disable(std::false_type) {
+        return(CDMi_KEYSYSTEM_NOT_SUPPORTED);
     }
 
     const std::vector<std::string> _mimes;
