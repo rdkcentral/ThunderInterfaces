@@ -18,7 +18,9 @@
  */
 
 #pragma once
+
 #include "Module.h"
+#include "IDRM.h"
 
 namespace WPEFramework {
 
@@ -55,27 +57,29 @@ namespace Exchange {
         virtual uint32_t Unregister(IContentDecryption::INotification* notification VARIABLE_IS_NOT_USED) { return Core::ERROR_NOT_SUPPORTED; };
     };
 
-
-
     class DataExchange : public Core::SharedBuffer {
     private:
+        struct Administration {
+            uint32_t Status;
+            uint8_t  EncScheme;
+            uint8_t  IVLength;
+            uint8_t  KeyIdLength;
+            uint16_t SubSampleLength;
+            uint32_t PatternEncBlocks;
+            uint32_t PatternClearBlocks;
+            uint8_t  IV[24];
+            uint8_t  KeyId[17];
+            CDMi::SubSampleInfo SubSamples[100];
+            uint16_t StreamHeight;
+            uint16_t StreamWidth;
+            uint8_t  StreamType;
+        };
+
+    public:
         DataExchange() = delete;
         DataExchange(const DataExchange&) = delete;
         DataExchange& operator=(const DataExchange&) = delete;
 
-    private:
-        struct Administration {
-            uint32_t Status;
-            uint8_t KeyId[17];
-            uint8_t IVLength;
-            uint8_t IV[24];
-            uint8_t EncScheme;
-            uint32_t PatternEncBlocks;
-            uint32_t PatternClearBlocks;
-            bool InitWithLast15;
-        };
-
-    public:
         DataExchange(const string& name)
             : Core::SharedBuffer(name.c_str())
         {
@@ -96,31 +100,44 @@ namespace Exchange {
             // Clear the administration space before using it.
             ::memset(admin, 0, sizeof(Administration));
         }
-        ~DataExchange() {}
+        ~DataExchange() = default;
 
     public:
-        inline void Status(uint32_t status)
+        void Clear()
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            admin->SubSampleLength = 0;
+            admin->IVLength = 0;
+            admin->KeyIdLength = 0;
+            admin->StreamHeight = 0;
+            admin->StreamWidth = 0;
+            admin->StreamType = 0;
+        }
+        void Status(uint32_t status)
         {
             reinterpret_cast<Administration*>(AdministrationBuffer())->Status = status;
         }
-        inline uint32_t Status() const
+        uint32_t Status() const
         {
-            return (reinterpret_cast<const Administration*>(AdministrationBuffer())
-                        ->Status);
+            return (reinterpret_cast<const Administration*>(AdministrationBuffer())->Status);
         }
-        inline void InitWithLast15(bool initWithLast15)
+        void InitWithLast15(bool initWithLast15)
         {
-            reinterpret_cast<Administration*>(AdministrationBuffer())->InitWithLast15 = initWithLast15;
+            if (initWithLast15 == true) {
+                reinterpret_cast<Administration*>(AdministrationBuffer())->IVLength |= 0x80;
+            }
+            else {
+                reinterpret_cast<Administration*>(AdministrationBuffer())->IVLength &= (~0x80);
+            }
         }
-        inline bool InitWithLast15() const
+        bool InitWithLast15() const
         {
-            return (reinterpret_cast<const Administration*>(AdministrationBuffer())
-                        ->InitWithLast15);
+            return ((reinterpret_cast<const Administration*>(AdministrationBuffer())->IVLength & 0x80) != 0);
         }
         void SetIV(const uint8_t ivDataLength, const uint8_t ivData[])
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            ASSERT(ivDataLength <= sizeof(Administration::IV));
+            VERIFY(ivDataLength <= sizeof(Administration::IV));
             admin->IVLength = (ivDataLength > sizeof(Administration::IV) ? sizeof(Administration::IV)
                                                                         : ivDataLength);
             ::memcpy(admin->IV, ivData, admin->IVLength);
@@ -134,30 +151,59 @@ namespace Exchange {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
             admin->EncScheme = encScheme;
         }
-
         uint8_t EncScheme()
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
             return admin->EncScheme;
         }
-
         void SetEncPattern(const uint32_t encBlocks, const uint32_t clearBlocks)
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
             admin->PatternEncBlocks = encBlocks;
             admin->PatternClearBlocks = clearBlocks;
         }
-
         void EncPattern(uint32_t& encBlocks, uint32_t& clearBlocks)
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
             encBlocks = admin->PatternEncBlocks;
             clearBlocks = admin->PatternClearBlocks;
         }
-
+        uint16_t SubSampleLength() const
+        {
+            const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
+            return (admin->SubSampleLength);
+        }
+        const CDMi::SubSampleInfo* SubSamples() const
+        {
+            const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
+            return (&(admin->SubSamples[0]));
+        }
+        void SubSample(const uint16_t length, const CDMi::SubSampleInfo subSampleInfo[])
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            VERIFY(sizeof(Administration::SubSamples)/sizeof(CDMi::SubSampleInfo) >= length);
+            admin->SubSampleLength = std::min(static_cast<uint16_t>(sizeof(Administration::SubSamples)/sizeof(CDMi::SubSampleInfo)), length);
+            for(uint8_t index = 0; index < admin->SubSampleLength; index++) {
+                admin->SubSamples[index].encrypted_bytes = subSampleInfo[index].encrypted_bytes;
+                admin->SubSamples[index].clear_bytes = subSampleInfo[index].clear_bytes;
+            }
+        }
+        void SetMediaProperties(const uint16_t height, const uint16_t width, const uint8_t type)
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            admin->StreamHeight = height;
+            admin->StreamWidth = width;
+            admin->StreamType = type;
+        }
+        void MediaProperties(uint16_t& height, uint16_t& width, uint8_t& type)
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            height = admin->StreamHeight;
+            width = admin->StreamWidth;
+            type = admin->StreamType;
+        }
         void Write(const uint32_t length, const uint8_t* data)
         {
-
             if (Core::SharedBuffer::Size(length) == true) {
                 SetBuffer(0, length, data);
             }
@@ -179,8 +225,8 @@ namespace Exchange {
         void KeyId(const uint8_t length, const uint8_t buffer[])
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            ASSERT(length <= 16);
-            admin->KeyId[0] = (length <= 16 ? length : 16);
+            VERIFY(length <= sizeof(Administration::KeyId));
+            admin->KeyId[0] = (length <= sizeof(Administration::KeyId) ? length : sizeof(Administration::KeyId));
             if (length != 0) {
                 ::memcpy(&(admin->KeyId[1]), buffer, admin->KeyId[0]);
             }
@@ -189,11 +235,10 @@ namespace Exchange {
         {
             const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
             length = admin->KeyId[0];
-            ASSERT(length <= 16);
+            VERIFY(length <= 16);
             return (length > 0 ? &admin->KeyId[1] : nullptr);
         }
     };
-
 }
 }
 
