@@ -21,7 +21,6 @@
 #include "Module.h"
 
 
-
 namespace WPEFramework {
 
 namespace Exchange {
@@ -41,29 +40,6 @@ namespace Exchange {
         struct EXTERNAL IDevice : virtual public Core::IUnknown {
             enum { ID = ID_BLUETOOTH_DEVICE };
 
-            struct EXTERNAL IIterator : virtual public Core::IUnknown {
-                enum { ID = ID_BLUETOOTH_DEVICE_ITERATOR };
-
-                virtual void Reset() = 0;
-                virtual bool IsValid() const = 0;
-                virtual bool Next() = 0;
-                virtual IDevice* Current() = 0;
-            };
-
-            struct EXTERNAL ICallback : virtual public Core::IUnknown {
-                enum { ID = ID_BLUETOOTH_CALLBACK };
-
-                virtual void Updated() = 0;
-            };
-
-            struct EXTERNAL ISecurityCallback : virtual public Core::IUnknown {
-                enum { ID = ID_BLUETOOTH_SECURITYCALLBACK };
-
-                virtual void PasskeyRequest() = 0;
-                virtual void PasskeyConfirmRequest(const uint32_t passkey) = 0;
-            };
-
-            // Previous IClassic and ILowEnergy moved here
             struct EXTERNAL IClassic : virtual public Core::IUnknown {
                 enum { ID = ID_BLUETOOTH_DEVICE_CLASSIC };
 
@@ -76,8 +52,7 @@ namespace Exchange {
                     virtual void PINCodeRequest() = 0; 
                 };
 
-                virtual bool IsUUIDSupported(const string& uuid) const = 0;  // NEW!, also for classic
-                virtual void PINCode(const string& pinCode) = 0; // Classic only
+                virtual void PINCode(const string& pinCode) = 0;
 
                 virtual uint32_t Callback(ISecurityCallback* callback) = 0;
             };
@@ -85,8 +60,29 @@ namespace Exchange {
             struct EXTERNAL ILowEnergy : virtual public Core::IUnknown {
                 enum { ID = ID_BLUETOOTH_DEVICE_LOWENERGY };
 
-                virtual bool IsUUIDSupported(const string& uuid) const = 0; // Same as classic, could be moved to IDevice
-                virtual uint16_t Appearance() const = 0; // NEW!, LE only, replaces device class
+                virtual uint16_t Appearance() const = 0;
+            };
+
+            struct EXTERNAL IIterator : virtual public Core::IUnknown {
+                enum { ID = ID_BLUETOOTH_DEVICE_ITERATOR };
+
+                virtual void Reset() = 0;
+                virtual bool IsValid() const = 0;
+                virtual bool Next() = 0;
+                virtual IDevice* Current() = 0;
+            };
+
+            struct EXTERNAL ICallback : virtual public Core::IUnknown {
+                enum { ID = ID_BLUETOOTH_DEVICE_CALLBACK };
+
+                virtual void Updated() = 0;
+            };
+
+            struct EXTERNAL ISecurityCallback : virtual public Core::IUnknown {
+                enum { ID = ID_BLUETOOTH_DEVICE_ECURITYCALLBACK };
+
+                virtual void PasskeyRequest() = 0;
+                virtual void PasskeyConfirmRequest(const uint32_t passkey) = 0;
             };
 
             enum type : uint8_t {
@@ -104,7 +100,8 @@ namespace Exchange {
             virtual string LocalId() const = 0;
             virtual string RemoteId() const = 0;
             virtual string Name() const = 0;
-            virtual uint32_t Class() const = 0; // Classic only, but seems to be used in LE as well disregarding the BT spec
+            virtual uint32_t Class() const = 0;
+            virtual bool IsServiceSupported(const string& uuid) const = 0;
 
             virtual uint32_t Pair(const pairingcapabilities capabilities, const uint16_t timeout /* sec */) = 0;
             virtual uint32_t AbortPairing() = 0;
@@ -142,8 +139,6 @@ namespace Exchange {
 
             virtual uint32_t Register(INotification* notification) = 0;
             virtual uint32_t Unregister(INotification* notification) = 0;
-
-            // REMOVED virtual void PINCode(const string& pinCode) = 0;
         };
 
         struct EXTERNAL ILowEnergy : virtual public Core::IUnknown {
@@ -168,8 +163,6 @@ namespace Exchange {
 
             virtual uint32_t Register(INotification* notification) = 0;
             virtual uint32_t Unregister(INotification* notification) = 0;
-
-            // REMOVED virtual bool IsUUIDSupported(const string& uuid) const = 0;
         };
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
@@ -187,8 +180,14 @@ namespace Exchange {
         DEPRECATED virtual uint32_t Scan(const bool lowEnergy, const uint16_t duration /* sec */) = 0;
         DEPRECATED virtual uint32_t StopScanning() = 0;
 
-        virtual IDevice* Device(const string& address) = 0;
+        DEPRECATED virtual IDevice* Device(const string& address) = 0;
+        virtual IDevice* Device(const string& address, const IDevice::type type) = 0;
+
         virtual IDevice::IIterator* Devices() = 0;
+
+        virtual uint32_t ForgetDevice(const string& address, const IDevice::type type) = 0;
     };
-}
+
+} // namespace Exchange
+
 }
