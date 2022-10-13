@@ -44,10 +44,7 @@ namespace Exchange {
                 enum { ID = ID_BLUETOOTH_DEVICE_CLASSIC };
 
                 struct EXTERNAL ISecurityCallback : virtual public Core::IUnknown {
-
                     enum { ID = ID_BLUETOOTH_DEVICE_CLASSIC_SECURITYCALLBACK };
-
-                    ~ISecurityCallback() override = default;
 
                     virtual void PINCodeRequest() = 0; 
                 };
@@ -79,7 +76,7 @@ namespace Exchange {
             };
 
             struct EXTERNAL ISecurityCallback : virtual public Core::IUnknown {
-                enum { ID = ID_BLUETOOTH_DEVICE_ECURITYCALLBACK };
+                enum { ID = ID_BLUETOOTH_DEVICE_SECURITYCALLBACK };
 
                 virtual void PasskeyRequest() = 0;
                 virtual void PasskeyConfirmRequest(const uint32_t passkey) = 0;
@@ -94,7 +91,8 @@ namespace Exchange {
             virtual type Type() const = 0;
 
             virtual bool IsValid() const = 0;
-            virtual bool IsBonded() const = 0;
+            DEPRECATED bool IsBonded() const { return (IsPaired()); }
+            virtual bool IsPaired() const = 0;
             virtual bool IsConnected() const = 0;
 
             virtual string LocalId() const = 0;
@@ -127,15 +125,15 @@ namespace Exchange {
                 virtual void InquiryScanningStateChanged() = 0;
             };
 
-            uint32_t Interface() const = 0;
+            virtual uint32_t Interface() const = 0;
 
             virtual bool IsScanning(bool& limited) const = 0;
             virtual uint32_t Scan(const bool limited, const uint16_t duration /* sec */) = 0;
             virtual uint32_t StopScanning() = 0;
 
-            virtual bool IsInquiryScanning(bool& limited) const;
-            virtual uint32_t InquiryScan(const bool limited, const uint16_t duration /* sec */);
-            virtual uint32_t StopInquiryScanning();
+            virtual bool IsInquiryScanning(bool& limited) const = 0;
+            virtual uint32_t InquiryScan(const bool limited, const uint16_t duration /* sec */) = 0;
+            virtual uint32_t StopInquiryScanning() = 0;
 
             virtual uint32_t Register(INotification* notification) = 0;
             virtual uint32_t Unregister(INotification* notification) = 0;
@@ -151,15 +149,15 @@ namespace Exchange {
                 virtual void AdvertisingStateChanged() = 0;
             };
 
-            uint32_t Interface() const = 0;
+            virtual uint32_t Interface() const = 0;
 
             virtual bool IsScanning(bool& limited) const = 0;
             virtual uint32_t Scan(const bool limited, const uint16_t duration /* sec */) = 0;
             virtual uint32_t StopScanning() = 0;
 
-            virtual bool IsAdvertising(const bool limited, const bool connectable);
-            virtual uint32_t Advertise(const bool limited, const bool connectable, const uint16_t duration /* sec */);
-            virtual uint32_t StopAdvertising();
+            virtual bool IsAdvertising(const bool limited, const bool connectable) const = 0;
+            virtual uint32_t Advertise(const bool limited, const bool connectable, const uint16_t duration /* sec */) = 0;
+            virtual uint32_t StopAdvertising() = 0;
 
             virtual uint32_t Register(INotification* notification) = 0;
             virtual uint32_t Unregister(INotification* notification) = 0;
@@ -180,7 +178,7 @@ namespace Exchange {
         DEPRECATED virtual uint32_t Scan(const bool lowEnergy, const uint16_t duration /* sec */) = 0;
         DEPRECATED virtual uint32_t StopScanning() = 0;
 
-        DEPRECATED virtual IDevice* Device(const string& address) = 0;
+        DEPRECATED IDevice* Device(const string& address) { return (Device(address, IDevice::ADDRESS_LE_PUBLIC)); }
         virtual IDevice* Device(const string& address, const IDevice::type type) = 0;
 
         virtual IDevice::IIterator* Devices() = 0;
