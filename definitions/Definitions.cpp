@@ -56,6 +56,7 @@
 #include <interfaces/IResourceMonitor.h>
 #include <interfaces/IRPCLink.h>
 #include <interfaces/IRtspClient.h>
+#include <interfaces/IRustBridge.h>
 #include <interfaces/ISecureShellServer.h>
 #include <interfaces/IStream.h>
 #include <interfaces/ISwitchBoard.h>
