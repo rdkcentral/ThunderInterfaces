@@ -26,10 +26,28 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    struct EXTERNAL IDeviceCapabilities : virtual public Core::IUnknown {
-        enum { ID = ID_DEVICE_CAPABILITIES };
+    struct EXTERNAL IDeviceInfo : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICE_INFO };
 
-        ~IDeviceCapabilities() override = default;
+        virtual ~IDeviceInfo() override = default;
+
+        virtual uint32_t Configure(const PluginHost::IShell* service) = 0;
+
+        virtual uint32_t SerialNumber(string& value /* @out */) const = 0;
+        virtual uint32_t Sku(string& value /* @out */) const = 0;
+        virtual uint32_t Make(string& value /* @out */) const = 0;
+        virtual uint32_t ModelName(string& value/*@out*/) const = 0;
+        virtual uint32_t ModelYear(uint16_t& value/*@out*/) const = 0;
+        virtual uint32_t FriendlyName(string& value/*@out*/) const = 0;
+        virtual uint32_t DeviceType(string& value /* @out */) const = 0;
+        virtual uint32_t PlatformName(string& value/*@out*/) const = 0;
+        virtual uint32_t DistributorId(string& value /* @out */) const = 0;
+    };
+
+    struct EXTERNAL IDeviceAudioCapabilities : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICE_CAPABILITIES_AUDIO };
+
+        virtual ~IDeviceAudioCapabilities() override = default;
 
         enum AudioOutput : uint8_t {
             AUDIO_OTHER,
@@ -39,6 +57,46 @@ namespace Exchange {
             AUDIO_HDMI,
             AUDIO_DISPLAYPORT
         };
+
+        enum AudioCapability : uint8_t {
+            AUDIOCAPABILITY_NONE,
+            ATMOS,
+            DD,
+            DDPLUS,
+            DAD,
+            DAPV2,
+            MS12
+        };
+
+        enum MS12Capability : uint8_t {
+            MS12CAPABILITY_NONE,
+            DOLBYVOLUME,
+            INTELIGENTEQUALIZER,
+            DIALOGUEENHANCER
+        };
+
+        enum MS12Profile : uint8_t {
+            MS12PROFILE_NONE,
+            MUSIC,
+            MOVIE,
+            VOICE
+        };
+
+        typedef RPC::IIteratorType<AudioOutput, ID_DEVICE_CAPABILITIES_AUDIO_OUTPUT> IAudioOutputIterator;
+        typedef RPC::IIteratorType<AudioCapability, ID_DEVICE_CAPABILITIES_AUDIO_CAPABILITY> IAudioCapabilityIterator;
+        typedef RPC::IIteratorType<MS12Capability, ID_DEVICE_CAPABILITIES_AUDIO_MS12_CAPABILITY> IMS12CapabilityIterator;
+        typedef RPC::IIteratorType<MS12Profile, ID_DEVICE_CAPABILITIES_AUDIO_MS12_PROFILE> IMS12ProfileIterator;
+
+        virtual uint32_t AudioOutputs(IAudioOutputIterator*& audioOutputs /* @out */) const = 0;
+        virtual uint32_t AudioCapabilities(const AudioOutput audioOutput /* @in */, IAudioCapabilityIterator*& audioCapabilities /* @out */) const = 0;
+        virtual uint32_t MS12Capabilities(const AudioOutput audioOutput /* @in */, IMS12CapabilityIterator*& ms12Capabilities /* @out */) const = 0;
+        virtual uint32_t MS12AudioProfiles(const AudioOutput audioOutput /* @in */, IMS12ProfileIterator*& ms12Profiles /* @out */) const = 0;
+    };
+
+    struct EXTERNAL IDeviceVideoCapabilities : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICE_CAPABILITIES_VIDEO };
+
+        virtual ~IDeviceVideoCapabilities() override = default;
 
         enum VideoOutput : uint8_t {
             VIDEO_OTHER,
@@ -51,19 +109,18 @@ namespace Exchange {
             VIDEO_DISPLAYPORT // also DisplayPort over USB-C
         };
 
-        enum OutputResolution : uint8_t {
-            RESOLUTION_UNKNOWN,
-            RESOLUTION_480I,
-            RESOLUTION_480P,
-            RESOLUTION_576I,
-            RESOLUTION_576P,
-            RESOLUTION_720P,
-            RESOLUTION_1080I,
-            RESOLUTION_1080P,
-            RESOLUTION_2160P30,
-            RESOLUTION_2160P60,
-            RESOLUTION_4320P30,
-            RESOLUTION_4320P60,
+        enum ScreenResolution : uint8_t {
+            ScreenResolution_Unknown = 0,
+            ScreenResolution_480i = 1,
+            ScreenResolution_480p = 2,
+            ScreenResolution_720p = 3,
+            ScreenResolution_720p50Hz = 4,
+            ScreenResolution_1080p24Hz = 5,
+            ScreenResolution_1080i50Hz = 6,
+            ScreenResolution_1080p50Hz = 7,
+            ScreenResolution_1080p60Hz = 8,
+            ScreenResolution_2160p50Hz = 9,
+            ScreenResolution_2160p60Hz = 10
         };
 
         enum CopyProtection : uint8_t {
@@ -74,36 +131,17 @@ namespace Exchange {
             HDCP_22
         };
 
-        typedef RPC::IIteratorType<AudioOutput, ID_DEVICE_CAPABILITIES_AUDIO> IAudioOutputIterator;
-        typedef RPC::IIteratorType<VideoOutput, ID_DEVICE_CAPABILITIES_VIDEO> IVideoOutputIterator;
-        typedef RPC::IIteratorType<OutputResolution, ID_DEVICE_CAPABILITIES_RESOLUTION> IOutputResolutionIterator;
+        typedef RPC::IIteratorType<VideoOutput, ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT> IVideoOutputIterator;
+        typedef RPC::IIteratorType<ScreenResolution, ID_DEVICE_CAPABILITIES_RESOLUTION> IScreenResolutionIterator;
 
-        virtual uint32_t Configure(const PluginHost::IShell* service) = 0;
-
-        virtual uint32_t AudioOutputs(IAudioOutputIterator*& res /* @out */) const = 0;
-        virtual uint32_t VideoOutputs(IVideoOutputIterator*& res /* @out */) const = 0;
-        virtual uint32_t Resolutions(IOutputResolutionIterator*& res /* @out */) const = 0;
-
+        virtual uint32_t VideoOutputs(IVideoOutputIterator*& videoOutputs /* @out */) const = 0;
+        virtual uint32_t DefaultResolution(const VideoOutput videoOutput /* @in */, ScreenResolution& defaultResolution /* @out */) const = 0;
+        virtual uint32_t Resolutions(const VideoOutput videoOutput /* @in */, IScreenResolutionIterator*& resolutions /* @out */) const = 0;
+        virtual uint32_t Hdcp(const VideoOutput videoOutput /* @in */, CopyProtection& hdcpVersion /* @out */) const = 0;
+        virtual uint32_t HostEDID(string& edid /* @out */) const = 0;
         virtual uint32_t HDR(bool& supportsHDR /*@out*/) const = 0;
         virtual uint32_t Atmos(bool& supportsAtmos /*@out*/) const = 0;
         virtual uint32_t CEC(bool& supportsCEC /*@out*/) const = 0;
-        virtual uint32_t HDCP(CopyProtection& supportedHDCP /*@out*/) const = 0;
-
-
-
-    };
-
-    struct EXTERNAL IDeviceMetadata : virtual public Core::IUnknown {
-        enum { ID = ID_DEVICE_METADATA };
-
-        ~IDeviceMetadata() override = default;
-
-
-        virtual uint32_t ModelName(string& value/*@out*/) const = 0; 
-        virtual uint32_t ModelYear(uint16_t& value/*@out*/) const = 0; 
-        virtual uint32_t FriendlyName(string& value/*@out*/) const = 0; 
-        virtual uint32_t SystemIntegratorName(string& value/*@out*/) const = 0; 
-        virtual uint32_t PlatformName(string& value/*@out*/) const = 0; 
     };
 }
 }
