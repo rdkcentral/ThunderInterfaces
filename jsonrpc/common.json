@@ -3,7 +3,8 @@
   "errors": {
     "general": {
       "code": 1,
-      "message": "ERROR_GENERAL"
+      "message": "ERROR_GENERAL",
+      "description": "Unspecified failure"
     },
     "unavailable": {
       "code": 2,

@@ -29,14 +29,6 @@ namespace Exchange {
     struct EXTERNAL IBluetooth : virtual public Core::IUnknown {
         enum { ID = ID_BLUETOOTH };
 
-        enum pairingcapabilities : uint8_t {
-            DISPLAY_ONLY,
-            DISPLAY_YES_NO,
-            KEYBOARD_ONLY,
-            NO_INPUT_NO_OUTPUT,
-            KEYBOARD_DISPLAY,
-        };
-
         struct EXTERNAL IDevice : virtual public Core::IUnknown {
             enum { ID = ID_BLUETOOTH_DEVICE };
 
@@ -83,9 +75,17 @@ namespace Exchange {
             };
 
             enum type : uint8_t {
-                ADDRESS_BREDR,
-                ADDRESS_LE_PUBLIC,
-                ADDRESS_LE_RANDOM
+                ADDRESS_BREDR /*@text:Classic */,
+                ADDRESS_LE_PUBLIC /*@text:LowEnergy */,
+                ADDRESS_LE_RANDOM  /*@text:LowEnergyRandom */
+            };
+
+            enum pairingcapabilities : uint8_t {
+                DISPLAY_ONLY,
+                DISPLAY_YES_NO,
+                KEYBOARD_ONLY,
+                NO_INPUT_NO_OUTPUT,
+                KEYBOARD_DISPLAY
             };
 
             virtual type Type() const = 0;
@@ -155,7 +155,7 @@ namespace Exchange {
             virtual uint32_t Scan(const bool limited, const uint16_t duration /* sec */) = 0;
             virtual uint32_t StopScanning() = 0;
 
-            virtual bool IsAdvertising(const bool limited, const bool connectable) const = 0;
+            virtual bool IsAdvertising(bool& limited, bool& connectable) const = 0;
             virtual uint32_t Advertise(const bool limited, const bool connectable, const uint16_t duration /* sec */) = 0;
             virtual uint32_t StopAdvertising() = 0;
 
