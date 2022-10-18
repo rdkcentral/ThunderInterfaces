@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\interfaces\json\JsonEnum_MessageControl.cpp" />
     <ClCompile Include="Definitions.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +62,12 @@
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">None</OutputItemType>
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">None</OutputItemType>
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">None</OutputItemType>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IMessageControl.h">
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ClInclude</OutputItemType>
     </CustomBuild>
     <ClInclude Include="..\interfaces\json\ExternalMetadata.h" />
     <ClInclude Include="definitions.h" />
@@ -185,9 +192,6 @@
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\MessageControl.json">
       <FileType>Document</FileType>
     </CustomBuild>
     <None Include="..\jsonrpc\WebKitBrowser.json" />

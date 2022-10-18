@@ -18,6 +18,9 @@
     <ClCompile Include="Definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\interfaces\json\JsonEnum_MessageControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="definitions.h">
@@ -171,7 +174,7 @@
     <CustomBuild Include="..\interfaces\ITimeZone.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\MessageControl.json">
+    <CustomBuild Include="..\interfaces\IMessageControl.h">
       <Filter>Contracts</Filter>
     </CustomBuild>
   </ItemGroup>

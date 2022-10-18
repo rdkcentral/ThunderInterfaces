@@ -20,7 +20,8 @@
 #pragma once
 
 #include "Module.h"
-#include <core/core.h>
+#include "IDeviceInfo.h"
+// @insert "IDeviceInfo.h"
 
 namespace WPEFramework {
 namespace Exchange {
@@ -36,19 +37,7 @@ namespace Exchange {
         static constexpr uint32_t maxZOrder = 255;
         static constexpr uint32_t minZOrder = 0;
 
-        enum ScreenResolution : uint8_t {
-            ScreenResolution_Unknown = 0,
-            ScreenResolution_480i = 1,
-            ScreenResolution_480p = 2,
-            ScreenResolution_720p = 3,
-            ScreenResolution_720p50Hz = 4,
-            ScreenResolution_1080p24Hz = 5,
-            ScreenResolution_1080i50Hz = 6,
-            ScreenResolution_1080p50Hz = 7,
-            ScreenResolution_1080p60Hz = 8,
-            ScreenResolution_2160p50Hz = 9,
-            ScreenResolution_2160p60Hz = 10
-        };
+        using ScreenResolution = IDeviceVideoCapabilities::ScreenResolution;
 
         static uint32_t WidthFromResolution(const ScreenResolution resolution);
         static uint32_t HeightFromResolution(const ScreenResolution resolution);
