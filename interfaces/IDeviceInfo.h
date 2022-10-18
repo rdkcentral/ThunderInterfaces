@@ -54,7 +54,8 @@ namespace Exchange {
             AUDIO_RF_MODULATOR,
             AUDIO_ANALOG,
             AUDIO_SPDIF, //over RCA or TOSLINK
-            AUDIO_HDMI,
+            AUDIO_HDMI0,
+            AUDIO_HDMI1,
             AUDIO_DISPLAYPORT
         };
 
@@ -105,7 +106,8 @@ namespace Exchange {
             VIDEO_SVIDEO,
             VIDEO_COMPONENT,
             VIDEO_SCART_RGB,
-            VIDEO_HDMI,
+            VIDEO_HDMI0,
+            VIDEO_HDMI1,
             VIDEO_DISPLAYPORT // also DisplayPort over USB-C
         };
 
@@ -113,14 +115,25 @@ namespace Exchange {
             ScreenResolution_Unknown = 0,
             ScreenResolution_480i = 1,
             ScreenResolution_480p = 2,
-            ScreenResolution_720p = 3,
-            ScreenResolution_720p50Hz = 4,
-            ScreenResolution_1080p24Hz = 5,
-            ScreenResolution_1080i50Hz = 6,
-            ScreenResolution_1080p50Hz = 7,
-            ScreenResolution_1080p60Hz = 8,
-            ScreenResolution_2160p50Hz = 9,
-            ScreenResolution_2160p60Hz = 10
+            ScreenResolution_576i = 3,
+            ScreenResolution_576p = 4,
+            ScreenResolution_576p50Hz = 5,
+            ScreenResolution_720p = 6,
+            ScreenResolution_720p50Hz = 7,
+            ScreenResolution_1080i = 8,
+            ScreenResolution_1080i25Hz = 9,
+            ScreenResolution_1080i50Hz = 10,
+            ScreenResolution_1080p = 11,
+            ScreenResolution_1080p24Hz = 12,
+            ScreenResolution_1080p25Hz = 13,
+            ScreenResolution_1080p30Hz = 14,
+            ScreenResolution_1080p50Hz = 15,
+            ScreenResolution_1080p60Hz = 16,
+            ScreenResolution_2160p30Hz = 17,
+            ScreenResolution_2160p50Hz = 18,
+            ScreenResolution_2160p60Hz = 19,
+            ScreenResolution_4320p30Hz = 20,
+            ScreenResolution_4320p60Hz = 21
         };
 
         enum CopyProtection : uint8_t {
