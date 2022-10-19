@@ -213,8 +213,9 @@
     }
   },
   "methods": {
-    "discoverable": {
+    "setdiscoverable": {
       "summary": "Starts advertising (or inquiry scanning), making the local interface visible by nearby Bluetooth devices",
+      "description": "Please note that discoverable state in *Limited* mode for Bluetooth Classic is bounded to 30 seconds only.",
       "events": [
         "discoverablestarted",
         "discoverablecomplete"
@@ -367,7 +368,7 @@
     },
     "connect": {
       "summary": "Connects to a Bluetooth device",
-      "description": "If the device is not available it will be automatically connected as soon it becomes available",
+      "description": "This call also enables automatic reconnection of the device. If the device is currently not available it will be automatically connected as soon it becomes available.",
       "events": [
         "devicestatechange"
       ],
@@ -413,7 +414,7 @@
     },
     "disconnect": {
       "summary": "Disconnects from a connected Bluetooth device",
-      "description": "Additionally the device will stop reconnecting automatically",
+      "description": "This call also disables automatic reconnection. If the device is currently not connected it will not be reconnected when it becomes available.",
       "events": [
         "devicestatechange"
       ],
@@ -451,7 +452,7 @@
     },
     "pair": {
       "summary": "Pairs a Bluetooth device",
-      "description": "PIN or passkey requests may appear during the pairing process. The process can be cancelled any time by calling the *abortpairing* method",
+      "description": "PIN-code or passkey requests may appear during the pairing process. The process can be cancelled any time by calling the *abortpairing* method.",
       "events": [
         "devicestatechange",
         "pincoderequest",
@@ -566,9 +567,9 @@
         }
       ]
     },
-    "pincode": {
-      "summary": "Specifies a PIN code for authentication during a legacy pairing process",
-      "description": "This method should be called upon receiving a *pincoderequest* event during a legacy pairing process. If the specified PIN code is incorrect the pairing process will be aborted",
+    "providepincode": {
+      "summary": "Provides a PIN-code for authentication during a legacy pairing process",
+      "description": "This method should be called upon receiving a *pincoderequest* event during a legacy pairing process. If the specified PIN-code is incorrect the pairing process will be aborted.",
       "events": [
         "devicestatechange",
         "pincoderequest"
@@ -585,7 +586,7 @@
             "example": "Classic"
           },
           "secret": {
-            "description": "A PIN code string, typically consisting of (but not limited to) four decimal digits",
+            "description": "A PIN-code string typically consisting of (but not limited to) four decimal digits",
             "type": "string",
             "example": "0000"
           }
@@ -610,9 +611,9 @@
         }
       ]
     },
-    "passkey": {
-      "summary": "Specifies a passkey for authentication during a pairing process",
-      "description": "This method should be called upon receiving a *passkeyrequest* event during a pairing process. If the specified passkey is incorrect or empty the pairing process will be aborted.",
+    "providepasskey": {
+      "summary": "Provides a passkey for authentication during a pairing process",
+      "description": "This method should be called upon receiving a *passkeyrequest* event during pairing process. If the specified passkey is incorrect or empty the pairing process will be aborted.",
       "events": [
         "devicestatechange",
         "passkeyrequest"
@@ -657,7 +658,7 @@
     },
     "confirmpasskey": {
       "summary": "Confirms a passkey for authentication during a pairing process",
-      "description": "This method should be called upon receiving a *passkeyconfirmationrequest* event during a pairing process. If the confirmation is negative or the pairing process will be aborted",
+      "description": "This method should be called upon receiving a *passkeyconfirmationrequest* event during a pairing process. If the confirmation is negative the pairing process will be aborted.",
       "events": [
         "devicestatechange",
         "passkeyconfirmrequest"
@@ -701,7 +702,7 @@
     },
     "forget": {
       "summary": "Forgets a known Bluetooth device",
-      "description": "The device will no longer be listed and its status tracked. If the device is connected and/or paired it will be disconnected and unpaired",
+      "description": "The device will no longer be listed and its status tracked. If the device is connected and/or paired it will be disconnected and unpaired.",
       "events": [
         "devicestatechange"
       ],
@@ -730,7 +731,7 @@
         }
       ]
     },
-    "devicelist": {
+    "getdevicelist": {
       "summary": "Retrieves a list of known remote Bluetooth devices",
       "result": {
         "description": "List of devices",
@@ -753,8 +754,8 @@
         }
       }
     },
-    "deviceinfo": {
-      "summary": "Retrieves remote Bluetooth device information",
+    "getdeviceinfo": {
+      "summary": "Retrieves detailed information about a known Bluetooth device",
       "params": {
         "type": "object",
         "properties": {
@@ -913,6 +914,7 @@
     "devicestatechange": {
       "summary": "Notifies of device state changes",
       "description": "Register to this event to be notified about device state changes",
+      "statuslistener":
       "params": {
         "type": "object",
         "properties": {
@@ -938,7 +940,7 @@
     },
     "pincoderequest": {
       "summary": "Notifies of a PIN code request",
-      "description": "Register to this event to be notified about PIN code requests during a legacy pairing process. Upon receiving this event the client is required to respond with a *pincode* call in order to complete the pairing procedure. The PIN code value would typically be collected by prompting the end-user. If the client fails to respond before the pairing timeout elapses the pairing procedure will be aborted.<br><br>Note that this event will never be send for a Bluetooth LowEnergy device",
+      "description": "Register to this event to be notified about PIN code requests during a legacy pairing process. Upon receiving this event the client is required to respond with a *providepincode* call in order to complete the pairing procedure. The PIN code value would typically be collected by prompting the end-user. If the client fails to respond before the pairing timeout elapses the pairing procedure will be aborted.<br><br>Note that this event will never be send for a Bluetooth LowEnergy device",
       "params": {
         "type": "object",
         "properties": {
@@ -958,7 +960,7 @@
     },
     "passkeyrequest": {
       "summary": "Notifies of a passkey request",
-      "description": "Register to this event to be notified about passkey requests that may be required during a pairing process. Upon receiving this event the client is required to respond with a *passkey* call in order to complete the pairing procedure. The passkey value would typically be collected by prompting the end-user. If the client fails to respond before the pairing timeout elapses the pairing procedure will be aborted",
+      "description": "Register to this event to be notified about passkey requests that may be required during a pairing process. Upon receiving this event the client is required to respond with a *providepasskey* call in order to complete the pairing procedure. The passkey value would typically be collected by prompting the end-user. If the client fails to respond before the pairing timeout elapses the pairing procedure will be aborted",
       "params": {
         "type": "object",
         "properties": {
