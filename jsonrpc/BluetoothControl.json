@@ -100,7 +100,7 @@
       "type": "string",
       "example": "81:6F:B0:91:9B:FE"
     },
-    "device": {
+    "deviceinfo": {
       "type": "object",
       "hint": "DeviceData",
       "properties": {
@@ -153,7 +153,7 @@
         "paired"
       ]
     },
-    "adapter": {
+    "adapterinfo": {
       "type": "object",
       "hint": "AdapterData",
       "properties": {
@@ -753,7 +753,7 @@
         }
       }
     },
-    "device": {
+    "deviceinfo": {
       "summary": "Retrieves remote Bluetooth device information",
       "params": {
         "type": "object",
@@ -771,7 +771,7 @@
         ]
       },
       "result": {
-        "$ref": "#/definitions/device"
+        "$ref": "#/definitions/deviceinfo"
       },
       "errors": [
         {
@@ -803,7 +803,7 @@
         "example": "0"
       },
       "params": {
-        "$ref": "#/definitions/adapter"
+        "$ref": "#/definitions/adapterinfo"
       },
       "errors": [
         {
@@ -832,7 +832,7 @@
         "example": "81:6F:B0:91:9B:FE"
       },
       "params": {
-        "$ref": "#/definitions/device"
+        "$ref": "#/definitions/deviceinfo"
       },
       "errors": [
         {
