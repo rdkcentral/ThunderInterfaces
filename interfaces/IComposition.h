@@ -47,7 +47,9 @@ namespace Exchange {
             ScreenResolution_1080p50Hz = 7,
             ScreenResolution_1080p60Hz = 8,
             ScreenResolution_2160p50Hz = 9,
-            ScreenResolution_2160p60Hz = 10
+            ScreenResolution_2160p60Hz = 10,
+            // Bandwidth limited in HDMI 1.4 setup
+            ScreenResolution_2160p30Hz = 11
         };
 
         static uint32_t WidthFromResolution(const ScreenResolution resolution);
