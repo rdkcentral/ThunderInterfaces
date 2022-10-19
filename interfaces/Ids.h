@@ -138,16 +138,6 @@ namespace Exchange {
         ID_BLUETOOTH_LOWENERGY                       = ID_BLUETOOTH + 11,
         ID_BLUETOOTH_LOWENERGY_NOTIFICATION          = ID_BLUETOOTH + 12,
 
-        ID_BLUETOOTH                                 = 0x000001B0,
-        ID_BLUETOOTH_DEVICE                          = ID_BLUETOOTH + 1,
-        ID_BLUETOOTH_DEVICE_ITERATOR                 = ID_BLUETOOTH + 2,
-        ID_BLUETOOTH_NOTIFICATION                    = ID_BLUETOOTH + 3,
-        ID_BLUETOOTH_CALLBACK                        = ID_BLUETOOTH + 4,
-        ID_BLUETOOTH_SECURITYCALLBACK                = ID_BLUETOOTH + 5,
-        ID_BLUETOOTH_CLASSIC                         = ID_BLUETOOTH + 6,
-        ID_BLUETOOTH_CLASSIC_SECURITYCALLBACK        = ID_BLUETOOTH + 7,
-        ID_BLUETOOTH_LOWENERGY                       = ID_BLUETOOTH + 8,
-
         ID_RTSPCLIENT                                = 0x000001C0,
 
         ID_SYSTEMCOMMAND                             = 0x000001D0,

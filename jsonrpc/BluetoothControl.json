@@ -9,68 +9,106 @@
   "common": {
     "$ref": "common.json"
   },
-  "ibluetooth": {
-    "$ref": "{cppinterfacedir}/IBluetooth.h"
+  "imports": {
+    "ibluetooth": {
+      "$ref": "{cppinterfacedir}/IBluetooth.h"
+    }
   },
   "definitions": {
+    "enums": {
+      "devicetype": {
+        "description": "Device type",
+        "$ref": "#/imports/ibluetooth/Exchange::IBluetooth::IDevice::type",
+        "default": "LowEnergy"
+      },
+      "pairingcapabilities": {
+        "description": "Pairing capabilities",
+        "$ref": "#/imports/ibluetooth/Exchange::IBluetooth::IDevice::pairingcapabilities",
+        "default": "NoInputNoOutput"
+      },
+      "devicestate": {
+        "description": "Device state",
+        "hint": "devicestate",
+        "type": "string",
+        "enum": [
+          "Pairing",
+          "Paired",
+          "Unpaired",
+          "Connected",
+          "Disconnected"
+        ],
+        "example": "Disconnected"
+      },
+      "adaptertype": {
+        "description": "Adapter type",
+        "hint": "adaptertype",
+        "type": "string",
+        "case": "snake",
+        "enum": [
+          "Classic",
+          "LowEnergy",
+          "Dual"
+        ],
+        "default": "Dual"
+      },
+      "scantype": {
+        "description": "Scan type",
+        "hint": "scantype",
+        "type": "string",
+        "case": "snake",
+        "enum": [
+          "Classic",
+          "LowEnergy"
+        ],
+        "default": "LowEnergy"
+      },
+      "discoverabletype": {
+        "description": "Discoverable type",
+        "$ref": "#definitions/enums/scantype"
+      },
+      "scanmode": {
+        "description": "Scan mode",
+        "hint": "scanmode",
+        "type": "string",
+        "enum": [
+          "General",
+          "Limited"
+        ],
+        "default": "General"
+      },
+      "discoverablemode": {
+        "description": "Discoverable mode",
+        "$ref": "#definitions/enums/scanmode"
+      },
+      "disconnectreason": {
+        "description": "Disconnection reason in case of *Disconnected* event",
+        "hint": "disconnectreason",
+        "type": "string",
+        "case": "snake",
+        "enum": [
+          "ConnectionTimeout",
+          "AuthenticationFailure",
+          "RemoteLowOnResources",
+          "RemotePoweredOff",
+          "TerminatedByRemote",
+          "TerminatedByHost"
+        ]
+      }
+    },
     "deviceaddress": {
       "description": "Bluetooth address",
       "type": "string",
       "example": "81:6F:B0:91:9B:FE"
     },
-    "devicetype": {
-      "description": "Device type",
-      "$ref": "#/ibluetooth/Exchange::IBluetooth::IDevice::type",
-      "default": "LowEnergy"
-    },
-    "devicestate": {
-      "description": "Device state",
-      "type": "string",
-      "enum": [
-        "Pairing",
-        "Paired",
-        "Unpaired",
-        "Connected",
-        "Disconnected"
-      ],
-      "example": "Disconnected"
-    },
-    "adaptertype": {
-      "description": "Adapter type",
-      "type": "string",
-      "enum": [
-        "Classic",
-        "LowEnergy",
-        "Dual"
-      ],
-      "default": "Dual"
-    },
-    "scantype": {
-      "description": "Scan type",
-      "type": "string",
-      "enum": [
-        "Classic",
-        "LowEnergy"
-      ],
-      "default": "LowEnergy"
-    },
-    "scanmode": {
-      "description": "Scan mode",
-      "type": "string",
-      "enum": [
-        "General",
-        "Limited"
-      ],
-      "default": "General"
-    },
-    "deviceinfo": {
+    "device": {
       "type": "object",
+      "hint": "DeviceData",
       "properties": {
         "address": {
           "$ref": "#/definitions/deviceaddress"
         },
         "type": {
-          "$ref": "#/definitions/devicetype",
+          "$ref": "#/definitions/enums/devicetype",
           "example": "Classic"
         },
         "name": {
@@ -98,12 +136,12 @@
           }
         },
         "connected": {
-          "description": "Indicates if the device is currently connected to host",
+          "description": "Indicates if the device is currently connected",
           "type": "boolean",
           "example": true
         },
         "paired": {
-          "description": "Indicates if the device is currently paired with host",
+          "description": "Indicates if the device is currently paired",
           "type": "boolean",
           "example": true
         }
@@ -115,8 +153,9 @@
         "paired"
       ]
     },
-    "adapterinfo": {
+    "adapter": {
       "type": "object",
+      "hint": "AdapterData",
       "properties": {
         "id": {
           "description": "Interface ID number",
@@ -133,7 +172,7 @@
           "$ref": "#/definitions/deviceaddress"
         },
         "type": {
-          "$ref": "#/definitions/adaptertype"
+          "$ref": "#/definitions/enums/adaptertype"
         },
         "version": {
           "description": "Version",
@@ -184,12 +223,10 @@
         "type": "object",
         "properties": {
           "type": {
-            "description": "Discoverable type",
-            "$ref": "#/definitions/scantype"
+            "$ref": "#/definitions/enums/discoverabletype"
           },
           "mode": {
-            "description": "Discoverable mode",
-            "$ref": "#/definitions/scanmode"
+            "$ref": "#/definitions/enums/discoverablemode"
           },
           "connectable": {
             "description": "Selects connectable advertising (true, *LowEnergy* only)",
@@ -230,8 +267,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "description": "Discoverable type",
-            "$ref": "#/definitions/scantype"
+            "$ref": "#/definitions/enums/discoverabletype"
           }
         },
         "required": [
@@ -262,10 +298,10 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/definitions/scantype"
+            "$ref": "#/definitions/enums/scantype"
           },
           "mode": {
-            "$ref": "#/definitions/scanmode"
+            "$ref": "#/definitions/enums/scanmode"
           },
           "timeout": {
             "description": "Duration of the scan (in seconds)",
@@ -310,7 +346,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/definitions/scantype"
+            "$ref": "#/definitions/enums/scantype"
           }
         },
         "required": []
@@ -342,7 +378,7 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype"
+            "$ref": "#/definitions/enums/devicetype"
           }
         },
         "required": [
@@ -388,7 +424,7 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype"
+            "$ref": "#/definitions/enums/devicetype"
           }
         },
         "required": [
@@ -429,12 +465,10 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype"
+            "$ref": "#/definitions/enums/devicetype"
           },
           "capabilities": {
-            "description": "Pairing capabilities",
-            "$ref": "#/ibluetooth/Exchange::IBluetooth::IDevice::pairingcapabilities",
-            "default": "NoInputNoOutput"
+            "$ref": "#definitions/enums/pairingcapabilities"
           },
           "timeout": {
             "description": "Maximum time allowed for the pairing process to complete (in seconds)",
@@ -478,7 +512,7 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype"
+            "$ref": "#/definitions/enums/devicetype"
           }
         },
         "required": [
@@ -511,7 +545,7 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype"
+            "$ref": "#/definitions/enums/devicetype"
           }
         },
         "required": [
@@ -546,7 +580,7 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype",
+            "$ref": "#/definitions/enums/devicetype",
             "default": "Classic",
             "example": "Classic"
           },
@@ -590,7 +624,7 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype",
+            "$ref": "#/definitions/enums/devicetype",
             "default": "Classic",
             "example": "Classic"
           },
@@ -635,7 +669,7 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype",
+            "$ref": "#/definitions/enums/devicetype",
             "default": "Classic",
             "example": "Classic"
           },
@@ -678,7 +712,7 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype"
+            "$ref": "#/definitions/enums/devicetype"
           }
         },
         "required": [
@@ -709,7 +743,7 @@
               "$ref": "#/definitions/deviceaddress"
             },
             "type": {
-              "$ref": "#/definitions/devicetype"
+              "$ref": "#/definitions/enums/devicetype"
             }
           },
           "required": [
@@ -719,7 +753,7 @@
         }
       }
     },
-    "deviceinfo": {
+    "device": {
       "summary": "Retrieves remote Bluetooth device information",
       "params": {
         "type": "object",
@@ -728,7 +762,7 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype"
+            "$ref": "#/definitions/enums/devicetype"
           }
         },
         "required": [
@@ -737,7 +771,7 @@
         ]
       },
       "result": {
-        "$ref": "#/definitions/deviceinfo"
+        "$ref": "#/definitions/device"
       },
       "errors": [
         {
@@ -769,7 +803,7 @@
         "example": "0"
       },
       "params": {
-        "$ref": "#/definitions/adapterinfo"
+        "$ref": "#/definitions/adapter"
       },
       "errors": [
         {
@@ -798,7 +832,7 @@
         "example": "81:6F:B0:91:9B:FE"
       },
       "params": {
-        "$ref": "#/definitions/deviceinfo"
+        "$ref": "#/definitions/device"
       },
       "errors": [
         {
@@ -816,15 +850,15 @@
         "type": "object",
         "properties": {
           "type": {
-            "description": "Discoverable type",
-            "$ref": "#/definitions/scantype"
+            "$ref": "#/definitions/enums/discoverabletype"
           },
           "mode": {
-            "$ref": "#/definitions/scanmode"
+            "$ref": "#/definitions/enums/discoverablemode"
           }
         },
         "required": [
-          "type"
+          "type",
+          "mode"
         ]
       }
     },
@@ -835,8 +869,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "description": "Discoverable type",
-            "$ref": "#/definitions/scantype"
+            "$ref": "#/definitions/enums/discoverabletype"
           }
         },
         "required": [
@@ -851,10 +884,10 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/definitions/scantype"
+            "$ref": "#/definitions/enums/scantype"
           },
           "mode": {
-            "$ref": "#/definitions/scanmode"
+            "$ref": "#/definitions/enums/scanmode"
           }
         },
         "required": [
@@ -869,7 +902,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/definitions/scantype"
+            "$ref": "#/definitions/enums/scantype"
           }
         },
         "required": [
@@ -887,23 +920,13 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype"
+            "$ref": "#/definitions/enums/devicetype"
           },
           "state": {
-            "$ref": "#/definitions/devicestate"
+            "$ref": "#/definitions/enums/devicestate"
           },
           "disconnectreason": {
-            "type": "string",
-            "enum": [
-              "ConnectionTimeout",
-              "AuthenticationFailure",
-              "RemoteLowOnResources",
-              "RemotePoweredOff",
-              "TerminatedByRemote",
-              "TerminatedByHost"
-            ],
-            "example": "ConnectionTimeout",
-            "description": "Disconnection reason in case of *Disconnected* event"
+            "$ref": "#/definitions/enums/disconnectreason"
           }
         },
         "required": [
@@ -923,7 +946,7 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype",
+            "$ref": "#/definitions/enums/devicetype",
             "example": "Classic"
           }
         },
@@ -943,7 +966,7 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype",
+            "$ref": "#/definitions/enums/devicetype",
             "example": "Classic"
           }
         },
@@ -963,7 +986,7 @@
             "$ref": "#/definitions/deviceaddress"
           },
           "type": {
-            "$ref": "#/definitions/devicetype",
+            "$ref": "#/definitions/enums/devicetype",
             "default": "Classic",
             "example": "Classic"
           },
