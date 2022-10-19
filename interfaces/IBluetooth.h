@@ -125,7 +125,7 @@ namespace Exchange {
                 virtual void InquiryScanningStateChanged() = 0;
             };
 
-            virtual uint32_t Interface() const = 0;
+            virtual uint16_t Interface() const = 0;
 
             virtual bool IsScanning(bool& limited) const = 0;
             virtual uint32_t Scan(const bool limited, const uint16_t duration /* sec */) = 0;
@@ -149,7 +149,7 @@ namespace Exchange {
                 virtual void AdvertisingStateChanged() = 0;
             };
 
-            virtual uint32_t Interface() const = 0;
+            virtual uint16_t Interface() const = 0;
 
             virtual bool IsScanning(bool& limited) const = 0;
             virtual uint32_t Scan(const bool limited, const uint16_t duration /* sec */) = 0;
