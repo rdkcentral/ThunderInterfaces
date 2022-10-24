@@ -847,6 +847,8 @@
     "discoverablestarted": {
       "summary": "Notifies of entering the discoverable state",
       "description": "Register to this event to be notified about entering the discoverable state",
+      "hint": "DiscoverableStarted",
+      "statuslistener": true,
       "params": {
         "type": "object",
         "properties": {
@@ -866,6 +868,7 @@
     "discoverablecomplete": {
       "summary": "Notifies of leaving the discoverable state",
       "description": "Register to this event to be notified about leaving the discoverable state",
+      "hint": "DiscoverableComplete",
       "params": {
         "type": "object",
         "properties": {
@@ -881,6 +884,8 @@
     "scanstarted": {
       "summary": "Notifies of scan start",
       "description": "Register to this event to be notified about device scan start",
+      "hint": "ScanStarted",
+      "statuslistener": true,
       "params": {
         "type": "object",
         "properties": {
@@ -899,6 +904,7 @@
     "scancomplete": {
       "summary": "Notifies of scan completion",
       "description": "Register to this event to be notified about device scan completion",
+      "hint": "ScanComplete",
       "params": {
         "type": "object",
         "properties": {
@@ -914,7 +920,12 @@
     "devicestatechange": {
       "summary": "Notifies of device state changes",
       "description": "Register to this event to be notified about device state changes",
-      "statuslistener":
+      "hint": "DeviceStateChanged",
+      "statuslistener": true,
+      "id": {
+        "name": "device type",
+        "example": "LowEnergy"
+      },
       "params": {
         "type": "object",
         "properties": {
@@ -941,6 +952,7 @@
     "pincoderequest": {
       "summary": "Notifies of a PIN code request",
       "description": "Register to this event to be notified about PIN code requests during a legacy pairing process. Upon receiving this event the client is required to respond with a *providepincode* call in order to complete the pairing procedure. The PIN code value would typically be collected by prompting the end-user. If the client fails to respond before the pairing timeout elapses the pairing procedure will be aborted.<br><br>Note that this event will never be send for a Bluetooth LowEnergy device",
+      "hint": "PINCodeRequest",
       "params": {
         "type": "object",
         "properties": {
@@ -961,6 +973,7 @@
     "passkeyrequest": {
       "summary": "Notifies of a passkey request",
       "description": "Register to this event to be notified about passkey requests that may be required during a pairing process. Upon receiving this event the client is required to respond with a *providepasskey* call in order to complete the pairing procedure. The passkey value would typically be collected by prompting the end-user. If the client fails to respond before the pairing timeout elapses the pairing procedure will be aborted",
+      "hint": "PasskeyRequest",
       "params": {
         "type": "object",
         "properties": {
@@ -981,6 +994,7 @@
     "passkeyconfirmrequest": {
       "summary": "Notifies of a passkey confirmation request",
       "description": "Register to this event to be notified about passkey confirmation requests that may required during a pairing process. Upon receiving this event the client is required to respond with a *passkeyconfirm* call in order to complete the pairing procedure. The passkey confirmation would typically be collected by prompting the end-user. If the client fails to respond before the pairing timeout elapses the pairing procedure will be aborted",
+      "hint": "PasskeyConfirmRequest",
       "params": {
         "type": "object",
         "properties": {
