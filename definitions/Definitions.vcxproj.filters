@@ -177,5 +177,8 @@
     <CustomBuild Include="..\interfaces\IMessageControl.h">
       <Filter>Contracts</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\interfaces\IBrowser.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>
