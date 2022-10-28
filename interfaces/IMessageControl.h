@@ -32,8 +32,8 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
     enum { ID = ID_MESSAGE_CONTROL };
 
     enum messagetype : uint8_t {
-        TRACING = 0,
-        LOGGING = 1,
+        TRACING = 1,
+        LOGGING = 2,
     };
 
     struct Control {
@@ -52,16 +52,16 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
             enum { ID = ID_MESSAGE_CONTROL_COLLECT_CALLBACK };
 
-            virtual void Message(const messagetype type, const string& category,
-                                const string& module, const string& fileName,
-                                const uint16_t lineNumber, const string& className,
-                                const uint64_t timeStamp, const string& text) = 0;
+            virtual void Message(const messagetype type,
+                                const string& module, const string& category, 
+                                const string& fileName, const uint16_t lineNumber, 
+                                const string& className, const uint64_t timeStamp, 
+                                const string& text) = 0;
         };
 
-        virtual uint32_t Configure(ICallback* callback) = 0;
+        virtual uint32_t Callback(ICallback* callback) = 0;
 
         virtual uint32_t Attach(const uint32_t id) = 0;
-
         virtual uint32_t Detach(const uint32_t id) = 0;
     };
 
