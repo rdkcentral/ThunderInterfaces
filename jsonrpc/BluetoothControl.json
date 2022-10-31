@@ -1,6 +1,7 @@
 {
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
+  "mode": "auto",
   "info": {
     "title": "Bluetooth Control API",
     "class": "BluetoothControl",
@@ -216,6 +217,7 @@
     "setdiscoverable": {
       "summary": "Starts advertising (or inquiry scanning), making the local interface visible by nearby Bluetooth devices",
       "description": "Please note that discoverable state in *Limited* mode for Bluetooth Classic is bounded to 30 seconds only.",
+      "hint": "SetDiscoverable",
       "events": [
         "discoverablestarted",
         "discoverablecomplete"
@@ -261,6 +263,7 @@
     },
     "stopdiscoverable": {
       "summary": "Stops advertising (or inquiry scanning) operation",
+      "hint": "StopDiscoverable",
       "events": [
         "discoverablecomplete"
       ],
@@ -340,6 +343,7 @@
     },
     "stopscanning": {
       "summary": "Stops discovery (or inquiry) operation",
+      "hint": "StopScanning",
       "events": [
         "scancomplete"
       ],
@@ -469,7 +473,7 @@
             "$ref": "#/definitions/enums/devicetype"
           },
           "capabilities": {
-            "$ref": "#definitions/enums/pairingcapabilities"
+            "$ref": "#/definitions/enums/pairingcapabilities"
           },
           "timeout": {
             "description": "Maximum time allowed for the pairing process to complete (in seconds)",
@@ -536,6 +540,7 @@
     },
     "abortpairing": {
       "summary": "Aborts pairing operation",
+      "hint": "AbortPairing",
       "events": [
         "devicestatechange"
       ],
@@ -570,6 +575,7 @@
     "providepincode": {
       "summary": "Provides a PIN-code for authentication during a legacy pairing process",
       "description": "This method should be called upon receiving a *pincoderequest* event during a legacy pairing process. If the specified PIN-code is incorrect the pairing process will be aborted.",
+      "hint": "ProvidePINCode",
       "events": [
         "devicestatechange",
         "pincoderequest"
@@ -614,6 +620,7 @@
     "providepasskey": {
       "summary": "Provides a passkey for authentication during a pairing process",
       "description": "This method should be called upon receiving a *passkeyrequest* event during pairing process. If the specified passkey is incorrect or empty the pairing process will be aborted.",
+      "hint": "ProvidePasskey",
       "events": [
         "devicestatechange",
         "passkeyrequest"
@@ -659,6 +666,7 @@
     "confirmpasskey": {
       "summary": "Confirms a passkey for authentication during a pairing process",
       "description": "This method should be called upon receiving a *passkeyconfirmationrequest* event during a pairing process. If the confirmation is negative the pairing process will be aborted.",
+      "hint": "ConfirmPasskey",
       "events": [
         "devicestatechange",
         "passkeyconfirmrequest"
@@ -733,6 +741,7 @@
     },
     "getdevicelist": {
       "summary": "Retrieves a list of known remote Bluetooth devices",
+      "hint": "GetDeviceList",
       "result": {
         "description": "List of devices",
         "type": "array",
@@ -756,6 +765,7 @@
     },
     "getdeviceinfo": {
       "summary": "Retrieves detailed information about a known Bluetooth device",
+      "hint": "GetDeviceInfo",
       "params": {
         "type": "object",
         "properties": {
@@ -825,8 +835,8 @@
       }
     },
     "device": {
-      "readonly": true,
       "deprecated": true,
+      "readonly": true,
       "summary": "Remote Bluetooth device information",
       "index": {
         "name": "Device address",
@@ -857,6 +867,11 @@
           },
           "mode": {
             "$ref": "#/definitions/enums/discoverablemode"
+          },
+          "connectable": {
+            "description": "Indicates connectable advertising (true, *LowEnergy* only)",
+            "type": "boolean",
+            "default": false
           }
         },
         "required": [
