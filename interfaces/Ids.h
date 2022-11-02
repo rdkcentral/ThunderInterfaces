@@ -165,6 +165,7 @@ namespace Exchange {
         ID_COMPOSITION_RENDER                        = ID_COMPOSITION + 2,
         ID_COMPOSITION_NOTIFICATION                  = ID_COMPOSITION + 3,
         ID_COMPOSITION_DISPLAY                       = ID_COMPOSITION + 4,
+        ID_COMPOSITION_CLIENTPROPERTIES              = ID_COMPOSITION + 5,
 
         ID_ROOMADMINISTRATOR                         = 0x00000240,
         ID_ROOMADMINISTRATOR_NOTIFICATION            = ID_ROOMADMINISTRATOR + 1,
