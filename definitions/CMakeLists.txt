@@ -14,9 +14,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-find_package(JsonGenerator REQUIRED)
 
-set(Target ${NAMESPACE}Definitions)
+cmake_minimum_required(VERSION 3.3)
+
+project(Definitions)
+
+find_package(WPEFramework)
+
+project_version(1.0.0)
+
+find_package(CompileSettingsDebug REQUIRED)
+find_package(JsonGenerator REQUIRED)
+find_package(${NAMESPACE}Core REQUIRED)
+
+set(Target ${NAMESPACE}${PROJECT_NAME})
 
 separate_arguments(JSONRPC_PATTERNS)
 list(TRANSFORM JSONRPC_PATTERNS PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/")
@@ -50,10 +61,8 @@ add_library(${Target} SHARED
         )
 
 target_link_libraries(${Target}
-        PUBLIC
-          ${NAMESPACE}Core::${NAMESPACE}Core
-          ${NAMESPACE}Tracing::${NAMESPACE}Tracing
         PRIVATE
+          ${NAMESPACE}Core::${NAMESPACE}Core
           CompileSettingsDebug::CompileSettingsDebug
         )
 
@@ -67,7 +76,7 @@ set_target_properties(${Target} PROPERTIES
         )
 
 target_include_directories(${Target}
-        PUBLIC
+        PRIVATE
           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
           $<INSTALL_INTERFACE:include/${NAMESPACE}>
