@@ -20,7 +20,9 @@
 #pragma once
 
 #include "Module.h"
+
 #include "IDeviceInfo.h"
+
 // @insert "IDeviceInfo.h"
 
 namespace WPEFramework {
@@ -55,12 +57,23 @@ namespace Exchange {
 
             ~IClient() override = default;
 
-            virtual WPEFramework::Core::instance_id Native() const {return 0;};
+            struct EXTERNAL IProperties : virtual public Core::IUnknown {
+                enum { ID = ID_COMPOSITION_CLIENTPROPERTIES };
+
+                ~IProperties() override = default;
+
+                virtual uint32_t Stride() = 0; // bytes per row [(bit-per-pixel/8) * width]
+                virtual uint32_t Format() = 0; // pixel arrangement according the fourcc format
+                virtual uint32_t Offset() = 0;
+                virtual uint64_t Modifier() = 0;
+            };
+
+            virtual WPEFramework::Core::instance_id Native() const { return 0; };
             virtual string Name() const = 0;
             virtual void Opacity(const uint32_t value) = 0;
-            virtual uint32_t Opacity() const {return 0;};
+            virtual uint32_t Opacity() const { return 0; };
             virtual uint32_t Geometry(const Rectangle& rectangle) = 0;
-            virtual Rectangle Geometry() const = 0; 
+            virtual Rectangle Geometry() const = 0;
             virtual uint32_t ZOrder(const uint16_t index) = 0;
             virtual uint32_t ZOrder() const = 0;
         };
@@ -73,7 +86,6 @@ namespace Exchange {
             virtual void ScanOut() = 0;
             virtual void PreScanOut() {};
             virtual void PostScanOut() {};
-
         };
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
@@ -108,22 +120,20 @@ namespace Exchange {
         // Set and get output resolution
         virtual uint32_t Resolution(const ScreenResolution) = 0;
         virtual ScreenResolution Resolution() const = 0;
-
     };
 
     struct EXTERNAL IBrightness : virtual public Core::IUnknown {
         enum { ID = ID_BRIGHTNESS };
 
-        //Brightness of SDR graphics in HDR display
+        // Brightness of SDR graphics in HDR display
         enum Brightness : uint8_t {
             SdrToHdrGraphicsBrightness_Default = 0, /* peak luminance of SDR graphics in HDR display might be less bright than SDR video in HDR display */
             SdrToHdrGraphicsBrightness_MatchVideo = 1, /* peak luminance of SDR graphics in HDR display will be as bright as SDR video in HDR display */
             SdrToHdrGraphicsBrightness_Max = 2 /* peak luminance of SDR graphics in HDR display might be more bright than SDR video in HDR display */
         };
- 
+
         virtual uint32_t SdrToHdrGraphicsBrightness(Brightness& brightness /* @out */) const = 0;
         virtual uint32_t SdrToHdrGraphicsBrightness(const Brightness& brightness) = 0;
     };
 }
 }
-
