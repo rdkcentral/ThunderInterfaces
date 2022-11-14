@@ -18,19 +18,9 @@
 cmake_minimum_required(VERSION 3.12)
 
 project(Interfaces)
-find_package(WPEFramework)
-
-project_version(1.0.0)
 
 set(INTERFACES_PATTERNS "I*.h" CACHE STRING "Patterns matching files for which stubs should be generated")
 set(JSONRPC_PATTERNS "*.json" CACHE STRING "Patterns matching files for which json stubs should be generated")
-
-message(STATUS "Setting up ${PROJECT_NAME} v${PROJECT_VERSION}")
-
-find_package(CompileSettingsDebug CONFIG REQUIRED)
-find_package(${NAMESPACE}Core)
-find_package(${NAMESPACE}Tracing)
-find_package(${NAMESPACE}COM)
 
 if (BUILD_REFERENCE)
     add_definitions (-DBUILD_REFERENCE=${BUILD_REFERENCE})

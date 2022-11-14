@@ -15,9 +15,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-find_package(ProxyStubGenerator REQUIRED)
+cmake_minimum_required(VERSION 3.3)
 
-set(TargetMarshalling ${NAMESPACE}Marshallings)
+project(Marshalling)
+
+find_package(WPEFramework)
+
+project_version(1.0.0)
+
+find_package(CompileSettingsDebug REQUIRED)
+find_package(ProxyStubGenerator REQUIRED)
+find_package(${NAMESPACE}Core REQUIRED)
+find_package(${NAMESPACE}COM REQUIRED)
+
+set(Target ${NAMESPACE}${PROJECT_NAME})
 
 if(NOT GENERATOR_SEARCH_PATH)
     set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
@@ -34,21 +45,21 @@ list(APPEND INTERFACES_HEADERS Portability.h)
 list(APPEND INTERFACES_HEADERS Module.h)
 
 file(GLOB PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/ProxyStubs*.cpp")
-add_library(${TargetMarshalling} SHARED
+add_library(${Target} SHARED
         Module.cpp
         ${PROXY_STUB_SOURCES}
         )
 
-target_include_directories(${TargetMarshalling} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/..)
+target_include_directories(${Target} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/..)
 
-target_link_libraries(${TargetMarshalling}
+target_link_libraries(${Target}
         PRIVATE
           ${NAMESPACE}Core::${NAMESPACE}Core
           ${NAMESPACE}COM::${NAMESPACE}COM
           CompileSettingsDebug::CompileSettingsDebug
         )
 
-set_target_properties(${TargetMarshalling} PROPERTIES
+set_target_properties(${Target} PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED YES
         FRAMEWORK FALSE
@@ -59,7 +70,7 @@ set_target_properties(${TargetMarshalling} PROPERTIES
 string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
 
 install(
-        TARGETS ${TargetMarshalling} EXPORT ${TargetMarshalling}Targets  # for downstream dependencies
+        TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies
         LIBRARY DESTINATION lib/${NAMESPACE_LIB}/proxystubs COMPONENT libs      # shared lib
 )
 
