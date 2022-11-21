@@ -138,6 +138,8 @@ namespace Exchange {
             HDR_TB_400,
             HDR_TB_500,
             HDR_TB_600,
+            // VESA standards
+            HDR_DISPLAYHDR_400
         };
 
         typedef RPC::IIteratorType<HDRType, ID_HDR_ITERATOR> IHDRIterator;
