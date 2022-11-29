@@ -249,6 +249,11 @@ namespace Exchange {
         
 	ID_WATERMARK,
         ID_WATERMARK_NOTIFICATION,
+
+        ID_ACCESS_CONTROL_LIST,
+        ID_ACCESS_CONTROL_LIST_ITERATOR,
+
+        ID_PERSIST,
     };
 }
 }
