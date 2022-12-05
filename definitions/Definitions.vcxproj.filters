@@ -21,6 +21,9 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_MessageControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\interfaces\json\JsonEnum_NetworkControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="definitions.h">
@@ -105,9 +108,6 @@
     <CustomBuild Include="..\jsonrpc\Monitor.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\NetworkControl.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\OCDM.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
@@ -174,10 +174,13 @@
     <CustomBuild Include="..\interfaces\ITimeZone.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\interfaces\IMessageControl.h">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\interfaces\IBrowser.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IMessageControl.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\INetworkControl.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
   </ItemGroup>
