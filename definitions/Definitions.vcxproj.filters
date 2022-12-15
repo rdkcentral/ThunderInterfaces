@@ -48,9 +48,6 @@
     <CustomBuild Include="..\jsonrpc\BluetoothRemoteControl.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\WifiControl.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Browser.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
