@@ -217,9 +217,6 @@
       <FileType>Document</FileType>
     </CustomBuild>
     <None Include="..\jsonrpc\WebKitBrowser.json" />
-    <CustomBuild Include="..\jsonrpc\WifiControl.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -346,7 +343,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)"</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -396,7 +393,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)"</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -450,7 +447,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)"</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -504,7 +501,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -o "$(projectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)"</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
