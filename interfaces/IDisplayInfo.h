@@ -103,7 +103,7 @@ namespace Exchange {
 
         // @brief Vertical size in centimeters
         // @param width: height in cm
-        virtual uint32_t HeightInCentimeters(uint8_t& heigth /* @out */) const = 0;
+        virtual uint32_t HeightInCentimeters(uint8_t& height /* @out */) const = 0;
 
         // @property
         // @brief HDCP protocol used for transmission
