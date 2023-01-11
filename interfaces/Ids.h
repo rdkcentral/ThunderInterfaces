@@ -245,6 +245,8 @@ namespace Exchange {
         ID_LISA_LOCK_INFO,
         ID_LISA_HANDLE_RESULT,
 
+        ID_RUST_BRIDGE                             = 0x000004B0,
+        ID_RUST_BRIDGE_NOTIFICATION                = ID_RUST_BRIDGE + 1,
         ID_CONTENTDECRYPTION_NOTIFICATION,
         
 	ID_WATERMARK,
