@@ -6,6 +6,19 @@
     "class": "DisplayInfo",
     "description": "DisplayInfo JSON-RPC interface"
   },
+  "definitions": {
+    "hdrtypes": {
+      "type": "string",
+      "enum": [
+        "HDROff",
+        "HDR10",
+        "HDR10Plus",
+        "HDRHlg",
+        "HDRDolbyVision",
+        "HDRTechnicolor"
+      ]
+    }
+  },
   "properties": {
     "displayinfo": {
       "summary": "Display general information",
@@ -55,9 +68,15 @@
           },
           "hdrtype": {
             "description": "HDR Type used",
-            "type": "string",
-            "enum": [ "HDROff", "HDR10", "HDR10Plus", "HDRDolbyVision", "HDRTechnicolor" ],
+            "$ref": "#/definitions/hdrtypes",
             "example": "HDROff"
+          },
+          "tvhdrtypes": {
+            "description": "TV supported HDR types",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/hdrtypes"
+            }
           }
         },
         "required": [
@@ -68,7 +87,8 @@
           "width",
           "height",
           "hdcpprotection",
-          "hdrtype"
+          "hdrtype",
+          "tvhdrtypes"
         ]
       }
     }
