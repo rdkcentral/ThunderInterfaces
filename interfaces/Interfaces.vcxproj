@@ -89,6 +89,7 @@
     <ClInclude Include="IProvisioning.h" />
     <ClInclude Include="IRPCLink.h" />
     <ClInclude Include="IRtspClient.h" />
+    <ClInclude Include="IRustBridge.h" />
     <ClInclude Include="IStream.h" />
     <ClInclude Include="ISwitchBoard.h" />
     <ClInclude Include="ISystemCommands.h" />
