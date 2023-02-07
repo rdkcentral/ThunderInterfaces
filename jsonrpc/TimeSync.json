@@ -54,7 +54,7 @@
     },
     "time": {
       "summary": "Current system time",
-      "description": "Upon setting this property automatic time synchronization will be stopped. If not already active, the framework's *time* subsystem will become activated. If the property is set empty then the *time* subsystem will still become activated but without setting the time (thereby notifying the framework that the time has been set externally).",
+      "description": "Upon setting this property automatic time synchronization will be stopped. Usage of this property is deprecated and the SubSystem control plugin can be used as an alternative to achieve the same",
       "params": {
         "description": "System time (in ISO8601 format)",
         "example": "2019-05-07T07:20:26Z",
