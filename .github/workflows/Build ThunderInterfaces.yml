@@ -51,6 +51,7 @@ jobs:
       run: |
         tar -xvzf ${{matrix.build_type}}/${{matrix.build_type}}.tar.gz
         rm ${{matrix.build_type}}/${{matrix.build_type}}.tar.gz
+        
     - name: Checkout ThunderInterfaces
       uses: actions/checkout@v3
       with:
