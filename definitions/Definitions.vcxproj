@@ -343,7 +343,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -393,7 +393,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -447,7 +447,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
@@ -501,7 +501,7 @@
       </Message>
     </CustomBuildStep>
     <CustomBuild>
-      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) --keep-empty -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)"</Command>
+      <Command>python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
     </CustomBuild>
     <CustomBuild>
       <Message>JSONGenerator</Message>
