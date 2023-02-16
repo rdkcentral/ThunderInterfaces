@@ -565,29 +565,19 @@ namespace Exchange {
       virtual uint32_t StartServiceSearch(const TunerType tuner_type, const ServiceSearchType search_type,
          const bool retune) = 0;
       virtual uint32_t StartServiceSearch(const ServiceSearchType search_type, const bool retune,
-         const IDvbcTuningParams* tuning_params) = 0;
+         const uint32_t freq_hz, const uint16_t symbol_rate, const IDvbcTuningParams::ModulationType modulation) = 0;
       virtual uint32_t StartServiceSearch(const ServiceSearchType search_type, const bool retune,
-         const IDvbsTuningParams* tuning_params) = 0;
+         const string sat_name, const uint32_t freq_khz, const IDvbsTuningParams::PolarityType polarity,
+         const uint16_t symbol_rate, const IDvbsTuningParams::FecType fec,
+         const IDvbsTuningParams::ModulationType modulation, const bool dvbs2) = 0;
       virtual uint32_t StartServiceSearch(const ServiceSearchType search_type, const bool retune,
-         const IDvbtTuningParams* tuning_params) = 0;
+         const uint32_t freq_hz, const IDvbtTuningParams::BandwidthType bandwidth,
+         const IDvbtTuningParams::OfdmModeType mode, const bool dvbt2, const uint8_t plp_id) = 0;
       virtual uint32_t FinishServiceSearch(const TunerType tuner_type, const bool save_changes) = 0;
 
       virtual uint32_t StartPlaying(const string dvburi, const bool monitor_only, int32_t& play_handle /* @out */) = 0;
       virtual uint32_t StartPlaying(const uint16_t lcn, const bool monitor_only, int32_t& play_handle /* @out */) = 0;
       virtual uint32_t StopPlaying(const int32_t play_handle) = 0;
-
-      virtual uint32_t DvbcTuningParams(const uint32_t freq_hz, const uint16_t symbol_rate,
-         const IDvbcTuningParams::ModulationType modulation, IDvbcTuningParams*& params /* @out */) = 0;
-
-      virtual uint32_t DvbsTuningParams(const string sat_name, const uint32_t freq_khz,
-         const IDvbsTuningParams::PolarityType polarity, const uint16_t symbol_rate,
-         const IDvbsTuningParams::FecType fec, const IDvbsTuningParams::ModulationType modulation,
-         const bool dvbs2, IDvbsTuningParams*& params /* @out */) = 0;
-
-      virtual uint32_t DvbtTuningParams(const uint32_t freq_hz, const IDvbtTuningParams::BandwidthType bandwidth,
-         const IDvbtTuningParams::OfdmModeType mode, const bool dvbt2, const uint8_t plp_id,
-         IDvbtTuningParams*& params /* @out */) = 0;
-
    };
 }
 }
