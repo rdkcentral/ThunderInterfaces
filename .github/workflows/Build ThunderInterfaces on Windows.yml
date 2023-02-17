@@ -1,9 +1,8 @@
 name: Build ThunderInterfaces on Windows
 
-# CHANGE TO MASTER
 on:
   push:
-    branches: ["development/actions-windows"]
+    branches: ["master"]
   pull_request:
     branches: ["master"]
   workflow_call:
@@ -14,10 +13,9 @@ env:
   interfaces: ThunderInterfaces\interfaces\Interfaces.vcxproj
   solution: Thunder.sln
 
-# CHANGE TO RDKCENTRAL
 jobs:
   Thunder:
-    uses: VeithMetro/Thunder/.github/workflows/Build Thunder on Windows.yml@master
+    uses: rdkcentral/Thunder/.github/workflows/Build Thunder on Windows.yml@master
     
   Interfaces:
     needs: Thunder
