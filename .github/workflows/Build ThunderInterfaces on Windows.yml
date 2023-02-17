@@ -79,12 +79,13 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: Thunder-${{matrix.type}}${{matrix.version}}-artifact
-        path: ..\
+        path: D:\a\Thunder
         
     - name: Unpack files
       run: |
-        tar -xvzf ..\${{matrix.type}}${{matrix.version}}.tar.gz
-        rm ..\${{matrix.type}}${{matrix.version}}.tar.gz
+        cd ..
+        tar -xvzf ${{matrix.type}}${{matrix.version}}.tar.gz
+        rm ${{matrix.type}}${{matrix.version}}.tar.gz
 
     - name: Build ThunderInterfaces
       shell: cmd
@@ -93,10 +94,12 @@ jobs:
         "%devEnv%" /Build "${{matrix.type}}|x${{matrix.version}}" /Project "%interfaces%"  "%solution%"
         
     - name: Tar files
-      run: tar -czvf ${{matrix.type}}${{matrix.version}}.tar.gz ..\artifacts
+      run: |
+        cd ..
+        tar -czvf ${{matrix.type}}${{matrix.version}}.tar.gz artifacts
     
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
-        name: Thunder-${{matrix.type}}${{matrix.version}}-artifact
-        path: ${{matrix.type}}${{matrix.version}}.tar.gz
+        name: ThunderInterfaces-${{matrix.type}}${{matrix.version}}-artifact
+        path: D:\a\Thunder\${{matrix.type}}${{matrix.version}}.tar.gz
