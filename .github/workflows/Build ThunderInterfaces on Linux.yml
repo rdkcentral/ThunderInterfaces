@@ -1,4 +1,4 @@
-name: CMake ThunderInterfaces
+name: Build ThunderInterfaces on Linux
 
 on:
   push:
