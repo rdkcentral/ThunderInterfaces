@@ -9,10 +9,10 @@ on:
   workflow_call:
 
 env:
-  definitions: ThunderOnWindows\ThunderInterfaces\definitions\definitions.vcxproj
+  definitions: ThunderInterfaces\definitions\definitions.vcxproj
   devEnv: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.com
-  interfaces: ThunderOnWindows\ThunderInterfaces\interfaces\Interfaces.vcxproj
-  solution: ThunderOnWindows\Thunder.sln
+  interfaces: ThunderInterfaces\interfaces\Interfaces.vcxproj
+  solution: Thunder.sln
 
 # CHANGE TO RDKCENTRAL
 jobs:
@@ -89,6 +89,7 @@ jobs:
     - name: Build ThunderInterfaces
       shell: cmd
       run: |
+        cd ThunderOnWindows
         "%devEnv%" /Build "${{matrix.type}}|x${{matrix.version}}" /Project "%definitions%"  "%solution%"
         "%devEnv%" /Build "${{matrix.type}}|x${{matrix.version}}" /Project "%interfaces%"  "%solution%"
         
