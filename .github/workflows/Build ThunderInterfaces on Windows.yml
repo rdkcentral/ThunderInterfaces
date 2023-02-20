@@ -5,7 +5,6 @@ on:
     branches: ["master"]
   pull_request:
     branches: ["master"]
-  workflow_call:
 
 env:
   definitions: ThunderInterfaces\definitions\definitions.vcxproj
@@ -14,12 +13,7 @@ env:
   solution: Thunder.sln
 
 jobs:
-  Thunder:
-    uses: rdkcentral/Thunder/.github/workflows/Build Thunder on Windows.yml@master
-    
-  Interfaces:
-    needs: Thunder
-    
+  ThunderInterfaces:
     runs-on: windows-latest
     
     strategy:
@@ -74,16 +68,6 @@ jobs:
     - name: Install jsonref
       run: pip install jsonref
         
-    - name: Download artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: Thunder-${{matrix.type}}${{matrix.version}}-artifact
-        
-    - name: Unpack files
-      run: |
-        tar -xvzf ${{matrix.type}}${{matrix.version}}.tar.gz
-        rm ${{matrix.type}}${{matrix.version}}.tar.gz
-
     - name: Build ThunderInterfaces
       shell: cmd
       run: |
