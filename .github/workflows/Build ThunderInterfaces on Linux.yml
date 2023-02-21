@@ -1,4 +1,4 @@
-name: CMake ThunderInterfaces
+name: Build ThunderInterfaces on Linux
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
   Thunder:
     uses: rdkcentral/Thunder/.github/workflows/Build Thunder on Linux.yml@master
     
-  Interfaces:
+  ThunderInterfaces:
     needs: Thunder
     
     runs-on: ubuntu-latest
