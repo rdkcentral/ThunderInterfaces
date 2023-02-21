@@ -62,7 +62,7 @@ namespace Exchange {
             string ssid;
             uint64_t bssid;
             uint32_t frequency;
-            uint32_t signal;
+            int32_t signal;
             Security security /* @bitmask */;
         };
         using INetworkInfoIterator = RPC::IIteratorType<NetworkInfo, ID_WIFICONTROL_NETWORK_INFO_ITERATOR>;
