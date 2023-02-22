@@ -24,6 +24,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
+    // @stubgen:omit
     struct EXTERNAL ICompositionBuffer {
         /**
          * @brief   frame buffer interface with hardware optimisation in mind
