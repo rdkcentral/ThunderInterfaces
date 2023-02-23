@@ -35,11 +35,7 @@ namespace Exchange {
         // We need to test this on a 32 bit platform. On 64 bits platforms we do need
         // the data to be written into the eventfd to be 64 bits otherwise it does not
         // respond!
-        #if defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 8)
-        using EventFrame = uint64_t;
-        #else
-        using EventFrame = uint32_t;
-        #endif
+        using EventFrame = uintptr_t;
 
         // We need some shared space for data to exchange, and to create a lock..
         class SharedStorage {

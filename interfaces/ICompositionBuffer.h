@@ -30,11 +30,7 @@ namespace Exchange {
          * @brief   frame buffer interface with hardware optimisation in mind
          */
 
-        #if defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 8)
-        using buffer_id = uint64_t;
-        #else
-        using buffer_id = uint32_t;
-        #endif
+        using buffer_id = uintptr_t;
 
         virtual ~ICompositionBuffer() = default;
 
