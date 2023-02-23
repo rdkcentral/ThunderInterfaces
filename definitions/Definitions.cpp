@@ -39,7 +39,6 @@
 #include <interfaces/IDRM.h>
 #include <interfaces/IDsgccClient.h>
 #include <interfaces/IExternalBase.h>
-#include <interfaces/ValuePoint.h>
 #include <interfaces/IGuide.h>
 #include <interfaces/IInputPin.h>
 #include <interfaces/IInputSwitch.h>
@@ -77,6 +76,9 @@
 #include <interfaces/IWebServer.h>
 #include <interfaces/IDeviceInfo.h>
 #include <interfaces/IZigWave.h>
+
+#include "ValuePoint.h"
+
 #endif
 
 MODULE_NAME_DECLARATION(BUILD_REFERENCE);
