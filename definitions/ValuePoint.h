@@ -115,7 +115,7 @@ namespace Exchange {
         ValuePoint(const ValuePoint&) = delete;
         ValuePoint& operator=(const ValuePoint&) = delete;
 
-PUSH_WARNING(DISABLE_WARNING_THIS_IN_MEMBER_INITIALIZER_LIST)
+        PUSH_WARNING(DISABLE_WARNING_THIS_IN_MEMBER_INITIALIZER_LIST);
         ValuePoint(const uint32_t id, const uint32_t type)
             : _adminLock()
             , _id(id & 0x00FFFFFF)
@@ -127,7 +127,7 @@ PUSH_WARNING(DISABLE_WARNING_THIS_IN_MEMBER_INITIALIZER_LIST)
             , _timed(*this)
         {
         }
-POP_WARNING()
+        POP_WARNING();
         inline ValuePoint(const uint32_t id, const basic base, const specific spec, const dimension dim, const uint8_t decimals)
             : ValuePoint(id, IValuePoint::Type(base, spec, dim, decimals))
         {

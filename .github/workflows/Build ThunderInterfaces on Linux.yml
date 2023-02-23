@@ -39,7 +39,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         path: Thunder
-        repository: ${{github.repository_owner}}/Thunder
+        repository: rdkcentral/Thunder
         
     - name: Download artifacts
       uses: actions/download-artifact@v3
@@ -56,7 +56,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         path: ThunderInterfaces
-        repository: ${{github.repository_owner}}/ThunderInterfaces
+        repository: rdkcentral/ThunderInterfaces
 
     - name: Build ThunderInterfaces
       run: |

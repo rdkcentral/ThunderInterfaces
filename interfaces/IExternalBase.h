@@ -18,9 +18,9 @@
  */
 
 #pragma once
+
 #include "Module.h"
 #include "IExternal.h"
-
 
 namespace WPEFramework {
 namespace Exchange {

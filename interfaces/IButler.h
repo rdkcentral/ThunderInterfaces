@@ -32,21 +32,25 @@ namespace WPEFramework {
 
 		struct EXTERNAL IButler : virtual public Core::IUnknown {
 
+			~IButler() override = default;
+
 			enum { ID = ID_BUTLER };
 
 			struct EXTERNAL INotification : virtual public Core::IUnknown {
 
+				~INotification() override = default;
+
 				enum { ID = ID_BUTLER_NOTIFICATION };
 
 				// Push changes. If we a new IValuePoint is offered or revoked
-				virtual void Added(/* @out */ IValuePoint* element) = 0;
-				virtual void Removed(/* @out */ IValuePoint* element) = 0;
+				virtual void Added(IValuePoint* element) = 0;
+				virtual void Removed(IValuePoint* element) = 0;
 
 				// Push changes. If the Current value changes.
-				virtual void Updated(/* @out */ IValuePoint* element) = 0;
+				virtual void Updated(IValuePoint* element) = 0;
 
 				// Push changes. If the Current metadata of the value point changes
-				virtual void Metadata(/* @out */ IValuePoint* element) = 0;
+				virtual void Metadata(IValuePoint* element) = 0;
 			};
 
 			// Register for any changes on the elements the butler knows.
