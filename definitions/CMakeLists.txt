@@ -26,6 +26,7 @@ project_version(1.0.0)
 find_package(CompileSettingsDebug REQUIRED)
 find_package(JsonGenerator REQUIRED)
 find_package(${NAMESPACE}Core REQUIRED)
+find_package(${NAMESPACE}PrivilegedRequest QUIET)
 
 set(Target ${NAMESPACE}${PROJECT_NAME})
 
@@ -37,7 +38,12 @@ separate_arguments(INTERFACES_PATTERNS)
 list(TRANSFORM INTERFACES_PATTERNS PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/")
 file(GLOB INTERFACE_FILE ${INTERFACES_PATTERNS})
 
-set(PUBLIC_HEADERS "definitions.h")
+set(PUBLIC_HEADERS "definitions.h" "ValuePoint.h")
+
+if (${NAMESPACE}PrivilegedRequest_FOUND)
+    message(STATUS "Found Privileged request, so adding CompositionBuffer.h")
+    list(APPEND PUBLIC_HEADERS "CompositionBuffer.h")
+endif()
 
 if(NOT GENERATOR_SEARCH_PATH)
     set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
