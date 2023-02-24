@@ -41,8 +41,22 @@ namespace Exchange {
 
         using ScreenResolution = IDeviceVideoCapabilities::ScreenResolution;
 
+        /**
+         * @brief factor to be used to remove the need of using float values on the interface.
+         *
+         */
+        static constexpr uint16_t RefreshRateFactor = 1000;
+
+        /**
+         * @brief Gets the refresh rate from a IComposition::ScreenResolution.
+         *
+         * @param resolution The resolution to parse
+         * @return uint16_t the refresh rate multiplied with @RefreshRateFactor (59940 / @RefreshRateFactor -> 59.940Hz)
+         */
+        static uint32_t RefreshRateFromResolution(const ScreenResolution resolution);
         static uint32_t WidthFromResolution(const ScreenResolution resolution);
         static uint32_t HeightFromResolution(const ScreenResolution resolution);
+
         static ScreenResolution ResolutionFromHeightWidth(const uint32_t height, const uint32_t width);
 
         struct Rectangle {
