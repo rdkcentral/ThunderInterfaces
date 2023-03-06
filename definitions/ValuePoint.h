@@ -19,8 +19,7 @@
 
 #pragma once
 #include "Module.h"
-#include "IValuePoint.h"
-
+#include <interfaces/IValuePoint.h>
 
 namespace WPEFramework {
 namespace Exchange {
