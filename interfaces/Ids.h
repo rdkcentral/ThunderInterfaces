@@ -331,6 +331,11 @@ namespace Exchange {
         ID_LISA_LOCK_INFO                            = ID_LISA + 13,
         ID_LISA_HANDLE_RESULT                        = ID_LISA + 14,
 
+        ID_PACKAGEMANAGER                            = 0x000004A0,
+        ID_PACKAGEMANAGER_KEY_VALUE_ITERATOR         = ID_PACKAGEMANAGER + 1,
+        ID_PACKAGEMANAGER_NOTIFICATION               = ID_PACKAGEMANAGER + 2,
+        ID_PACKAGEMANAGER_APP_VERSION_ITERATOR       = ID_PACKAGEMANAGER + 3,
+
         ID_RUST_BRIDGE                               = 0x000004B0,
         ID_RUST_BRIDGE_NOTIFICATION                  = ID_RUST_BRIDGE + 1,
 
