@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.3)
 
 project(Definitions)
 
-find_package(WPEFramework)
+find_package(bridge)
 
 project_version(1.0.0)
 
@@ -60,6 +60,8 @@ CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h" TARGET "../Modu
 list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h")
 CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h" TARGET "../Ids.h")
 list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h")
+CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/Module.h" TARGET "../interfaces/Module.h")
+list(APPEND PUBLIC_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/Module.h")
 
 add_library(${Target} SHARED
         Definitions.cpp
@@ -94,7 +96,7 @@ install(
         LIBRARY DESTINATION lib/ COMPONENT libs      # shared lib
         RUNTIME DESTINATION bin COMPONENT libs      # binaries
         FRAMEWORK DESTINATION bin/ COMPONENT libs    # for mac
-        PUBLIC_HEADER DESTINATION include/${NAMESPACE}/interfaces COMPONENT devel   # headers for mac (note the different component -> different package)
+        PUBLIC_HEADER DESTINATION include/${NAMESPACE}/definitions COMPONENT devel   # headers for mac (note the different component -> different package)
         INCLUDES DESTINATION include/${NAMESPACE}   # default include path
 )
 
@@ -107,6 +109,7 @@ InstallPackageConfig(
         TARGETS ${Target}
         DESCRIPTION "Share lookup tables associated with interface enums."
         )
+
 
 InstallCMakeConfig(TARGETS ${Target})
 
