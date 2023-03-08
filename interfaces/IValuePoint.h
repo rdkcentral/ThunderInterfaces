@@ -159,7 +159,7 @@ namespace Exchange {
 
         // Periodically we might like to be evaluated, call this method at a set time.
         /* @json:omit */
-        virtual void Evaluate() = 0;
+        virtual bool Evaluate() = 0;
 
         // ------------------------------------------------------------------------
         // Convenience methods to extract interesting information from the Type()
