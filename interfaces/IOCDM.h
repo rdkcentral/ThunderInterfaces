@@ -19,26 +19,29 @@
  
 #pragma once
 
-
 #include "Module.h"
-
 
 namespace WPEFramework {
 namespace Exchange {
 
-
 enum OCDM_RESULT : uint32_t {
     OCDM_SUCCESS = 0,
     OCDM_S_FALSE = 1,
+    OCDM_MORE_DATA_AVAILABLE = 2,
+    OCDM_INTERFACE_NOT_IMPLEMENTED = 3,
+    OCDM_BUFFER_TOO_SMALL = 4,
+    OCDM_INVALID_ACCESSOR = 0x80000001,
     OCDM_KEYSYSTEM_NOT_SUPPORTED = 0x80000002,
     OCDM_INVALID_SESSION = 0x80000003,
     OCDM_INVALID_DECRYPT_BUFFER = 0x80000004,
     OCDM_OUT_OF_MEMORY = 0x80000005,
+    OCDM_METHOD_NOT_IMPLEMENTED = 0x80000006,
     OCDM_FAIL = 0x80004005,
     OCDM_INVALID_ARG = 0x80070057,
     OCDM_SERVER_INTERNAL_ERROR = 0x8004C600,
     OCDM_SERVER_INVALID_MESSAGE = 0x8004C601,
     OCDM_SERVER_SERVICE_SPECIFIC = 0x8004C604,
+    OCDM_BUSY_CANNOT_INITIALIZE = 0x8004DD00
 };
 
 // ISession defines the interface towards a DRM context that can decrypt data
@@ -97,6 +100,12 @@ struct ISession : virtual public Core::IUnknown {
 
     // Provides keysystem-specific metadata of the session
     virtual std::string Metadata() const = 0;
+
+    // Provides keysystem-specific metricdata of the session
+    virtual OCDM_RESULT Metricdata(
+        uint32_t& bufferSize /* @inout */,
+        uint8_t buffer[] /* @out @length:bufferSize */) const
+        = 0;
 
     // Report the current status of the Session with respect to the KeyExchange.
     virtual KeyStatus Status() const = 0;
@@ -178,6 +187,13 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
 
     // Provides keysystem-specific metadata
     virtual OCDM_RESULT Metadata(const std::string& keySystem, std::string& metadata /* @out */) const = 0;
+
+    // Provides keysystem-specific metricdata
+    virtual OCDM_RESULT Metricdata(
+        const std::string& keySystem,
+        uint32_t& bufferSize /* @inout */,
+        uint8_t buffer[] /* @out @length:bufferSize */) const
+        = 0;
 
     // Create a MediaKeySession using the supplied init data and CDM data.
     virtual OCDM_RESULT
