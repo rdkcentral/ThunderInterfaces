@@ -29,7 +29,7 @@ namespace Exchange {
 
         ~IRDKAdapter() override = default;
 
-        virtual void Test() const = 0;
+        virtual uint32_t Test() const = 0;
     };
 }
 }
