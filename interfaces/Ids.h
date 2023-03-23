@@ -348,7 +348,8 @@ namespace Exchange {
         ID_NETWORKCONTROL_NOTIFICATION               = ID_NETWORKCONTROL + 1,
         ID_NETWORKCONTROL_NETWORK_INFO_ITERATOR      = ID_NETWORKCONTROL + 2,
 
-        ID_RDKADAPTER                                = 0x000004E0
+        ID_RDKADAPTER                                = 0x000004E0,
+        ID_RDKADAPTER_NOTIFICATION                   = ID_RDKADAPTER + 1
     };
 }
 }

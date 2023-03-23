@@ -29,7 +29,17 @@ namespace Exchange {
 
         ~IRDKAdapter() override = default;
 
-        virtual uint32_t Test() const = 0;
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
+            enum { ID = ID_RDKADAPTER_NOTIFICATION };
+            ~INotification() override = default;
+
+            virtual void ConnectionUpdate(const bool connected) = 0;
+        };
+
+        virtual Core::hresult Register(IRDKAdapter::INotification* sink) = 0;
+        virtual Core::hresult Unregister(IRDKAdapter::INotification* sink) = 0;
+
+        virtual Core::hresult Connected(bool& connected /* @out */) const = 0;
     };
 }
 }
