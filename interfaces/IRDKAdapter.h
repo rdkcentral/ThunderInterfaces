@@ -40,6 +40,7 @@ namespace Exchange {
         virtual Core::hresult Unregister(IRDKAdapter::INotification* sink) = 0;
 
         virtual Core::hresult Connected(bool& connected /* @out */) const = 0;
+        virtual Core::hresult PublicIP(string& ipaddress /* @out */) const = 0;
     };
 }
 }
