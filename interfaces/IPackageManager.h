@@ -190,6 +190,12 @@ namespace Exchange {
                 virtual uint32_t Offer(IPackageManager* packagemanager) = 0;
                 virtual uint32_t Revoke(const IPackageManager* packagemanager) = 0;
 
+    };
+
+    struct EXTERNAL IPackageManagerCallback : virtual public Core::IUnknown {
+
+                enum { ID = ID_PACKAGEMANAGER_CALLBACK };
+
                 virtual void OperationStatusUpdate(const string& handle, const string& operation, const string& type, const string& id,
                                          const string& version, const string& status, const string& details) = 0;
 
