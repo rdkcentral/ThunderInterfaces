@@ -183,7 +183,6 @@ namespace Exchange {
 
     };
 
-
     struct EXTERNAL IPackageManagerBroker : virtual public Core::IUnknown {
 
                 enum { ID = ID_PACKAGEMANAGER_BROKER };

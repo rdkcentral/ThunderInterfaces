@@ -192,6 +192,10 @@ namespace CDMi {
 typedef enum {
     CDMi_SUCCESS = 0,
     CDMi_S_FALSE = 1,
+    CDMi_MORE_DATA_AVAILABLE = 2,
+    CDMi_INTERFACE_NOT_IMPLEMENTED = 3,
+    CDMi_BUFFER_TOO_SMALL = 4,
+    CDMi_INVALID_ACCESSOR = 0x80000001,
     CDMi_KEYSYSTEM_NOT_SUPPORTED = 0x80000002,
     CDMi_INVALID_SESSION = 0x80000003,
     CDMi_INVALID_DECRYPT_BUFFER = 0x80000004,
@@ -495,6 +499,18 @@ public:
         uint8_t secureStoreHash[],
         uint32_t secureStoreHashLength)
         = 0;
+};
+
+struct IMediaSystemMetrics {
+    virtual ~IMediaSystemMetrics() = default;
+
+    virtual CDMi_RESULT Metrics (uint32_t& bufferLength, uint8_t buffer[]) const = 0;
+};
+
+struct IMediaSessionMetrics {
+    virtual ~IMediaSessionMetrics() = default;
+
+    virtual CDMi_RESULT Metrics (uint32_t& bufferLength, uint8_t buffer[]) const = 0;
 };
 
 struct ISystemFactory {
