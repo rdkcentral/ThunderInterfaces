@@ -337,12 +337,9 @@ namespace Exchange {
             if (Condition() == condition::activated) {
                 result = Read(value);
 
-                if ((result == Core::ERROR_NONE) && (_cached != value)) {
-
-                    if (static_cast<const Timed&>(_timed).IsActive() == false) {
-                        _cached = value;
-                        Updated();
-                    }
+                if ((result == Core::ERROR_NONE) && (_cached != value) && (static_cast<const Timed&>(_timed).IsActive() == false) ) {
+                    _cached = value;
+                    Updated();
                 }
             }
 
