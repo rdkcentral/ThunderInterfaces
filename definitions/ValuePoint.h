@@ -367,8 +367,8 @@ namespace Exchange {
                             result = Write(value);
                         }
 
-                        if (_cached != current) {
-                            _cached = current;
+                        if ((result == Core::ERROR_NONE) && (_cached != value)) {
+                            _cached = value;
 
                             Updated();
                         }
