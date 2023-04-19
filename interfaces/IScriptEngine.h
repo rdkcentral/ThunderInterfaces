@@ -11,9 +11,13 @@ namespace Exchange {
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_SCRIPT_ENGINE_NOTIFICATION };
 
+            ~INotification() override = default;
+
             // Signal changes on the subscribed namespace..
             virtual void URLChanged(const string& URL) = 0;
         };
+
+        ~IEngine() override = default;
 
         virtual Core::hresult Register(INotification* sink /* @in */) = 0;
         virtual Core::hresult Unregister(const INotification* sink /* @in */) = 0;
