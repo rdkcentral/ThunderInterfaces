@@ -19,12 +19,18 @@ cmake_minimum_required(VERSION 3.3)
 
 project(Interfaces)
 
+find_package(WPEFramework REQUIRED)
+find_package(${NAMESPACE}Core REQUIRED)
+
 set(TargetMarshalling ${NAMESPACE}Marshallings)
+
+if(NOT GENERATOR_SEARCH_PATH)
+    set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
+endif()
 
 separate_arguments(INTERFACES_PATTERNS)
 file(GLOB INTERFACES_HEADERS ${INTERFACES_PATTERNS})
 
-set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
 ProxyStubGenerator(INPUT "${INTERFACES_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
 file(GLOB JSON_HEADERS json/*.h)
@@ -36,7 +42,8 @@ add_library(${TargetMarshalling} SHARED
         ${PROXY_STUB_SOURCES}
         )
 
-target_include_directories(${TargetMarshalling} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+       
+target_include_directories(${TargetMarshalling} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/..)
 
 target_link_libraries(${TargetMarshalling}
         PRIVATE
