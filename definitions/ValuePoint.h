@@ -337,12 +337,9 @@ namespace Exchange {
             if (Condition() == condition::activated) {
                 result = Read(value);
 
-                if ((result == Core::ERROR_NONE) && (_cached != value)) {
+                if ((result == Core::ERROR_NONE) && (_cached != value) && (static_cast<const Timed&>(_timed).IsActive() == false) ) {
                     _cached = value;
-
-                    if (static_cast<const Timed&>(_timed).IsActive() == false) {
-                        Updated();
-                    }
+                    Updated();
                 }
             }
 
@@ -370,8 +367,8 @@ namespace Exchange {
                             result = Write(value);
                         }
 
-                        if (_cached != current) {
-                            _cached = current;
+                        if ((result == Core::ERROR_NONE) && (_cached != value)) {
+                            _cached = value;
 
                             Updated();
                         }
@@ -432,6 +429,28 @@ namespace Exchange {
             _adminLock.Unlock();
         }
 
+        inline void Updated() const
+        {
+            if (_clients.size() > 0) {
+
+                _adminLock.Lock();
+
+                if ((_notify & notify::UPDATE) != 0) {
+                    _adminLock.Unlock();
+                }
+                else if (_notify != notify::NONE) {
+                    _notify = static_cast<notify>(_notify|notify::UPDATE);
+                    _adminLock.Unlock();
+                }
+                else {
+                    _notify = notify::UPDATE;
+                    _adminLock.Unlock();
+
+                    _job.Submit();
+                }
+            }
+        }
+ 
         BEGIN_INTERFACE_MAP(ValuePoint)
             INTERFACE_ENTRY(Exchange::IValuePoint)
         END_INTERFACE_MAP
@@ -465,27 +484,6 @@ namespace Exchange {
             }
 
             return (result);
-        }
-        inline void Updated() const
-        {
-            if (_clients.size() > 0) {
-
-                _adminLock.Lock();
-
-                if ((_notify & notify::UPDATE) != 0) {
-                    _adminLock.Unlock();
-                }
-                else if (_notify != notify::NONE) {
-                    _notify = static_cast<notify>(_notify|notify::UPDATE);
-                    _adminLock.Unlock();
-                }
-                else {
-                    _notify = notify::UPDATE;
-                    _adminLock.Unlock();
-
-                    _job.Submit();
-                }
-            }
         }
         inline void Metadata() const
         {

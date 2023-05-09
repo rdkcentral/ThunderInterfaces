@@ -348,7 +348,12 @@ namespace Exchange {
 
         ID_NETWORKCONTROL                            = 0x000004D0,
         ID_NETWORKCONTROL_NOTIFICATION               = ID_NETWORKCONTROL + 1,
-        ID_NETWORKCONTROL_NETWORK_INFO_ITERATOR      = ID_NETWORKCONTROL + 2
+        ID_NETWORKCONTROL_NETWORK_INFO_ITERATOR      = ID_NETWORKCONTROL + 2,
+
+        ID_WATCHDOG                                  = 0x000004E0,
+
+        ID_SCRIPT_ENGINE                             = 0x000004F0,
+        ID_SCRIPT_ENGINE_NOTIFICATION                = ID_SCRIPT_ENGINE + 1
     };
 }
 }
