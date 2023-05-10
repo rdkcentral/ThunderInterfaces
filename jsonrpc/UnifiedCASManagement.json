@@ -9,8 +9,57 @@
   "common": {
     "$ref": "common.json"
   },
-  "playercommon": {
-    "$ref": "CASPlayerCommon.json"
+  "mediaurl": {
+    "type": "string",
+    "description": "The URL to tune to can be tune://, ocap:// http:// https://",
+    "example": "tune://tuner?frequency=175000000&modulation=16&pgmno=12"
+  },
+  "mode": {
+    "type": "string",
+    "description": "The use of the tune request",
+    "enum": [
+      "MODE_NONE",
+      "MODE_LIVE",
+      "MODE_RECORD",
+      "MODE_PLAYBACK"
+    ],
+    "default": "MODE_LIVE"
+  },
+  "manage": {
+    "type": "string",
+    "description": "The type of CAS management to attach to the tune",
+    "enum": [
+      "MANAGE_NONE",
+      "MANAGE_FULL",
+      "MANAGE_NO_PSI",
+      "MANAGE_NO_TUNER"
+    ],
+    "default": "MANAGE_NONE"
+  },
+  "casinitdata": {
+    "type": "string",
+    "description": "CAS specific initdata for the selected media",
+    "example": "<base64 data>"
+  },
+  "casocdmid": {
+    "type": "string",
+    "description": "The well-known OCDM ID of the CAS to use"
+  },
+  "result": {
+    "type": "object",
+    "description": "Generic Result Object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Returning whether this method failed or succeed",
+        "example": "true"
+      },
+      "failurereason": {
+        "type": "number",
+        "description": "Reason why it's failed"
+      }
+    },
+    "required": ["success"]
   },
   "definitions": {
     "managerequest": {
@@ -18,22 +67,22 @@
       "type": "object",
       "properties": {
         "mediaurl": {
-          "$ref": "#/playercommon/mediaurl"
+          "$ref": "#/mediaurl"
         },
         "mode": {
-          "$ref": "#/playercommon/mode",
+          "$ref": "#/mode",
           "default": "MODE_NONE"
         },
         "manage": {
-          "$ref": "#/playercommon/manage",
+          "$ref": "#/manage",
           "default": "MANAGE_NO_PSI"
         },
         "casinitdata": {
-          "$ref": "#/playercommon/casinitdata",
+          "$ref": "#/casinitdata",
           "default": "com.synamedia.vgdrm"
         },
         "casocdmid": {
-          "$ref": "#/playercommon/casocdmid"
+          "$ref": "#/casocdmid"
         }
       },
       "required": [
@@ -71,16 +120,16 @@
         "$ref": "#/definitions/managerequest"
       },
       "result": {
-        "$ref": "#/playercommon/result"
+        "$ref": "#/result"
       }
     },
     "unmanage": {
       "summary": "Destroy a management session",
       "params": {
-        "$ref": "#/playercommon/casocdmid"
+        "$ref": "#/casocdmid"
       },
       "result": {
-        "$ref": "#/playercommon/result"
+        "$ref": "#/result"
       }
     },
     "send": {
@@ -89,7 +138,7 @@
         "$ref": "#/definitions/xferinfo"
       },
       "result": {
-        "$ref": "#/playercommon/result"
+        "$ref": "#/result"
       }
     }
   },
@@ -103,7 +152,6 @@
     }
   }
 }
-
 
 
 
