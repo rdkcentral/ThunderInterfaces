@@ -15,17 +15,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+cmake_minimum_required(VERSION 3.3)
+
 project(Definitions)
 
 set(Target ${NAMESPACE}Definitions)
 
-separate_arguments(JSONRPC_PATTERNS)
-list(TRANSFORM JSONRPC_PATTERNS PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/")
-file(GLOB JSON_FILE ${JSONRPC_PATTERNS})
-
-separate_arguments(INTERFACES_PATTERNS)
-list(TRANSFORM INTERFACES_PATTERNS PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/")
-file(GLOB INTERFACE_FILE ${INTERFACES_PATTERNS})
+file(GLOB JSON_FILE      "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/*.json")
+file(GLOB INTERFACE_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/I*.h")
 
 set(PUBLIC_HEADERS "definitions.h")
 
