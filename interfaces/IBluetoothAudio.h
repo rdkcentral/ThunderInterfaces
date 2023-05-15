@@ -187,7 +187,7 @@ namespace Exchange {
                 virtual uint32_t Acquired(const string& connector, const Format& format) = 0;
                 virtual void Relinquished() = 0;
 
-                virtual void SpeedChanged(const uint8_t speed) = 0;
+                virtual void SpeedChanged(const int8_t speed) = 0;
             };
 
             virtual uint32_t Callback(ICallback* callback) = 0;
