@@ -217,16 +217,15 @@ namespace Exchange {
         using StreamProperties = IBluetoothAudioSink::StreamProperties;
 
         // @event
-        struct INotification : virtual public Core::IUnknown {
+        struct ICallback : virtual public Core::IUnknown {
 
-            enum { ID = ID_BLUETOOTHAUDIOSOURCE_NOTIFICATION };
+            enum { ID = ID_BLUETOOTHAUDIOSOURCE_CALLBACK };
 
             // @brief Signals audio source state change or stream properties update
             virtual void Updated() = 0;
         };
 
-        virtual uint32_t Register(INotification* notification) = 0;
-        virtual uint32_t Unregister(const INotification* notification) = 0;
+        virtual uint32_t Callback(ICallback* callback) = 0;
 
         // @property
         // @brief Bluetooth address of the source device
