@@ -233,7 +233,10 @@ namespace Exchange {
         virtual void Register(INotification* sink) = 0;
         virtual void Unregister(INotification* sink) = 0;
 
+        /* @text get_coookiejar */ 
         virtual uint32_t CookieJar(uint32_t& version /* @out */, uint32_t& checksum /* @out */, string& payload /* @out */) const = 0;
+        
+        /* @text set_coookiejar */ 
         virtual uint32_t CookieJar(const uint32_t version, const uint32_t checksum, const string& payload) = 0;
     };
 
