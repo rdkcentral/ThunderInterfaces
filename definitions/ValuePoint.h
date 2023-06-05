@@ -460,8 +460,10 @@ namespace Exchange {
         virtual uint32_t Write(const int32_t value) = 0;
 
         inline bool Cache(const int32_t value) {
+            _adminLock.Lock();
             bool result = (value != _cached);
             _cached = value;
+            _adminLock.Unlock();
             return (result);
         }
         inline int32_t FromRange(const int32_t value, const int32_t range) const
