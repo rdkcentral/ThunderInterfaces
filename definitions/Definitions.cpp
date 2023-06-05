@@ -61,6 +61,7 @@
 #include <interfaces/IRPCLink.h>
 #include <interfaces/IRtspClient.h>
 #include <interfaces/IRustBridge.h>
+#include <interfaces/IScriptEngine.h>
 #include <interfaces/ISecureShellServer.h>
 #include <interfaces/IStream.h>
 #include <interfaces/ISwitchBoard.h>
@@ -75,6 +76,7 @@
 #include <interfaces/IWebPA.h>
 #include <interfaces/IWebServer.h>
 #include <interfaces/IDeviceInfo.h>
+#include <interfaces/IWatchDog.h>
 #include <interfaces/IZigWave.h>
 #include "ValuePoint.h"
 #endif
