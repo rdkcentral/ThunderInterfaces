@@ -24,6 +24,7 @@
 // @insert <com/IIteratorType.h>
 
 namespace WPEFramework {
+
 namespace Exchange {
 
 // @json
@@ -41,28 +42,6 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
         string category /* @brief Name of the message category (e.g. Information) */;
         string module /* @brief Name of the module the message is originating from (e.g. Plugin_BluetoothControl) */;
         bool enabled /* @brief Denotes if the control is enabled (true) or disabled (false) */;
-    };
-
-    // Interface not exposed over JSON-RPC
-    struct EXTERNAL ICollect : virtual public Core::IUnknown {
-
-        enum { ID = ID_MESSAGE_CONTROL_COLLECT };
-
-        struct EXTERNAL ICallback : virtual public Core::IUnknown {
-
-            enum { ID = ID_MESSAGE_CONTROL_COLLECT_CALLBACK };
-
-            virtual void Message(const messagetype type,
-                                const string& module, const string& category, 
-                                const string& fileName, const uint16_t lineNumber, 
-                                const string& className, const uint64_t timeStamp, 
-                                const string& text) = 0;
-        };
-
-        virtual uint32_t Callback(ICallback* callback) = 0;
-
-        virtual uint32_t Attach(const uint32_t id) = 0;
-        virtual uint32_t Detach(const uint32_t id) = 0;
     };
 
     using IControlIterator = RPC::IIteratorType<Control, ID_MESSAGE_CONTROL_ITERATOR>;
