@@ -31,12 +31,16 @@ namespace Exchange {
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_DICTIONARY_NOTIFICATION };
 
+            ~INotification() override = default;
+
             // Signal changes on the subscribed namespace..
             virtual void Modified(const string& nameSpace, const string& key, const string& value) = 0;
         };
 
         struct EXTERNAL IIterator : virtual public Core::IUnknown {
             enum { ID = ID_DICTIONARY_ITERATOR };
+
+            ~IIterator() override = default;
 
             virtual void Reset() = 0;
             virtual bool IsValid() const = 0;
@@ -46,6 +50,8 @@ namespace Exchange {
             virtual const string Key() const = 0;
             virtual const string Value() const = 0;
         };
+
+        ~IDictionary() override = default;
 
         // Allow to observe values in the dictionary. If they are changed, the sink gets notified.
         virtual void Register(const string& nameSpace, struct IDictionary::INotification* sink) = 0;
