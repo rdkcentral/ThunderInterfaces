@@ -26,6 +26,7 @@
 namespace WPEFramework {
 	namespace Exchange {
 
+        /* @json */
         struct EXTERNAL IZigWave : virtual public Core::IUnknown {
             enum { ID = ID_ZIGWAVE };
 
@@ -35,8 +36,9 @@ namespace WPEFramework {
             //        accept new devices.
             // @param enabled (true) or disable (false) the accepting mode.
             // 
-            virtual uint32_t Accept(const uint32_t address, bool& enabled /* @out */) const = 0;
-            virtual uint32_t Accept(const uint32_t address, const bool enabled) = 0;
+            /* @alt accept */
+            virtual uint32_t Permutable(const uint32_t address /* @index */, bool& enabled /* @out */) const = 0;
+            virtual uint32_t Permutable(const uint32_t address /* @index */, const bool enabled) = 0;
 
             // @property
             // @brief To allow new devices to the network, the controller should be placed
@@ -44,7 +46,7 @@ namespace WPEFramework {
             //        accept new devices.
             // @param enabled (true) or disable (false) the accepting mode.
             // 
-            virtual uint32_t Device(const uint32_t id, string& metadata /* @out */) const = 0;
+            virtual uint32_t Device(const uint32_t id /* @index */, string& metadata /* @out */) const = 0;
 
             // @brief All devices currently available
             // @return devices: array of ids from the available devices.
