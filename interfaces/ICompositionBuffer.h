@@ -32,6 +32,12 @@ namespace Exchange {
 
         using buffer_id = uintptr_t;
 
+        enum DataType : uint8_t {
+            TYPE_INVALID = 0x00, // Invalid buffer
+            TYPE_DMA = 0x01, // DMA buffer  
+            TYPE_RAW = 0x02 // Raw buffer
+        };
+
         virtual ~ICompositionBuffer() = default;
 
         struct IPlane {
@@ -68,6 +74,7 @@ namespace Exchange {
         virtual uint32_t Format() const = 0; // Layout of a pixel according the fourcc format
         virtual uint64_t Modifier() const = 0; // Pixel arrangement in the buffer, used to optimize for hardware
 
+        virtual DataType Type() const = 0;
     }; // struct ICompositionBuffer
 
 } // namespace Exchange
