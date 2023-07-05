@@ -21,27 +21,27 @@
 
 // This file holds all the identifiers (uint32_t) used to identify an interface. From this
 // identifier, the comrpc framework can find the proper proxy/stub in case of communicating
-// over a process boundary. 
-// Some users do not "fully" rebuild the system in case of changes. If this means that the 
+// over a process boundary.
+// Some users do not "fully" rebuild the system in case of changes. If this means that the
 // Proxy/Stub code is not always rebuild in case of new releases, the identifier associated
 // with an interface becomes as important as the interface syntax and as interfaces are not
 // allowed to be changed, the ID associated with the interface should also not be changed
-// and thus should be "fixed". 
+// and thus should be "fixed".
 
 // So if you extend this file by defining a new interface ID make sure it is defined (has
 // an actual value) and once the enum label has a value, never change it again.
 
-// As some interfaces might be grouped, the first ID of the group is assigned a value, the 
-// other interfaces belonging to this group use the enum value of label that has an assigned 
-// value and just increment that label by the proper amount. 
+// As some interfaces might be grouped, the first ID of the group is assigned a value, the
+// other interfaces belonging to this group use the enum value of label that has an assigned
+// value and just increment that label by the proper amount.
 
 // Using this system, all interfaces will have an assigned number. If numbers overlap, the
-// compiler, your best friend, will start complaining. Time to reassign the value, before we 
+// compiler, your best friend, will start complaining. Time to reassign the value, before we
 // deploy.
 
-// NOTE: Default the gap between each group of interface is 16. If you need more and the new 
+// NOTE: Default the gap between each group of interface is 16. If you need more and the new
 //       addition is add the end, write a comment with your interface that you might need more
-//       than 16 interface in that group so that the next ID is indeed elevated (and rounded 
+//       than 16 interface in that group so that the next ID is indeed elevated (and rounded
 //       up to a multiple of 16) if the next entry is made in the future.
 
 namespace WPEFramework {
@@ -85,10 +85,10 @@ namespace Exchange {
         ID_MEMORY                                    = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x080,
         ID_PROCESSMEMORY                             = ID_MEMORY + 1,
         ID_MEMORYEXTENDED                            = ID_MEMORY + 2,
-  
+
         ID_NETFLIX                                   = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x090,
         ID_NETFLIX_NOTIFICATION                      = ID_NETFLIX + 1,
-  
+
         ID_CONTENTDECRYPTION                         = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x0A0,
         ID_CONTENTDECRYPTION_NOTIFICATION            = ID_CONTENTDECRYPTION + 1,
 
@@ -270,7 +270,7 @@ namespace Exchange {
 
         ID_LANGUAGETAG                               = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x390,
         ID_LANGUAGETAG_NOTIFICATION                  = ID_LANGUAGETAG + 1,
-          
+
         ID_BRIGHTNESS                                = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x3A0,
 
         ID_FOCUS                                     = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x3B0,
@@ -290,11 +290,14 @@ namespace Exchange {
         ID_NETWORKTOOLS                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x3E0,
         ID_NETWORKTOOLS_CALLBACK                     = ID_NETWORKTOOLS + 1,
 
-        ID_BLUETOOTHAUDIOSINK                        = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x3F0,
-        ID_BLUETOOTHAUDIOSINK_CALLBACK               = ID_BLUETOOTHAUDIOSINK + 1,
-        ID_BLUETOOTHAUDIOSINK_AUDIOCODECITERATOR     = ID_BLUETOOTHAUDIOSINK + 2,
-        ID_BLUETOOTHAUDIOSINK_DRMSCHEMEITERATOR      = ID_BLUETOOTHAUDIOSINK + 3,
-        ID_BLUETOOTHAUDIOSINK_CONTROL                = ID_BLUETOOTHAUDIOSINK + 4,
+        ID_BLUETOOTHAUDIO                            = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x3F0,
+        ID_BLUETOOTHAUDIO_STREAM                     = ID_BLUETOOTHAUDIO,
+        ID_BLUETOOTHAUDIO_SINK                       = ID_BLUETOOTHAUDIO + 1,
+        ID_BLUETOOTHAUDIO_SINK_CALLBACK              = ID_BLUETOOTHAUDIO + 2,
+        ID_BLUETOOTHAUDIO_SINK_CONTROL               = ID_BLUETOOTHAUDIO + 3,
+        ID_BLUETOOTHAUDIO_SOURCE                     = ID_BLUETOOTHAUDIO + 4,
+        ID_BLUETOOTHAUDIO_SOURCE_CALLBACK            = ID_BLUETOOTHAUDIO + 5,
+        ID_BLUETOOTHAUDIO_SOURCE_CONTROL             = ID_BLUETOOTHAUDIO + 6,
 
         ID_VALUE_POINT                               = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x400,
         ID_VALUE_POINT_NOTIFICATION                  = ID_VALUE_POINT + 1,
@@ -354,12 +357,7 @@ namespace Exchange {
         ID_SCRIPT_ENGINE_NOTIFICATION                = ID_SCRIPT_ENGINE + 1,
 
         ID_TEXT_TO_SPEECH                            = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4C0,
-        ID_TEXT_TO_SPEECH_NOTIFICATION               = ID_TEXT_TO_SPEECH + 1,
-
-        ID_BLUETOOTHAUDIOSOURCE                      = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4D0,
-        ID_BLUETOOTHAUDIOSOURCE_NOTIFICATION         = ID_BLUETOOTHAUDIOSOURCE + 1,
-        ID_BLUETOOTHAUDIOSOURCE_CONTROL              = ID_BLUETOOTHAUDIOSOURCE + 2,
-        ID_BLUETOOTHAUDIOSOURCE_CONTROL_CALLBACK     = ID_BLUETOOTHAUDIOSOURCE + 3
+        ID_TEXT_TO_SPEECH_NOTIFICATION               = ID_TEXT_TO_SPEECH + 1
     };
 }
 }

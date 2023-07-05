@@ -122,13 +122,13 @@ namespace Exchange {
 
             virtual Core::hresult Callback(ICallback* callback) = 0;
 
-            // @brief Assigns a Bluetooth device for audio playback
+            // @brief Assigns a Bluetooth sink device for audio playback
             // @param address Address of the bluetooth device to assign
             // @retval ERROR_BAD_REQUEST Device address value is invalid
             // @retval ERROR_ALREADY_CONNECTED A sink device is already assigned
             virtual Core::hresult Assign(const string& address) = 0;
 
-            // @brief Revokes a Bluetooth device from audio playback
+            // @brief Revokes a Bluetooth sink device from audio playback
             // @retval ERROR_ALREADY_RELEASED No device is currently assigned as sink
             virtual Core::hresult Revoke() = 0;
 
@@ -164,17 +164,17 @@ namespace Exchange {
             virtual Core::hresult SupportedDRMs(drmscheme& drms /* @out @bitmask */) const = 0;
 
             // @property
-            // @brief Details of the currently used audio codec
+            // @brief Properites of the currently used audio codec
             // @retval ERROR_ILLEGAL_STATE The sink device currently is not configured
             virtual Core::hresult Codec(CodecProperties& properties /* @out */) const = 0;
 
             // @property
-            // @brief Details of the currently used DRM scheme
+            // @brief Properites of the currently used DRM scheme
             // @retval ERROR_ILLEGAL_STATE The sink device currently is not connected or not yet configured
             virtual Core::hresult DRM(DRMProperties& properties /* @out */) const = 0;
 
             // @property
-            // @brief Details of the currently transmitted audio stream
+            // @brief v of the currently transmitted audio stream
             // @retval ERROR_ILLEGAL_STATE The sink device currently is not connected or not yet configured
             virtual Core::hresult Stream(StreamProperties& properties /* @out */) const = 0;
        };
@@ -216,7 +216,7 @@ namespace Exchange {
             virtual Core::hresult Callback(ICallback* callback) = 0;
 
             // @property
-            // @brief State of the source device
+            // @brief Current state of the source device
             virtual Core::hresult State(state& sourceState /* @out */) const = 0;
 
             // @property
@@ -225,7 +225,7 @@ namespace Exchange {
             virtual Core::hresult Device(string& address /* @out */) const = 0;
 
             // @property
-            // @brief Audio source type
+            // @brief Type of the audio source device
             // @retval ERROR_ILLEGAL_STATE No source device is currently connected
             virtual Core::hresult Type(devicetype& sourceType /* @out */) const = 0;
 
@@ -240,7 +240,7 @@ namespace Exchange {
             virtual Core::hresult DRM(DRMProperties& properties /* @out */) const = 0;
 
             // @property
-            // @brief Properties of the current input stream
+            // @brief Properites of the currently transmitted audio stream
             // @retval ERROR_ILLEGAL_STATE No source device is connected or sink is not yet configured
             virtual Core::hresult Stream(StreamProperties& properties /* @out */) const = 0;
         };
