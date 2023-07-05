@@ -21,99 +21,40 @@
 
 #include "Module.h"
 
-// @insert <com/IIteratorType.h>
-
 namespace WPEFramework {
 
 namespace Exchange {
 
-    // @json
-    struct EXTERNAL IBluetoothAudioSink : virtual public Core::IUnknown {
-
-        enum { ID = ID_BLUETOOTHAUDIOSINK };
-
-        struct EXTERNAL IControl : virtual public Core::IUnknown {
-
-            // This interface is not exposed via JSON-RPC
-
-            enum { ID = ID_BLUETOOTHAUDIOSINK_CONTROL };
-
-            struct Format {
-                uint32_t SampleRate     /* @brief Source sample rate in Hz (e.g. 44100)*/ ;
-                uint16_t FrameRate      /* @brief Source frame rate in cHz (e.g. 2400) */ ;
-                uint8_t Resolution      /* @brief Sampling resolution in bits per sample (e.g. 16) */ ;
-                uint8_t Channels        /* @brief Number of audio channels in the source stream (e.g. 2) */ ;
-            };
-
-            // @brief Acquires the device and configures the streaming session
-            // @param connector Name of the shared location the sample data will be written to
-            // @brief properties Audio properties of the input stream
-            // @retval ERROR_UNAVAILABLE The audio sink is currently being used by another client
-            // @retval ERROR_ILLEGAL_STATE The audio sink is not connected or already aqcuired
-            // @retval ERROR_NOT_SUPPORTED Stream format is not supported by the sink or codec or otherwise invalid
-            // @retval ERROR_OPENING_FAILED Failed to open the shared location
-            // @retval ERROR_ASYNC_FAILED Device error, failed to open and/or configure
-            virtual uint32_t Acquire(const string& connector, const Format& format) = 0;
-
-            // @brief Releases the device and closes the streaming session
-            // @retval ERROR_ILLEGAL_STATE The audio sink has not been acquired
-            // @retval ERROR_ASYNC_FAILED Device error, failed to close the sink
-            virtual uint32_t Relinquish() = 0;
-
-            // @brief Sets stream playback speed
-            // @param speed New playback speed in per cent to set (e.g. 100)
-            // @retval ERROR_ILLEGAL_STATE The audio sink has not been acquired
-            // @retval ERROR_NOT_SUPPORTED Unsupported speed value given
-            // @retval ERROR_ASYNC_FAILED Device error, failed to start/pause playback
-            virtual uint32_t Speed(const int8_t speed) = 0;
-
-            // @brief Gets current playback time
-            // @param position Current playback position since acquiring the sink (in miliseconds)
-            // @retval ERROR_ILLEGAL_STATE The audio sink has not been acquired
-            virtual uint32_t Time(uint32_t& position /* @out */) const = 0;
-
-            // @brief Gets current audio delay
-            // @param delay Time for the next audio sample to become audible (in samples)
-            // @retval ERROR_ILLEGAL_STATE The audio sink has not been acquired
-            virtual uint32_t Delay(uint32_t& delay /* @out */) const = 0;
-        };
-
-        enum state : uint8_t {
-            UNASSIGNED,             // No Bluetooth device assigned for audio playback
-            DISCONNECTED,           // Sink device assigned but not connected
-            CONNECTED_BAD_DEVICE,   // The assigned Bluetooth device connected, but is not an audio sink or has insufficient audio capabilities
-            CONNECTED_RESTRICTED,   // Audio sink connected, but content protection criteria are not met
-            CONNECTED,              // Audio sink connected, but not yet configured
-            READY,                  // Sink ready for streaming
-            STREAMING               // Audio is streaming
-        };
-
-        enum devicetype : uint8_t {
-            UNKNOWN,
-            HEADPHONE,
-            SPEAKER,
-            RECORDER,
-            AMPLIFIER
-        };
+    namespace IBluetoothAudio {
 
         enum audiocodec : uint8_t {
-            LC_SBC /* @text LC-SBC */
+            LC_SBC = 1  /* @text LC-SBC */
         };
 
         enum drmscheme : uint8_t {
-            NONE,
-            DTCP   /* @text DTCP */,
-            SCMS_T /* @text SCMS-T */
+            DTCP   = 1  /* @text DTCP */,
+            SCMS_T = 2  /* @text SCMS-T */
+        };
+
+        enum state : uint8_t {
+            UNASSIGNED,             // No audio device identified or assigned
+            DISCONNECTED,           // No audio device connected
+            CONNECTING,             // Audio device is now connecting
+            CONNECTED,              // Audio device connected
+            CONNECTED_BAD,          // Audio device connected but of invalid or unsupported capabilities
+            CONNECTED_RESTRICTED,   // Audio device connected but copy protection criteria have not been met
+            READY,                  // Streaming session is now open, source is paused, but can resume at any time
+            STREAMING               // Audio data is currently being streamed
         };
 
         struct CodecProperties {
-            audiocodec Codec        /* @brief Audio codec used */ ;
-            string Settings         /* @brief Codec-specific audio quality preset, compression profile, etc */ ;
+            audiocodec Codec                /* @brief Audio codec used */ ;
+            string /* @opaque */ Settings   /* @brief Codec-specific audio quality preset, compression profile, etc */ ;
         };
 
         struct DRMProperties {
-            drmscheme DRM           /* @brief Content protection scheme used */ ;
-            string Settings         /* @brief DRM-specific content protection level, encoding rules, etc */ ;
+            drmscheme DRM                   /* @brief Content protection scheme used */ ;
+            string /* @opaque */ Settings   /* @brief DRM-specific content protection level, encoding rules, etc */ ;
         };
 
         struct StreamProperties {
@@ -121,76 +62,190 @@ namespace Exchange {
             uint32_t BitRate        /* @brief Target bitrate in bits per second (eg. 320000) */ ;
             uint8_t Channels        /* @brief Number of audio channels (e.g. 2) */ ;
             uint8_t Resolution      /* @brief Sampling resolution in bits per sample (e.g. 16) */ ;
-            bool IsResampling       /* @brief Indicates if the sink is resampling the input stream */ ;
+            bool IsResampled        /* @brief Indicates if the source stream is being resampled by the stack to match sink capabilities */ ;
         };
 
-        using IAudioCodecIterator = RPC::IIteratorType<audiocodec, ID_BLUETOOTHAUDIOSINK_AUDIOCODECITERATOR>;
-        using IDRMSchemeIterator = RPC::IIteratorType<drmscheme, ID_BLUETOOTHAUDIOSINK_DRMSCHEMEITERATOR>;
+        struct EXTERNAL IStream : virtual public Core::IUnknown {
 
-        // @event
-        struct ICallback : virtual public Core::IUnknown {
+            // This interface is never exposed over JSON-RPC.
 
-            enum { ID = ID_BLUETOOTHAUDIOSINK_CALLBACK };
+            enum { ID = ID_BLUETOOTHAUDIO_STREAM };
 
-            // @brief Signals audio sink state change or stream properties update
-            virtual void Updated() = 0;
+            struct Format {
+                uint32_t SampleRate;    // e.g. 44100 Hz for CD audio
+                uint16_t FrameRate;     // e.g. 75 Hz for CD audio
+                uint8_t Resolution;     // e.g. 16 bits for CD audio
+                uint8_t Channels;       // e.g. 2 channels for CD audio
+            };
+
+            virtual Core::hresult Configure(const Format& pcmStreamFormat) = 0;
+            virtual Core::hresult Acquire(const string& connector) = 0;
+            virtual Core::hresult Relinquish() = 0;
+            virtual Core::hresult Speed(const int8_t speedPercent) = 0;
+            virtual Core::hresult Time(uint32_t& timeMs /* @out */) const = 0;
+            virtual Core::hresult Delay(uint32_t& delayMs /* @out */) const = 0;
         };
 
-        // @brief Registers the state update callback
-        // @param Callback to register or nullptr to deregister
-        // @retval ERROR_ILLEGAL_STATE A calback is already registered with the audio sink
-        virtual uint32_t Callback(ICallback* callback) = 0;
+        // @json 1.0.0
+        // @prefix sink
+        struct EXTERNAL ISink : virtual public Core::IUnknown {
 
-        // @brief Assigns a Bluetooth device for audio playback
-        // @param address Address of the bluetooth device to assign
-        // @retval ERROR_ALREADY_CONNECTED A device is already assigned
-        virtual uint32_t Assign(const string& address) = 0;
+            enum { ID = ID_BLUETOOTHAUDIO_SINK };
 
-        // @brief Revokes a Bluetooth device from audio playback
-        // @retval ERROR_ALREADY_RELEASED No device is currently assigned
-        virtual uint32_t Revoke() = 0;
+            struct EXTERNAL IControl : virtual public Core::IUnknown {
 
-        // @property
-        // @brief Sink audio latency
-        // @param latency Audio latency of the sink in milliseconds (e.g. 20)
-        // @retval ERROR_ILLEGAL_STATE No device is currently assigned
-        virtual uint32_t Latency(const int16_t latency) = 0;
-        virtual uint32_t Latency(int16_t& latency /* @out */) const = 0;
+                // This interface is not exposed via JSON-RPC.
 
-        // @property
-        // @brief Current audio sink state
-        virtual uint32_t State(state& sinkState /* @out */) const = 0;
+                enum { ID = ID_BLUETOOTHAUDIO_SINK_CONTROL };
 
-        // @property
-        // @brief Audio sink type
-        // @retval ERROR_ILLEGAL_STATE The sink device is not connected
-        virtual uint32_t Type(devicetype& type /* @out */) const = 0;
+                // Used to register a source object that will recieve IStream
+                // callbacks when the sink device issues control commands.
+                virtual Core::hresult Source(IBluetoothAudio::IStream* source) = 0;
+            };
 
-        // @property
-        // @brief Audio codecs supported by the sink
-        // @retval ERROR_ILLEGAL_STATE The sink device is not connected
-        virtual uint32_t SupportedCodecs(IAudioCodecIterator*& codecs /* @out */) const = 0;
+            enum devicetype : uint8_t {
+                UNKNOWN,
+                HEADPHONE,
+                SPEAKER,
+                RECORDER,
+                AMPLIFIER
+            };
 
-        // @property
-        // @brief DRM schemes supported by the sink
-        // @retval ERROR_ILLEGAL_STATE The sink device is not connected
-        virtual uint32_t SupportedDRMs(IDRMSchemeIterator*& drms /* @out */) const = 0;
+            // @event
+            struct ICallback : virtual public Core::IUnknown {
 
-        // @property
-        // @brief Properites of the currently used codec
-        // @retval ERROR_ILLEGAL_STATE Currently not streaming
-        virtual uint32_t Codec(CodecProperties& properties /* @out */) const = 0;
+                enum { ID = ID_BLUETOOTHAUDIO_SINK_CALLBACK };
 
-        // @property
-        // @brief Properties of the currently used DRM scheme
-        // @retval ERROR_ILLEGAL_STATE Currently not streaming
-        virtual uint32_t DRM(DRMProperties& properties /* @out */) const = 0;
+                // @brief Signals audio sink state change
+                virtual void StateChanged(const IBluetoothAudio::state state) = 0;
+            };
 
-        // @property
-        // @brief Properties of the current output stream
-        // @retval ERROR_ILLEGAL_STATE Currently not streaming
-        virtual uint32_t Stream(StreamProperties& properties /* @out */) const = 0;
-    };
+            virtual Core::hresult Callback(ICallback* callback) = 0;
+
+            // @brief Assigns a Bluetooth sink device for audio playback
+            // @param address Address of the bluetooth device to assign
+            // @retval ERROR_BAD_REQUEST Device address value is invalid
+            // @retval ERROR_ALREADY_CONNECTED A sink device is already assigned
+            virtual Core::hresult Assign(const string& address) = 0;
+
+            // @brief Revokes a Bluetooth sink device from audio playback
+            // @retval ERROR_ALREADY_RELEASED No device is currently assigned as sink
+            virtual Core::hresult Revoke() = 0;
+
+            // @property
+            // @brief Current state o the audio sink device
+            virtual Core::hresult State(state& sinkState /* @out */) const = 0;
+
+            // @property
+            // @brief Bluetooth address of the audio sink device
+            // @retval ERROR_ILLEGAL_STATE The sink device currently is not assigned
+            virtual Core::hresult Device(string& address /* @out */) const = 0;
+
+            // @property
+            // @brief Type of the audio sink device
+            // @retval ERROR_ILLEGAL_STATE The sink device currently is not connected
+            virtual Core::hresult Type(devicetype& sinkType /* @out */) const = 0;
+
+            // @property
+            // @brief Latency of the audio sink device
+            // @param latency Audio latency in milliseconds (e.g. 20)
+            // @retval ERROR_BAD_REQUEST Latency value is invalid
+            virtual Core::hresult Latency(const int16_t latency) = 0;
+            virtual Core::hresult Latency(int16_t& latency /* @out */) const = 0;
+
+            // @property
+            // @brief Audio codecs supported by the audio sink device
+            // @retval ERROR_ILLEGAL_STATE The sink device currently is not connected
+            virtual Core::hresult SupportedCodecs(audiocodec& codecs /* @out @bitmask */) const = 0;
+
+            // @property
+            // @brief DRM schemes supported by the audio sink device
+            // @retval ERROR_ILLEGAL_STATE The sink device currently is not connected
+            virtual Core::hresult SupportedDRMs(drmscheme& drms /* @out @bitmask */) const = 0;
+
+            // @property
+            // @brief Properites of the currently used audio codec
+            // @retval ERROR_ILLEGAL_STATE The sink device currently is not configured
+            virtual Core::hresult Codec(CodecProperties& properties /* @out */) const = 0;
+
+            // @property
+            // @brief Properites of the currently used DRM scheme
+            // @retval ERROR_ILLEGAL_STATE The sink device currently is not connected or not yet configured
+            virtual Core::hresult DRM(DRMProperties& properties /* @out */) const = 0;
+
+            // @property
+            // @brief v of the currently transmitted audio stream
+            // @retval ERROR_ILLEGAL_STATE The sink device currently is not connected or not yet configured
+            virtual Core::hresult Stream(StreamProperties& properties /* @out */) const = 0;
+       };
+
+        // @json 1.0.0
+        // @prefix source
+        struct EXTERNAL ISource: virtual public Core::IUnknown {
+
+            enum { ID = ID_BLUETOOTHAUDIO_SOURCE };
+
+            struct EXTERNAL IControl : virtual public Core::IUnknown {
+
+                // This interface is not exposed via JSON-RPC.
+
+                enum { ID = ID_BLUETOOTHAUDIO_SOURCE_CONTROL };
+
+                // Used to register a sink object that will recieve IStream
+                // callbacks when the source device issues control commands.
+                virtual Core::hresult Sink(IBluetoothAudio::IStream* sink) = 0;
+            };
+
+            enum devicetype : uint8_t {
+                UNKNOWN,
+                PLAYER,
+                MICROPHONE,
+                TUNER,
+                MIXER
+            };
+
+            // @event
+            struct ICallback : virtual public Core::IUnknown {
+
+                enum { ID = ID_BLUETOOTHAUDIO_SOURCE_CALLBACK };
+
+                // @brief Signals audio source state change
+                virtual void StateChanged(const IBluetoothAudio::state state) = 0;
+            };
+
+            virtual Core::hresult Callback(ICallback* callback) = 0;
+
+            // @property
+            // @brief Current state of the source device
+            virtual Core::hresult State(state& sourceState /* @out */) const = 0;
+
+            // @property
+            // @brief Bluetooth address of the source device
+            // @retval ERROR_ILLEGAL_STATE No source device is currently connected
+            virtual Core::hresult Device(string& address /* @out */) const = 0;
+
+            // @property
+            // @brief Type of the audio source device
+            // @retval ERROR_ILLEGAL_STATE No source device is currently connected
+            virtual Core::hresult Type(devicetype& sourceType /* @out */) const = 0;
+
+            // @property
+            // @brief Properites of the currently used codec
+            // @retval ERROR_ILLEGAL_STATE No source device is not connected or sink is not yet configured
+            virtual Core::hresult Codec(CodecProperties& properties /* @out */) const = 0;
+
+            // @property
+            // @brief Properties of the currently used DRM scheme
+            // @retval ERROR_ILLEGAL_STATE No source device is connected or sink is not yet configured
+            virtual Core::hresult DRM(DRMProperties& properties /* @out */) const = 0;
+
+            // @property
+            // @brief Properites of the currently transmitted audio stream
+            // @retval ERROR_ILLEGAL_STATE No source device is connected or sink is not yet configured
+            virtual Core::hresult Stream(StreamProperties& properties /* @out */) const = 0;
+        };
+
+    } // namespace IBluetoothAudio
 
 }
 
