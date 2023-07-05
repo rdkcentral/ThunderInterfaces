@@ -218,9 +218,15 @@ namespace Exchange {
         virtual uint32_t RemoveAllUserScripts() = 0;
     };
 
-    /* @json */
+    /* @json @uncompliant:extended */
     struct EXTERNAL IBrowserCookieJar : virtual public Core::IUnknown {
         enum { ID = ID_BROWSER_COOKIEJAR };
+
+        struct Config {
+            uint32_t version; /* Version of payload format */
+            uint32_t checksum; /* The checksum of the string used for payload creation */
+            string payload; /* Base64 string representation of compressed and encrypted cookies */
+        };
 
         /* @event */
         struct INotification : virtual public Core::IUnknown {
@@ -233,11 +239,9 @@ namespace Exchange {
         virtual void Register(INotification* sink) = 0;
         virtual void Unregister(INotification* sink) = 0;
 
-        /* @text getcoookiejar */ 
-        virtual uint32_t CookieJar(uint32_t& version /* @out */, uint32_t& checksum /* @out */, string& payload /* @out */) const = 0;
-        
-        /* @text setcoookiejar */ 
-        virtual uint32_t CookieJar(const uint32_t version, const uint32_t checksum, const string& payload) = 0;
+        // @property
+        virtual uint32_t CookieJar(Config& cookieJarInfo /* @out */) const = 0;
+        virtual uint32_t CookieJar(const Config& cookieJarInfo) = 0;
     };
 
 }
