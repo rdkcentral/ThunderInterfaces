@@ -33,8 +33,11 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
     enum { ID = ID_MESSAGE_CONTROL };
 
     enum messagetype : uint8_t {
-        TRACING = 1,
-        LOGGING = 2,
+        TRACING        = 1,
+        LOGGING        = 2,
+        REPORTING      = 3,
+        STANDARD_OUT   = 4,
+        STANDARD_ERROR = 5
     };
 
     struct Control {
