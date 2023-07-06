@@ -168,7 +168,7 @@ namespace Exchange {
 
             virtual void Update(IDevice* device) = 0;
 
-            DEPRECATED virtual void Update() = 0;
+            DEPRECATED virtual void Update() { }
         };
 
         virtual uint32_t Register(INotification* notification) = 0;
