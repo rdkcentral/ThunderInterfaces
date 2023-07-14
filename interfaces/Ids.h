@@ -286,7 +286,8 @@ namespace Exchange {
         ID_DTV_COMPONENT_TAG,
         ID_DTV_COMPONENT_TAG_ITERATOR,
         ID_DTV_TRANSPORT,
-
+        ID_TEXT_TO_SPEECH,
+        ID_TEXT_TO_SPEECH_NOTIFICATION,
     };
 }
 }
