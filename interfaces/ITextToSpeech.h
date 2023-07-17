@@ -79,6 +79,7 @@ namespace Exchange {
         virtual uint32_t SetFallbackText(const string scenario,const string value) = 0;
         virtual uint32_t SetAPIKey(const string apikey) = 0;
         virtual uint32_t SetPrimaryVolDuck(const uint8_t prim) = 0;
+        virtual uint32_t SetSpeechRate(const string speechRate) = 0;
 
         // @brief Retrieve tts configuration attributes 
         // @param config tts configuration
