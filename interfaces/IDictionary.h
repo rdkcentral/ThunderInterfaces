@@ -25,9 +25,11 @@ namespace Exchange {
 
     // This interface gives direct access to a Browser to change
     // Browser specific properties like displayed URL.
+    /* @json 1.0.0 */
     struct EXTERNAL IDictionary : virtual public Core::IUnknown {
         enum { ID = ID_DICTIONARY };
 
+        // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_DICTIONARY_NOTIFICATION };
 
@@ -58,9 +60,11 @@ namespace Exchange {
         virtual void Unregister(const string& nameSpace, struct IDictionary::INotification* sink) = 0;
 
         // Getters and Setters for the dictionary.
-        virtual bool Get(const string& nameSpace, const string& key, string& value /* @out */) const = 0;
-        virtual bool Set(const string& nameSpace, const string& key, const string& value) = 0;
-        virtual IIterator* Get(const string& nameSpace) const = 0;
+        virtual Core::hresult Get(const string& nameSpace, const string& key, string& value /* @out */) const = 0;
+        virtual Core::hresult Set(const string& nameSpace, const string& key, const string& value) = 0;
+
+        // @json:omit
+        virtual IIterator* Get(const string& nameSpace) const = 0; 
     };
 }
 }
