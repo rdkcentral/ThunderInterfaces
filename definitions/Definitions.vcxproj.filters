@@ -189,5 +189,8 @@
     <CustomBuild Include="..\interfaces\IScriptEngine.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\interfaces\IDictionary.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>
