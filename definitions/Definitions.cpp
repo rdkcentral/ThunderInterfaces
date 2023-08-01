@@ -30,6 +30,7 @@
 #include <interfaces/IComposition.h>
 #include <interfaces/IConfiguration.h>
 #include <interfaces/IContentDecryption.h>
+#include <interfaces/ICryptography.h>
 #include <interfaces/ICustomerCareOperations.h>
 #include <interfaces/IDeviceInfo.h>
 #include <interfaces/IDictionary.h>
@@ -50,6 +51,7 @@
 #include <interfaces/IMessageControl.h>
 #include <interfaces/INetworkControl.h>
 #include <interfaces/INetflix.h>
+#include <interfaces/INetflixSecurity.h>
 #include <interfaces/IPackager.h>
 #include <interfaces/IPerformance.h>
 #include <interfaces/IPlayerInfo.h>
