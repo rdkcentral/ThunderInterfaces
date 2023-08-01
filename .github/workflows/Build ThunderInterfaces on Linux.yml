@@ -2,14 +2,14 @@ name: Build ThunderInterfaces on Linux
 
 on:
   push:
-    branches: ["master"]
+    branches: ["development/actions-warnings"] # CHANGE TO MASTER
   pull_request:
     branches: ["master"]
   workflow_call:
     
 jobs:
   Thunder:
-    uses: rdkcentral/Thunder/.github/workflows/Build Thunder on Linux.yml@master
+    uses: VeithMetro/Thunder/.github/workflows/Build Thunder on Linux.yml@master # CHANGE TO RDKCENTRAL
     
   ThunderInterfaces:
     needs: Thunder
@@ -61,6 +61,7 @@ jobs:
     - name: Build ThunderInterfaces
       run: |
         cmake -G Ninja -S ThunderInterfaces -B ${{matrix.build_type}}/build/ThunderInterfaces \
+        -DCMAKE_CXX_FLAGS="-Wall -Wextra -Wpedantic" \
         -DCMAKE_INSTALL_PREFIX="${{matrix.build_type}}/install/usr" \
         -DCMAKE_MODULE_PATH="${PWD}/${{matrix.build_type}}/install/usr/include/WPEFramework/Modules"
         cmake --build ${{matrix.build_type}}/build/ThunderInterfaces --target install
