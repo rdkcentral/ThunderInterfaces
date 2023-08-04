@@ -83,14 +83,6 @@
         "handle"
       ]
     },
-    "emptyResult": {
-      "type": "object",
-      "description": "Struct holding nothing i.e. {}",
-      "properties": {
-      },
-      "required": [
-      ]
-    },
     "status": {
       "description": "Operation status",
       "type": "string",
@@ -812,7 +804,6 @@
       "summary": "Unlock an application",
       "params": {
         "type": "object",
-        "$ref": "#/common/results/void",
         "properties": {
           "handle": {
             "$ref": "#/definitions/handle"
@@ -823,7 +814,7 @@
         ]
       },
       "result": {
-        "$ref": "#/definitions/emptyResult"
+        "$ref": "#/common/results/void"
       },
       "errors": [
         {
