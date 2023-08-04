@@ -32,7 +32,6 @@ namespace Exchange {
 struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
     enum { ID = ID_MESSAGE_CONTROL };
-
     using messagetype = Core::Messaging::Metadata::type;
 
     struct Control {
