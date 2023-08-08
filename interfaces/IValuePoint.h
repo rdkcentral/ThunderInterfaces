@@ -99,7 +99,8 @@ namespace Exchange {
             units = 0x0006, /* unqualified value, just units */
             lux = 0x0007,
             volt = 0x0008,
-            ampere = 0x0009
+            ampere = 0x0009,
+            frequency = 0x000A
         };
 
         enum condition : uint8_t {
