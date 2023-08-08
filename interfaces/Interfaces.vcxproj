@@ -74,6 +74,7 @@
     <ClInclude Include="IComposition.h" />
     <ClInclude Include="IConfiguration.h" />
     <ClInclude Include="IContentDecryption.h" />
+    <ClInclude Include="ICryptography.h" />
     <ClInclude Include="IDeviceInfo.h" />
     <ClInclude Include="IDIALServer.h" />
     <ClInclude Include="IDictionary.h" />
@@ -90,6 +91,7 @@
     <ClInclude Include="IMemory.h" />
     <ClInclude Include="IMessageControl.h" />
     <ClInclude Include="INetflix.h" />
+    <ClInclude Include="INetflixSecurity.h" />
     <ClInclude Include="IOCDM.h" />
     <ClInclude Include="IPackager.h" />
     <ClInclude Include="IPerformance.h" />
