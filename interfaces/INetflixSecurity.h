@@ -22,8 +22,7 @@
 #include "Module.h"
 
 namespace WPEFramework {
-
-namespace Cryptography {
+namespace Exchange {
 
 struct EXTERNAL INetflixSecurity : public Core::IUnknown
 {
@@ -50,6 +49,5 @@ struct EXTERNAL INetflixSecurity : public Core::IUnknown
     static INetflixSecurity* Instance();
 };
 
-} // namespace Cryptography
-
+}
 }
