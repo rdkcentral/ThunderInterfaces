@@ -6,20 +6,20 @@ on:
   pull_request:
     branches: ["master"]
   workflow_call:
-    
+
 jobs:
   Thunder:
     uses: rdkcentral/Thunder/.github/workflows/Build Thunder on Linux.yml@master
-    
+
   ThunderInterfaces:
     needs: Thunder
-    
+
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         build_type: [Debug, Release, MinSizeRel]
-    
+
     name: Build type - ${{matrix.build_type}}
     steps:
     - name: Install necessary packages
@@ -34,30 +34,50 @@ jobs:
           sudo apt install python3-pip
           pip install jsonref
           sudo apt install build-essential cmake ninja-build libusb-1.0-0-dev zlib1g-dev libssl-dev
-    
+
     - name: Checkout Thunder
       uses: actions/checkout@v3
       with:
         path: Thunder
         repository: rdkcentral/Thunder
-        
+
     - name: Download artifacts
       uses: actions/download-artifact@v3
       with:
         name: Thunder-${{matrix.build_type}}-artifact
         path: ${{matrix.build_type}}
-        
+
     - name: Unpack files
       run: |
         tar -xvzf ${{matrix.build_type}}/${{matrix.build_type}}.tar.gz
         rm ${{matrix.build_type}}/${{matrix.build_type}}.tar.gz
-        
-    - name: Checkout ThunderInterfaces
+
+# ----- ThunderInterfaces -----
+    - name: Checkout ThunderInterfaces - default
+      if: ${{ !contains(github.event.pull_request.body, '[DependsOn=ThunderInterfaces:') }}
       uses: actions/checkout@v3
       with:
         path: ThunderInterfaces
         repository: rdkcentral/ThunderInterfaces
 
+    - name: Regex ThunderInterfaces
+      if: contains(github.event.pull_request.body, '[DependsOn=ThunderInterfaces:')
+      id: thunderinterfaces
+      uses: AsasInnab/regex-action@v1
+      with:
+        regex_pattern: '(?<=\[DependsOn=ThunderInterfaces:).*(?=\])'
+        regex_flags: 'gim'
+        search_string: ${{github.event.pull_request.body}}
+
+    - name: Checkout ThunderInterfaces - ${{steps.thunderinterfaces.outputs.first_match}}
+      if: contains(github.event.pull_request.body, '[DependsOn=ThunderInterfaces:')
+      uses: actions/checkout@v3
+      with:
+        path: ThunderInterfaces
+        repository: rdkcentral/ThunderInterfaces
+        ref: ${{steps.thunderinterfaces.outputs.first_match}}
+
+# ----- Building -----
     - name: Build ThunderInterfaces
       run: |
         cmake -G Ninja -S ThunderInterfaces -B ${{matrix.build_type}}/build/ThunderInterfaces \
