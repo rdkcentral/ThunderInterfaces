@@ -21,6 +21,7 @@
 
 #include "Module.h"
 
+// @insert <core/MessageStore.h>
 // @insert <com/IIteratorType.h>
 
 namespace WPEFramework {
@@ -31,14 +32,7 @@ namespace Exchange {
 struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
     enum { ID = ID_MESSAGE_CONTROL };
-
-    enum messagetype : uint8_t {
-        TRACING        = 1,
-        LOGGING        = 2,
-        REPORTING      = 3,
-        STANDARD_OUT   = 4,
-        STANDARD_ERROR = 5
-    };
+    using messagetype = Core::Messaging::Metadata::type;
 
     struct Control {
         messagetype type /* @brief Type of message */;
