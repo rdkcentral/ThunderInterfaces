@@ -192,6 +192,5 @@ namespace Exchange {
         virtual IVault* Vault(const CryptographyVault id) = 0;
     };
 
-} // namespace Cryptography
-
+}
 }
