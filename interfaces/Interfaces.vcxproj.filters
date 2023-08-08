@@ -152,6 +152,9 @@
     <ClInclude Include="INetflix.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
+    <ClInclude Include="INetflixSecurity.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
     <ClInclude Include="ISwitchBoard.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
@@ -249,6 +252,9 @@
       <Filter>Interface Files</Filter>
     </ClInclude>
     <ClInclude Include="IConfiguration.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ICryptography.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
     <ClInclude Include="IDIALServer.h">
