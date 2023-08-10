@@ -23,11 +23,10 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* json */
+    /* @json */
     struct EXTERNAL IValuePoint : virtual public Core::IUnknown {
         enum { ID = ID_VALUE_POINT };
 
-        /* json omit */
         struct EXTERNAL ICatalog : virtual public Core::IUnknown {
             enum { ID = ID_VALUE_POINT_CATALOG };
 
@@ -45,7 +44,7 @@ namespace Exchange {
             virtual IValuePoint* Resource(const uint32_t id) = 0;
         };
 
-        /* event */
+        /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_VALUE_POINT_NOTIFICATION };
 
@@ -165,15 +164,15 @@ namespace Exchange {
         // ------------------------------------------------------------------------
         // Convenience methods to extract interesting information from the Type()
         // ------------------------------------------------------------------------
-        /* json:omit */
+        /* @json:omit */
         static basic Basic(const uint32_t instanceType);
-        /* json:omit */
+        /* @json:omit */
         static dimension Dimension(const uint32_t instanceType);
-        /* json:omit */
+        /* @json:omit */
         static specific Specific(const uint32_t instanceType);
-        /* json:omit */
+        /* @json:omit */
         static uint8_t Decimals(const uint32_t instanceType);
-        /* json:omit */
+        /* @json:omit */
         static uint32_t Type(const basic base, const specific spec, const dimension dim, const uint8_t decimals);
     };
 

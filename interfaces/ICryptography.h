@@ -106,7 +106,7 @@ namespace Exchange {
         virtual uint32_t Derive(const uint32_t privateKey, const uint32_t peerPublicKeyId, uint32_t& secretId /* @out */) = 0;
     };
 
-    struct IPersistent : virtual public Core::IUnknown {
+    struct EXTERNAL IPersistent : virtual public Core::IUnknown {
 
     enum { ID = ID_PERSISTENT };
 
