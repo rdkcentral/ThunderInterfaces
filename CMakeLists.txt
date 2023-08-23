@@ -19,11 +19,10 @@ cmake_minimum_required(VERSION 3.12)
 
 project(Interfaces)
 
+find_package(WPEFramework)
+
 set(INTERFACES_PATTERNS "I*.h" CACHE STRING "Patterns matching files for which stubs should be generated")
 set(JSONRPC_PATTERNS "*.json" CACHE STRING "Patterns matching files for which json stubs should be generated")
-
-option(ENABLE_STRICT_COMPILER_SETTINGS
-    "Enable compiler flags to get the warnings/errors due to improper condition in the code" ON) 
 
 if(ENABLE_STRICT_COMPILER_SETTINGS)
     if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
