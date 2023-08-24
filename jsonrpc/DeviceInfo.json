@@ -355,7 +355,8 @@
         "pace",
         "samsung",
         "technicolor",
-        "Amlogic_Inc"
+        "Amlogic_Inc",
+        "raspberrypi_org"
       ],
       "description": "Device manufacturer",
       "example": "pace"
