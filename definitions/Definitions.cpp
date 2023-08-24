@@ -83,7 +83,7 @@
 #include "ValuePoint.h"
 #endif
 
-MODULE_NAME_DECLARATION(BUILD_REFERENCE);
+MODULE_NAME_DECLARATION(BUILD_REFERENCE)
 
 namespace WPEFramework {
 

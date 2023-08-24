@@ -57,5 +57,5 @@ namespace WPEFramework {
         }
     }
 
-	ENUM_CONVERSION_HANDLER(Exchange::External::Metadata::protocol);
+	ENUM_CONVERSION_HANDLER(Exchange::External::Metadata::protocol)
 }
