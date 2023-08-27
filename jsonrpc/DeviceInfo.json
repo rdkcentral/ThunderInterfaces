@@ -369,7 +369,8 @@
         "pace",
         "samsung",
         "technicolor",
-        "Amlogic_Inc"
+        "Amlogic_Inc",
+        "raspberrypi_org"
       ],
       "description": "Device manufacturer",
       "example": "pace"
@@ -404,6 +405,7 @@
         "PXD01ANI",
         "SX022AN",
         "TX061AEI",
+        "PI",
         "XUSHTC11MWR",
         "XUSPTC11MWR",
         "XUSHTB11MWR",
