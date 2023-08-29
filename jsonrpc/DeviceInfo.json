@@ -264,27 +264,19 @@
       "properties": {
         "hdcp": {
           "description": "HDCP support",
-          "type": "string",
-          "$ref": "#/definitions/copyprotection",
-          "example": "hdcp_20"
+          "$ref": "#/definitions/copyprotection"
         },
         "videoDisplay": {
           "description": "Video Output support",
-          "type": "string",
-          "$ref": "#/definitions/videoDisplay",
-          "example": "[hdmi, displayport]"
+          "$ref": "#/definitions/videoDisplay"
         },
         "output_resolutions": {
           "description": "Supported resolutions",
-          "type": "string",
-          "$ref": "#/definitions/output_resolutions",
-          "example": "[480p, 720p]"
+          "$ref": "#/definitions/output_resolutions"
         },
         "defaultresolution": {
           "description": "Default resolution",
-          "type": "string",
-          "$ref": "#/definitions/output_resolution",
-          "example": "[720p]"
+          "$ref": "#/definitions/output_resolution"
         }
       },
       "required": [
@@ -300,27 +292,19 @@
       "properties": {
         "audioPort": {
           "description": "Audio Output support",
-          "type": "string",
-          "$ref": "#/definitions/audioPort",
-          "example": "[hdmi, spdif]"
+          "$ref": "#/definitions/audioPort"
         },
         "audiocapabilities": {
           "description": "Audio capabilities for the specified audio port",
-          "type": "string",
-          "$ref": "#/definitions/audiocapabilities",
-          "example": ""
+          "$ref": "#/definitions/audiocapabilities"
         },
         "ms12capabilities": {
           "description": "Audio ms12 capabilities for the specified audio port",
-          "type": "string",
-          "$ref": "#/definitions/ms12capabilities",
-          "example": ""
+          "$ref": "#/definitions/ms12capabilities"
         },
         "ms12profiles": {
           "description": "Audio ms12 profiles for the specified audio port",
-          "type": "string",
-          "$ref": "#/definitions/ms12profiles",
-          "example": ""
+          "$ref": "#/definitions/ms12profiles"
         }
       },
       "required": [
@@ -736,9 +720,7 @@
         "properties": {
           "supportedAudioPorts": {
             "description": "Audio Output support",
-            "type": "string",
-            "$ref": "#/definitions/audiooutputs",
-            "example": "[hdmi, spdif]"
+            "$ref": "#/definitions/audiooutputs"
           }
         },
         "required": [
@@ -760,9 +742,7 @@
         "properties": {
           "supportedVideoDisplays": {
             "description": "Video Output support",
-            "type": "string",
-            "$ref": "#/definitions/videooutputs",
-            "example": "[hdmi, spdif]"
+            "$ref": "#/definitions/videooutputs"
           }
         },
         "required": [
@@ -1203,9 +1183,7 @@
         "properties": {
           "supportedMS12AudioProfiles": {
             "description": "An array of ms12 audio profiles",
-            "type": "string",
-            "$ref": "#/definitions/ms12profiles",
-            "example": "[muisc, movie]"
+            "$ref": "#/definitions/ms12profiles"
           }
         },
         "required": [
