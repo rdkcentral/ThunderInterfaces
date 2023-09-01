@@ -31,15 +31,6 @@ namespace Exchange {
         CRYPTOGRAPHY_VAULT_NETFLIX = 0x11
     };
 
-    enum IDs : uint32_t {
-        ID_HASH = 0x00001100,
-        ID_VAULT,
-        ID_CIPHER,
-        ID_DIFFIE_HELLMAN,
-        ID_CRYPTOGRAPHY,
-        ID_PERSISTENT
-    };
-
     enum aesmode : uint8_t {
         ECB,
         CBC,
@@ -60,9 +51,7 @@ namespace Exchange {
 
     struct EXTERNAL IHash : virtual public Core::IUnknown {
 
-        enum { ID = ID_HASH };
-
-        ~IHash() override = default;
+        enum { ID = ID_CRYPTOGRAPHY_HASH };
 
         /* Ingest data into the hash calculator (multiple calls possible) */
         virtual uint32_t Ingest(const uint32_t length, const uint8_t data[] /* @in @length:length */) = 0;
@@ -73,9 +62,7 @@ namespace Exchange {
 
     struct EXTERNAL ICipher : virtual public Core::IUnknown {
 
-        enum { ID = ID_CIPHER };
-
-        ~ICipher()  override = default;
+        enum { ID = ID_CRYPTOGRAPHY_CIPHER };
 
         // Encryption and decryption, might require more bytes of data to complete succefully (like padding) to indicate the
         // the encryption or decryption failed due to a lack of storage space, a negative length is returned. The abs(length)
@@ -94,9 +81,7 @@ namespace Exchange {
 
     struct EXTERNAL IDiffieHellman : virtual public Core::IUnknown {
 
-        enum { ID = ID_DIFFIE_HELLMAN };
-
-        ~IDiffieHellman() override = default;
+        enum { ID = ID_CRYPTOGRAPHY_DIFFIEHELLMAN };
 
         /* Generate DH private/public keys */
         virtual uint32_t Generate(const uint8_t generator, const uint16_t modulusSize, const uint8_t modulus[]/* @in @length:modulusSize */ ,
@@ -108,38 +93,32 @@ namespace Exchange {
 
     struct EXTERNAL IPersistent : virtual public Core::IUnknown {
 
-    enum { ID = ID_PERSISTENT };
+        enum { ID = ID_CRYPTOGRAPHY_PERSISTENT };
 
-    enum keytype {
-        AES128,
-        AES256,
-        HMAC128,
-        HMAC160,
-        HMAC256
+        enum keytype {
+            AES128,
+            AES256,
+            HMAC128,
+            HMAC160,
+            HMAC256
+        };
+
+        // Check if a named key exists in peristent storage
+        virtual uint32_t Exists(const string& locator, bool& result /* @out */) const = 0;
+
+        // Load persistent key details to vault
+        virtual uint32_t Load(const string& locator, uint32_t& id /* @out */) = 0;
+
+        // Create a new key on persistent storage
+        virtual uint32_t Create(const string& locator, const keytype keyType, uint32_t& id /* @out */) = 0;
+
+        // To explicitly flush resources at the backend
+        virtual uint32_t Flush() = 0;
     };
-
-    virtual ~IPersistent() { }
-
-    //Check if a named key exists in peristent storage
-    virtual uint32_t Exists(const string& locator, bool& result /* @out */) const =0;
-
-    //Load persistent key details to vault
-    virtual uint32_t Load(const string& locator, uint32_t&  id /* @out */) = 0;
-
-    //Create a new key on persistent storage
-    virtual uint32_t Create(const string& locator, const keytype keyType, uint32_t& id /* @out */) = 0 ;
-
-    //To explicitly flush resources at the backend
-    virtual uint32_t Flush() = 0;
-
-    };
-
 
     struct EXTERNAL IVault : virtual public Core::IUnknown {
 
-        enum { ID = ID_VAULT };
-
-        ~IVault()  override = default;
+        enum { ID = ID_CRYPTOGRAPHY_VAULT };
 
         // Operations manipulating items in the vault
         // ---------------------------------------------------
@@ -179,9 +158,8 @@ namespace Exchange {
     };
 
     struct EXTERNAL ICryptography : virtual public Core::IUnknown {
-        enum { ID = ID_CRYPTOGRAPHY };
 
-        ~ICryptography()  override = default;
+        enum { ID = ID_CRYPTOGRAPHY };
 
         static ICryptography* Instance(const std::string& connectionPoint);
 
