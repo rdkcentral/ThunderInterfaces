@@ -359,7 +359,14 @@ namespace Exchange {
         ID_SCRIPT_ENGINE_NOTIFICATION                = ID_SCRIPT_ENGINE + 1,
 
         ID_TEXT_TO_SPEECH                            = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4C0,
-        ID_TEXT_TO_SPEECH_NOTIFICATION               = ID_TEXT_TO_SPEECH + 1
+        ID_TEXT_TO_SPEECH_NOTIFICATION               = ID_TEXT_TO_SPEECH + 1,
+
+        ID_CRYPTOGRAPHY                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4D0,
+        ID_CRYPTOGRAPHY_VAULT                        = ID_CRYPTOGRAPHY + 1,
+        ID_CRYPTOGRAPHY_HASH                         = ID_CRYPTOGRAPHY + 2,
+        ID_CRYPTOGRAPHY_CIPHER                       = ID_CRYPTOGRAPHY + 3,
+        ID_CRYPTOGRAPHY_DIFFIEHELLMAN                = ID_CRYPTOGRAPHY + 4,
+        ID_CRYPTOGRAPHY_PERSISTENT                   = ID_CRYPTOGRAPHY + 5
     };
 }
 }
