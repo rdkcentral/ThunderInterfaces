@@ -80,6 +80,7 @@ namespace Exchange {
         virtual uint32_t SetAPIKey(const string apikey) = 0;
         virtual uint32_t SetPrimaryVolDuck(const uint8_t prim) = 0;
         virtual uint32_t SetSpeechRate(const string speechRate) = 0;
+        virtual uint32_t SetACL(const string method,const string apps) = 0;
 
         // @brief Retrieve tts configuration attributes 
         // @param config tts configuration
@@ -91,10 +92,11 @@ namespace Exchange {
         virtual uint32_t ListVoices(const string language,RPC::IStringIterator*& voices/* @out */) const = 0;
         
         // @brief Speaks text provided
+        // @param callsign of app
         // @param text for conversion
         // @param speechid returns id for the text 
         // @param status return status
-        virtual uint32_t Speak(const string text,uint32_t &speechid/* @out */,TTSErrorDetail &status/* @out */) = 0;
+        virtual uint32_t Speak(const string callsign,const string text,uint32_t &speechid/* @out */,TTSErrorDetail &status/* @out */) = 0;
         
         // @brief Cancel the speech
         // @param speechid id of text to be cancelled
