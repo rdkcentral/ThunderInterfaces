@@ -367,9 +367,9 @@ namespace Exchange {
         ID_CRYPTOGRAPHY_CIPHER                       = ID_CRYPTOGRAPHY + 3,
         ID_CRYPTOGRAPHY_DIFFIEHELLMAN                = ID_CRYPTOGRAPHY + 4,
         ID_CRYPTOGRAPHY_PERSISTENT                   = ID_CRYPTOGRAPHY + 5,
+        ID_CRYPTOGRAPHY_RANDOM                       = ID_CRYPTOGRAPHY + 6,
+        ID_CRYPTOGRAPHY_DEVICEOBJECTS                = ID_CRYPTOGRAPHY + 7
 
-        ID_SIMPLECRYPTO                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4E0,
-        ID_SIMPLECRYPTO_CIPHER                       = ID_SIMPLECRYPTO + 1
     };
 }
 }

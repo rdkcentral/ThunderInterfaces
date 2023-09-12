@@ -23,7 +23,7 @@
 
 namespace WPEFramework {
 namespace Exchange {
- 
+
     enum CryptographyVault : uint8_t {
         CRYPTOGRAPHY_VAULT_DEFAULT = 0,
         CRYPTOGRAPHY_VAULT_PLATFORM = 1,
@@ -49,14 +49,22 @@ namespace Exchange {
         SHA512 = 64
     };
 
+    struct EXTERNAL IRandom : virtual public Core::IUnknown {
+
+        enum { ID = ID_CRYPTOGRAPHY_RANDOM };
+
+        // Generates an array of cryptographically strong random bytes
+        virtual uint16_t Generate(const uint16_t length, uint8_t data[] /* @out @maxlength:length */) const = 0;
+    };
+
     struct EXTERNAL IHash : virtual public Core::IUnknown {
 
         enum { ID = ID_CRYPTOGRAPHY_HASH };
 
-        /* Ingest data into the hash calculator (multiple calls possible) */
+        // Ingest data into the hash calculator (multiple calls possible)
         virtual uint32_t Ingest(const uint32_t length, const uint8_t data[] /* @in @length:length */) = 0;
 
-        /* Calculate the hash from all ingested data */
+        // Calculate the hash from all ingested data
         virtual uint8_t Calculate(const uint8_t maxLength, uint8_t data[] /* @out @maxlength:maxLength */) = 0;
     };
 
@@ -64,16 +72,16 @@ namespace Exchange {
 
         enum { ID = ID_CRYPTOGRAPHY_CIPHER };
 
-        // Encryption and decryption, might require more bytes of data to complete succefully (like padding) to indicate the
-        // the encryption or decryption failed due to a lack of storage space, a negative length is returned. The abs(length)
-        // indicates the number of bytes required in the output buffer to succefully complete.
+        // If the encryption or decryption failed due to a lack of storage space, a negative length is returned.
+        // The abs(length) indicates the number of bytes required in the output buffer to succefully complete.
+        // Note that encryption might require extra output buffer space to succeed (may need to include padding and/or the IV).
 
-        /* Encrypt data */
+        // Encrypt data
         virtual int32_t Encrypt(const uint8_t ivLength, const uint8_t iv[] /* @in @length:ivLength */,
                                 const uint32_t inputLength, const uint8_t input[] /* @in @length:inputLength */,
                                 const uint32_t maxOutputLength, uint8_t output[] /* @out @maxlength:maxOutputLength */) const = 0;
 
-        /* Decrypt data */
+        // Decrypt data
         virtual int32_t Decrypt(const uint8_t ivLength, const uint8_t iv[] /* @in @length:ivLength */,
                                 const uint32_t inputLength, const uint8_t input[] /* @in @length:inputLength */,
                                 const uint32_t maxOutputLength, uint8_t output[] /* @out @maxlength:maxOutputLength */) const = 0;
@@ -83,11 +91,11 @@ namespace Exchange {
 
         enum { ID = ID_CRYPTOGRAPHY_DIFFIEHELLMAN };
 
-        /* Generate DH private/public keys */
+        // Generate DH private/public keys
         virtual uint32_t Generate(const uint8_t generator, const uint16_t modulusSize, const uint8_t modulus[]/* @in @length:modulusSize */ ,
                                   uint32_t& privKeyId /* @out */, uint32_t& pubKeyId /* @out */) = 0;
 
-        /* Calculate a DH shared secret */
+        // Calculate a DH shared secret
         virtual uint32_t Derive(const uint32_t privateKey, const uint32_t peerPublicKeyId, uint32_t& secretId /* @out */) = 0;
     };
 
@@ -140,6 +148,9 @@ namespace Exchange {
         // Get encrypted data blob out of the vault (data identified by ID, returns size of the retrieved data)
         virtual uint16_t Get(const uint32_t id, const uint16_t maxLength, uint8_t blob[] /* @out @maxlength:maxLength */) const = 0;
 
+        // Generates a random data blob of specified length in the vault (returns blob ID)
+        virtual uint32_t Generate(const uint16_t length) = 0;
+
         // Delete a data blob from the vault
         virtual bool Delete(const uint32_t id) = 0;
 
@@ -155,6 +166,14 @@ namespace Exchange {
 
         // Retrieve a Diffie-Hellman key creator
         virtual IDiffieHellman* DiffieHellman() = 0;
+    };
+
+    struct EXTERNAL IDeviceObjects : virtual public Core::IUnknown {
+
+        enum { ID = ID_CRYPTOGRAPHY_DEVICEOBJECTS };
+
+        // Locates the vault and the ID of a device-bound named blob
+        virtual uint32_t Find(const string& label, IVault*& vault /* @out */) = 0;
     };
 
     struct EXTERNAL ICryptography : virtual public Core::IUnknown {
