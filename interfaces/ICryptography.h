@@ -182,6 +182,9 @@ namespace Exchange {
 
         static ICryptography* Instance(const std::string& connectionPoint);
 
+        // Get vault ID from a label
+        static CryptographyVault VaultId(const string& label);
+
         // Retrieve a hash calculator
         virtual IHash* Hash(const hashtype hashType) = 0;
 
