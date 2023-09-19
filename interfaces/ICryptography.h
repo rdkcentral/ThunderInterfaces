@@ -172,8 +172,10 @@ namespace Exchange {
 
         enum { ID = ID_CRYPTOGRAPHY_DEVICEOBJECTS };
 
+        static IDeviceObjects* Instance();
+
         // Locates the vault and the ID of a device-bound named blob
-        virtual uint32_t Find(const string& label, IVault*& vault /* @out */) = 0;
+        virtual uint32_t Id(const string& label, IVault*& vault /* @out */) = 0;
     };
 
     struct EXTERNAL ICryptography : virtual public Core::IUnknown {
@@ -181,6 +183,9 @@ namespace Exchange {
         enum { ID = ID_CRYPTOGRAPHY };
 
         static ICryptography* Instance(const std::string& connectionPoint);
+
+        // Retrieve a random number generator
+        virtual IRandom* Random() = 0;
 
         // Retrieve a hash calculator
         virtual IHash* Hash(const hashtype hashType) = 0;
