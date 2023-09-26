@@ -366,7 +366,10 @@ namespace Exchange {
         ID_CRYPTOGRAPHY_HASH                         = ID_CRYPTOGRAPHY + 2,
         ID_CRYPTOGRAPHY_CIPHER                       = ID_CRYPTOGRAPHY + 3,
         ID_CRYPTOGRAPHY_DIFFIEHELLMAN                = ID_CRYPTOGRAPHY + 4,
-        ID_CRYPTOGRAPHY_PERSISTENT                   = ID_CRYPTOGRAPHY + 5
+        ID_CRYPTOGRAPHY_PERSISTENT                   = ID_CRYPTOGRAPHY + 5,
+        ID_CRYPTOGRAPHY_RANDOM                       = ID_CRYPTOGRAPHY + 6,
+        ID_CRYPTOGRAPHY_DEVICEOBJECTS                = ID_CRYPTOGRAPHY + 7
+
     };
 }
 }
