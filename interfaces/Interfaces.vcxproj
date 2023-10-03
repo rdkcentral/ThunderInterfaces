@@ -79,6 +79,7 @@
     <ClInclude Include="IDIALServer.h" />
     <ClInclude Include="IDictionary.h" />
     <ClInclude Include="IDisplayInfo.h" />
+    <ClInclude Include="IDNSServer.h" />
     <ClInclude Include="IDRM.h" />
     <ClInclude Include="Ids.h" />
     <ClInclude Include="IDsgccClient.h" />

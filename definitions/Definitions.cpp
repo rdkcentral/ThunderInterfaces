@@ -36,6 +36,7 @@
 #include <interfaces/IDictionary.h>
 #include <interfaces/IDisplayInfo.h>
 #include <interfaces/IDialServer.h>
+#include <interfaces/IDNSServer.h>
 #include <interfaces/IDolby.h>
 #include <interfaces/IDRM.h>
 #include <interfaces/IDsgccClient.h>
