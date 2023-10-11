@@ -27,8 +27,26 @@ namespace Exchange {
     // @json @uncompliant:extended
     struct EXTERNAL ISsoWeather : virtual public Core::IUnknown {
         enum { ID = ID_SSOWEATHER };
+        
+        // @event @uncompliant:extended // NOTE: extended format is deprecated!! Do not just copy this line!
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
+            enum { ID = ID_SSOWEATHER_NOTIFICATION };
+
+            ~INotification() override = default;
+
+            // @brief Signals temperature change
+            // @param temperature New temperature in degrees Celsius.
+            virtual void Temperature(const uint8_t temperature) = 0;
+
+            // @brief Signals raining state change
+            // @param raining New raining state (true: raining, false: sunny)
+            virtual void IsRaining(const bool raining) = 0;
+        };
 
         ~ISsoWeather() override = default;
+
+        virtual void Register(ISsoWeather::INotification* sink) = 0;
+        virtual void Unregister(const ISsoWeather::INotification* sink) = 0;
 
         // @property
         // @brief Check current temperature
@@ -36,7 +54,6 @@ namespace Exchange {
         // @retval ERROR_GENERAL Failed to retrieve current temperature
         virtual uint32_t Temperature(const uint8_t temperature) = 0;
         virtual uint32_t Temperature(uint8_t& temperature /* @out */) const = 0;
-
 
         // @property
         // @brief Check wether is already raining
