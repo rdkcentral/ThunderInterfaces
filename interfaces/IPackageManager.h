@@ -134,20 +134,12 @@ namespace Exchange {
         virtual uint32_t Register(IPackageManager::INotification* notification) = 0;
         virtual uint32_t Unregister(IPackageManager::INotification* notification) = 0;
 
-        struct EXTERNAL AppVersion {
+        struct EXTERNAL PackageKey {            
+            string id;
             string version;
-            string appName;
-            string category;
-            string url;
         };
 
-        using IAppVersionIterator = RPC::IIteratorType<AppVersion, ID_PACKAGEMANAGER_APP_VERSION_ITERATOR>;
-
-        /* @brief retrieve installed data for an app */
-        virtual uint32_t GetAppData(
-                const string& id,
-                string& type /* @out */,
-                IAppVersionIterator*& versions /* @out */) const = 0;
+        using IPackageKeyIterator = RPC::IIteratorType<PackageKey, ID_PACKAGEMANAGER_PACKAGE_KEY_ITERATOR>;
 
         /* @brief List installed applications. */
         virtual uint32_t GetList(
@@ -156,7 +148,7 @@ namespace Exchange {
                 const string& version,
                 const string& appName,
                 const string& category,
-                IStringIterator*& installedIds /* @out */) const = 0;
+                IPackageKeyIterator*& installedIds /* @out */) const = 0; 
 
         /* @brief Lock the application. Preventing uninstallation. */
         virtual uint32_t Lock(const string& type,
