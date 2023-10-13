@@ -90,6 +90,7 @@ namespace Exchange {
 
         struct MetadataPayload {
             string appName;
+            string type;
             string category;
             string url;
         };
