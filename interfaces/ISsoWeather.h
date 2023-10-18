@@ -24,12 +24,12 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json @uncompliant:extended
+    // @json
     struct EXTERNAL ISsoWeather : virtual public Core::IUnknown {
         enum { ID = ID_SSOWEATHER };
         
-        // @event @uncompliant:extended // NOTE: extended format is deprecated!! Do not just copy this line!
-        struct EXTERNAL INotification : virtual public Core::IUnknown {
+        // @event 
+            struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_SSOWEATHER_NOTIFICATION };
 
             ~INotification() override = default;
