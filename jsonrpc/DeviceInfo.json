@@ -136,7 +136,9 @@
       "enum": [
         "tv",
         "IpStb",
-        "QamIpStb"
+        "QamIpStb",
+        "hybrid",
+        "mediaclient"
       ],
       "description": "Device type",
       "example": "IpStb"
@@ -156,7 +158,8 @@
         "pace",
         "samsung",
         "technicolor",
-        "Amlogic_Inc"
+        "Amlogic_Inc",
+        "raspberrypi_org"
       ],
       "description": "Device manufacturer",
       "example": "pace"
@@ -190,7 +193,8 @@
         "PX051AEI",
         "PXD01ANI",
         "SX022AN",
-        "TX061AEI"
+        "TX061AEI",
+        "PI"
       ],
       "description": "Device model number or SKU",
       "example": "PX051AEI"
