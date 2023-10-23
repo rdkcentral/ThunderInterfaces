@@ -101,7 +101,25 @@ namespace Exchange {
             RESOLUTION_2160P30,
             RESOLUTION_2160P50,
             RESOLUTION_2160P60,
-            RESOLUTION_2160P
+            RESOLUTION_2160P,
+            RESOLUTION_600P24,
+            RESOLUTION_600P25,
+            RESOLUTION_600P30,
+            RESOLUTION_600P50,
+            RESOLUTION_600P60,
+            RESOLUTION_600P,
+            RESOLUTION_768P24,
+            RESOLUTION_768P25,
+            RESOLUTION_768P30,
+            RESOLUTION_768P50,
+            RESOLUTION_768P60,
+            RESOLUTION_768P,
+            RESOLUTION_3840x1080P24,
+            RESOLUTION_3840x1080P25,
+            RESOLUTION_3840x1080P30,
+            RESOLUTION_3840x1080P50,
+            RESOLUTION_3840x1080P60,
+            RESOLUTION_3840x1080P
         };
 
         typedef RPC::IIteratorType<AudioCodec, ID_PLAYER_PROPERTIES_AUDIO> IAudioCodecIterator;
