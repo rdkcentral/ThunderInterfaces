@@ -70,10 +70,10 @@ jobs:
         
     - name: Build ThunderInterfaces
       shell: cmd
-      run: |
+      run: >
         cd ThunderOnWindows
-        "%devEnv%" /Build "${{matrix.type}}|x${{matrix.version}}" /Project "%definitions%"  "%solution%"
-        "%devEnv%" /Build "${{matrix.type}}|x${{matrix.version}}" /Project "%interfaces%"  "%solution%"
+        && "%devEnv%" /Build "${{matrix.type}}|x${{matrix.version}}" /Project "%definitions%"  "%solution%"
+        && "%devEnv%" /Build "${{matrix.type}}|x${{matrix.version}}" /Project "%interfaces%"  "%solution%"
         
     - name: Tar files
       run: tar -czvf ${{matrix.type}}${{matrix.version}}.tar.gz artifacts
