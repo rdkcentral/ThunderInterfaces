@@ -58,7 +58,7 @@ namespace Exchange {
             };
 
             type Type;
-            string Label;
+            string Designator;
             string Value;
         };
 
@@ -66,8 +66,8 @@ namespace Exchange {
 
         virtual Core::hresult FindByType(const Record::type kind, const string& designator, Record& entry /* @out */) = 0;
         virtual Core::hresult FindByIndex(const uint8_t index, const string& designator, Record& entry /* @out */) = 0;
-        virtual Core::hresult Add(const string& designator, const Record& entry) = 0;
-        virtual Core::hresult Remove(const string designator, const Record& record) = 0;
+        virtual Core::hresult Add(const Record& entry) = 0;
+        virtual Core::hresult Remove(const Record& record) = 0;
     };
 
 
