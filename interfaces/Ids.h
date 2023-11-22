@@ -378,7 +378,11 @@ namespace Exchange {
 
         ID_DNS_SERVER                                = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4E0,
         ID_DNS_ZONE                                  = ID_DNS_SERVER + 1,
-        ID_DNS_RECORD                                = ID_DNS_SERVER + 2
+        ID_DNS_RECORD                                = ID_DNS_SERVER + 2,
+        
+        ID_TESTAUTOMATIONTOOLS                       = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4F0,
+        ID_TESTAUTOMATIONTOOLS_NOTIFICATION          = ID_TESTAUTOMATIONTOOLS + 1,
+        ID_TESTAUTOMATIONTOOLSINTERNAL               = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x500
     };
 }
 }
