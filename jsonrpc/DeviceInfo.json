@@ -377,7 +377,11 @@
         "PXD01ANI",
         "SX022AN",
         "TX061AEI",
-        "PI"
+        "PI",
+        "XUSHTC11MWR",
+        "XUSPTC11MWR",
+        "XUSHTB11MWR",
+        "PITU11MWR"
       ],
       "description": "Device model number or SKU",
       "example": "PX051AEI"
