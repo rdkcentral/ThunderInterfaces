@@ -23,25 +23,14 @@
 
 namespace WPEFramework {
 namespace Exchange {
+namespace TestAutomation {
 
     // @json
-    struct EXTERNAL ITestAutomationTools : virtual public Core::IUnknown {
-        enum { ID = ID_TESTAUTOMATIONTOOLS };
+    struct EXTERNAL IMemory : virtual public Core::IUnknown {
+        // Ask Pierre if using namespace+interface as ID! Is there a coding guide line
+        enum { ID = ID_TESTAUTOMATIONMEMORY };
 
-        // @event
-        struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_TESTAUTOMATIONTOOLS_NOTIFICATION };
-
-            ~INotification() override = default;
-
-            virtual void TestNotification() = 0;
-
-        };
-
-        ~ITestAutomationTools() override = default;
-
-        virtual void Register(ITestAutomationTools::INotification* sink) = 0;
-        virtual void Unregister(const ITestAutomationTools::INotification* sink) = 0;
+        ~IMemory() override = default;
        
         // @method
         // @brief Allocates Memory as given size of MB
@@ -54,24 +43,30 @@ namespace Exchange {
         // @retval ERROR_GENERAL Failed to free allocated memory
         virtual Core::hresult FreeAllocatedMemory() = 0;
 
+    };
+
+
+    // @json
+    struct EXTERNAL IComRpc : virtual public Core::IUnknown {
+        // Ask Pierre if using namespace+interface as ID! Is there a coding guide line
+        enum { ID = ID_TESTAUTOMATIONCOMRPC };
+
+        ~IComRpc() override = default;
 
         // @method
         // @brief Validates big string over proxy-stub with given length of KB
         // @retval ERROR_GENERAL Failed to verify
         virtual Core::hresult TestBigString(const uint32_t length) = 0;
+
+        struct EXTERNAL IComRpcInternal : virtual public Core::IUnknown {
+            enum { ID = ID_TESTAUTOMATIONCOMRPCINTERNAL };
+
+            ~IComRpcInternal() override = default;
+
+            virtual Core::hresult BigStringTest(const string& testString /* @restrict: (4M-1) */) = 0;
+        };
     };
 
-    struct EXTERNAL ITestAutomationToolsInternal : virtual public Core::IUnknown {
-        enum { ID = ID_TESTAUTOMATIONTOOLSINTERNAL };
-
-
-        ~ITestAutomationToolsInternal() override = default;
-
-        virtual Core::hresult IncreaseMemory(uint32_t memorySize) = 0;
-
-        virtual Core::hresult FreeMemory() = 0;
-
-        virtual Core::hresult BigStringTest(const string& testString /* @restrict: (4M-1) */) = 0;
-    };
+}
 }
 }
