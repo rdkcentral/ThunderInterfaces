@@ -19,8 +19,59 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\interfaces\json\JsonEnum_BluetoothControl.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_BluetoothRemoteControl.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Browser.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_BrowserCookieJar.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_BrowserResources.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_BrowserScripting.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_BrowserSecurity.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Butler.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Cobalt.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Compositor.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Containers.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_DeviceIdentification.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_DeviceInfo.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_DHCPServer.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_DIALServer.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Dictionary.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_DisplayInfo.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_DTV.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_FirmwareControl.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_InputSwitch.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_IOConnector.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_IOControl.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_LocationSync.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Math.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_MessageControl.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Messenger.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Monitor.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Netflix.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_NetworkControl.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_OCDM.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Packager.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_PerformanceMonitor.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_PlayerInfo.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Power.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Provisioning.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_RemoteControl.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_ScriptEngine.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_SecureShellServer.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_SecurityAgent.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Spark.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_StateControl.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_Streamer.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_SubsystemControl.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_SystemCommands.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_TestController.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_TestUtility.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_TimeSync.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_TimeZone.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_TraceControl.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_ValuePoint.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_WatchDog.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_WebBrowser.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_ZigWave.cpp" />
     <ClCompile Include="Definitions.cpp" />
   </ItemGroup>
   <ItemGroup>
