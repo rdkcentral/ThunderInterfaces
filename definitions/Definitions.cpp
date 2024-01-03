@@ -20,9 +20,12 @@
 #include "definitions.h"
 
 #ifdef __WINDOWS__
+#include <interfaces/IAmazonPrime.h>
+#include <interfaces/IApplication.h>
 #include <interfaces/IAVNClient.h>
 #include <interfaces/IAVSClient.h>
 #include <interfaces/IBluetooth.h>
+#include <interfaces/IBluetoothAudio.h>
 #include <interfaces/IButler.h>
 #include <interfaces/IBrowser.h>
 #include <interfaces/ICapture.h>
@@ -42,17 +45,22 @@
 #include <interfaces/IDsgccClient.h>
 #include <interfaces/IExternalBase.h>
 #include <interfaces/IGuide.h>
+#include <interfaces/IFocus.h>
 #include <interfaces/IInputPin.h>
 #include <interfaces/IInputSwitch.h>
 #include <interfaces/IIPNetwork.h>
 #include <interfaces/IKeyHandler.h>
+#include <interfaces/ILisa.h>
+#include <interfaces/ILanguageTag.h>
 #include <interfaces/IMath.h>
 #include <interfaces/IMemory.h>
 #include <interfaces/IMessenger.h>
 #include <interfaces/IMessageControl.h>
 #include <interfaces/INetworkControl.h>
+#include <interfaces/INetworkTools.h>
 #include <interfaces/INetflix.h>
 #include <interfaces/INetflixSecurity.h>
+#include <interfaces/IPackageManager.h>
 #include <interfaces/IPackager.h>
 #include <interfaces/IPerformance.h>
 #include <interfaces/IPlayerInfo.h>
@@ -67,9 +75,12 @@
 #include <interfaces/IScriptEngine.h>
 #include <interfaces/ISecureShellServer.h>
 #include <interfaces/IStream.h>
+#include <interfaces/IStore.h>
+#include <interfaces/IStoreCache.h>
 #include <interfaces/ISwitchBoard.h>
 #include <interfaces/ISystemCommands.h>
 #include <interfaces/ITestController.h>
+#include <interfaces/ITextToSpeech.h>
 #include <interfaces/ITestUtility.h>
 #include <interfaces/ITimeSync.h>
 #include <interfaces/ITimeZone.h>
@@ -78,6 +89,7 @@
 #include <interfaces/IWebDriver.h>
 #include <interfaces/IWebPA.h>
 #include <interfaces/IWebServer.h>
+#include <interfaces/IWifiControl.h>
 #include <interfaces/IDeviceInfo.h>
 #include <interfaces/IWatchDog.h>
 #include <interfaces/IZigWave.h>
