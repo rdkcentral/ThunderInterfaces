@@ -1,124 +1,229 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="ProxyStubs_AVNClient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_Browser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_Composition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_ContentDecryption.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_DsgccClient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_Guide.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_Netflix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_Packager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_Performance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_PlayGiga.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_Power.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_Provisioning.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_RPCLink.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_RtspClient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_Stream.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_TestController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_TestUtility.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_WebDriver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_WebPA.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_WebServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_AVSClient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_Dictionary.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_DisplayInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_Dolby.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_External.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_InputPin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_InputSwitch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_KeyHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_Math.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_PlayerInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_RemoteControl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_ResourceMonitor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_VoiceHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ProxyStubs_VolumeControl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Module.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProxyStubs_Configuration.cpp">
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_AmazonPrime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProxyStubs_DIALServer.cpp">
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProxyStubs_DeviceInfo.cpp">
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_AVNClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProxyStubs_TimeZone.cpp">
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_AVSClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProxyStubs_Butler.cpp">
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Bluetooth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_BluetoothAudio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Browser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Butler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Capture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Composition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Configuration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_ContentDecryption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Cryptography.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_CustomerCareOperations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_DeviceInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_DIALServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Dictionary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_DisplayInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_DNSServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Dolby.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_DsgccClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_External.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Focus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Guide.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_InputPin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_InputSwitch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_IPNetwork.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_KeyHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_LanguageTag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_LISA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_MediaPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_MessageControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Messenger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Netflix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_NetflixSecurity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_NetworkControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_NetworkTools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_OCDM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_PackageManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Packager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Performance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_PlayerInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_PlayGiga.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Power.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Provisioning.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_RemoteControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_ResourceMonitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_RPCLink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_RtspClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_RustBridge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_ScriptEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_SecureShellServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Store.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_StoreCache.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_Stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_SwitchBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_SystemCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_TestController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_TestUtility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_TextToSpeech.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_TimeSync.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_TimeZone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_ValuePoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_VoiceHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_VolumeControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_WatchDog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_WebDriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_WebPA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_WebServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_WifiControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubs_ZigWave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\artifacts\generated\Interfaces\ProxyStubsMetadata.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -285,6 +390,42 @@
       <Filter>Interface Files</Filter>
     </ClInclude>
     <ClInclude Include="IDNSServer.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IApplication.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDolby.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IAmazonPrime.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IBluetoothAudio.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ILanguageTag.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IPackageManager.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IFocus.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="INetworkTools.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IStore.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IWifiControl.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ITextToSpeech.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IStoreCache.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
   </ItemGroup>

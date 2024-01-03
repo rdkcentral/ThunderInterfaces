@@ -103,7 +103,7 @@ namespace Exchange {
         // @property
         // @brief Current application visibility
         virtual uint32_t Visible(bool& visiblity /* @out */) const = 0;
-        virtual uint32_t Visible(const bool&) = 0;
+        virtual uint32_t Visible(const bool) = 0;
 
         // @property
         // @brief Current application user interface language
