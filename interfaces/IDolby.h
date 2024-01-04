@@ -50,7 +50,7 @@ namespace Exchange {
                 PASSTHRU,
                 DOLBYDIGITAL,
                 DOLBYDIGITALPLUS,
-                SOUNDMODE_AUTO
+                SOUNDMODE_AUTO /* @text:Auto */
             };
 
             // @event @uncompliant:extended
@@ -58,6 +58,7 @@ namespace Exchange {
                 enum { ID = ID_DOLBY_OUTPUT_NOTIFICATION };
 
                 ~INotification() override = default;
+                // @text soundmodechanged @alt:deprecated dolby_audiomodechanged
                 virtual void AudioModeChanged(const Dolby::IOutput::SoundModes mode, const bool enabled) = 0;
             };
 
@@ -65,21 +66,25 @@ namespace Exchange {
             virtual uint32_t Unregister(INotification*) = 0;
 
             // @property
+            // @text dolbyatmossupported @alt:deprecated dolby_atmosmetadata
             // @brief Atmos capabilities of Sink
             // @return supported: atmos supported or unsupported
             virtual uint32_t AtmosMetadata(bool& supported /* @out */) const = 0;
 
             // @property
+            // @alt:deprecated dolby_soundmode
             // @brief Sound Mode - Mono/Stereo/Surround
             // @return mode: sound mode
             virtual uint32_t SoundMode(Dolby::IOutput::SoundModes& mode /* @out */) const = 0;
 
             // @property
+            // @text dolbyatmosoutput @alt:deprecated dolby_enableatmosoutput
             // @brief Enable Atmos Audio Output
             // @param enable: enable/disable
             virtual uint32_t EnableAtmosOutput(const bool& enable /* @in */) = 0;
 
             // @property
+            // @text:dolbymode @alt:dolby_mode
             // @brief Dolby Mode
             // @param mode: dolby mode type
             virtual uint32_t Mode(const Dolby::IOutput::Type& mode) = 0;
