@@ -23,50 +23,88 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp" />
-    <ClCompile Include="ProxyStubs_AVNClient.cpp" />
-    <ClCompile Include="ProxyStubs_AVSClient.cpp" />
-    <ClCompile Include="ProxyStubs_Browser.cpp" />
-    <ClCompile Include="ProxyStubs_Butler.cpp" />
-    <ClCompile Include="ProxyStubs_Composition.cpp" />
-    <ClCompile Include="ProxyStubs_Configuration.cpp" />
-    <ClCompile Include="ProxyStubs_ContentDecryption.cpp" />
-    <ClCompile Include="ProxyStubs_DeviceInfo.cpp" />
-    <ClCompile Include="ProxyStubs_DIALServer.cpp" />
-    <ClCompile Include="ProxyStubs_Dictionary.cpp" />
-    <ClCompile Include="ProxyStubs_DisplayInfo.cpp" />
-    <ClCompile Include="ProxyStubs_Dolby.cpp" />
-    <ClCompile Include="ProxyStubs_DsgccClient.cpp" />
-    <ClCompile Include="ProxyStubs_External.cpp" />
-    <ClCompile Include="ProxyStubs_Guide.cpp" />
-    <ClCompile Include="ProxyStubs_InputPin.cpp" />
-    <ClCompile Include="ProxyStubs_InputSwitch.cpp" />
-    <ClCompile Include="ProxyStubs_KeyHandler.cpp" />
-    <ClCompile Include="ProxyStubs_Math.cpp" />
-    <ClCompile Include="ProxyStubs_Netflix.cpp" />
-    <ClCompile Include="ProxyStubs_Packager.cpp" />
-    <ClCompile Include="ProxyStubs_Performance.cpp" />
-    <ClCompile Include="ProxyStubs_PlayerInfo.cpp" />
-    <ClCompile Include="ProxyStubs_PlayGiga.cpp" />
-    <ClCompile Include="ProxyStubs_Power.cpp" />
-    <ClCompile Include="ProxyStubs_Provisioning.cpp" />
-    <ClCompile Include="ProxyStubs_RemoteControl.cpp" />
-    <ClCompile Include="ProxyStubs_ResourceMonitor.cpp" />
-    <ClCompile Include="ProxyStubs_RPCLink.cpp" />
-    <ClCompile Include="ProxyStubs_RtspClient.cpp" />
-    <ClCompile Include="ProxyStubs_Stream.cpp" />
-    <ClCompile Include="ProxyStubs_TestController.cpp" />
-    <ClCompile Include="ProxyStubs_TestUtility.cpp" />
-    <ClCompile Include="ProxyStubs_TimeZone.cpp" />
-    <ClCompile Include="ProxyStubs_VoiceHandler.cpp" />
-    <ClCompile Include="ProxyStubs_VolumeControl.cpp" />
-    <ClCompile Include="ProxyStubs_WebDriver.cpp" />
-    <ClCompile Include="ProxyStubs_WebPA.cpp" />
-    <ClCompile Include="ProxyStubs_WebServer.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubsMetadata.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_AmazonPrime.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Application.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_AVNClient.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_AVSClient.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Bluetooth.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_BluetoothAudio.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Browser.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Butler.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Capture.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Composition.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Configuration.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_ContentDecryption.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Cryptography.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_CustomerCareOperations.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_DeviceInfo.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_DIALServer.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Dictionary.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_DisplayInfo.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_DNSServer.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Dolby.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_DsgccClient.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_External.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Focus.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Guide.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_InputPin.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_InputSwitch.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_IPNetwork.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_KeyHandler.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_LanguageTag.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_LISA.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Math.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_MediaPlayer.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Memory.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_MessageControl.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Messenger.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Netflix.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_NetflixSecurity.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_NetworkControl.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_NetworkTools.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_OCDM.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_PackageManager.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Packager.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Performance.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_PlayerInfo.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_PlayGiga.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Power.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Provisioning.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_RemoteControl.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_ResourceMonitor.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_RPCLink.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_RtspClient.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_RustBridge.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_ScriptEngine.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_SecureShellServer.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Store.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_StoreCache.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Stream.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_SwitchBoard.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_SystemCommands.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_TestController.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_TestUtility.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_TextToSpeech.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_TimeSync.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_TimeZone.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_ValuePoint.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_VoiceHandler.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_VolumeControl.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_WatchDog.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_WebDriver.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_WebPA.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_WebServer.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_WifiControl.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_ZigWave.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IAmazonPrime.h" />
+    <ClInclude Include="IApplication.h" />
     <ClInclude Include="IAVNClient.h" />
     <ClInclude Include="IAVSClient.h" />
     <ClInclude Include="IBluetooth.h" />
+    <ClInclude Include="IBluetoothAudio.h" />
     <ClInclude Include="IBrowser.h" />
     <ClInclude Include="IButler.h" />
     <ClInclude Include="ICapture.h" />
@@ -80,20 +118,25 @@
     <ClInclude Include="IDictionary.h" />
     <ClInclude Include="IDisplayInfo.h" />
     <ClInclude Include="IDNSServer.h" />
+    <ClInclude Include="IDolby.h" />
     <ClInclude Include="IDRM.h" />
     <ClInclude Include="Ids.h" />
     <ClInclude Include="IDsgccClient.h" />
     <ClInclude Include="IExternal.h" />
     <ClInclude Include="IExternalBase.h" />
+    <ClInclude Include="IFocus.h" />
     <ClInclude Include="IGuide.h" />
     <ClInclude Include="IInputSwitch.h" />
     <ClInclude Include="IIPNetwork.h" />
     <ClInclude Include="IKeyHandler.h" />
+    <ClInclude Include="ILanguageTag.h" />
     <ClInclude Include="IMemory.h" />
     <ClInclude Include="IMessageControl.h" />
     <ClInclude Include="INetflix.h" />
     <ClInclude Include="INetflixSecurity.h" />
+    <ClInclude Include="INetworkTools.h" />
     <ClInclude Include="IOCDM.h" />
+    <ClInclude Include="IPackageManager.h" />
     <ClInclude Include="IPackager.h" />
     <ClInclude Include="IPerformance.h" />
     <ClInclude Include="IPlayGiga.h" />
@@ -103,16 +146,20 @@
     <ClInclude Include="IRtspClient.h" />
     <ClInclude Include="IRustBridge.h" />
     <ClInclude Include="IScriptEngine.h" />
+    <ClInclude Include="IStore.h" />
+    <ClInclude Include="IStoreCache.h" />
     <ClInclude Include="IStream.h" />
     <ClInclude Include="ISwitchBoard.h" />
     <ClInclude Include="ISystemCommands.h" />
     <ClInclude Include="ITestController.h" />
+    <ClInclude Include="ITextToSpeech.h" />
     <ClInclude Include="ITimeSync.h" />
     <ClInclude Include="ITimeZone.h" />
     <ClInclude Include="IValuePoint.h" />
     <ClInclude Include="IVoiceHandler.h" />
     <ClInclude Include="IWebDriver.h" />
     <ClInclude Include="IWebServer.h" />
+    <ClInclude Include="IWifiControl.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ValuePoint.h" />
   </ItemGroup>
@@ -208,9 +255,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PROXYSTUB_BUILDING;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>INTERFACES_EXPORTS;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;$(ProjectDir);$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
@@ -222,7 +269,7 @@
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)."</Command>
+      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" --outdir "$(ProjectDir)proxystubs" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)I*.h"</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Create ProxyStub code</Message>
@@ -242,9 +289,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PROXYSTUB_BUILDING;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>INTERFACES_EXPORTS;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;$(ProjectDir);$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
@@ -254,7 +301,7 @@
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)."</Command>
+      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" --outdir "$(ProjectDir)proxystubs" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)I*.h"</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Create ProxyStub code</Message>
@@ -274,9 +321,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PROXYSTUB_BUILDING;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>INTERFACES_EXPORTS;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;$(ProjectDir);$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
@@ -286,7 +333,7 @@
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)."</Command>
+      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" --outdir "$(ProjectDir)proxystubs" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)I*.h"</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Create ProxyStub code</Message>
@@ -308,9 +355,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PROXYSTUB_BUILDING;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>INTERFACES_EXPORTS;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..;$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;$(ProjectDir);$(FrameworkPath);$(WindowsPath);$(WindowsPath)zlib</AdditionalIncludeDirectories>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
@@ -322,7 +369,7 @@
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)."</Command>
+      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" --outdir "$(ProjectDir)proxystubs" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)I*.h"</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Create ProxyStub code</Message>

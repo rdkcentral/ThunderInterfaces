@@ -165,7 +165,7 @@ struct ISessionExt : virtual public Core::IUnknown {
 
     virtual OCDM_RESULT StoreLicenseData(const uint8_t licenseData[] /* @in @length:licenseDataSize */,
         uint16_t licenseDataSize,
-        uint8_t* secureStopId /* @out @length:16 */)
+        uint8_t* secureStopId /* @out @maxlength:16 */)
         = 0;
 
     virtual OCDM_RESULT SelectKeyId(const uint8_t keyLength,
@@ -225,7 +225,7 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
     virtual uint32_t ResetSecureStops(const std::string& keySystem) = 0;
 
     virtual OCDM_RESULT GetSecureStopIds(const std::string& keySystem,
-        uint8_t ids[] /* @out @length:idsLength */, uint16_t idsLength,
+        uint8_t ids[] /* @out @maxlength:idsLength */, uint16_t idsLength,
         uint32_t& count /* @inout */)
         = 0;
 
@@ -247,12 +247,12 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
     virtual OCDM_RESULT DeleteSecureStore(const std::string& keySystem) = 0;
 
     virtual OCDM_RESULT GetKeyStoreHash(const std::string& keySystem,
-        uint8_t keyStoreHash[] /* @out @length:keyStoreHashLength */,
+        uint8_t keyStoreHash[] /* @out @maxlength:keyStoreHashLength */,
         uint16_t keyStoreHashLength)
         = 0;
 
     virtual OCDM_RESULT GetSecureStoreHash(const std::string& keySystem,
-        uint8_t secureStoreHash[] /* @out @length:secureStoreHashLength */,
+        uint8_t secureStoreHash[] /* @out @maxlength:secureStoreHashLength */,
         uint16_t secureStoreHashLength)
         = 0;
 };
