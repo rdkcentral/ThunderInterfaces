@@ -23,7 +23,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json @uncompliant:collapsed
+    // @json 1.0.0 @uncompliant:collapsed
     struct EXTERNAL IApplication : virtual public Core::IUnknown {
 
         enum { ID = ID_APPLICATION };
@@ -37,7 +37,7 @@ namespace Exchange {
             ~INotification() override = default;
 
             /* @brief Application visibility changes */
-            /* @param hidden Denotes if application is currently hidden */
+            /* @param hidden: Denotes if application is currently hidden */
             virtual void VisibilityChange(const bool hidden) = 0;
         };
 
@@ -82,17 +82,17 @@ namespace Exchange {
         virtual void Unregister(INotification* sink) = 0;
 
         // @brief Resets application data
-        // @param type Type of reset to perform
+        // @param type: Type of reset to perform
         virtual uint32_t Reset(const resettype type) = 0;
 
         // @property
         // @brief Application-specific identification string
-        // @param id Identifier string
+        // @param id: Identifier string
         virtual uint32_t Identifier(string& id /* @out */) const = 0;
 
         // @property
         // @brief URI of the associated application-specific content
-        // @param link Content URI (e.g. https://youtube.com)
+        // @param link: Content URI (e.g. https://youtube.com)
         virtual uint32_t ContentLink(const string& link) = 0;
 
         // @property
@@ -107,7 +107,7 @@ namespace Exchange {
 
         // @property
         // @brief Current application user interface language
-        // @param language Language string as per RFC5646 (e.g. en)
+        // @param language: Language string as per RFC5646 (e.g. en)
         virtual uint32_t Language(string& language /* @out */) const = 0;
         virtual uint32_t Language(const string&) = 0;
     };

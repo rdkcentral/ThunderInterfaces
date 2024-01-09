@@ -24,9 +24,9 @@
  // @stubgen:include <com/IIteratorType.h>
 
 namespace WPEFramework {
-	namespace Exchange {
+        namespace Exchange {
 
-        /* @json */
+        /* @json 1.0.0 */
         struct EXTERNAL IZigWave : virtual public Core::IUnknown {
             enum { ID = ID_ZIGWAVE };
 
@@ -59,7 +59,7 @@ namespace WPEFramework {
             // @brief To allow new devices to the network, the controller should be placed
             //        into an accepting mode. By enabling this mode, the controller can 
             //        accept new devices.
-            // @param enabled (true) or disable (false) the accepting mode.
+            // @param enabled: Enabled (true) or Disable (false) the accepting mode.
             // 
             /* @alt accept */
             virtual Core::hresult Permutable(const uint32_t address /* @index */, bool& enabled /* @out */) const = 0;
@@ -68,14 +68,17 @@ namespace WPEFramework {
             // @property
             // @brief Get the information of available devices. An id of 0xFFFFFFFF means 
             // all devices available by this plugin.
-            // 
             virtual Core::hresult Devices(const uint32_t id /* @index */, IDeviceIterator*& devices /* @out */) const = 0;
 
             // @brief Bind the *out* from the soure to the *in* of the destination
+            // @param source: Source to be bound
+            // @param destination: Destination to be bound
             // @return: The success of the binding action.
             virtual Core::hresult Bind(const uint32_t source, const uint32_t destination) = 0;
 
             // @brief Unbind the *out* from the soure to the *in* of the destination
+            // @param source: Source to be unbound
+            // @param destination: Destination to be unbound
             // @return: The success of the unbinding action.
             virtual Core::hresult Unbind(const uint32_t source, const uint32_t destination) = 0;
 

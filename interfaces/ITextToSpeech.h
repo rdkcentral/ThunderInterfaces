@@ -42,15 +42,15 @@ namespace Exchange {
 
             // Signal changes on the subscribed namespace
             // @brief Notify TTS enabled/disabled
-            // @param state enabled/disabled
+            // @param state: Enabled/Disabled
             virtual void Enabled(const bool state) = 0;
 
             // @brief Notify change in voice used for speaking
-            // @param voice voice changed 
+            // @param voice: Voice is changed
             virtual void VoiceChanged(const string voice) = 0;
 
             // @brief Notify speechid based on the speech state(eg: start,pause,..etc)
-            // @param speechid id of the text
+            // @param speechid: Id of the text
             virtual void WillSpeak(const uint32_t speechid) = 0;
             virtual void SpeechStart(const uint32_t speechid) = 0;
             virtual void SpeechPause(const uint32_t speechid) = 0;
@@ -68,54 +68,53 @@ namespace Exchange {
         
         // @property
         // @brief Query the status/enable tts
-        // @param enable status/enable
         virtual uint32_t Enable(const bool enable) = 0;
         virtual uint32_t Enable(bool &enable /* @out */) const = 0;
 
         // @brief Set the tts configuration attributes
         // @param config tts configuration
-        // @param status return status
-        virtual uint32_t SetConfiguration(const Configuration &config,TTSErrorDetail &status/* @out */) = 0;
+        // @param status: Return status
+        virtual uint32_t SetConfiguration(const Configuration &config, TTSErrorDetail &status/* @out */) = 0;
 
-        virtual uint32_t SetFallbackText(const string scenario,const string value) = 0;
+        virtual uint32_t SetFallbackText(const string scenario, const string value) = 0;
         virtual uint32_t SetAPIKey(const string apikey) = 0;
         virtual uint32_t SetPrimaryVolDuck(const uint8_t prim) = 0;
-        virtual uint32_t SetACL(const string method,const string apps) = 0;
+        virtual uint32_t SetACL(const string method, const string apps) = 0;
 
         // @brief Retrieve tts configuration attributes 
-        // @param config tts configuration
+        // @param config: TTS configuration
         virtual uint32_t GetConfiguration(Configuration &config/* @out */) const = 0;
         
         // @brief List voices available 
-        // @param language input
-        // @param voices list of voices
-        virtual uint32_t ListVoices(const string language,RPC::IStringIterator*& voices/* @out */) const = 0;
+        // @param language: Input language
+        // @param voices: list of voices
+        virtual uint32_t ListVoices(const string language, RPC::IStringIterator*& voices/* @out */) const = 0;
         
         // @brief Speaks text provided
-        // @param callsign of app
-        // @param text for conversion
-        // @param speechid returns id for the text 
-        // @param status return status
-        virtual uint32_t Speak(const string callsign,const string text,uint32_t &speechid/* @out */,TTSErrorDetail &status/* @out */) = 0;
+        // @param callsign: Callsign of app
+        // @param text: Text for conversion
+        // @param speechid: Returns id for the text
+        // @param status: Return status
+        virtual uint32_t Speak(const string callsign, const string text, uint32_t &speechid/* @out */, TTSErrorDetail &status/* @out */) = 0;
         
         // @brief Cancel the speech
-        // @param speechid id of text to be cancelled
+        // @param speechid: Id of text to be cancelled
         virtual uint32_t Cancel(const uint32_t speechid) = 0;
         
         // @brief Pause the speech
-        // @param speechid id of text to be paused
-        // @param status return status
-        virtual uint32_t Pause(const uint32_t speechid,TTSErrorDetail &status /* @out */) = 0;
+        // @param speechid: Id of text to be paused
+        // @param status: Return status
+        virtual uint32_t Pause(const uint32_t speechid, TTSErrorDetail &status /* @out */) = 0;
         
         // @brief Resume the speech
-        // @param speechid id of text to be resumed
-        // @param status return status
-        virtual uint32_t Resume(const uint32_t speechid,TTSErrorDetail &status /* @out */) = 0;
+        // @param speechid: Id of text to be resumed
+        // @param status: Return status
+        virtual uint32_t Resume(const uint32_t speechid, TTSErrorDetail &status /* @out */) = 0;
         
         // @brief Get speech status
-        // @param speechid id of text to get status
-        // @param state speech state
-        virtual uint32_t GetSpeechState(const uint32_t speechid,SpeechState &state/* @out */) = 0;
+        // @param speechid: Id of text to get status
+        // @param state: Speech state
+        virtual uint32_t GetSpeechState(const uint32_t speechid, SpeechState &state/* @out */) = 0;
     };
 
 } // Exchange

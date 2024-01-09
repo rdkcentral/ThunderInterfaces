@@ -24,6 +24,13 @@ find_package(WPEFramework)
 set(INTERFACES_PATTERNS "I*.h" CACHE STRING "Patterns matching files for which stubs should be generated")
 set(JSONRPC_PATTERNS "*.json" CACHE STRING "Patterns matching files for which json stubs should be generated")
 
+file(GLOB EXCLUDED_FILES
+   "${CMAKE_SOURCE_DIR}/interfaces/ICommand.h"
+   "${CMAKE_SOURCE_DIR}/interfaces/ICompositionBuffer.h"
+   "${CMAKE_SOURCE_DIR}/interfaces/IDRM.h"
+   "${CMAKE_SOURCE_DIR}/interfaces/IExternalBase.h"
+   )
+
 if(ENABLE_STRICT_COMPILER_SETTINGS)
     if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         message(FATAL_ERROR "Compiling with Clang")

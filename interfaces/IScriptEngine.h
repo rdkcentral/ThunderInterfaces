@@ -4,7 +4,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json 
+    // @json 1.0.0
     struct EXTERNAL IScriptEngine : virtual public Core::IUnknown {
         enum { ID = ID_SCRIPT_ENGINE };
 
@@ -14,7 +14,8 @@ namespace Exchange {
 
             ~INotification() override = default;
 
-            // Signal changes on the subscribed namespace..
+            // @brief Signal changes on the subscribed namespace..
+            // @param URL: Loaded URL (e.g. https://example.com)
             virtual void URLChanged(const string& URL) = 0;
         };
 
@@ -25,7 +26,7 @@ namespace Exchange {
 
         // @property
         // @brief Script to be loaded into the engine and to be executed.
-        // @param url Loaded URL (e.g. https://example.com)
+        // @param url: Loaded URL (e.g. https://example.com)
         virtual Core::hresult URL(string& url /* @out */) const = 0;
         virtual Core::hresult URL(const string& url) = 0;
     };

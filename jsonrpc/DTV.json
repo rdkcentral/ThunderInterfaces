@@ -2,10 +2,12 @@
     "$schema": "https://raw.githubusercontent.com/rdkcentral/Thunder/master/Tools/JsonGenerator/schemas/interface.schema.json",
     "jsonrpc": "2.0",
     "info": {
+        "version": "1.0.0",
         "title": "DTV API",
         "class": "DTV",
         "format": "uncompliant-collapsed",
-        "description": "The `DTV` plugin provides access to DVB services provided by a DVB stack."
+        "description": "The `DTV` plugin provides access to DVB services provided by a DVB stack.",
+        "legacy": true
     },
     "common": {
         "results": {
@@ -41,7 +43,7 @@
             ]
         },
         "tunertype": {
-            "summary": "Tuner type",
+            "description": "Tuner type",
             "type": "string",
             "enum": [
                 "none",
@@ -57,6 +59,7 @@
             ]
         },
         "lnbtype": {
+            "description": "LNB type",
             "type": "string",
             "enum": [
                 "single",
@@ -65,6 +68,7 @@
             ]
         },
         "lnbpower": {
+            "description": "LNB power values",
             "type": "string",
             "enum":[
                 "off",
@@ -73,6 +77,7 @@
             ]
         },
         "diseqc_cswitch": {
+            "description": "Diseqc cswitch",
             "type": "string",
             "enum": [
                 "off",
@@ -83,6 +88,7 @@
             ]
         },
         "diseqc_tone": {
+            "description": "Diseqc Tone",
             "type": "string",
             "enum": [
                 "off",
@@ -94,7 +100,7 @@
             "type": "object",
             "properties": {
                 "name": {
-                    "summary": "User specified name for the LNB settings",
+                    "description": "User specified name for the LNB settings",
                     "type": "string",
                     "example": "Universal"
                 },
@@ -115,45 +121,45 @@
                     "example": "off"
                 },
                 "is22k": {
-                    "summary": "22kHz tone on/off",
+                    "description": "22kHz tone on/off",
                     "type": "boolean"
                 },
                 "is12v": {
-                    "summary": "12 volts on/off",
+                    "description": "12 volts on/off",
                     "type": "boolean"
                 },
                 "ispulseposition": {
-                    "summary": "Pulse position motor used to control dish position",
+                    "description": "Pulse position motor used to control dish position",
                     "type": "boolean"
                 },
                 "isdiseqcposition": {
-                    "summary": "Dish positioning is controlled by DiSEqC",
+                    "description": "Dish positioning is controlled by DiSEqC",
                     "type": "boolean"
                 },
                 "issmatv": {
-                    "summary": "SMATV switcher on/off",
+                    "description": "SMATV switcher on/off",
                     "type": "boolean"
                 },
                 "diseqcrepeats": {
-                    "summary": "Number of times to send a DiSEqC message to make sure it's been received",
+                    "description": "Number of times to send a DiSEqC message to make sure it's been received",
                     "type": "number",
                     "signed": false,
                     "size": 8
                 },
                 "u_switch": {
-                    "summary": "DiSEqC uncommitted switch selector",
+                    "description": "DiSEqC uncommitted switch selector",
                     "type": "number",
                     "signed": false,
                     "size": 8
                 },
                 "unicablechannel": {
-                    "summary": "Unicable channel",
+                    "description": "Unicable channel",
                     "type": "number",
                     "signed": false,
                     "size": 8
                 },
                 "unicablefreq": {
-                    "summary": "Unicable frequency",
+                    "description": "Unicable frequency",
                     "type": "number",
                     "signed": false,
                     "size": 32
@@ -180,7 +186,7 @@
             "type": "object",
             "properties": {
                 "name": {
-                    "summary": "User specified name for the satellite settings",
+                    "description": "User specified name for the satellite settings",
                     "type": "string",
                     "example": "Astra 28.2E"
                 },
@@ -192,7 +198,7 @@
                     "example": 282
                 },
                 "lnb": {
-                    "summary": "Name of the LNB settings to be used when tuning to this satellite",
+                    "description": "Name of the LNB settings to be used when tuning to this satellite",
                     "type": "string",
                     "example": "Universal"
                 }
@@ -204,6 +210,7 @@
             ]
         },
         "polarity": {
+            "description": "Polarity setting",
             "type": "string",
             "enum": [
                 "horizontal",
@@ -213,7 +220,7 @@
             ]
         },
         "fec": {
-            "summary": "Forward error correction setting",
+            "description": "Forward error correction setting",
             "type": "string",
             "enum": [
                 "fecauto",
@@ -232,6 +239,7 @@
             ]
         },
         "dvbsmodulation": {
+            "description": "DVB S Modulation supported by the platform",
             "type": "string",
             "enum": [
                 "auto",
@@ -241,6 +249,7 @@
             ]
         },
         "searchtype": {
+            "description": "Supported Search Type",
             "type": "string",
             "enum": [
                 "frequency",
@@ -248,16 +257,16 @@
             ]
         },
         "dvbstuningparams": {
-            "summary": "Parameters required to tune to a DVB-S/S2 signal",
+            "description": "Parameters required to tune to a DVB-S/S2 signal",
             "type": "object",
             "properties": {
                 "satellite": {
-                    "summary": "Name of the satellite settings to be used",
+                    "description": "Name of the satellite settings to be used",
                     "type": "string",
                     "example": "Astra 28.2"
                 },
                 "frequency": {
-                    "summary": "Frequency of the transponder, in kHz",
+                    "description": "Frequency of the transponder, in kHz",
                     "type": "number",
                     "signed": false,
                     "size": 32,
@@ -268,7 +277,7 @@
                     "example": "horizontal"
                 },
                 "symbolrate": {
-                    "summary": "Symbol rate in Ksymb/sec",
+                    "description": "Symbol rate in Ksymb/sec",
                     "type": "number",
                     "signed": false,
                     "size": 16,
@@ -283,7 +292,7 @@
                     "example": "qpsk"
                 },
                 "dvbs2": {
-                    "summary": "True when tuning to a DVB-S2 signal",
+                    "description": "True when tuning to a DVB-S2 signal",
                     "type": "boolean"
                 }
             },
@@ -298,6 +307,7 @@
             ]
         },
         "dvbcmodulation": {
+            "description": "DVB C Modulation supported by the platform",
             "type": "string",
             "enum": [
                 "auto",
@@ -311,18 +321,18 @@
             ]
         },
         "dvbctuningparams": {
-            "summary": "Parameters required to tune to a DVB-C signal",
+            "description": "Parameters required to tune to a DVB-C signal",
             "type": "object",
             "properties": {
                 "frequency": {
-                    "summary": "Frequency of the transport, in Hz",
+                    "description": "Frequency of the transport, in Hz",
                     "type": "number",
                     "signed": false,
                     "size": 32,
                     "example": 474000000
                 },
                 "symbolrate": {
-                    "summary": "Symbol rate in Ksymb/sec",
+                    "description": "Symbol rate in Ksymb/sec",
                     "type": "number",
                     "signed": false,
                     "size": 16,
@@ -340,7 +350,7 @@
             ]
         },
         "dvbtbandwidth": {
-            "summary": "Channel bandwidth",
+            "description": "Channel bandwidth",
             "type": "string",
             "enum": [
                 "5MHz",
@@ -352,7 +362,7 @@
              ]
         },
         "ofdmmode": {
-            "summary": "OFDM mode",
+            "description": "OFDM mode",
             "type": "string",
             "enum": [
                 "ofdm_1K",
@@ -365,11 +375,11 @@
             ]
         },
         "dvbttuningparams": {
-            "summary": "Parameters required to tune to a DVB-T/T2 signal",
+            "description": "Parameters required to tune to a DVB-T/T2 signal",
             "type": "object",
             "properties": {
                 "frequency": {
-                    "summary": "Frequency of the transport, in Hz",
+                    "description": "Frequency of the transport, in Hz",
                     "type": "number",
                     "signed": false,
                     "size": 32,
@@ -384,11 +394,11 @@
                     "example": "ofdm_32K"
                 },
                 "dvbt2": {
-                    "summary": "True when tuning to a DVB-T2 signal",
+                    "description": "True when tuning to a DVB-T2 signal",
                     "type": "boolean"
                 },
                 "plpid": {
-                    "summary": "PLP ID for tuning to a DVB-T2 signal",
+                    "description": "PLP ID for tuning to a DVB-T2 signal",
                     "type": "number",
                     "signed": false,
                     "size": 8
@@ -402,12 +412,12 @@
             ]
         },
         "dvburistring": {
-            "summary": "DVB triplet of the form a.b.c, where 'a' is the original network ID, 'b' is the transport ID and 'c' is the service ID, in decimal",
+            "description": "DVB triplet of the form a.b.c, where 'a' is the original network ID, 'b' is the transport ID and 'c' is the service ID, in decimal",
             "type": "string",
             "example": "2.2041.9212"
         },
         "servicetype": {
-            "summary": "(Version 2) Service type as given by the service descriptor in the SDT",
+            "description": "(Version 2) Service type as given by the service descriptor in the SDT",
             "type": "string",
             "enum": [
                 "tv",
@@ -431,7 +441,7 @@
             ]
         },
         "runningstatus": {
-            "summary": "(Version 2) The running status as given by the service descriptor in the SDT",
+            "description": "(Version 2) The running status as given by the service descriptor in the SDT",
             "type": "string",
             "enum": [
                  "undefined",
@@ -444,16 +454,16 @@
             "example": "running"
         },
         "service": {
-            "summary": "Service information",
+            "description": "Service information",
             "type": "object",
             "properties": {
                 "fullname": {
-                    "summary": "(Version 2) Full service name as given by the service descriptor in the SDT",
+                    "description": "(Version 2) Full service name as given by the service descriptor in the SDT",
                     "type": "string",
                     "example": "Channel 4"
                 },
                 "shortname": {
-                    "summary": "Short service name as given by the service descriptor in the SDT",
+                    "description": "Short service name as given by the service descriptor in the SDT",
                     "type": "string",
                     "example": "C4"
                 },
@@ -465,25 +475,25 @@
                     "example": "tv"
                 },
                 "lcn": {
-                    "summary": "Logical channel number",
+                    "description": "Logical channel number",
                     "type": "number",
                     "size": 16,
                     "example": 1001
                 },
                 "scrambled": {
-                    "summary": "(Version 2) True if the service is marked as scrambled in the SDT",
+                    "description": "(Version 2) True if the service is marked as scrambled in the SDT",
                     "type": "boolean"
                 },
                 "hascadescriptor": {
-                    "summary": "(Version 2) True if there is at least one CA descriptor in the service's PMT",
+                    "description": "(Version 2) True if there is at least one CA descriptor in the service's PMT",
                     "type": "boolean"
                 },
                 "hidden": {
-                    "summary": "(Version 2) True if the service should be hidden",
+                    "description": "(Version 2) True if the service should be hidden",
                     "type": "boolean"
                 },
                 "selectable": {
-                    "summary": "(Version 2) True if the service should be user selectable",
+                    "description": "(Version 2) True if the service should be user selectable",
                     "type": "boolean"
                 },
                 "runningstatus": {
@@ -504,7 +514,7 @@
             ]
         },
         "transport": {
-            "summary": "(Version 2) Details for a transport",
+            "description": "(Version 2) Details for a transport",
             "type": "object",
             "properties": {
                 "tunertype": {
@@ -512,28 +522,28 @@
                     "example": "dvbt"
                 },
                 "originalnetworkid": {
-                    "summary": "Original network ID of the transport",
+                    "description": "Original network ID of the transport",
                     "type": "number",
                     "signed": false,
                     "size": 16,
                     "example": 8204
                 },
                 "transportid": {
-                    "summary": "Transport ID of the transport",
+                    "description": "Transport ID of the transport",
                     "type": "number",
                     "signed": false,
                     "size": 16,
                     "example": 8204
                 },
                 "strength": {
-                    "summary": "Signal strength as a percentage",
+                    "description": "Signal strength as a percentage",
                     "type": "number",
                     "signed": false,
                     "size": 8,
                     "example": "76"
                 },
                 "quality": {
-                    "summary": "Signal quality as a percentage",
+                    "description": "Signal quality as a percentage",
                     "type": "number",
                     "signed": false,
                     "size": 8,
@@ -558,11 +568,11 @@
             ]
         },
         "eitevent": {
-            "summary": "EIT event information",
+            "description": "EIT event information",
             "type": "object",
             "properties": {
                 "name": {
-                    "summary": "Name of the DVB event as defined in the short event descriptor",
+                    "description": "Name of the DVB event as defined in the short event descriptor",
                     "type": "string",
                     "example": "Channel 4 News"
                 },
@@ -570,45 +580,45 @@
                     "type": "number",
                     "signed": false,
                     "size": 32,
-                    "summary": "UTC start time of the event in seconds",
+                    "description": "UTC start time of the event in seconds",
                     "example": 1587562065
                 },
                 "duration": {
-                    "summary": "Duration of the event in seconds",
+                    "description": "Duration of the event in seconds",
                     "type": "number",
                     "signed": false,
                     "size": 32,
                     "example": 1800
                 },
                 "eventid": {
-                    "summary": "ID of the event from the event information table",
+                    "description": "ID of the event from the event information table",
                     "type": "number",
                     "signed": false,
                     "size": 16,
                     "example": 3012
                 },
                 "shortdescription": {
-                    "summary": "Event description from the EIT short event descriptor",
+                    "description": "Event description from the EIT short event descriptor",
                     "type": "string",
                     "example": "The current national and world news"
                 },
                 "hassubtitles": {
-                    "summary": "(Version 2) True if subtitles are available",
+                    "description": "(Version 2) True if subtitles are available",
                     "type": "boolean"
                 },
                 "hasaudiodescription": {
-                    "summary": "(Version 2) True if audio description is available",
+                    "description": "(Version 2) True if audio description is available",
                     "type": "boolean"
                 },
                 "parentalrating": {
-                    "summary": "(Version 2) Parental rating for the event, will be 0 if undefined",
+                    "description": "(Version 2) Parental rating for the event, will be 0 if undefined",
                     "type": "number",
                     "signed": false,
                     "size": 8,
                     "example": 12
                 },
                 "contentdata": {
-                    "summary": "(Version 2) The first 2 4-bit values from the content descriptor as separate bytes",
+                    "description": "(Version 2) The first 2 4-bit values from the content descriptor as separate bytes",
                     "type": "array",
                     "items": {
                         "type": "number",
@@ -617,7 +627,7 @@
                     }
                 },
                 "hasextendedinfo": {
-                    "summary": "(Version 2) True if there's extended event information available",
+                    "description": "(Version 2) True if there's extended event information available",
                     "type": "boolean"
                 }
             },
@@ -638,28 +648,28 @@
             "type": "object",
             "properties": {
                 "description": {
-                    "summary": "Description of the item",
+                    "description": "Description of the item",
                     "type": "string",
                     "example": "Actor 1"
                 },
                 "item": {
-                    "summary": "Item text",
+                    "description": "Item text",
                     "type": "string",
                     "example": "Kermit The Frog"
                 }
             }
         },
         "extendedeventinfo": {
-            "summary": "(Version 2) Event information from the EIT extended event descriptor",
+            "description": "(Version 2) Event information from the EIT extended event descriptor",
             "type": "object",
             "properties": {
                 "description": {
-                    "summary": "Extended event description text",
+                    "description": "Extended event description text",
                     "type": "string",
                     "example": "A long event description"
                 },
                 "items": {
-                    "summary": "",
+                    "description": "An array of extended event item",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/extendedeventitem"
@@ -670,7 +680,7 @@
             ]
         },
         "codec": {
-            "summary": "Video or audio codec type",
+            "description": "Video or audio codec type",
             "type": "string",
             "enum": [
                 "mpeg2",
@@ -686,11 +696,11 @@
             ]
         },
         "component": {
-            "summary": "Video, audio, subtitle, teletext or data component info",
+            "description": "Video, audio, subtitle, teletext or data component info",
             "type": "object",
             "properties": {
                 "type": {
-                    "summary": "Type of data contained in this component",
+                    "description": "Type of data contained in this component",
                     "type": "string",
                     "enum": [
                         "video",
@@ -702,7 +712,7 @@
                     "example": "video"
                 },
                 "tags": {
-                    "summary": "Array of component tags",
+                    "description": "Array of component tags",
                     "type": "array",
                     "items": {
                         "type": "number",
@@ -711,14 +721,14 @@
                     }
                 },
                 "pid": {
-                    "summary": "PID of the component",
+                    "description": "PID of the component",
                     "type": "number",
                     "signed": false,
                     "size": 16,
                     "example": 1100
                 },
                 "video": {
-                    "summary": "Video related information for a video component",
+                    "description": "Video related information for a video component",
                     "type": "object",
                     "properties": {
                         "codec": {
@@ -727,19 +737,19 @@
                     }
                 },
                 "audio": {
-                    "summary": "Audio related information for an audio component",
+                    "description": "Audio related information for an audio component",
                     "type": "object",
                     "properties": {
                         "codec": {
                             "$ref": "#/definitions/codec"
                         },
                         "language": {
-                            "summary": "ISO 3-char language code",
+                            "description": "ISO 3-char language code",
                             "type": "string",
                             "example": "eng"
                         },
                         "type": {
-                            "summary": "Type of the audio contained in the component",
+                            "description": "Type of the audio contained in the component",
                             "type": "string",
                             "enum": [
                                 "undefined",
@@ -751,7 +761,7 @@
                             "example": "normal"
                         },
                         "mode": {
-                            "summary": "Audio mode",
+                            "description": "Audio mode",
                             "type": "string",
                             "enum": [
                                 "mono",
@@ -770,16 +780,16 @@
                     ]
                 },
                 "subtitles": {
-                    "summary": "DVB subtitle related information for a subtitle component",
+                    "description": "DVB subtitle related information for a subtitle component",
                     "type": "object",
                     "properties": {
                         "language": {
-                            "summary": "ISO 3-char language code",
+                            "description": "ISO 3-char language code",
                             "type": "string",
                             "example": "eng"
                         },
                         "format": {
-                            "summary": "Intended TV format for the subtitles",
+                            "description": "Intended TV format for the subtitles",
                             "type": "string",
                             "enum": [
                                 "default",
@@ -795,13 +805,13 @@
                             ]
                         },
                         "compositionpage": {
-                            "summary": "Composition page to be used for subtitles in this component",
+                            "description": "Composition page to be used for subtitles in this component",
                             "type": "number",
                             "signed": false,
                             "size": 16
                         },
                         "ancillarypage": {
-                            "summary": "Ancillary page to be used for subtitles in this component",
+                            "description": "Ancillary page to be used for subtitles in this component",
                             "type": "number",
                             "signed": false,
                             "size": 16
@@ -815,28 +825,28 @@
                     ]
                 },
                 "teletext": {
-                    "summary": "Teletext related information for a teletext component",
+                    "description": "Teletext related information for a teletext component",
                     "type": "object",
                     "properties": {
                         "language": {
-                            "summary": "ISO 3-char language code",
+                            "description": "ISO 3-char language code",
                             "type": "string",
                             "example": "eng"
                         },
                         "type": {
-                            "summary": "Type of teletext data",
+                            "description": "Type of teletext data",
                             "type": "number",
                             "signed": false,
                             "size": 8
                         },
                         "magazine": {
-                            "summary": "Magazine number for this type and language",
+                            "description": "Magazine number for this type and language",
                             "type": "number",
                             "signed": false,
                             "size": 8
                         },
                         "page": {
-                            "summary": "Page number for this type and language",
+                            "description": "Page number for this type and language",
                             "type": "number",
                             "signed": false,
                             "size": 8
@@ -856,7 +866,7 @@
             ]
         },
         "eventtype": {
-            "summary": "Event type that's sent as an asynchronous notification",
+            "description": "Event type that's sent as an asynchronous notification",
             "type": "string",
             "enum": [
                 "ServiceSearchStatus",
@@ -1035,21 +1045,21 @@
                 "type": "object",
                 "properties": {
                     "tuner": {
-                        "summary": "The tuner id used by the play handle",
+                        "description": "The tuner id used by the play handle",
                         "type": "number",
                         "signed": false,
                         "size": 8,
                         "example": 0
                     },
                     "demux": {
-                        "summary": "The demux id used by the play handle",
+                        "description": "The demux id used by the play handle",
                         "type": "number",
                         "signed": false,
                         "size": 8,
                         "example": 0
                     },
                     "pmtpid": {
-                        "summary": "The PMT PID of the service being played",
+                        "description": "The PMT PID of the service being played",
                         "type": "number",
                         "signed": false,
                         "size": 16,
@@ -1059,7 +1069,7 @@
                         "$ref": "#/definitions/dvburistring"
                     },
                     "lcn": {
-                        "summary": "LCN of the service being played",
+                        "description": "LCN of the service being played",
                         "type": "number",
                         "signed": false,
                         "size": 16,
@@ -1076,7 +1086,7 @@
             }
         },
         "signalInfo": {
-            "summary": "strength and quality of the currently tuned signal for the given play handle (version 2)",
+            "summary": "Strength and quality of the currently tuned signal for the given play handle (version 2)",
             "readonly": true,
             "index": {
                 "name": "Play handle",
@@ -1086,18 +1096,18 @@
                 "type": "object",
                 "properties": {
                     "locked": {
-                        "summary": "Tuned locked status",
+                        "description": "Tuned locked status",
                         "type": "boolean"
                     },
                     "strength": {
-                        "summary": "The signal strength as a percentage",
+                        "description": "The signal strength as a percentage",
                         "type": "number",
                         "signed": false,
                         "size": 8,
                         "example": "76"
                     },
                     "quality": {
-                        "summary": "The signal quality as a percentage",
+                        "description": "The signal quality as a percentage",
                         "type": "number",
                         "signed": false,
                         "size": 8,
@@ -1114,29 +1124,29 @@
     },
     "methods": {
         "addLnb": {
-            "summary": "Add a new LNB to the database.\n  \n### Events \n\n No Events",
+            "summary": "Add a new LNB to the database.",
             "params": {
                 "$ref": "#/definitions/lnbsettings"
             },
             "result": {
-                "summary": "true if the LNB is added, false otherwise",
+                "description": "Return true if the LNB is added, false otherwise",
                 "type": "boolean",
                 "example": true
             }
         },
         "addSatellite": {
-            "summary": "Add a new satellite to the database.\n  \n### Events \n\n No Events",
+            "summary": "Add a new satellite to the database.",
             "params": {
                 "$ref": "#/definitions/satellitesettings"
             },
             "result": {
                 "type": "boolean",
-                "summary": "true if the satellite is added, false otherwise",
+                "description": "Return true if the satellite is added, false otherwise",
                 "example": true
             }
         },
         "startServiceSearch": {
-            "summary": "Starts a service search.\n \n### Events  \n| Event | Description | \n| :----------- | :----------- | \n|`searchstatus`|Triggered during the course of a service search.|\n |`serviceupdated`|Triggered when a service is added|",
+            "summary": "Starts a service search.",
             "params": {
                 "type": "object",
                 "properties": {
@@ -1149,11 +1159,11 @@
                         "example": "network"
                     },
                     "retune": {
-                        "summary": "true if current services are to be replaced in the database, false if the scan is to update the existing services",
+                        "description": "Set to true if current services are to be replaced in the database, false if the scan is to update the existing services",
                         "type": "boolean"
                     },
                     "usetuningparams": {
-                        "summary": "Set to true if the optional tuning parameters are defined",
+                        "description": "Set to true if the optional tuning parameters are defined",
                         "type": "boolean",
                         "example": true
                     },
@@ -1176,7 +1186,7 @@
             },
             "result": {
                 "type": "boolean",
-                "summary": "true if the search is started, false otherwise",
+                "description": "Return true if the search is started, false otherwise",
                 "example": true
             },
             "events": [
@@ -1185,7 +1195,7 @@
             ]
         },
         "finishServiceSearch": {
-            "summary": "Finishes a service search.\n  \n### Events \n\n No Events",
+            "summary": "Finishes a service search.",
             "params": {
                 "type": "object",
                 "properties": {
@@ -1194,7 +1204,7 @@
                         "example": "dvbs"
                     },
                     "savechanges": {
-                        "summary": "true if the services found during the search should be saved",
+                        "description": "Set true if the services found during the search should be saved",
                         "type": "boolean",
                         "example": true
                     }
@@ -1205,13 +1215,13 @@
                 ]
             },
             "result": {
-                "summary": "false if the tunertype isn't valid, true otherwise",
+                "description": "Return false if the tunertype isn't valid, true otherwise",
                 "type": "boolean",
                 "example": true
             }
         },
         "startPlaying": {
-            "summary": "Starts playing the specified service.\n  \n### Events\n| Event | Description |\n| :----------- | :----------- |\n|`serviceupdated`|Triggered when info for a service changes|\n|`eventchanged`|Triggered when the EIT 'now' event changes|\n|`videochanged`|Triggered when the video PID or codec are changed|\n|`audiochanged`|Triggered when the audio PID or codec are changed|\n|`subtitleschanged`|Triggered when the subtitle PID or details are changed| ",
+            "summary": "Starts playing the specified service.",
             "params": {
                 "type": "object",
                 "properties": {
@@ -1219,13 +1229,13 @@
                         "$ref": "#/definitions/dvburistring"
                     },
                     "lcn": {
-                        "summary": "LCN of the service to be tuned to",
+                        "description": "LCN of the service to be tuned to",
                         "type": "number",
                         "signed": false,
                         "size": 16
                     },
                     "monitoronly": {
-                        "summary": "(Version 2) set to 'true' to monitor SI/PSI data only. Will default to 'false' if not defined",
+                        "description": "(Version 2) set to 'true' to monitor SI/PSI data only. Will default to 'false' if not defined",
                         "type": "boolean",
                         "example": true
                     }
@@ -1234,7 +1244,7 @@
                 ]
             },
             "result": {
-                "summary": "The play handle assigned to play the given service. Will be -1 if the service can't be played",
+                "description": "The play handle assigned to play the given service. Will be -1 if the service can't be played",
                 "type": "number",
                 "example": 0
             },
@@ -1247,9 +1257,9 @@
             ]
         },
         "stopPlaying": {
-            "summary": "Stops playing the specified service.\n  \n### Events \n\n No Events",
+            "summary": "Stops playing the specified service.",
             "params": {
-                "summary": "The play handle returned by startPlaying",
+                "description": "The play handle returned by startPlaying",
                 "type": "number",
                 "example": 0
             },
@@ -1265,7 +1275,7 @@
                 "type": "object",
                 "properties": {
                     "handle": {
-                        "summary": "The handle assigned for the search and to which this information is relevant",
+                        "description": "The handle assigned for the search and to which this information is relevant",
                         "type": "number",
                         "size": 32,
                         "unsigned": true,
@@ -1276,12 +1286,12 @@
                         "example": "ServiceSearchStatus"
                     },
                     "finished": {
-                        "summary": "true if the service search has finished, false otherwise",
+                        "description": "Set to true if the service search has finished, false otherwise",
                         "type": "boolean",
                         "example": false
                     },
                     "progress": {
-                        "summary": "Progress of the search expressed as a percentage",
+                        "description": "Progress of the search expressed as a percentage",
                         "type": "number",
                         "size": 8,
                         "unsigned": true,

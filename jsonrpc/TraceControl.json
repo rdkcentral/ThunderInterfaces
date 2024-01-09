@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "Trace Control API",
     "class": "TraceControl",
     "description": "TraceControl JSON-RPC interface"
@@ -79,6 +80,7 @@
           },
           "remote": {
             "type": "object",
+            "description": "Config attribute (Remote)",
             "properties": {
               "port": {
                 "description": "Config attribute (port)",
@@ -99,6 +101,7 @@
           },
           "settings": {
             "type": "array",
+            "description": "Trace info list",
             "items": {
               "$ref": "#/definitions/trace"
             }

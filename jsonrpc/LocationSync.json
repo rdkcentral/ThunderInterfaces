@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "Location Sync API",
     "class": "LocationSync",
     "description": "Location Sync JSON-RPC interface"
@@ -10,7 +11,7 @@
     "$ref": "common.json"
   },
   "methods": {
-    "LocationSync.1.sync": {
+    "sync": {
       "summary": "Synchronizes the location",
       "result": {
         "$ref": "#/common/results/void"

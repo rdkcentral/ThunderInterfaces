@@ -23,7 +23,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json @uncompliant:collapsed
+    // @json 1.0.0 @uncompliant:collapsed
     struct EXTERNAL IAVSController : virtual public Core::IUnknown {
         enum { ID = ID_AVSCONTROLLER };
 
@@ -39,8 +39,8 @@ namespace Exchange {
                 SPEAKING
             };
 
-            /// @brief notifies about dialogue state changes
-            /// @param state The new state (e.g. SPEAKING)
+            /// @brief Notifies about dialogue state changes
+            /// @param state: The new state (e.g. SPEAKING)
             virtual void DialogueStateChange(const dialoguestate state) = 0;
         };
 
@@ -48,12 +48,12 @@ namespace Exchange {
         virtual void Unregister(const INotification* sink) = 0;
 
         /// @brief Mutes the audio output of AVS
-        /// @param mute Mute or umute (e.g. true)
+        /// @param mute: Mute or umute (e.g. true)
         /// @retval ERROR_GENERAL when there is a fatal error or authorisation is not possible
         virtual uint32_t Mute(const bool muted) = 0;
 
         /// @brief Starts or stops the voice recording, skipping keyword detection
-        /// @param start Start or stop voice recording (e.g. true)
+        /// @param start: Start or stop voice recording (e.g. true)
         /// @retval ERROR_GENERAL when there is a fatal error or authorisation is not possible
         virtual uint32_t Record(const bool started) = 0;
     };

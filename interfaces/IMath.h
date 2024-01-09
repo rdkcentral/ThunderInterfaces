@@ -25,14 +25,20 @@ namespace WPEFramework {
     namespace Exchange {
 
         // This is an example to show the workings and how to develope a COMRPC/JSONRPC method/interface
-        /* @json */
+        /* @json 1.0.0 */
         struct EXTERNAL IMath : virtual public Core::IUnknown {
 
             enum { ID = ID_MATH };
 
             ~IMath() override = default;
 
+            // @brief Perform addition on given inputs
+            // @param A: First input
+            // @param B: Second input
             virtual uint32_t Add(const uint16_t A, const uint16_t B, uint16_t& sum /* @out */)  const = 0;
+            // @brief Perform subtraction on given inputs
+            // @param A: First input
+            // @param B: Second input
             virtual uint32_t Sub(const uint16_t A, const uint16_t B, uint16_t& sum /* @out */)  const = 0;
         };
     }
