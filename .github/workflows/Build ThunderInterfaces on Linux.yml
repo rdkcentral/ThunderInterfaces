@@ -5,14 +5,9 @@ on:
     # branches: ["master"]
   pull_request:
     branches: ["master"]
-  workflow_call:
 
 jobs:
-  Thunder:
-    uses: rdkcentral/Thunder/.github/workflows/Build Thunder on Linux.yml@master
-
   ThunderInterfaces:
-    needs: Thunder
     uses: VeithMetro/ThunderInterfaces/.github/workflows/Linux build template.yml@development/actions
 
   ThunderClientLibraries:
