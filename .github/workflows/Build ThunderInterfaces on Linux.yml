@@ -14,10 +14,6 @@ jobs:
     needs: Thunder
     uses: VeithMetro/ThunderInterfaces/.github/workflows/Linux build template.yml@development/actions
 
-  ThunderLibraries:
-    needs: Thunder
-    uses: VeithMetro/ThunderLibraries/.github/workflows/Linux build template.yml@development/actions
-
   ThunderClientLibraries:
     needs: ThunderInterfaces
     uses: VeithMetro/ThunderClientLibraries/.github/workflows/Linux build template.yml@development/actions
