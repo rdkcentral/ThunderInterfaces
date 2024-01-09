@@ -4,7 +4,11 @@ on:
   workflow_call:
 
 jobs:
+  Thunder:
+    uses: VeithMetro/Thunder/.github/workflows/Linux build template.yml@development/actions
+
   ThunderInterfaces:
+    needs: Thunder
 
     runs-on: ubuntu-latest
 
