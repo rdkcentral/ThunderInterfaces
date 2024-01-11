@@ -307,6 +307,7 @@ namespace Exchange {
         ID_VALUE_POINT_CATALOG_NOTIFICATION          = ID_VALUE_POINT + 3,
 
         ID_ZIGWAVE                                   = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x410,
+        ID_ZIGWAVE_DEVICE_ITERATOR                   = ID_ZIGWAVE + 1,
 
         ID_TIMEZONE                                  = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x420,
         ID_TIMEZONE_NOTIFICATION                     = ID_TIMEZONE + 1,
