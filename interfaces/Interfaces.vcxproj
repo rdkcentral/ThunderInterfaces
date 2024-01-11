@@ -160,6 +160,7 @@
     <ClInclude Include="IWebDriver.h" />
     <ClInclude Include="IWebServer.h" />
     <ClInclude Include="IWifiControl.h" />
+    <ClInclude Include="IZigWave.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ValuePoint.h" />
   </ItemGroup>
