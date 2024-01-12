@@ -37,11 +37,11 @@ namespace WPEFramework {
                     CONTROLLER
                 };
 
-                uint32_t Parent /* @brief address of the Parent */;
-                uint32_t Address /* @brief address of the device */;
-                type Type /* @brief type of the device */;
-                uint16_t Manufacturer  /* @brief manufactured of this device */;
-                string Metadata /* metadata associated with this device */;
+                uint32_t Parent /* @brief Address of the Parent */;
+                uint32_t Address /* @brief Address of the device */;
+                type Type /* @brief Type of the device */;
+                uint16_t Manufacturer  /* @brief Manufactured of this device */;
+                string Metadata /* @brief Metadata associated with this device */;
             };
 
             struct Controller {
@@ -82,7 +82,7 @@ namespace WPEFramework {
             // @return: The success of the unbinding action.
             virtual Core::hresult Unbind(const uint32_t source, const uint32_t destination) = 0;
 
-            // @brief return the Metadata associated with the controller for this instance.
+            // @brief Return the Metadata associated with the controller for this instance.
             // @return: The success of the Metdata action.
             virtual Core::hresult Metadata(Controller& metadata /* @out */) const = 0;
         };
