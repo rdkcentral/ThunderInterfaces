@@ -225,7 +225,7 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
     virtual uint32_t ResetSecureStops(const std::string& keySystem) = 0;
 
     virtual OCDM_RESULT GetSecureStopIds(const std::string& keySystem,
-        uint8_t ids[] /* @out @length:16 @maxlength:idsLength */, uint16_t idsLength,
+        uint8_t ids[] /* @out @length:idsLength */, uint16_t idsLength,
         uint32_t& count /* @inout */)
         = 0;
 
@@ -247,12 +247,12 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
     virtual OCDM_RESULT DeleteSecureStore(const std::string& keySystem) = 0;
 
     virtual OCDM_RESULT GetKeyStoreHash(const std::string& keySystem,
-        uint8_t keyStoreHash[] /* @out @length:16 @maxlength:keyStoreHashLength */,
+        uint8_t keyStoreHash[] /* @out @length:keyStoreHashLength */,
         uint16_t keyStoreHashLength)
         = 0;
 
     virtual OCDM_RESULT GetSecureStoreHash(const std::string& keySystem,
-        uint8_t secureStoreHash[] /* @out @length:16 @maxlength:secureStoreHashLength */,
+        uint8_t secureStoreHash[] /* @out @length:secureStoreHashLength */,
         uint16_t secureStoreHashLength)
         = 0;
 };
