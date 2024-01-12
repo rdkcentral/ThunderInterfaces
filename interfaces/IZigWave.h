@@ -45,12 +45,12 @@ namespace WPEFramework {
             };
 
             struct Controller {
-                bool Permutable;
-                string Port;
-                uint32_t Id;
-                uint8_t Major;
-                uint8_t Minor;
-                uint16_t Nodes;
+                bool Permutable /* @brief Permutable or not */;
+                string Port /* @brief Port number */;
+                uint32_t Id /* @brief Controller Id */;
+                uint8_t Major /* @brief Major number */;
+                uint8_t Minor /* @brief Minor number */;
+                uint16_t Nodes /* @brief Number of Nodes */;
             };
 
             using IDeviceIterator = RPC::IIteratorType<Device, ID_ZIGWAVE_DEVICE_ITERATOR>;

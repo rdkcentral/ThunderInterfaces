@@ -54,7 +54,7 @@ namespace Exchange {
         enum { ID = ID_CRYPTOGRAPHY_RANDOM };
 
         // Generates an array of cryptographically strong random bytes
-        virtual uint16_t Generate(const uint16_t length, uint8_t data[] /* @out @length:length */) const = 0;
+        virtual uint16_t Generate(const uint16_t length, uint8_t data[] /* @out @length:return @maxlength:length */) const = 0;
     };
 
     struct EXTERNAL IHash : virtual public Core::IUnknown {
@@ -65,7 +65,7 @@ namespace Exchange {
         virtual uint32_t Ingest(const uint32_t length /* @restrict:4M-1 */, const uint8_t data[] /* @in @length:length */) = 0;
 
         // Calculate the hash from all ingested data
-        virtual uint8_t Calculate(const uint8_t maxLength, uint8_t data[] /* @out @length:maxLength */) = 0;
+        virtual uint8_t Calculate(const uint8_t maxLength, uint8_t data[] /* @out @length:return @maxlength:maxLength */) = 0;
     };
 
     struct EXTERNAL ICipher : virtual public Core::IUnknown {
@@ -79,12 +79,12 @@ namespace Exchange {
         // Encrypt data
         virtual int32_t Encrypt(const uint8_t ivLength, const uint8_t iv[] /* @in @length:ivLength */,
                                 const uint32_t inputLength /* @restrict:4M-1 */, const uint8_t input[] /* @in @length:inputLength */,
-                                const uint32_t maxOutputLength, uint8_t output[] /* @out @length:maxOutputLength */) const = 0;
+                                const uint32_t maxOutputLength, uint8_t output[] /* @out @length:return @maxlength:maxOutputLength */) const = 0;
 
         // Decrypt data
         virtual int32_t Decrypt(const uint8_t ivLength, const uint8_t iv[] /* @in @length:ivLength */,
                                 const uint32_t inputLength /* @restrict:4M-1 */, const uint8_t input[] /* @in @length:inputLength */,
-                                const uint32_t maxOutputLength, uint8_t output[] /* @out @length:maxOutputLength */) const = 0;
+                                const uint32_t maxOutputLength, uint8_t output[] /* @out @length:return @maxlength:maxOutputLength */) const = 0;
     };
 
     struct EXTERNAL IDiffieHellman : virtual public Core::IUnknown {
@@ -140,13 +140,13 @@ namespace Exchange {
         virtual uint32_t Import(const uint16_t length, const uint8_t blob[] /* @in @length:length */) = 0;
 
         // Export unencrypted data blob out of the vault (returns blob ID), only public blobs are exportable
-        virtual uint16_t Export(const uint32_t id, const uint16_t maxLength, uint8_t blob[] /* @out @length:maxLength */) const = 0;
+        virtual uint16_t Export(const uint32_t id, const uint16_t maxLength, uint8_t blob[] /* @out @length:return @maxlength:maxLength */) const = 0;
 
         // Set encrypted data blob in the vault (returns blob ID)
         virtual uint32_t Set(const uint16_t length, const uint8_t blob[] /* @in @length:length */) = 0;
 
         // Get encrypted data blob out of the vault (data identified by ID, returns size of the retrieved data)
-        virtual uint16_t Get(const uint32_t id, const uint16_t maxLength, uint8_t blob[] /* @out @length:maxLength */) const = 0;
+        virtual uint16_t Get(const uint32_t id, const uint16_t maxLength, uint8_t blob[] /* @out @length:return @maxlength:maxLength */) const = 0;
 
         // Generates a random data blob of specified length in the vault (returns blob ID)
         virtual uint32_t Generate(const uint16_t length) = 0;
