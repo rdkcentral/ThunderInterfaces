@@ -165,7 +165,7 @@ struct ISessionExt : virtual public Core::IUnknown {
 
     virtual OCDM_RESULT StoreLicenseData(const uint8_t licenseData[] /* @in @length:licenseDataSize */,
         uint16_t licenseDataSize,
-        uint8_t* secureStopId /* @out @length:16 @maxlength:licenseDataSize */)
+        uint8_t* secureStopId /* @out @length:16 */)
         = 0;
 
     virtual OCDM_RESULT SelectKeyId(const uint8_t keyLength,
