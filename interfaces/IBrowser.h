@@ -53,7 +53,7 @@ namespace Exchange {
         virtual void Hide(const bool hidden) = 0;
     };
 
-    // @json @uncompliant:extended  // NOTE: extended format is deprecated!! Do not just copy this line!
+    // @json 1.0.0 @uncompliant:extended  // NOTE: extended format is deprecated!! Do not just copy this line!
     struct EXTERNAL IWebBrowser : virtual public Core::IUnknown {
         enum { ID = ID_WEB_BROWSER };
 
@@ -83,10 +83,10 @@ namespace Exchange {
             virtual void LoadFailed(const string& URL) = 0;
             // @brief Signals a URL change in the browser
             // @param URL The URL that has been loaded or requested (e.g. https://example.com)
-            // @param loaded loaded (true) or not (false)
+            // @param loaded Loaded (true) or not (false)
             virtual void URLChange(const string& URL, const bool loaded) = 0;
             // @brief Signals a visibility change of the browser
-            // @param hidden hidden (true) or visible (false)
+            // @param hidden Hidden (true) or Visible (false)
             virtual void VisibilityChange(const bool hidden) = 0;
             // @brief Notifies that the web page requests to close its window
             virtual void PageClosure() = 0;
@@ -99,19 +99,19 @@ namespace Exchange {
 
         // @property
         // @brief Page loaded in the browser
-        // @param url Loaded URL (e.g. https://example.com)
+        // @param url: Loaded URL (e.g. https://example.com)
         virtual uint32_t URL(string& url /* @out */) const = 0;
         virtual uint32_t URL(const string& url) = 0;
 
         // @property
         // @brief Browser window visibility state
-        // @param visible Visiblity state (e.g. )
+        // @param visible: Visiblity state (e.g. )
         virtual uint32_t Visibility(VisibilityType& visible /* @out */) const = 0;
         virtual uint32_t Visibility(const VisibilityType visible) = 0;
 
         // @property
         // @brief Current framerate the browser is rendering at
-        // @param fps Current FPS
+        // @param fps: Current FPS
         virtual uint32_t FPS(uint8_t& fps /* @out */) const = 0;
 
         /* @json:omit */
@@ -121,37 +121,37 @@ namespace Exchange {
 
         // @property
         // @brief UserAgent string used by the browser
-        // @param useragent UserAgent value (e.g. Mozilla/5.0 (Linux; x86_64 GNU/Linux) AppleWebKit/601.1 (KHTML, like Gecko) Version/8.0 Safari/601.1 WP)
+        // @param useragent: UserAgent value (e.g. Mozilla/5.0 (Linux; x86_64 GNU/Linux) AppleWebKit/601.1 (KHTML, like Gecko) Version/8.0 Safari/601.1 WP)
         virtual uint32_t UserAgent(string& useragent /* @out */) const = 0;
         virtual uint32_t UserAgent(const string& useragent) = 0;
 
         // @property
         // @brief Controls the local storage availability
-        // @param state enabled or disabled
+        // @param state: Enabled or Disabled
         virtual uint32_t LocalStorageEnabled(bool& enabled /* @out */) const = 0;
         virtual uint32_t LocalStorageEnabled(const bool enabled) = 0;
 
         // @property
         // @brief HTTP cookies accept policy
-        // @param policy HTTP Cookie Accept Policy Type (e.g. always)
+        // @param policy: HTTP Cookie Accept Policy Type (e.g. always)
         virtual uint32_t HTTPCookieAcceptPolicy(HTTPCookieAcceptPolicyType& policy /* @out */) const = 0;
         virtual uint32_t HTTPCookieAcceptPolicy(const HTTPCookieAcceptPolicyType policy) = 0;
 
         // @property
         // @brief Response for legacy $badger.
-        // @param payload base64 encoded JSON string response to be delivered to $badger.callback
+        // @param payload: Base64 encoded JSON string response to be delivered to $badger.callback
         virtual uint32_t BridgeReply(const string& payload) = 0;
 
         // @property
         // @brief Send legacy $badger event.
-        // @param payload base64 encoded JSON string response to be delivered to window.$badger.event
+        // @param payload: Base64 encoded JSON string response to be delivered to window.$badger.event
         virtual uint32_t BridgeEvent(const string& payload) = 0;
 
         // @brief Initiate garbage collection
         virtual uint32_t CollectGarbage() = 0;
     };
 
-    // @json @uncompliant:extended
+    // @json 1.0.0 @uncompliant:extended
     struct EXTERNAL IBrowserResources : virtual public Core::IUnknown {
 
         enum { ID = ID_BROWSER_RESOURCES };
@@ -160,7 +160,7 @@ namespace Exchange {
 
         // @property
         // @brief Headers to send on all requests that the browser makes
-        // @param header Header Name
+        // @param header: Header Name
         // @json:omit
         virtual uint32_t Headers(IStringIterator*& header /* @out */) const = 0;
         // @json:omit
@@ -168,64 +168,65 @@ namespace Exchange {
 
         // @property
         // @brief User scripts used by the browser
-        // @param uris JSON array containing URIs pointing to user scripts, supported protocols: file://
+        // @param uris: JSON array containing URIs pointing to user scripts, supported protocols: file://
         virtual uint32_t UserScripts(IStringIterator*& uris /* @out */) const = 0;
         virtual uint32_t UserScripts(IStringIterator* const uris) = 0;
 
         // @property
         // @brief User style sheets used by the browser
-        // @param uris JSON array containing URIs pointing to user style sheets, supported protocols: file://
+        // @param uris: JSON array containing URIs pointing to user style sheets, supported protocols: file://
         virtual uint32_t UserStyleSheets(IStringIterator*& uris /* @out */) const = 0;
         virtual uint32_t UserStyleSheets(IStringIterator* const uris) = 0;
     };
 
-    // @json @uncompliant:extended
+    // @json 1.0.0 @uncompliant:extended
     struct EXTERNAL IBrowserSecurity : virtual public Core::IUnknown {
 
         enum { ID = ID_BROWSER_SECURITY };
 
         // @property
         // @brief Security profile for secure connections
-        // @param profile Security profile for secure connections (e.g. compatible)
+        // @param profile: Security profile for secure connections (e.g. compatible)
         virtual uint32_t SecurityProfile(string& profile /* @out */) const = 0;
         virtual uint32_t SecurityProfile(const string& profile) = 0;
 
         enum MixedContentPolicyType : uint8_t {
             ALLOWED = 0 /* @text:allowed */,
-            BLOCKED  = 1 /* @text:blocked */
+            BLOCKED = 1 /* @text:blocked */
         };
 
         // @property
         // @brief Mixed content policy
-        // @param policy Mixed content policy type
+        // @param policy: Mixed content policy type
         virtual uint32_t MixedContentPolicy(MixedContentPolicyType& policy /* @out */) const = 0;
         virtual uint32_t MixedContentPolicy(const MixedContentPolicyType policy) = 0;
     };
 
-    /* @json @uncompliant:extended */
+    /* @json 1.0.0 @uncompliant:extended */
     struct EXTERNAL IBrowserScripting : virtual public Core::IUnknown {
         enum { ID = ID_BROWSER_SCRIPTING };
 
         // @brief Run javascript in main frame.
-        // @param script Utf8 encoded JS code string.
+        // @param script: Utf8 encoded JS code string.
         virtual uint32_t RunJavaScript(const string& script) = 0;
 
         // @brief Add user script to be executed at document start.
-        // @param script Utf8 encoded JS code string.
+        // @param script: Utf8 encoded JS code string.
+        // @param topFrameOnly: Enable only top frame
         virtual uint32_t AddUserScript(const string& script, const bool topFrameOnly) = 0;
 
         // @brief Remove all user scripts.
         virtual uint32_t RemoveAllUserScripts() = 0;
     };
 
-    /* @json @uncompliant:extended */
+    /* @json 1.0.0 @uncompliant:extended */
     struct EXTERNAL IBrowserCookieJar : virtual public Core::IUnknown {
         enum { ID = ID_BROWSER_COOKIEJAR };
 
         struct Config {
-            uint32_t version; /* Version of payload format */
-            uint32_t checksum; /* The checksum of the string used for payload creation */
-            string payload; /* Base64 string representation of compressed and encrypted cookies */
+            uint32_t version  /* @brief Version of payload format */;
+            uint32_t checksum /* @brief The checksum of the string used for payload creation */;
+            string payload    /* @brief Base64 string representation of compressed and encrypted cookies */;
         };
 
         /* @event */
@@ -240,6 +241,8 @@ namespace Exchange {
         virtual void Unregister(INotification* sink) = 0;
 
         // @property
+        // @brief Get/Set CookieJar config details
+        // @param cookieJarInfo: Config info CookieJar
         virtual uint32_t CookieJar(Config& cookieJarInfo /* @out */) const = 0;
         virtual uint32_t CookieJar(const Config& cookieJarInfo) = 0;
     };

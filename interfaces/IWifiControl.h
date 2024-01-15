@@ -25,7 +25,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* @json */
+    /* @json 1.0.0 */
     struct EXTERNAL IWifiControl : virtual public Core::IUnknown {
         enum { ID = ID_WIFICONTROL };
 
@@ -53,29 +53,29 @@ namespace Exchange {
                 NONE       = 0x00
             };
             
-            Security method;
-            Key keys /* @bitmask */;
+            Security method /* @brief Security method */;
+            Key keys        /* @bitmask @brief Security Keys */;
         };    
         using ISecurityIterator = RPC::IIteratorType<SecurityInfo, ID_WIFICONTROL_SECURITY_INFO_ITERATOR>;
 
         struct NetworkInfo {
-            string ssid;
-            uint64_t bssid;
-            uint32_t frequency;
-            int32_t signal;
-            Security security /* @bitmask */;
+            string ssid        /* @brief SSID of the network */;
+            uint64_t bssid     /* @brief BSSID of the network */;
+            uint32_t frequency /* @brief Frequency used */;
+            int32_t signal     /* @brief Signal strength */;
+            Security security  /* @bitmask @brief Security method */;
         };
         using INetworkInfoIterator = RPC::IIteratorType<NetworkInfo, ID_WIFICONTROL_NETWORK_INFO_ITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct ConfigInfo {
-            bool hidden;
-            bool accesspoint;
-            string ssid;
-            string secret;
-            string identity;
-            Security method;
-            SecurityInfo::Key key;
+            bool hidden           /* @brief Visibility of the router (hidden or visible) */;
+            bool accesspoint      /* @brief Accesspoint or not */;
+            string ssid           /* @brief SSID of the router/ap */;
+            string secret         /* @brief Secret key used */;
+            string identity       /* @brief Identity */;
+            Security method       /* @brief Security method */;
+            SecurityInfo::Key key /* @brief Security Info: method and keys */;
         };
 
         // @event
@@ -87,6 +87,7 @@ namespace Exchange {
             virtual void NetworkChange() = 0;
 
             // @brief Notifies that wifi connection changes
+            // @param ssid: SSID of connection changed network
             virtual void ConnectionChange(const string& ssid) = 0;
         };
 
@@ -112,6 +113,7 @@ namespace Exchange {
         // NOTE: Setting the config by indicating the ssid, but in the POD the SSID member is empty, will
         //       remove the config and disconnect to this SSID (if applicable).
         // @brief Provide config details for requested SSID
+        // @param configInfo: Details about requested SSID
         virtual uint32_t Config(const string& ssid /* @index */, ConfigInfo& configInfo /* @out */) const = 0;
         virtual uint32_t Config(const string& ssid /* @index */, const ConfigInfo& configInfo) = 0;
 
@@ -121,11 +123,15 @@ namespace Exchange {
         virtual uint32_t AbortScan() = 0;
 
         // @brief Connect device to requested SSID
+        // @param configSSID: SSID to be connected
         virtual uint32_t Connect(const string& configSSID) = 0;
         // @brief Disconnect device from requested SSID
+        // @param configSSID: SSID to be disconnected
         virtual uint32_t Disconnect(const string& configSSID) = 0;
 
         // @brief Status of current device, like which SSID is connected and it is in scanning state or not
+        // @param connectedSsid: SSID of connected router/ap
+        // @param isScanning: Scanning is in progress or not
         virtual uint32_t Status(string& connectedSsid /* @out */, bool& isScanning /* @out */) const = 0;
     };
 }

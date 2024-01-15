@@ -26,7 +26,7 @@ namespace Exchange {
 
     namespace Dolby {
 
-        // @json @uncompliant:extended
+        // @json 1.0.0 @uncompliant:extended
         struct EXTERNAL IOutput : virtual public Core::IUnknown {
 
             enum { ID = ID_DOLBY_OUTPUT };
@@ -58,7 +58,10 @@ namespace Exchange {
                 enum { ID = ID_DOLBY_OUTPUT_NOTIFICATION };
 
                 ~INotification() override = default;
+                // @brief Signal audio mode change
                 // @text soundmodechanged @alt:deprecated dolby_audiomodechanged
+                // @param mode: Changed Mode
+                // @param enabled: Enabled/Disabled
                 virtual void AudioModeChanged(const Dolby::IOutput::SoundModes mode, const bool enabled) = 0;
             };
 
@@ -68,25 +71,23 @@ namespace Exchange {
             // @property
             // @text dolbyatmossupported @alt:deprecated dolby_atmosmetadata
             // @brief Atmos capabilities of Sink
-            // @return supported: atmos supported or unsupported
             virtual uint32_t AtmosMetadata(bool& supported /* @out */) const = 0;
 
             // @property
-            // @alt:deprecated dolby_soundmode
+            // @text: dolbysoundmode @alt:deprecated dolby_soundmode
             // @brief Sound Mode - Mono/Stereo/Surround
-            // @return mode: sound mode
             virtual uint32_t SoundMode(Dolby::IOutput::SoundModes& mode /* @out */) const = 0;
 
             // @property
             // @text dolbyatmosoutput @alt:deprecated dolby_enableatmosoutput
             // @brief Enable Atmos Audio Output
-            // @param enable: enable/disable
+            // @param enable: Enable/Disable
             virtual uint32_t EnableAtmosOutput(const bool enable /* @in */) = 0;
 
             // @property
-            // @text:dolbymode @alt:dolby_mode
+            // @text:dolbymode @alt:deprecated dolby_mode
             // @brief Dolby Mode
-            // @param mode: dolby mode type
+            // @param mode: Dolby mode type
             virtual uint32_t Mode(const Dolby::IOutput::Type& mode) = 0;
             virtual uint32_t Mode(Dolby::IOutput::Type& mode /* @out */) const = 0;
 

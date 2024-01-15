@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "Cobalt API",
     "class": "Cobalt",
     "format": "uncompliant-extended",

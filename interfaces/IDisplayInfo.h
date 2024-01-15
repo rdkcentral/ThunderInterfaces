@@ -25,7 +25,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* @json */
+    /* @json 1.0.0 */
     struct EXTERNAL IGraphicsProperties : virtual public Core::IUnknown {
         enum { ID = ID_GRAPHICS_PROPERTIES };
 
@@ -40,7 +40,7 @@ namespace Exchange {
         virtual uint32_t FreeGpuRam(uint64_t& free /* @out */) const = 0;
     };
 
-    /* @json @uncompliant:extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
+    /* @json 1.0.0 @uncompliant:extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
     struct EXTERNAL IConnectionProperties : virtual public Core::IUnknown {
         enum { ID = ID_CONNECTION_PROPERTIES };
 
@@ -62,6 +62,8 @@ namespace Exchange {
                 HDCP_CHANGE,
             };
 
+            // @brief Signal changes on the display update..
+            // @param event: Source of this event
             virtual void Updated(const Source event) = 0;
         };
 
@@ -70,55 +72,56 @@ namespace Exchange {
 
         // @property
         // @brief Current audio passthrough status on HDMI
-        // @param passthru: enabled/disabled
+        // @param passthru: Enabled/Disabled
         virtual uint32_t IsAudioPassthrough (bool& passthru /* @out */) const = 0;
 
         // @property
         // @brief Current HDMI connection status
-        // @param isconnected: connected/disconnected
+        // @param isconnected: Connected/Disconnected
         virtual uint32_t Connected(bool& isconnected /* @out */) const = 0;
 
         // @property
         // @brief Horizontal resolution of TV
-        // @param width:  width of TV in pixels
+        // @param width: Width of TV in pixels
         virtual uint32_t Width(uint32_t& width /* @out */) const = 0;
 
         // @property
         // @brief Vertical resolution of TV
-        // @param height:  height of TV in pixels
+        // @param height: Height of TV in pixels
         virtual uint32_t Height(uint32_t& height /* @out */) const = 0;
 
         // @property
         // @brief Vertical Frequency
-        // @param vf: vertical freq
+        // @param vf: Vertical freq
         virtual uint32_t VerticalFreq(uint32_t& vf /* @out */) const = 0;
 
         // @brief TV's Extended Display Identification Data
-        // @param edid: edid byte string
+        // @param length: Length of EDID byte string
+        // @param data: EDID byte string
         virtual uint32_t EDID (uint16_t& length /* @inout */, uint8_t data[] /* @out @length:length */) const = 0;
 
         // @brief Horizontal size in centimeters
-        // @param width: width in cm
+        // @param width: Width in cm
         virtual uint32_t WidthInCentimeters(uint8_t& width /* @out */) const = 0;
 
         // @brief Vertical size in centimeters
-        // @param width: height in cm
+        // @param width: Height in cm
         virtual uint32_t HeightInCentimeters(uint8_t& height /* @out */) const = 0;
 
         // @property
         // @brief HDCP protocol used for transmission
-        // @param value: protocol
+        // @param value: Protocol
         virtual uint32_t HDCPProtection (HDCPProtectionType& value /* @out */) const = 0;
         virtual uint32_t HDCPProtection (const HDCPProtectionType value) = 0;
 
         // @property
         // @brief Video output port on the STB used for connection to TV
-        // @param name: video output port name
+        // @param name: Video output port name
         virtual uint32_t PortName (string& name /* @out */) const = 0;
 
     };
 
-    /* @json */
+    /* @json 1.0.0 */
     struct EXTERNAL IHDRProperties : virtual public Core::IUnknown {
         enum { ID = ID_HDR_PROPERTIES };
 
@@ -135,12 +138,12 @@ namespace Exchange {
 
         // @property
         // @brief HDR formats supported by TV
-        // @return HDRType: array of HDR formats
+        // @return HDRType: Array of HDR formats
         virtual uint32_t TVCapabilities(IHDRIterator*& type /* @out */) const = 0;
 
         // @property
         // @brief HDR formats supported by STB
-        // @return HDRType: array of HDR formats
+        // @return HDRType: Array of HDR formats
         virtual uint32_t STBCapabilities(IHDRIterator*& type /* @out */) const = 0;
 
         // @property
@@ -149,7 +152,7 @@ namespace Exchange {
         virtual uint32_t HDRSetting(HDRType& type /* @out */) const = 0;
     };
 
-    /* @json */
+    /* @json 1.0.0 */
     struct EXTERNAL IDisplayProperties : virtual public Core::IUnknown {
         enum { ID = ID_DISPLAY_PROPERTIES };
 
@@ -217,32 +220,32 @@ namespace Exchange {
 
         // @property
         // @brief Provides access to the display's Colour space (chroma subsampling format)
-        // @param cs: colour space
+        // @param cs: Colour space
         virtual uint32_t ColorSpace(ColourSpaceType& cs /* @out */) const = 0;
 
         // @property
         // @brief Provides access to Frame Rate
-        // @param rate: frame rate
+        // @param rate: Frame rate
         virtual uint32_t FrameRate(FrameRateType& rate /* @out */) const = 0;
 
         // @property
         // @brief Provides access to display's colour Depth
-        // @param colour: colour depth
+        // @param colour: Colour depth
         virtual uint32_t ColourDepth(ColourDepthType& colour /* @out */) const = 0;
 
         // @property
         // @brief Provides access to display's colorimetry
-        // @param colorimetry: display colorimetry
+        // @param colorimetry: Display colorimetry
         virtual uint32_t Colorimetry(IColorimetryIterator*& colorimetry /* @out */) const = 0;
 
         // @property
         // @brief Provides access to display's Qauntization Range
-        // @param qr: quantization range
+        // @param qr: Quantization range
         virtual uint32_t QuantizationRange(QuantizationRangeType& qr /* @out */) const = 0;
 
         // @property
         // @brief Provides access to display's Electro optical transfer function
-        // @param eotf: display's EOTF
+        // @param eotf: Display's EOTF
         virtual uint32_t EOTF(EotfType& eotf /* @out */) const = 0;
     };
 }

@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "Subsystem Control API",
     "class": "SubsystemControl",
     "format": "uncompliant-collapsed",

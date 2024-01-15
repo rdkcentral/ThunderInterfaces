@@ -3,6 +3,7 @@
   "jsonrpc": "2.0",
   "mode": "auto",
   "info": {
+    "version": "1.0.0",
     "title": "Bluetooth Control API",
     "class": "BluetoothControl",
     "description": "Bluetooth Control JSON-RPC interface"

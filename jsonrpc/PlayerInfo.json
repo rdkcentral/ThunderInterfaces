@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "Player Info API",
     "class": "PlayerInfo",
     "description": "PlayerInfo JSON-RPC interface"
@@ -23,20 +24,6 @@
         "VorbisOGG",
         "WAV"
       ],
-      "enumvalues": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
-      ],
       "description": "Audio Codec supported by the platform",
       "example": "AudioAAC"
     },
@@ -53,17 +40,6 @@
         "VP9",
         "VP10"
       ],
-      "enumvalues": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8
-      ],
       "description": "Video Codec supported by the platform",
       "example": "VideoH264"
     },
@@ -72,12 +48,14 @@
       "properties": {
         "audio": {
           "type": "array",
+          "description": "List of Audio Codec supported by the platform",
           "items": {
             "$ref": "#/definitions/audiocodecs"
           }
         },
         "video": {
           "type": "array",
+          "description": "List of Video Codec supported by the platform",
           "items": {
             "$ref": "#/definitions/videocodecs"
           }
@@ -97,7 +75,8 @@
         3,
         4,
         5
-      ]
+      ],
+      "description": "Dolby mode supported by the platform"
     },
     "required": [
       "audio",

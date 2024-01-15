@@ -2,10 +2,12 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "LISA API",
     "class": "LISA",
     "format": "uncompliant-extended",
-    "description": "LISA JSON-RPC interface"
+    "description": "LISA JSON-RPC interface",
+    "legacy": true
   },
   "common": {
     "$ref": "common.json"
@@ -198,6 +200,7 @@
         },
         "installed": {
           "type": "array",
+          "description": "List of installedApp",
           "items": {
             "$ref": "#/definitions/installedApp"
           }
@@ -261,6 +264,7 @@
       "properties": {
         "apps": {
           "type": "array",
+          "description": "List of apps",
           "items": {
             "$ref": "#/definitions/app"
           }

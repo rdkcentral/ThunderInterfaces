@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "Firmware Control API",
     "class": "FirmwareControl",
     "description": "Firmware Control JSON-RPC interface"
