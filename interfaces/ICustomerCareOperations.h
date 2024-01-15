@@ -23,7 +23,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json
+    // @json 1.0.0
     struct EXTERNAL ICustomerCareOperations : virtual public Core::IUnknown {
 
         enum { ID = ID_CUSTOMER_CARE_OPERATIONS };

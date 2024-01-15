@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "Monitor API",
     "class": "Monitor",
     "description": "Monitor JSON-RPC interface"
@@ -12,6 +13,7 @@
   "definitions": {
     "restart": {
       "type": "object",
+      "description": "Restart limits for failures applying to the service",
       "properties": {
         "limit": {
           "type": "number",
@@ -120,8 +122,7 @@
           "type": "string"
         },
         "restart": {
-          "$ref": "#/definitions/restart",
-          "description": "Restart limits for failures applying to the service"
+          "$ref": "#/definitions/restart"
         }
       },
       "required": [

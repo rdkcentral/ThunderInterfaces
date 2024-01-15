@@ -24,7 +24,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json
+    // @json 1.0.0
     struct EXTERNAL INetworkTools : virtual public Core::IUnknown {
         enum { ID = ID_NETWORKTOOLS };
 
@@ -35,25 +35,23 @@ namespace Exchange {
             ~ICallback() override = default;
 
             // @brief Signals an message from a given host
-            // @param source is the NodeId of the system that send the metadta presented in the next field.
-            // @param metadata depending on the tool started, this JSON string will contain additiona information on this notification.
+            // @param source: The NodeId of the system that send the metadta presented in the next field.
+            // @param metadata: Depending on the tool started, this JSON string will contain additional information on this notification.
             virtual void Report (const string& source, const string& metadata) = 0;
         };
 
         ~INetworkTools() override = default;
 
         // @brief Ping the given destination with ICMP packages.
-	// @param reportOn interface for receiving information back.
-        // @param The node id of the host we would like to ping (ipv4/ipv6)
-        // @param Time out, continue to ping for the given duration.
-        // @param Count maximum number of pings to send.
+        // @param destination: The node id of the host we would like to ping (ipv4/ipv6)
+        // @param timeOutInSeconds: Time out, continue to ping for the given duration.
+        // @param count: Maximum number of pings to send.
         // @retval ERROR_NONE, ERROR_INPROGRES means an icmp check is already in progress .
         virtual uint32_t Ping(const string& destination, const uint16_t timeOutInSeconds, const uint16_t count) = 0;
 
         // @brief TraceRoute to the given destination with ICMP packages.
-	// @param reportOn interface for receiving information back.
-        // @param The node id of the host we would like to ping traceroute (ipv4/ipv6).
-        // @param Time out, continue to trace for the given duration.
+        // @param destination: The node id of the host we would like to ping (ipv4/ipv6)
+        // @param timeOutInSeconds: Time out, continue to ping for the given duration.
         // @retval ERROR_NONE, ERROR_INPROGRES means an icmp check is already in progress 
         virtual uint32_t TraceRoute(const string& destination, const uint16_t timeOutInSeconds) = 0;
 

@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "IO Control API",
     "class": "IOControl",
     "format": "uncompliant-extended",
@@ -14,7 +15,7 @@
     "pinvalue": {
       "type": "number",
       "signed": true,
-      "string": "Value of the pin",
+      "description": "Value of the pin",
       "example": "1"
     }
   },

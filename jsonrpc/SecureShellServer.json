@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "SecureShell Server API",
     "class": "SecureShellServer",
     "description": "SecureShell Server JSON-RPC interface"
@@ -10,7 +11,7 @@
     "$ref": "common.json"
   },
   "methods": {
-    "SecureShellServer.1.get_active_sessions_count": {
+    "getactivesessionscount": {
       "summary": "Get count of currently active SSH client sessions maintained by SecureShell SSH Service.",
       "description": "With this method SecureShell SSH service shall provide the count of active SSH client sessions.",
       "result": {
@@ -30,7 +31,7 @@
         }
       ]
     },
-    "SecureShellServer.1.get_active_sessions_info": {
+    "getactivesessionsinfo": {
       "summary": "Get details of currently active SSH client sessions maintained by SecureShell SSH Service.",
       "description": "With this method SecureShell SSH service shall provide the full details of active SSH client sessions.",
       "readonly": true,
@@ -76,7 +77,7 @@
         }
       ]
     },
-    "SecureShellServer.1.close_client_session": {
+    "closeclientsession": {
       "summary": "Close and active SSH client session.",
       "description": "With this method SecureShell an active SSH client session shall be closed.",
       "params": {

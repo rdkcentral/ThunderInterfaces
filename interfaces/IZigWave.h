@@ -24,9 +24,9 @@
  // @stubgen:include <com/IIteratorType.h>
 
 namespace WPEFramework {
-	namespace Exchange {
+        namespace Exchange {
 
-        /* @json */
+        /* @json 1.0.0 */
         struct EXTERNAL IZigWave : virtual public Core::IUnknown {
             enum { ID = ID_ZIGWAVE };
 
@@ -37,20 +37,20 @@ namespace WPEFramework {
                     CONTROLLER
                 };
 
-                uint32_t Parent /* @brief address of the Parent */;
-                uint32_t Address /* @brief address of the device */;
-                type Type /* @brief type of the device */;
-                uint16_t Manufacturer  /* @brief manufactured of this device */;
-                string Metadata /* metadata associated with this device */;
+                uint32_t Parent /* @brief Address of the Parent */;
+                uint32_t Address /* @brief Address of the device */;
+                type Type /* @brief Type of the device */;
+                uint16_t Manufacturer  /* @brief Manufactured of this device */;
+                string Metadata /* @brief Metadata associated with this device */;
             };
 
             struct Controller {
-                bool Permutable;
-                string Port;
-                uint32_t Id;
-                uint8_t Major;
-                uint8_t Minor;
-                uint16_t Nodes;
+                bool Permutable /* @brief Permutable or not */;
+                string Port /* @brief Port number */;
+                uint32_t Id /* @brief Controller Id */;
+                uint8_t Major /* @brief Major number */;
+                uint8_t Minor /* @brief Minor number */;
+                uint16_t Nodes /* @brief Number of Nodes */;
             };
 
             using IDeviceIterator = RPC::IIteratorType<Device, ID_ZIGWAVE_DEVICE_ITERATOR>;
@@ -59,7 +59,7 @@ namespace WPEFramework {
             // @brief To allow new devices to the network, the controller should be placed
             //        into an accepting mode. By enabling this mode, the controller can 
             //        accept new devices.
-            // @param enabled (true) or disable (false) the accepting mode.
+            // @param enabled: Enabled (true) or Disable (false) the accepting mode.
             // 
             /* @alt accept */
             virtual Core::hresult Permutable(const uint32_t address /* @index */, bool& enabled /* @out */) const = 0;
@@ -68,18 +68,21 @@ namespace WPEFramework {
             // @property
             // @brief Get the information of available devices. An id of 0xFFFFFFFF means 
             // all devices available by this plugin.
-            // 
             virtual Core::hresult Devices(const uint32_t id /* @index */, IDeviceIterator*& devices /* @out */) const = 0;
 
             // @brief Bind the *out* from the soure to the *in* of the destination
+            // @param source: Source to be bound
+            // @param destination: Destination to be bound
             // @return: The success of the binding action.
             virtual Core::hresult Bind(const uint32_t source, const uint32_t destination) = 0;
 
             // @brief Unbind the *out* from the soure to the *in* of the destination
+            // @param source: Source to be unbound
+            // @param destination: Destination to be unbound
             // @return: The success of the unbinding action.
             virtual Core::hresult Unbind(const uint32_t source, const uint32_t destination) = 0;
 
-            // @brief return the Metadata associated with the controller for this instance.
+            // @brief Return the Metadata associated with the controller for this instance.
             // @return: The success of the Metdata action.
             virtual Core::hresult Metadata(Controller& metadata /* @out */) const = 0;
         };

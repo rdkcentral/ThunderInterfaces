@@ -23,7 +23,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json @uncompliant:collapsed
+    // @json 1.0.0 @uncompliant:collapsed
     struct EXTERNAL IAmazonPrime : virtual public Core::IUnknown {
 
         enum { ID = ID_AMAZONPRIME };
@@ -33,7 +33,7 @@ namespace Exchange {
             enum { ID = ID_AMAZONPRIME_NOTIFICATION };
 
             // @brief Receive a message from the generic message bus
-            // @param messsage the message that was received.
+            // @param messsage: The message that was received.
             virtual void Receive(const string& message) = 0;
         };
 
@@ -41,7 +41,7 @@ namespace Exchange {
         virtual void Unregister(IAmazonPrime::INotification* ignition) = 0;
 
         // @brief Send a message over the message bus to ignition
-        // @param messsage the message to send according the amazon spec found
+        // @param messsage: The message to send according the amazon spec found
         //        in the parter portal.
         virtual uint32_t Send(const string& message) = 0;
     };
