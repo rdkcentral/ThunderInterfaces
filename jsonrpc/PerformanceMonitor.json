@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "Performance Monitor API",
     "class": "PerformanceMonitor",
     "format": "uncompliant-collapsed",
@@ -29,10 +30,12 @@
         },
         "length": {
           "type": "number",
+          "description": "Size of the data",
           "size": 16
         },
         "duration": {
           "type": "number",
+          "description": "Duration of the measurements",
           "size": 16
         }
       }
@@ -41,18 +44,22 @@
       "type": "object",
       "properties": {
         "minimum": {
+          "description": "Minimum value of measurements",
           "$ref": "#/definitions/time",
           "example": 1
         },
         "maximum": {
+          "description": "Maximum value of measurements",
           "$ref": "#/definitions/time",
           "example": 4
         },
         "average": {
+          "description": "Average value of measurements",
           "$ref": "#/definitions/time",
           "example": 2
         },
         "count": {
+          "description": "How many times measurement has been collected",
           "$ref": "#/definitions/time",
           "example": 5
         }

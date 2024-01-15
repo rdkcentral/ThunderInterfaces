@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "Test Utility API",
     "class": "TestUtility",
     "format": "uncompliant-extended",
@@ -9,6 +10,40 @@
   },
   "common": {
     "$ref": "common.json"
+  },
+  "definitions": {
+    "parameter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Test command parameter",
+          "example": "memory"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Number",
+            "String",
+            "Boolean",
+            "Object",
+            "Symbol"
+          ],
+          "description": "Test command parameter type",
+          "example": "Number"
+        },
+        "comment": {
+          "type": "string",
+          "description": "Test command parameter description",
+          "example": "Memory statistics in KB"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "comment"
+      ]
+    }
   },
   "methods": {
     "runmemory": {
@@ -161,70 +196,14 @@
         "properties": {
           "input": {
             "type": "array",
+            "description": "Input parameter list",
             "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "Test command input parameter",
-                  "example": "memory"
-                },
-                "type": {
-                  "type": "string",
-                  "enum": [
-                    "Number",
-                    "String",
-                    "Boolean",
-                    "Object",
-                    "Symbol"
-                  ],
-                  "description": "Test command input parameter type",
-                  "example": "Number"
-                },
-                "comment": {
-                  "type": "string",
-                  "description": "Test command input parameter description",
-                  "example": "Memory statistics in KB"
-                }
-              },
-              "required": [
-                "name",
-                "type",
-                "comment"
-              ]
+              "$ref": "#/definitions/parameter"
             }
           },
           "output": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "description": "Test command output parameter",
-                "example": "memory"
-              },
-              "type": {
-                "type": "string",
-                "description": "Test command output parameter type",
-                "enum": [
-                  "Number",
-                  "String",
-                  "Boolean",
-                  "Object",
-                  "Symbol"
-                ],
-                "example": "Number"
-              },
-              "comment": {
-                "type": "string",
-                "description": "Test command output parameter description",
-                "example": "Memory statistics in KB"
-              }
-            },
-            "required": [
-              "name",
-              "type",
-              "comment"
-            ]
+            "description": "Output parameter list",
+            "$ref": "#/definitions/parameter"
           }
         },
         "required": [

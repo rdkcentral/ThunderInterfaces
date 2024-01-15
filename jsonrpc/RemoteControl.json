@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "Remote Control API",
     "class": "RemoteControl",
     "description": "RemoteControl JSON-RPC interface"

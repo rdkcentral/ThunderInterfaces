@@ -24,7 +24,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* @json @uncompliant:collapsed */
+    /* @json 1.0.0 @uncompliant:collapsed */
     struct EXTERNAL ITimeZone : virtual public Core::IUnknown {
         enum { ID = ID_TIMEZONE };
 
@@ -34,7 +34,7 @@ namespace Exchange {
 
             // Signal that the TimeZone has been changed for the system
             // @brief TimeZone was set for the system
-            // @param timeZone the new TimeZone
+            // @param timeZone: New TimeZone
             virtual void TimeZoneChanged(const string& timeZone) = 0;
       };
 
@@ -43,7 +43,6 @@ namespace Exchange {
 
       // @property
       // @brief TimeZone for system
-      // @param value: timezone
       virtual uint32_t TimeZone(string& timeZone /* @out */) const = 0;
       virtual uint32_t TimeZone(const string& timeZone) = 0;
     };

@@ -23,7 +23,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* @json */
+    /* @json 1.0.0 */
     struct EXTERNAL IValuePoint : virtual public Core::IUnknown {
         enum { ID = ID_VALUE_POINT };
 
@@ -49,7 +49,11 @@ namespace Exchange {
             enum { ID = ID_VALUE_POINT_NOTIFICATION };
 
             // Push changes. If the Current value changes, the next method is called.
+            // @brief Signal event any change in value
+            // @param id: Id of the value
             virtual void Update(const uint32_t id) = 0;
+            // @brief Signal event any change in Metadata
+            // @param id: Id of the Metadata
             virtual void Metadata(const uint32_t id) = 0;
         };
 
@@ -115,46 +119,38 @@ namespace Exchange {
         // @property
         // @brief Each IValuePoint instance has a unique identifier that identifies the instance. The 
         //        value returned here return the unique ID of this IValuePoint.
-        // @param ID is the unique identification of this element.
         virtual uint32_t Identifier(uint32_t& ID /* @out */) const = 0;
 
         // @property
         // @brief If this IValuePoint belongs to a bundle that has multiple IValuePoints the id
         //        that identifies the bundle and the result will be Core::ERROR_NONE. If it does 
         //        not belong to a bundle, this call returns Core::ERROR_UNAVAILABLE,
-        // @param ID is the unique identification of the parent element.
         virtual uint32_t Bundle(uint32_t& ID /* @out */) const = 0;
 
         // @property
         // @brief Current state/condition of this IValuePoint
-        // @param value is the current condition of this IValuePoint 
         virtual uint32_t Condition(condition& value /* @out */) const = 0;
 
         // @property
-        // @brief Characteristics of this IElement
-        // @param value represent the characteristics of this IValuePoint 
+        // @brief Characteristics of this IValuePoint(IElement)
         virtual uint32_t Type(uint32_t& value /* @out */) const = 0;
 
         // @property
-        // @brief The minimum value this IElement can reach.
-        // @param value represent the minimum value this IValuePoint can reach.
+        // @brief The minimum value this IValuePoint(IElement) can reach.
         virtual uint32_t Minimum(int32_t& value /* @out */) const = 0;
 
         // @property
-        // @brief The maximum value this IElement can reach.
-        // @param value represent the maxium value this IValuePoint can reach.
+        // @brief The maximum value this IValuePoint(IElement) can reach.
         virtual uint32_t Maximum(int32_t& value /* @out */) const = 0;
 
         // @property
         // @brief The current value of this IValuePoint.
-        // @param value represent the current value of this IValuePoint.
+        // @param value: Represent the current value of this IValuePoint.
         virtual uint32_t Value(int32_t& value /* @out */) const = 0;
         virtual uint32_t Value(const int32_t value) = 0;
 
         // @property
         // @brief There most be more than meets the eye, report it as a JSON string.
-        // @param value represent the metadata associated with this IValuePoint.
-        // 
         virtual uint32_t Metadata(string& value /* @out */) const = 0;
 
         // Periodically we might like to be evaluated, call this method at a set time.

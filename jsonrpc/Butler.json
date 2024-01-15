@@ -2,6 +2,7 @@
     "$schema": "interface.schema.json",
     "jsonrpc": "2.0",
     "info": {
+        "version": "1.0.0",
         "title": "Butler API",
         "class": "Butler",
         "format": "uncompliant-extended",
@@ -12,9 +13,9 @@
     },
   "definitions": {
     "devicevalue": {
+      "description": "Value of the device",
       "type": "number",
       "signed": true,
-      "string": "Value of the device",
       "example": "1"
     },
     "basicenum": {
@@ -55,24 +56,6 @@
         "emergency",
         "clock",
         "light"
-      ],
-      "enumvalues": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15
       ]
     },
     "dimensionenum": {
@@ -87,15 +70,6 @@
         "pulses",
         "degrees",
         "units"
-      ],
-      "enumvalues": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
       ]
     },
     "device": {
@@ -255,6 +229,7 @@
           },
           "members": {
             "type": "array",
+            "description": "An array of group member",
             "items": {
               "type": "object",
               "properties": {
@@ -281,12 +256,13 @@
                   "example": 19
                 },
                 "id": {
-                  "description": "The id of the single point in this meber, it is not a bundle ",
+                  "description": "The id of the single point in this member, it is not a bundle",
                   "type": "integer",
                   "example": 19
                 },
                 "point": {
                   "type": "array",
+                  "description": "An array of device info",
                   "items": {
                     "$ref": "#/definitions/device"
                   }
@@ -304,7 +280,7 @@
       ]
     },
     "link": {
-      "summary": "link an external ID to a node",
+      "summary": "Link an external ID to a node",
       "params": {
         "type": "object",
         "properties": {
@@ -328,7 +304,7 @@
       ]
     },
     "move": {
-      "summary": "move a node to another location",
+      "summary": "Move a node to another location",
       "params": {
         "type": "object",
         "properties": {
@@ -352,13 +328,13 @@
       ]
     },
     "branch": {
-      "summary": "create a new group",
+      "summary": "Create a new group",
       "index": {
         "path": "The path leading up to the group",
         "example": "/ground"
       },
       "params": {
-        "description": "name of the group to be created",
+        "description": "Name of the group to be created",
         "type": "string",
         "example": "Living"
       },
@@ -370,13 +346,13 @@
       ]
     },
     "delete": {
-      "summary": "destroy an existing, empty group",
+      "summary": "Destroy an existing, empty group",
       "index": {
         "path": "The path leading up to the group",
         "example": "/ground"
       },
       "params": {
-        "description": "name of the element to be removed from the group",
+        "description": "Name of the element to be removed from the group",
         "type": "string",
         "example": "MainSwitch"
       },

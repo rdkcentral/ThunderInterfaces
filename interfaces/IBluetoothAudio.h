@@ -48,21 +48,21 @@ namespace Exchange {
         };
 
         struct CodecProperties {
-            audiocodec Codec                /* @brief Audio codec used */ ;
-            string /* @opaque */ Settings   /* @brief Codec-specific audio quality preset, compression profile, etc */ ;
+            audiocodec Codec                /* @brief Audio codec used */;
+            string /* @opaque */ Settings   /* @brief Codec-specific audio quality preset, compression profile, etc */;
         };
 
         struct DRMProperties {
-            drmscheme DRM                   /* @brief Content protection scheme used */ ;
-            string /* @opaque */ Settings   /* @brief DRM-specific content protection level, encoding rules, etc */ ;
+            drmscheme DRM                   /* @brief Content protection scheme used */;
+            string /* @opaque */ Settings   /* @brief DRM-specific content protection level, encoding rules, etc */;
         };
 
         struct StreamProperties {
-            uint32_t SampleRate     /* @brief Sample rate in Hz (e.g. 44100) */ ;
-            uint32_t BitRate        /* @brief Target bitrate in bits per second (eg. 320000) */ ;
-            uint8_t Channels        /* @brief Number of audio channels (e.g. 2) */ ;
-            uint8_t Resolution      /* @brief Sampling resolution in bits per sample (e.g. 16) */ ;
-            bool IsResampled        /* @brief Indicates if the source stream is being resampled by the stack to match sink capabilities */ ;
+            uint32_t SampleRate     /* @brief Sample rate in Hz (e.g. 44100) */;
+            uint32_t BitRate        /* @brief Target bitrate in bits per second (eg. 320000) */;
+            uint8_t Channels        /* @brief Number of audio channels (e.g. 2) */;
+            uint8_t Resolution      /* @brief Sampling resolution in bits per sample (e.g. 16) */;
+            bool IsResampled        /* @brief Indicates if the source stream is being resampled by the stack to match sink capabilities */;
         };
 
         struct EXTERNAL IStream : virtual public Core::IUnknown {
@@ -117,13 +117,14 @@ namespace Exchange {
                 enum { ID = ID_BLUETOOTHAUDIO_SINK_CALLBACK };
 
                 // @brief Signals audio sink state change
+                // @param state: Changed BluetoothAudio State
                 virtual void StateChanged(const IBluetoothAudio::state state) = 0;
             };
 
             virtual Core::hresult Callback(ICallback* callback) = 0;
 
             // @brief Assigns a Bluetooth sink device for audio playback
-            // @param address Address of the bluetooth device to assign
+            // @param address: Address of the bluetooth device to assign
             // @retval ERROR_BAD_REQUEST Device address value is invalid
             // @retval ERROR_ALREADY_CONNECTED A sink device is already assigned
             virtual Core::hresult Assign(const string& address) = 0;
@@ -148,7 +149,7 @@ namespace Exchange {
 
             // @property
             // @brief Latency of the audio sink device
-            // @param latency Audio latency in milliseconds (e.g. 20)
+            // @param latency: Audio latency in milliseconds (e.g. 20)
             // @retval ERROR_BAD_REQUEST Latency value is invalid
             virtual Core::hresult Latency(const int16_t latency) = 0;
             virtual Core::hresult Latency(int16_t& latency /* @out */) const = 0;
@@ -174,7 +175,7 @@ namespace Exchange {
             virtual Core::hresult DRM(DRMProperties& properties /* @out */) const = 0;
 
             // @property
-            // @brief v of the currently transmitted audio stream
+            // @brief Properties of the currently transmitted audio stream
             // @retval ERROR_ILLEGAL_STATE The sink device currently is not connected or not yet configured
             virtual Core::hresult Stream(StreamProperties& properties /* @out */) const = 0;
        };
@@ -210,6 +211,7 @@ namespace Exchange {
                 enum { ID = ID_BLUETOOTHAUDIO_SOURCE_CALLBACK };
 
                 // @brief Signals audio source state change
+                // @param state: Changed BluetoothAudio State
                 virtual void StateChanged(const IBluetoothAudio::state state) = 0;
             };
 

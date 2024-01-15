@@ -23,8 +23,6 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // This interface gives direct access to a Browser to change
-    // Browser specific properties like displayed URL.
     /* @json 1.0.0 */
     struct EXTERNAL IDictionary : virtual public Core::IUnknown {
         enum { ID = ID_DICTIONARY };
@@ -35,7 +33,10 @@ namespace Exchange {
 
             ~INotification() override = default;
 
-            // Signal changes on the subscribed namespace..
+            // @brief Changes on the subscribed namespace..
+            // @param nameSpace: NameSpace to be used
+            // @param key: Key to be used
+            // @param value: Value of the key
             virtual void Modified(const string& nameSpace, const string& key, const string& value) = 0;
         };
 
@@ -59,8 +60,14 @@ namespace Exchange {
         virtual void Register(const string& nameSpace, struct IDictionary::INotification* sink) = 0;
         virtual void Unregister(const string& nameSpace, struct IDictionary::INotification* sink) = 0;
 
-        // Getters and Setters for the dictionary.
+        // @brief Getters for the dictionary.
+        // @param nameSpace: NameSpace to be used
+        // @param key: Key to be used
         virtual Core::hresult Get(const string& nameSpace, const string& key, string& value /* @out */) const = 0;
+        // @brief Setters for the dictionary.
+        // @param nameSpace: NameSpace to be used
+        // @param key: Key to be used
+        // @param value: Value to be set
         virtual Core::hresult Set(const string& nameSpace, const string& key, const string& value) = 0;
 
         // @json:omit
