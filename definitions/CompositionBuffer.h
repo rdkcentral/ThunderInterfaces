@@ -32,10 +32,7 @@ namespace Exchange {
     template <const uint8_t PLANES>
     class CompositionBufferType : public ICompositionBuffer, public Core::IResource {
     private:
-        // We need to test this on a 32 bit platform. On 64 bits platforms we do need
-        // the data to be written into the eventfd to be 64 bits otherwise it does not
-        // respond!
-        using EventFrame = uintptr_t;
+        using EventFrame = uint64_t;
 
         // We need some shared space for data to exchange, and to create a lock..
         class SharedStorage {
@@ -345,11 +342,18 @@ namespace Exchange {
         }
         uint8_t Descriptors(const uint8_t maxSize, int container[]) const
         {
+            fprintf(stdout, "Descriptors maxSize=%d\n", maxSize));
+            fflush(stdout);
             ASSERT(IsValid() == true);
             ASSERT(maxSize > 2);
+
             uint8_t result = 0;
 
             if (maxSize > 2) {
+
+                fprintf(stdout, "Descriptors _virtualFd=%d, _eventFd=%d, _planeCount=%d\n", _virtualFd, _eventFd, _planeCount);
+                fflush(stdout);
+
                 container[0] = _virtualFd;
                 container[1] = _eventFd;
                 uint8_t count = std::min(_planeCount, static_cast<uint8_t>(maxSize - 2));
