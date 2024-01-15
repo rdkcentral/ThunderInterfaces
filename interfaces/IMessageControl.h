@@ -28,7 +28,7 @@ namespace WPEFramework {
 
 namespace Exchange {
 
-// @json
+// @json 1.0.0
 struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
     enum { ID = ID_MESSAGE_CONTROL };
@@ -44,10 +44,10 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
     using IControlIterator = RPC::IIteratorType<Control, ID_MESSAGE_CONTROL_ITERATOR>;
 
     // @brief Enables/disables a message control
-    // @param type Message type
-    // @param module Name of the module the message is originating from (e.g. Plugin_BluetoothControl)
-    // @param category Name of the message category (e.g. Information)
-    // @param enabled Denotes if control should be enabled (true) or disabled (false)
+    // @param type: Message type
+    // @param module: Name of the module the message is originating from (e.g. Plugin_BluetoothControl)
+    // @param category: Name of the message category (e.g. Information)
+    // @param enabled: Denotes if control should be enabled (true) or disabled (false)
     virtual uint32_t Enable(const messagetype type, const string& category, const string& module, const bool enabled) = 0;
 
     // @property

@@ -27,14 +27,23 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* @json */
+    /* @json 1.0.0 */
     struct EXTERNAL IPackageManager : virtual public Core::IUnknown {
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         enum { ID = ID_PACKAGEMANAGER };
 
-        /* @brief Download the application bundle. */
+        // @brief Download the application bundle.
+        // @param type: Type of the package
+        // @param id: Id of the package
+        // @param version: Version of the package
+        // @param url: URL used to install package
+        // @param appName: Application Name
+        // @param category: Category of the package
+        // @param handle: Handle to the active installtion
+        //        that can be used to refer to it later.
+        //        e.g. for canceling or progress information
         virtual uint32_t Install(const string& type,
                 const string& id,
                 const string& version,
@@ -43,13 +52,29 @@ namespace Exchange {
                 const string& category,
                 string& handle /* @out */) = 0;
 
-        /* @brief Uninstall the application. */
+        // @brief Uninstall the application.
+        // @param type: Type of the package
+        // @param id: Id of the package
+        // @param version: Version of the package
+        // @param uninstallType: Type of uninstall
+        // @param handle: Handle to the active uninstallation
+        //        that can be used to refer to it later.
+        //        e.g. for canceling or progress information
         virtual uint32_t Uninstall(const string& type,
                 const string& id,
                 const string& version,
                 const string& uninstallType,
                 string& handle /* @out */) = 0;
-        /* @brief Download arbitrary application's resource file. */
+
+        // @brief Download arbitrary application's resource file.
+        // @param type: Type of the package
+        // @param id: Id of the package
+        // @param version: Version of the package
+        // @param url: URL used to download package
+        // @param resKey: Resorce Key
+        // @param handle: Handle to the active download
+        //        that can be used to refer to it later.
+        //        e.g. for canceling or progress information
         virtual uint32_t Download(const string& type,
                 const string& id,
                 const string& version,
@@ -57,7 +82,11 @@ namespace Exchange {
                 const string& url,
                 string& handle /* @out */) = 0;
 
-        /* @brief Delete persistent data stored locally. */
+        // @brief Delete persistent data stored locally.
+        // @param type: Type of the package
+        // @param id: Id of the package
+        // @param version: Version of the package
+        // @param resetType: Type of Reset
         virtual uint32_t Reset(const string& type,
                 const string& id,
                 const string& version,
@@ -65,50 +94,68 @@ namespace Exchange {
 
         struct EXTERNAL StorageInfo 
         {
-                struct EXTERNAL StorageDetails 
-                {
-                        string path;
-                        string quotaKB;
-                        string usedKB;
-                };
-                
-                StorageDetails apps;
-                StorageDetails persistent;
+            struct EXTERNAL StorageDetails
+            {
+                string path    /* @brief Path of Storage */;
+                string quotaKB /* @brief Total Space allowed in KB */;
+                string usedKB  /* @brief Used Space in KB */;
+            };
+            StorageDetails apps       /* @brief Storage details of application */;
+            StorageDetails persistent /* @brief Storage details of persistent */;
         };
 
-        /* @brief Information on the storage usage. */
+        // @brief Information on the storage usage.
+        // @param type: Type of the package
+        // @param id: Id of the package
+        // @param version: Version of the package
+        // @param storageinfo: Info about Storage
         virtual uint32_t GetStorageDetails(const string& type,
                 const string& id,
                 const string& version,
                 StorageInfo& storageinfo /* @out */) const = 0;
 
         struct EXTERNAL KeyValue  {
-            string key;
-            string value;
+            string key   /* @brief Key */;
+            string value /* @brief Value */;
         };
         using IKeyValueIterator = RPC::IIteratorType<KeyValue, ID_PACKAGEMANAGER_KEY_VALUE_ITERATOR>;
 
         struct MetadataPayload {
-            string appName;
-            string type;
-            string category;
-            string url;
+            string appName  /* @brief Name of the application */;
+            string type     /* @brief Type of the package */;
+            string category /* @brief Category of the package */;
+            string url      /* @brief URL used for operation */;
         };
 
-        /* @brief Set an arbitrary metadata. */
+        // @brief Set an arbitrary metadata.
+        // @param type: Type of the package
+        // @param id: Id of the package
+        // @param version: Version of the package
+        // @param key: Key used to set arbitrary meta data
+        // @param value: Value of given key
         virtual uint32_t SetAuxMetadata(const string& type,
                 const string& id,
                 const string& version,
                 const string& key,
                 const string& value) = 0;
 
-        /* @brief Clears an arbitrary metadata. */
+        // @brief Clears an arbitrary metadata.
+        // @param type: Type of the package
+        // @param id: Id of the package
+        // @param version: Version of the package
+        // @param key: Key used to clear arbitrary meta data
         virtual uint32_t ClearAuxMetadata(const string& type,
                 const string& id,
                 const string& version,
                 const string& key) = 0;
 
-        /* @brief Get application metadata. */
+        // @brief Get application metadata.
+        // @param type: Type of the package
+        // @param id: Id of the package
+        // @param version: Version of the package
+        // @param metadata: Payload of meta data
+        // @param resources: Resources
+        // @param auxMetadata: Arbitrary metadata
         virtual uint32_t GetMetadata(const string& type,
                 const string& id,
                 const string& version,
@@ -116,10 +163,13 @@ namespace Exchange {
                 IPackageManager::IKeyValueIterator*& resources /* @out */,
                 IPackageManager::IKeyValueIterator*& auxMetadata /* @out */) const = 0;
 
-        /* @brief Cancel asynchronous request. */
+        // @brief Cancel asynchronous request.
+        // @param handle: Handle of the currently progressing operation (i.e, install/uninstal/download)
         virtual uint32_t Cancel(const string& handle) = 0;
 
-        /* @brief Estimated progress of a request. */
+        // @brief Estimated progress of a request.
+        // @param handle: Handle of the currently progressing operation (i.e, install/uninstal/download)
+        // @param progress: Indication of installation progress
         virtual uint32_t GetProgress(const string& handle, uint32_t& progress /* @out */) const = 0;
 
         /* @event */
@@ -127,7 +177,14 @@ namespace Exchange {
 
             enum {ID = ID_PACKAGEMANAGER_NOTIFICATION};
 
-            /* @brief Completion of asynchronous operation. */
+            // @brief Completion of asynchronous operation.
+            // @param handle: Handle of the currently progressing operation (i.e, install/uninstal/download)
+            // @param operation: Type of the operation
+            // @param type: Type of the package
+            // @param id: Id of the package
+            // @param version: Version of the package
+            // @param status: Current status of the operation
+            // @param details: Details about the operation
             virtual void OperationStatus(const string& handle, const string& operation, const string& type, const string& id,
                                          const string& version, const string& status, const string& details) = 0;
         };
@@ -136,13 +193,19 @@ namespace Exchange {
         virtual uint32_t Unregister(IPackageManager::INotification* notification) = 0;
 
         struct EXTERNAL PackageKey {            
-            string id;
-            string version;
+            string id      /* @brief Unique identifier of the package */;
+            string version /* @brief Version of the package */;
         };
 
         using IPackageKeyIterator = RPC::IIteratorType<PackageKey, ID_PACKAGEMANAGER_PACKAGE_KEY_ITERATOR>;
 
-        /* @brief List installed applications. */
+        // @brief List installed applications.
+        // @param type: Type of the package
+        // @param id: Id of the package
+        // @param version: Version of the package
+        // @param appName: Application Name
+        // @param category: Category of the package
+        // @param installedIds: Ids of Installed Package
         virtual uint32_t GetList(
                 const string& type,
                 const string& id,
@@ -151,7 +214,16 @@ namespace Exchange {
                 const string& category,
                 IPackageKeyIterator*& installedIds /* @out */) const = 0; 
 
-        /* @brief Lock the application. Preventing uninstallation. */
+        // @brief Lock the application. Preventing uninstallation
+        // @param type: Type of the package
+        // @param id: Id of the package
+        // @param version: Version of the package
+        // @param reason: Reason to lock the application
+        // @param owner: Owner used to lock
+        // @param handle: Handle to the lock
+        //        that can be used to refer to it later.
+        //        e.g. for unlock later
+
         virtual uint32_t Lock(const string& type,
                 const string& id,
                 const string& version,
@@ -160,15 +232,20 @@ namespace Exchange {
                 string& handle /* @out */) = 0;
 
 
-        /* @brief Unlock application. */
+        // @brief Unlock application.
+        // @param handle: Handle got during the Lock, it is to be used to Unlock operation
         virtual uint32_t Unlock(const string& handle) = 0;
 
         struct LockInfo {
-            string reason;
-            string owner;
+            string reason /* @brief Reason of Locking */;
+            string owner  /* @brief Owner of Locking */;
         };
 
-        /* @brief Get lock info. */
+        // @brief Get lock info.
+        // @param type: Type of the package
+        // @param id: Id of the package
+        // @param version: Version of the package
+        // @param result: Info about Lock
         virtual uint32_t GetLockInfo(const string& type,
                 const string& id,
                 const string& version,
@@ -178,20 +255,31 @@ namespace Exchange {
 
     struct EXTERNAL IPackageManagerBroker : virtual public Core::IUnknown {
 
-                enum { ID = ID_PACKAGEMANAGER_BROKER };
-
-                virtual uint32_t Offer(IPackageManager* packagemanager) = 0;
-                virtual uint32_t Revoke(const IPackageManager* packagemanager) = 0;
-
+        enum { ID = ID_PACKAGEMANAGER_BROKER };
+        // @brief Offer Package Manager
+        // @param packagemanager: Package manager instance
+        virtual uint32_t Offer(IPackageManager* packagemanager) = 0;
+        // @brief Revoke Package Manager
+        // @param packagemanager: Package manager instance
+        virtual uint32_t Revoke(const IPackageManager* packagemanager) = 0;
     };
 
     struct EXTERNAL IPackageManagerCallback : virtual public Core::IUnknown {
 
-                enum { ID = ID_PACKAGEMANAGER_CALLBACK };
+        enum { ID = ID_PACKAGEMANAGER_CALLBACK };
 
-                virtual void OperationStatusUpdate(const string& handle, const string& operation, const string& type, const string& id,
-                                         const string& version, const string& status, const string& details) = 0;
-
+        // @brief Notify Update in requested operation (install/uninstall/download)
+        // @param handle: Handle of the operation
+        // @param operation: Type of the operation
+        // @param type: Type of the package
+        // @param id: Id of the package
+        // @param version: Version of the package
+        // @param status: Current status of the operation
+        // @param details: Details about the operation
+        virtual void OperationStatusUpdate(const string& handle, const string& operation,
+                                           const string& type, const string& id,
+                                           const string& version, const string& status,
+                                           const string& details) = 0;
     };
 
 }

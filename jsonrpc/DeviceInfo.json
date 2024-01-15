@@ -2,10 +2,12 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "Device Info API",
     "class": "DeviceInfo",
     "format": "uncompliant-extended",
-    "description": "DeviceInfo JSON-RPC interface"
+    "description": "DeviceInfo JSON-RPC interface",
+    "legacy": true
   },
   "common": {
     "$ref": "common.json"
@@ -51,20 +53,12 @@
         "HDMI1",
         "DISPLAYPORT"
       ],
-      "enumvalues": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
       "description": "Audio output supported by the device",
       "example": "analog"
     },
     "audiooutputs": {
       "type": "array",
+      "description": "An array of audio output supported by the device",
       "items": {
         "$ref": "#/definitions/audioPort"
       }
@@ -93,7 +87,7 @@
       "example": "none"
     },
     "audiocapabilities": {
-      "summary": "An array of audio capabilities",
+      "description": "An array of audio capabilities",
       "type": "array",
       "items": {
         "$ref": "#/definitions/audiocapability"
@@ -117,7 +111,7 @@
       "example": "dolby_volume"
     },
     "ms12capabilities": {
-      "summary": "An array of MS12 audio capabilities",
+      "description": "An array of MS12 audio capabilities",
       "type": "array",
       "items": {
         "$ref": "#/definitions/ms12capability"
@@ -141,7 +135,7 @@
       "example": "music"
     },
     "ms12profiles": {
-      "summary": "An array of MS12 audio profiles",
+      "description": "An array of MS12 audio profiles",
       "type": "array",
       "items": {
         "$ref": "#/definitions/ms12profile"
@@ -160,22 +154,12 @@
         "HDMI1",
         "DISPLAYPORT"
       ],
-      "enumvalues": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8
-      ],
       "description": "Video output supported by the device",
       "example": "displayport"
     },
     "videooutputs": {
       "type": "array",
+      "description": "An array of video output supported by the device",
       "items": {
         "$ref": "#/definitions/videoDisplay"
       }
@@ -206,35 +190,12 @@
         "4320p30",
         "4320p60"
       ],
-      "enumvalues": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21
-      ],
       "description": "Resolution supported by the device",
       "example": "1080p"
     },
     "output_resolutions": {
       "type": "array",
+      "description": "An array of resolution supported by the device",
       "items": {
         "$ref": "#/definitions/output_resolution"
       }
@@ -259,7 +220,7 @@
       "example": "hdcp_20"
     },
     "videooutputcapabilities": {
-      "summary": "Video capabilities of the output",
+      "description": "Video capabilities of the output",
       "type": "object",
       "properties": {
         "hdcp": {
@@ -287,7 +248,7 @@
       ]
     },
     "audiooutputcapabilities": {
-      "summary": "Audio capabilities of the output",
+      "description": "Audio capabilities of the output",
       "type": "object",
       "properties": {
         "audioPort": {
@@ -459,6 +420,7 @@
         "properties": {
            "audiooutputcapabilities": {
             "type": "array",
+            "description": "An array of audiooutputcapabilities",
             "items": {
               "$ref": "#/definitions/audiooutputcapabilities"
             }
@@ -497,6 +459,7 @@
           },
           "videooutputcapabilities": {
             "type": "array",
+            "description": "An array of videooutputcapabilities",
             "items": {
               "$ref": "#/definitions/videooutputcapabilities"
             }
@@ -667,6 +630,7 @@
             },
             "ip": {
               "type": "array",
+              "description": "An array of Interface IP address",
               "items": {
                 "type": "string",
                 "description": "Interface IP address",
@@ -688,22 +652,27 @@
         "type": "object",
         "properties": {
           "total": {
+            "description": "Number of total",
             "type": "number",
             "example": 0
           },
           "open": {
+            "description": "Number of open",
             "type": "number",
             "example": 0
           },
           "link": {
+            "description": "Number of link",
             "type": "number",
             "example": 0
           },
           "exception": {
+            "description": "Number of exception",
             "type": "number",
             "example": 0
           },
           "shutdown": {
+            "description": "Number of shutdown",
             "type": "number",
             "example": 0
           },
@@ -769,7 +738,7 @@
         "type": "object",
         "properties": {
           "EDID": {
-            "summary": "A base64 encoded byte array string representing the EDID",
+            "description": "A base64 encoded byte array string representing the EDID",
             "type": "string",
             "example": "AP///////wAQrMLQVEJTMQUdAQOANR546q11qVRNnSYPUFSlSwCBALMA0QBxT6lAgYDRwAEBVl4AoKCgKVAwIDUADighAAAaAAAA/wBNWTNORDkxVjFTQlQKAAAA/ABERUxMIFAyNDE4RAogAAAA/QAxVh1xHAAKICAgICAgARsCAxuxUJAFBAMCBxYBBhESFRMUHyBlAwwAEAACOoAYcTgtQFgsRQAOKCEAAB4BHYAYcRwWIFgsJQAOKCEAAJ6/FgCggDgTQDAgOgAOKCEAABp+OQCggDgfQDAgOgAOKCEAABoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2A"
           }
@@ -792,14 +761,17 @@
         "type": "object",
         "properties": {
           "imagename": {
+            "description": "Name of firmware image",
             "type": "string",
             "example": "PX051AEI_VBN_2203_sprint_20220331225312sdy_NG"
           },
           "sdk": {
+            "description": "SDK version string",
             "type": "string",
             "example": "17.3"
           },
           "mediarite": {
+            "description": "Mediarite value",
             "type": "string",
             "example": "8.3.53"
           },
@@ -826,6 +798,7 @@
         "type": "object",
         "properties": {
           "serialnumber": {
+            "description": "Device Serial Number",
             "type": "string",
             "example": "PAW400003744"
           }
@@ -890,6 +863,7 @@
         "type": "object",
         "properties": {
           "model": {
+            "description": "Device model name",
             "type": "string",
             "example": "Pace Xi5"
           }
@@ -912,6 +886,7 @@
         "type": "object",
         "properties": {
           "year": {
+            "description": "Device model year",
             "type": "number",
             "size": 16,
             "example": "2020"
@@ -935,6 +910,7 @@
         "type": "object",
         "properties": {
           "name": {
+            "description": "Device friendly name",
             "type": "string",
             "example": "My device"
           }
@@ -957,6 +933,7 @@
         "type": "object",
         "properties": {
           "name": {
+            "description": "Device Platform name",
             "type": "string",
             "example": "Linux"
           }

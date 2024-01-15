@@ -2,6 +2,7 @@
     "$schema": "interface.schema.json",
     "jsonrpc": "2.0",
     "info": {
+      "version": "1.0.0",
       "title": "Input Switch API",
       "class": "InputSwitch",
       "description": "InputSwitch JSON-RPC interface"

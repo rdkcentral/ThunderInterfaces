@@ -25,7 +25,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* @json */
+    /* @json 1.0.0 */
     struct EXTERNAL INetworkControl : virtual public Core::IUnknown {
         enum { ID = ID_NETWORKCONTROL };
 
@@ -40,10 +40,10 @@ namespace Exchange {
         };
 
         struct NetworkInfo {
-            string address;
-            string defaultGateway;
-            uint8_t mask;
-            ModeType mode;
+            string address        /* @brief IP Address */;
+            string defaultGateway /* @brief Default Gateway */;
+            uint8_t mask          /* @brief Network mask */;
+            ModeType mode         /* @brief Mode of interface activation Dynamic or Static */;
         };
 
         using INetworkInfoIterator = RPC::IIteratorType<NetworkInfo, ID_NETWORKCONTROL_NETWORK_INFO_ITERATOR>;
@@ -54,6 +54,8 @@ namespace Exchange {
             enum { ID = ID_NETWORKCONTROL_NOTIFICATION };
             ~INotification() override = default;
 
+            // @brief Signal interface update
+            // @param interfaceName: Name of the interface where an update occured
             virtual void Update(const string& interfaceName) = 0;
         };
 
@@ -73,20 +75,27 @@ namespace Exchange {
 
         // @property
         // @brief Network info of requested interface
+        // @param networkInfo: Info about requested interface
+        // @retval ERROR_UNAVAILABLE Failed to set/retrieve network
         virtual uint32_t Network(const string& interface /* @index */, INetworkInfoIterator*& networkInfo /* @out */) const = 0;
         virtual uint32_t Network(const string& interface /* @index */, INetworkInfoIterator* const& networkInfo /* @in */) = 0;
 
         // @property
         // @brief DNS list
+        // @param dns: List of DNS
+        // @retval ERROR_UNAVAILABLE Failed to set/retrieve DNS
         virtual uint32_t DNS(IStringIterator*& dns /* @out */) const = 0;
         virtual uint32_t DNS(IStringIterator* const& dns /* @in */) = 0;
 
         // @property
         // @brief Provides given requested interface is up or not
+        // @param up: Up/Down requested interface
+        // @retval ERROR_UNAVAILABLE Failed to set/retrieve UP
         virtual uint32_t Up(const string& interface /* @index */, bool& up /* @out */) const = 0;
         virtual uint32_t Up(const string& interface /* @index */, const bool up /* @in */) = 0;
 
         // @brief Flush and reload requested interface
+        // @param interface: Name of the interface to be flushed
         virtual uint32_t Flush(const string& interface) = 0;
     };
 }

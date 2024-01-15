@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "OpenCDMi API",
     "class": "OCDM",
     "format": "uncompliant-extended",
@@ -26,6 +27,7 @@
         },
         "keysystems": {
           "type": "array",
+          "description": "Key system identifier list",
           "items": {
             "$ref": "#/definitions/keysystem"
           }

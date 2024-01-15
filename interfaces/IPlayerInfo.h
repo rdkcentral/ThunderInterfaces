@@ -26,7 +26,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json
+    // @json 1.0.0
     struct EXTERNAL IPlayerProperties : virtual public Core::IUnknown {
         enum { ID = ID_PLAYER_PROPERTIES };
 
@@ -108,19 +108,19 @@ namespace Exchange {
         typedef RPC::IIteratorType<VideoCodec, ID_PLAYER_PROPERTIES_VIDEO> IVideoCodecIterator;
 
         // @property
+        // @brief Query Audio Codecs List
         virtual uint32_t AudioCodecs(IAudioCodecIterator*& codec /* @out */) const = 0;
 
         // @property
+        // @brief Query Video Codecs List
         virtual uint32_t VideoCodecs(IVideoCodecIterator*& codec /* @out */) const = 0;
 
         // @property
         // @brief Current Video playback resolution
-        // @param res: resolution
         virtual uint32_t Resolution(PlaybackResolution& res /* @out */) const = 0;
 
         // @property
         // @brief Checks Loudness Equivalence in platform
-        // @param ae: enabled/disabled
         virtual uint32_t IsAudioEquivalenceEnabled(bool& ae /* @out */) const = 0;
     };
 }

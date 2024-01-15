@@ -2,6 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "Packager API",
     "class": "Packager",
     "description": "Packager JSON-RPC interface"
@@ -10,7 +11,7 @@
     "$ref": "common.json"
   },
   "methods": {
-    "Packager.1.install": {
+    "install": {
       "summary": "Installs a package given by a name, an URL or a file path",
       "params": {
         "type": "object",
@@ -45,7 +46,7 @@
         }
       ]
     },
-    "Packager.1.synchronize": {
+    "synchronize": {
       "summary": "Synchronizes repository manifest with a repository",
       "result": {
         "$ref": "#/common/results/void"
