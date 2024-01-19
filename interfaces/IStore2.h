@@ -29,7 +29,7 @@ namespace Exchange {
 
         virtual ~IStore2() override = default;
 
-        enum class ScopeType : uint8_t {
+        enum ScopeType : uint8_t {
             DEVICE,
             ACCOUNT
         };
@@ -39,15 +39,15 @@ namespace Exchange {
 
             virtual ~INotification() override = default;
 
-            virtual void ValueChanged(const string& ns, const string& key, const string& value, const ScopeType scope) = 0;
+            virtual void ValueChanged(const ScopeType scope, const string& ns, const string& key, const string& value) = 0;
         };
 
         virtual uint32_t Register(Exchange::IStore2::INotification* notification) = 0;
         virtual uint32_t Unregister(Exchange::IStore2::INotification* notification) = 0;
-        virtual uint32_t SetValue(const string& ns, const string& key, const string& value, const ScopeType scope, const uint32_t ttl) = 0;
-        virtual uint32_t GetValue(const string& ns, const string& key, const ScopeType scope, string& value /* @out */, uint32_t& ttl /* @out */) = 0;
-        virtual uint32_t DeleteKey(const string& ns, const string& key, const ScopeType scope) = 0;
-        virtual uint32_t DeleteNamespace(const string& ns, const ScopeType scope) = 0;
+        virtual uint32_t SetValue(const ScopeType scope, const string& ns, const string& key, const string& value, const uint32_t ttl) = 0;
+        virtual uint32_t GetValue(const ScopeType scope, const string& ns, const string& key, string& value /* @out */, uint32_t& ttl /* @out */) = 0;
+        virtual uint32_t DeleteKey(const ScopeType scope, const string& ns, const string& key) = 0;
+        virtual uint32_t DeleteNamespace(const ScopeType scope, const string& ns) = 0;
     };
 
 } // namespace Exchange

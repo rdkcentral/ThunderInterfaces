@@ -21,6 +21,8 @@
 
 #include "Module.h"
 
+#include "IStore2.h"
+
 // @stubgen:include <com/IIteratorType.h>
 
 namespace WPEFramework {
@@ -31,10 +33,7 @@ namespace Exchange {
 
         virtual ~IStoreInspector() override = default;
 
-        enum class ScopeType : uint8_t {
-            DEVICE,
-            ACCOUNT
-        };
+        using ScopeType = IStore2::ScopeType;
 
         struct NamespaceSize {
             string ns;
@@ -43,9 +42,9 @@ namespace Exchange {
 
         using INamespaceSizeIterator = RPC::IIteratorType<NamespaceSize, ID_STORE_INSPECTOR_NAMESPACE_SIZE_ITERATOR>;
 
-        virtual uint32_t SetNamespaceStorageLimit(const string& ns, const uint32_t size, const ScopeType scope) = 0;
-        virtual uint32_t GetNamespaceStorageLimit(const string& ns, const ScopeType scope, uint32_t& size /* @out */) = 0;
-        virtual uint32_t GetKeys(const string& ns, const ScopeType scope, RPC::IStringIterator*& keys /* @out */) = 0;
+        virtual uint32_t SetNamespaceStorageLimit(const ScopeType scope, const string& ns, const uint32_t size) = 0;
+        virtual uint32_t GetNamespaceStorageLimit(const ScopeType scope, const string& ns, uint32_t& size /* @out */) = 0;
+        virtual uint32_t GetKeys(const ScopeType scope, const string& ns, RPC::IStringIterator*& keys /* @out */) = 0;
         virtual uint32_t GetNamespaces(const ScopeType scope, RPC::IStringIterator*& namespaces /* @out */) = 0;
         virtual uint32_t GetStorageSizes(const ScopeType scope, INamespaceSizeIterator*& storageList /* @out */) = 0;
     };
