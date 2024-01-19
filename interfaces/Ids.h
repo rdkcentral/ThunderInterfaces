@@ -322,6 +322,7 @@ namespace Exchange {
         ID_STORE2_NOTIFICATION                       = ID_STORE + 4,
         ID_STORE_INSPECTOR                           = ID_STORE + 5,
         ID_STORE_INSPECTOR_NAMESPACE_SIZE_ITERATOR   = ID_STORE + 6,
+        ID_STORE_LIMIT                               = ID_STORE + 7,
 
         ID_LISA                                      = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x450,
         ID_LISA_NOTIFICATION                         = ID_LISA + 1,

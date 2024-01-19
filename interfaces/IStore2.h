@@ -21,6 +21,8 @@
 
 #include "Module.h"
 
+// @stubgen:include <com/IIteratorType.h>
+
 namespace WPEFramework {
 namespace Exchange {
 
@@ -44,10 +46,41 @@ namespace Exchange {
 
         virtual uint32_t Register(Exchange::IStore2::INotification* notification) = 0;
         virtual uint32_t Unregister(Exchange::IStore2::INotification* notification) = 0;
+
         virtual uint32_t SetValue(const ScopeType scope, const string& ns, const string& key, const string& value, const uint32_t ttl) = 0;
         virtual uint32_t GetValue(const ScopeType scope, const string& ns, const string& key, string& value /* @out */, uint32_t& ttl /* @out */) = 0;
         virtual uint32_t DeleteKey(const ScopeType scope, const string& ns, const string& key) = 0;
         virtual uint32_t DeleteNamespace(const ScopeType scope, const string& ns) = 0;
+    };
+
+    struct EXTERNAL IStoreInspector : virtual public Core::IUnknown {
+        enum { ID = ID_STORE_INSPECTOR };
+
+        virtual ~IStoreInspector() override = default;
+
+        struct NamespaceSize {
+            string ns;
+            uint32_t size;
+        };
+
+        using ScopeType = IStore2::ScopeType;
+        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+        using INamespaceSizeIterator = RPC::IIteratorType<NamespaceSize, ID_STORE_INSPECTOR_NAMESPACE_SIZE_ITERATOR>;
+
+        virtual uint32_t GetKeys(const ScopeType scope, const string& ns, IStringIterator*& keys /* @out */) = 0;
+        virtual uint32_t GetNamespaces(const ScopeType scope, IStringIterator*& namespaces /* @out */) = 0;
+        virtual uint32_t GetStorageSizes(const ScopeType scope, INamespaceSizeIterator*& storageList /* @out */) = 0;
+    };
+
+    struct EXTERNAL IStoreLimit : virtual public Core::IUnknown {
+        enum { ID = ID_STORE_LIMIT };
+
+        virtual ~IStoreLimit() override = default;
+
+        using ScopeType = IStore2::ScopeType;
+
+        virtual uint32_t SetNamespaceStorageLimit(const ScopeType scope, const string& ns, const uint32_t size) = 0;
+        virtual uint32_t GetNamespaceStorageLimit(const ScopeType scope, const string& ns, uint32_t& size /* @out */) = 0;
     };
 
 } // namespace Exchange
