@@ -29,7 +29,7 @@ namespace Exchange {
     struct EXTERNAL IStore2 : virtual public Core::IUnknown {
         enum { ID = ID_STORE2 };
 
-        virtual ~IStore2() override = default;
+        ~IStore2() override = default;
 
         enum ScopeType : uint8_t {
             DEVICE,
@@ -39,7 +39,7 @@ namespace Exchange {
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_STORE2_NOTIFICATION };
 
-            virtual ~INotification() override = default;
+            ~INotification() override = default;
 
             virtual void ValueChanged(const ScopeType scope, const string& ns, const string& key, const string& value) = 0;
         };
@@ -56,7 +56,7 @@ namespace Exchange {
     struct EXTERNAL IStoreInspector : virtual public Core::IUnknown {
         enum { ID = ID_STORE_INSPECTOR };
 
-        virtual ~IStoreInspector() override = default;
+        ~IStoreInspector() override = default;
 
         struct NamespaceSize {
             string ns;
@@ -75,7 +75,7 @@ namespace Exchange {
     struct EXTERNAL IStoreLimit : virtual public Core::IUnknown {
         enum { ID = ID_STORE_LIMIT };
 
-        virtual ~IStoreLimit() override = default;
+        ~IStoreLimit() override = default;
 
         using ScopeType = IStore2::ScopeType;
 
