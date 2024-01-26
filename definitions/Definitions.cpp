@@ -323,7 +323,6 @@ namespace Exchange
         return ((static_cast<uint32_t>(resolution) < sizeof(resolutionWidthHeightTable) / sizeof(ScreenResolutionWidthHeight)) ? resolutionWidthHeightTable[static_cast<uint32_t>(resolution)].refresh: 0);
     }
 
-
     // ------------------------------------------------------------------------
     // Convenience methods to extract interesting information from the Type()
     // ------------------------------------------------------------------------
