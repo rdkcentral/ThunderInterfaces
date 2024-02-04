@@ -22,8 +22,7 @@
 #include "Module.h"
 
 namespace WPEFramework {
-namespace Exchange {
-namespace TestAutomation {
+namespace QualityAssurance {
 
     // @json
     struct EXTERNAL IMemory : virtual public Core::IUnknown {
@@ -67,6 +66,5 @@ namespace TestAutomation {
         };
     };
 
-}
 }
 }

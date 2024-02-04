@@ -79,7 +79,6 @@
 #include <interfaces/IStoreCache.h>
 #include <interfaces/ISwitchBoard.h>
 #include <interfaces/ISystemCommands.h>
-#include <interfaces/ITestController.h>
 #include <interfaces/ITextToSpeech.h>
 #include <interfaces/ITestUtility.h>
 #include <interfaces/ITimeSync.h>
@@ -94,9 +93,11 @@
 #include <interfaces/IWatchDog.h>
 #include <interfaces/IZigWave.h>
 #include "ValuePoint.h"
-#endif
 
-MODULE_NAME_DECLARATION(BUILD_REFERENCE)
+
+#include <qa_interfaces/ITestController.h>
+#include <qa_interfaces/ITestAutomation.h>
+#endif
 
 namespace WPEFramework {
 
