@@ -59,7 +59,7 @@ namespace Exchange {
             virtual IPlane* Plane() = 0;
         };
 
-        virtual void AddRef() const = 0;
+        virtual uint32_t AddRef() const = 0;
         virtual uint32_t Release() const = 0;
 
         virtual uint32_t Identifier() const = 0;
