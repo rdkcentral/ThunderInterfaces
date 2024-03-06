@@ -1,0 +1,656 @@
+{
+  "$schema": "interface.schema.json",
+  "jsonrpc": "2.0",
+  "info": {
+    "title": "Unified Player",
+    "class": "UnifiedPlayer",
+    "description": "Unified Player for Linear, Multicast and ABR video"
+  },
+  "common": {
+    "$ref": "common.json"
+  },
+  "playercommon": {
+    "$ref": "CASPlayerCommon.json"
+  },
+  "definitions": {
+    "mediarequest": {
+      "description": "Specifies how to open a media playback or cas management session",
+      "type": "object",
+      "properties": {
+        "mediaurl": {
+          "$ref": "#/playercommon/mediaurl"
+        },
+        "mode": {
+          "$ref": "#/playercommon/mode",
+          "default": "MODE_LIVE"
+        },
+        "manage": {
+          "$ref": "#/playercommon/manage",
+          "default": "MANAGE_NONE"
+        },
+        "casocdmid": {
+          "$ref": "#/playercommon/casocdmid"
+        },
+        "casinitdata": {
+          "$ref": "#/playercommon/casinitdata"
+        },
+        "mute" : {
+          "$ref": "#/playercommon/mutecontrol"
+        }
+      }
+    },
+
+    "mediaopenedevent": {
+      "type": "object",
+      "description": "Event sent when media is opened",
+      "properties": {
+        "sessionid": {
+          "$ref": "#/playercommon/sessionid"
+        },
+        "mediatype": {
+          "type": "string",
+          "description": "The type of media",
+          "example": "Live"
+        },
+        "duration": {
+          "type": "number",
+          "description": "The duration in seconds the media lasts, if known"
+        },
+        "width": {
+          "type": "number",
+          "description": "The horizontal size of the image"
+        },
+        "height": {
+          "type": "number",
+          "description": "The vertical size of the image"
+        },
+        "availablespeeds": {
+          "type": "array",
+          "items": {
+            "type": "float"
+          }
+        },
+        "availableaudiolanguages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "availablesubtitleslanguages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "statusevent": {
+      "type": "object",
+      "description": "Event sent when status changes, or in response to a request",
+      "properties": {
+        "sessionid": {
+          "$ref": "#/playercommon/sessionid"
+        },
+        "position": {
+          "type": "float"
+        },
+        "duration": {
+          "type": "float"
+        }
+      },
+      "required": ["position", "duration"]
+    },
+    "progressevent": {
+      "type": "object",
+      "description": "Event sent when progress changes, or in response to a position or transport command",
+      "properties": {
+        "sessionid": {
+          "$ref": "#/playercommon/sessionid"
+        },
+        "position": {
+          "type": "float"
+        },
+        "duration": {
+          "type": "float"
+        },
+        "speed": {
+          "type": "float"
+        },
+        "start": {
+          "type": "float"
+        },
+        "end": {
+          "type": "float"
+        }
+      },
+      "required": ["position", "duration"]
+    },
+    "warningerrorevent": {
+      "type": "object",
+      "description": "Event sent when a warning or error is encountered",
+      "properties": {
+        "sessionid": {
+          "$ref": "#/playercommon/sessionid"
+        },
+        "code": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": ["code"]
+    },
+    "bitratechangeevent": {
+      "type": "object",
+      "description": "Event sent when an ABR stream changes bitrate",
+      "properties": {
+        "sessionid": {
+          "$ref": "#/playercommon/sessionid"
+        },
+        "bitrate": {
+          "type": "number"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": ["bitrate"]
+    },
+    "speedchangeevent": {
+      "type": "object",
+      "description": "Event sent when playback speed changes",
+      "properties": {
+        "sessionid": {
+          "$ref": "#/playercommon/sessionid"
+        },
+        "speed": {
+          "type": "double"
+        }
+      },
+      "required": ["speed"]
+    },
+    "playerinitializedevent": {
+      "type": "object",
+      "description": "Event sent when a player completes initialization",
+      "properties": {
+        "sessionid": {
+          "$ref": "#/playercommon/sessionid"
+        }
+      }
+    },
+    "closedevent": {
+      "type": "object",
+      "description": "Event sent when a session closes",
+      "properties": {
+        "sessionid": {
+          "$ref": "#/playercommon/sessionid"
+        }
+      }
+    },
+    "pausedevent": {
+      "type": "object",
+      "description": "Event sent when playback pauses",
+      "properties": {
+        "sessionid": {
+          "$ref": "#/playercommon/sessionid"
+        }
+      }
+    },
+    "completeevent": {
+      "type": "object",
+      "description": "Event sent when playback completes",
+      "properties": {
+        "sessionid": {
+          "$ref": "#/playercommon/sessionid"
+        }
+      }
+    },
+    "playingevent": {
+      "type": "object",
+      "description": "Event sent when playback starts",
+      "properties": {
+        "sessionid": {
+          "$ref": "#/playercommon/sessionid"
+        }
+      }
+    }
+  },
+
+  "methods": {
+    "open": {
+      "summary": "Open [and play] media",
+      "params": {
+        "$ref": "#/definitions/mediarequest"
+      },
+      "result": {
+        "$ref": "#/playercommon/sessionidresult"
+      }
+    },
+    "pretune": {
+      "summary": "Pretune a non-HTTP source",
+      "params": {
+        "$ref": "#/definitions/mediarequest"
+      },
+      "result": {
+        "$ref": "#/playercommon/sessionidresult"
+      }
+    },
+    "park": {
+      "summary": "Park an active non-HTTP source for later use",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "destroy": {
+      "summary": "Destroy a media playback session",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "setposition": {
+      "summary": "Sets playback position",
+      "params": {
+        "$ref": "#/playercommon/floatsessionvalue"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "setpositionrelative": {
+      "summary": "Sets playback position relative to current position, aka skip",
+      "params": {
+        "$ref": "#/playercommon/floatsessionvalue"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "getposition": {
+      "summary": "Gets playback position",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/floatresult"
+      }
+    },
+    "setspeed": {
+      "summary": "Sets playback speed",
+      "params": {
+        "$ref": "#/playercommon/floatsessionvalue"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "getspeed": {
+      "summary": "Gets playback speed",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/floatresult"
+      }
+    },
+    "getduration": {
+      "summary": "Gets duration of Closed Assests. Live Assests return -1.0f",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/floatresult"
+      }
+    },
+    "getavailablespeeds": {
+      "summary": "Gets supported playback speeds",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/floatarrayresult"
+      }
+    },
+    "setdefaultaudiolanguage": {
+      "summary": "Sets default audio language",
+      "params": {
+        "$ref": "#/playercommon/stringsessionvalue"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "getdefaultaudiolanguage": {
+      "summary": "Gets default audio language",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/stringresult"
+      }
+    },
+    "setprimaryaudiolanguage": {
+      "summary": "Sets primary, presenting, audio language",
+      "params": {
+        "$ref": "#/playercommon/stringsessionvalue"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "getprimaryaudiolanguage": {
+      "summary": "Gets primary audio language",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/stringresult"
+      }
+    },
+    "setsecondaryaudiolanguage": {
+      "summary": "Sets secondary, audio-description, audio language",
+      "params": {
+        "$ref": "#/playercommon/stringsessionvalue"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "getsecondaryaudiolanguage": {
+      "summary": "Gets secondary audio language",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/stringresult"
+      }
+    },
+    "getcurrentaudiolanguage": {
+      "summary": "Gets the audio language currently presented to the user",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/stringresult"
+      }
+    },
+    "getavailableaudiolanguages": {
+      "summary": "Gets all the audio languages currently in the PMT or Manifest",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/stringarrayresult"
+      }
+    },
+    "setdefaultsubtitleslanguage": {
+      "summary": "Sets default subtitles language",
+      "params": {
+        "$ref": "#/playercommon/stringsessionvalue"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "getdefaultsubtitleslanguage": {
+      "summary": "Gets default subtitles language",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/stringresult"
+      }
+    },
+    "setprimarysubtitleslanguage": {
+      "summary": "Sets primary, presenting, subtitles language",
+      "params": {
+        "$ref": "#/playercommon/stringsessionvalue"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "getprimarysubtitleslanguage": {
+      "summary": "Gets primary subtitles language",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/stringresult"
+      }
+    },
+    "getcurrentsubtitleslanguage": {
+      "summary": "Gets the subtitles language currently presented to the user",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/stringresult"
+      }
+    },
+    "getavailablesubtitleslanguages": {
+      "summary": "Gets all the audio languages currently in the PMT or Manifest",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/stringarrayresult"
+      }
+    },
+    "setmute": {
+      "summary": "Sets if media compopnents should be muted or not",
+      "params": {
+          "$ref": "#/playercommon/mutecontrolsessionvalue"
+        },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "getmute": {
+      "summary": "Gets status of media components muting",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean",
+              "description": "Returning whether this method failed or succeed",
+              "example": "true"
+            },  
+            "video": {
+              "type": "boolean",
+              "description": "Muted [true] or unmuted [false] video."
+            },
+            "audio": {
+              "type": "boolean",
+              "description": "Mute [true] or unmuted [false] audio."
+            },
+            "failurereason": {
+              "type": "number",
+              "description": "Reason why it's failed"
+            }
+          },
+          "required": ["success"]
+        }
+    },
+    "setsubtitlesenabled": {
+      "summary": "Sets if subtitles are decoded and presented",
+      "params": {
+        "$ref": "#/playercommon/booleansessionvalue"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "getsubtitlesenabled": {
+      "summary": "Gets if subtitles are enabled",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/booleanresult"
+      }
+    },
+    "setsubtitlesdisplayed": {
+      "summary": "Sets if subtitles are presented",
+      "params": {
+        "$ref": "#/playercommon/booleansessionvalue"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "getsubtitlesdisplayed": {
+      "summary": "Gets if subtitles are presented",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/booleanresult"
+      }
+    },
+    "setvideorectangle": {
+      "summary": "Sets the size and position of the video",
+      "params": {
+        "$ref": "#/playercommon/rectanglesessionvalue"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "play": {
+      "summary": "Play the Video at x1 speed, HTTP sources only",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "pause": {
+      "summary": "Pauses the video, HTTP sources only",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "seektolive": {
+      "summary": "seeks to the live point, HTTP sources only, non-closed manifests only",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "stop": {
+      "summary": "Stops playback and closes the source",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    },
+    "requeststatus": {
+      "summary": "Causes a status event to be triggered",
+      "params": {
+        "$ref": "#/playercommon/sessionid"
+      },
+      "result": {
+        "$ref": "#/playercommon/result"
+      }
+    }
+  },
+
+  "events": {
+    "onplayerinitialized": {
+      "summary": "Sent when the player has accepted a media URL",
+      "description": "Register for this event to be notified about player preparedness",
+      "params": {
+        "$ref": "#/definitions/playerinitializedevent"
+      }
+    },
+    "onmediaopened": {
+      "summary": "Sent when media is successfully opened",
+      "description": "Register for this event to be notified about media opening events",
+      "params": {
+        "$ref": "#/definitions/mediaopenedevent"
+      }
+    },
+    "onplaying": {
+      "summary": "Sent when the player transitions to x1 play speed",
+      "description": "Register for this event to be notified about transport status",
+      "params": {
+        "$ref": "#/definitions/playingevent"
+      }
+    },
+    "onpaused": {
+      "summary": "Sent when the player enters a paused state",
+      "description": "Register for this event to be notified about transport status",
+      "params": {
+        "$ref": "#/definitions/pausedevent"
+      }
+    },
+    "onclosed": {
+      "summary": "Sent when media is closed",
+      "description": "Register for this event to be notified about media state",
+      "params": {
+        "$ref": "#/definitions/closedevent"
+      }
+    },
+    "oncomplete": {
+      "summary": "Sent when the stream complete",
+      "description": "Register for this event to be notified when the player recieves EOS",
+      "params": {
+        "$ref": "#/definitions/completeevent"
+      }
+    },
+    "onstatus": {
+      "summary": "Sent when status changes",
+      "description": "Register for this event to be notified about status change, or when requesting status",
+      "params": {
+        "$ref": "#/definitions/statusevent"
+      }
+    },
+    "onprogress": {
+      "summary": "Sent when progress or duration changes.",
+      "description": "Register for this event to be notified about progess or when the media length changes",
+      "params": {
+        "$ref": "#/definitions/progressevent"
+      }
+    },
+    "onwarning": {
+      "summary": "Sent when a warning is issued.",
+      "description": "Register for this event to be notified about warnings",
+      "params": {
+        "$ref": "#/definitions/warningerrorevent"
+      }
+    },
+    "onerror": {
+      "summary": "Sent when an error is issued.",
+      "description": "Register for this event to be notified about errors",
+      "params": {
+        "$ref": "#/definitions/warningerrorevent"
+      }
+    },
+    "onbitratechange": {
+      "summary": "Sent when current ABR bitrate changes.",
+      "description": "Register for this event to be notified about ABR bitrate changes",
+      "params": {
+        "$ref": "#/definitions/bitratechangeevent"
+      }
+    }
+  }
+}
+

@@ -1,0 +1,158 @@
+{
+  "$schema": "interface.schema.json",
+  "jsonrpc": "2.0",
+  "info": {
+    "title": "Unified CAS Management Service",
+    "class": "UnifiedCASManagement",
+    "description": "Simple service to allow the management of OCDM CAS"
+  },
+  "common": {
+    "$ref": "common.json"
+  },
+  "mediaurl": {
+    "type": "string",
+    "description": "The URL to tune to can be tune://, ocap:// http:// https://",
+    "example": "tune://tuner?frequency=175000000&modulation=16&pgmno=12"
+  },
+  "mode": {
+    "type": "string",
+    "description": "The use of the tune request",
+    "enum": [
+      "MODE_NONE",
+      "MODE_LIVE",
+      "MODE_RECORD",
+      "MODE_PLAYBACK"
+    ],
+    "default": "MODE_LIVE"
+  },
+  "manage": {
+    "type": "string",
+    "description": "The type of CAS management to attach to the tune",
+    "enum": [
+      "MANAGE_NONE",
+      "MANAGE_FULL",
+      "MANAGE_NO_PSI",
+      "MANAGE_NO_TUNER"
+    ],
+    "default": "MANAGE_NONE"
+  },
+  "casinitdata": {
+    "type": "string",
+    "description": "CAS specific initdata for the selected media",
+    "example": "<base64 data>"
+  },
+  "casocdmid": {
+    "type": "string",
+    "description": "The well-known OCDM ID of the CAS to use"
+  },
+  "result": {
+    "type": "object",
+    "description": "Generic Result Object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Returning whether this method failed or succeed",
+        "example": "true"
+      },
+      "failurereason": {
+        "type": "number",
+        "description": "Reason why it's failed"
+      }
+    },
+    "required": ["success"]
+  },
+  "definitions": {
+    "managerequest": {
+      "description": "Specifies how to manage a CAS",
+      "type": "object",
+      "properties": {
+        "mediaurl": {
+          "$ref": "#/mediaurl"
+        },
+        "mode": {
+          "$ref": "#/mode",
+          "default": "MODE_NONE"
+        },
+        "manage": {
+          "$ref": "#/manage",
+          "default": "MANAGE_NO_PSI"
+        },
+        "casinitdata": {
+          "$ref": "#/casinitdata",
+          "default": "com.synamedia.vgdrm"
+        },
+        "casocdmid": {
+          "$ref": "#/casocdmid"
+        }
+      },
+      "required": [
+        "casocdmid"
+      ]
+    },
+    "xferinfo": {
+      "type": "object",
+      "description": "Object transfer data to/from the remote CAS. The actual payload is Client/CAS specific.",
+      "properties": {
+        "payload": {
+          "type": "string",
+          "description": "Data to transfer. Can be base64 coded if required."
+        },
+        "source": {
+          "type": "string",
+          "enum": ["PUBLIC", "PRIVATE"],
+          "default": "PUBLIC",
+          "description": "Origin of the data."
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    },
+    "dataevent": {
+      "$ref": "#/definitions/xferinfo",
+      "description": "Event sent when CAS needs to send data to the App"
+    }
+  },
+  "methods": {
+    "manage": {
+      "summary": "Manage a well-known CAS",
+      "params": {
+        "$ref": "#/definitions/managerequest"
+      },
+      "result": {
+        "$ref": "#/result"
+      }
+    },
+    "unmanage": {
+      "summary": "Destroy a management session",
+      "params": {
+        "$ref": "#/casocdmid"
+      },
+      "result": {
+        "$ref": "#/result"
+      }
+    },
+    "send": {
+      "summary": "Sends data to the remote CAS",
+      "params": {
+        "$ref": "#/definitions/xferinfo"
+      },
+      "result": {
+        "$ref": "#/result"
+      }
+    }
+  },
+  "events": {
+    "data": {
+      "summary": "Sent when the CAS needs to send data to the caller",
+      "description": "Register for this event to be sent private data from the CAS",
+      "params": {
+        "$ref": "#/definitions/xferinfo"
+      }
+    }
+  }
+}
+
+
+
+

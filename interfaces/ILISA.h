@@ -136,9 +136,8 @@ namespace Exchange {
             enum {ID = ID_LISA_NOTIFICATION};
 
             /* @brief Completion of asynchronous operation. */
-            virtual void operationStatus(const std::string& handle,
-                    const std::string& status,
-                    const std::string& details) = 0;
+            virtual void operationStatus(const string& handle, const string& operation, const string& type, const string& id,
+                                         const string& version, const string& status, const string& details) = 0;
         };
 
         virtual uint32_t Register(ILISA::INotification* notification) = 0;
@@ -194,6 +193,37 @@ namespace Exchange {
                 const std::string& appName,
                 const std::string& category,
                 IAppsPayload*& result /* @out */) const = 0;
+
+        struct EXTERNAL IHandleResult : virtual public Core::IUnknown {
+            enum { ID = ID_LISA_HANDLE_RESULT };
+
+            virtual uint32_t Handle(std::string& handle /* @out */) const = 0;
+        };
+
+        /* @brief Lock the application. Preventing uninstallation. */
+        virtual uint32_t Lock(const std::string& type,
+                const std::string& id,
+                const std::string& version,
+                const std::string& reason,
+                const std::string& owner,
+                ILISA::IHandleResult*& result /* @out */) = 0;
+
+
+        /* @brief Unlock application. */
+        virtual uint32_t Unlock(const std::string& handle) = 0;
+
+        struct EXTERNAL ILockInfo : virtual public Core::IUnknown {
+            enum { ID = ID_LISA_LOCK_INFO };
+
+            virtual uint32_t Reason(std::string& reason /* @out */) const = 0;
+            virtual uint32_t Owner(std::string& owner /* @out */) const = 0;
+        };
+
+        /* @brief Get lock info. */
+        virtual uint32_t GetLockInfo(const std::string& type,
+                const std::string& id,
+                const std::string& version,
+                ILISA::ILockInfo*& result /* @out */) = 0;
     };
 
 }
