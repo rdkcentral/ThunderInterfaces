@@ -26,6 +26,11 @@ namespace Exchange {
     /* @json 1.0.0*/
     struct EXTERNAL IFireboltPrivacy : virtual public Core::IUnknown {
         enum { ID = ID_FIREBOLT_PRIVACY };
+        enum StorageLocation : uint8_t {
+            Disk /* @text: Disk */,
+            InMemory /* @text: InMemory */,
+        };
+
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
@@ -33,7 +38,7 @@ namespace Exchange {
             ~INotification() override = default;
 
             // @brief Notifies that Allow Resume points value change
-            /* @alt:OnAllowResumePointsChanged */
+            /* @text:OnAllowResumePointsChanged */
             virtual void OnAllowResumePointsChanged(const bool value) = 0;
 
         };
@@ -41,17 +46,19 @@ namespace Exchange {
         ~IFireboltPrivacy() override = default;
 
         // Pushing notifications to interested sinks
-        virtual uint32_t Register(IFireboltPrivacy::INotification* sink) = 0;
-        virtual uint32_t Unregister(IFireboltPrivacy::INotification* sink) = 0;
+        virtual Core::hresult Register(IFireboltPrivacy::INotification* sink) = 0;
+        virtual Core::hresult Unregister(IFireboltPrivacy::INotification* sink) = 0;
+
+        // @brief Provides Current resume watch status
+        // @text:AllowResumePoints
+        virtual Core::hresult AllowResumePoints(bool& allow /* @out */) = 0;
+        // @brief sets the current resume watch status
+        // @text:SetAllowResumePoints
+        virtual Core::hresult SetAllowResumePoints(const bool& value ) = 0;
 
         // @property
-        // @brief Provides Current resume watch status
-        // @alt:AllowResumePoints
-        virtual uint32_t AllowResumePoints(bool& allow /* @out */) const = 0;
-
-        // @brief Set resume watch status
-        // @alt:SetAllowResumePoints
-        virtual uint32_t SetAllowResumePoints(const bool& value ) = 0;
+        // @brief Get the storage location
+        virtual Core::hresult GetStorageLocation(StorageLocation& value /* @out */) const = 0;
     };
 }
 }
