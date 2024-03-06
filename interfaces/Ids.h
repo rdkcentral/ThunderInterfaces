@@ -256,7 +256,7 @@ namespace Exchange {
         ID_RUST_BRIDGE_NOTIFICATION                = ID_RUST_BRIDGE + 1,
         ID_CONTENTDECRYPTION_NOTIFICATION,
         
-	ID_WATERMARK,
+      	ID_WATERMARK,
         ID_WATERMARK_NOTIFICATION,
 
         ID_DTV,
@@ -288,6 +288,9 @@ namespace Exchange {
         ID_DTV_TRANSPORT,
         ID_TEXT_TO_SPEECH,
         ID_TEXT_TO_SPEECH_NOTIFICATION,
+
+        ID_INPUT_METHOD_CONTEXT,
+        ID_INPUT_METHOD_CONTEXT_NOTIFICATION,
 
     };
 }
