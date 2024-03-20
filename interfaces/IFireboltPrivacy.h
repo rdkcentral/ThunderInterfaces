@@ -27,8 +27,8 @@ namespace Exchange {
     struct EXTERNAL IFireboltPrivacy : virtual public Core::IUnknown {
         enum { ID = ID_FIREBOLT_PRIVACY };
         enum StorageLocation : uint8_t {
-            Disk /* @text: Disk */,
-            InMemory /* @text: InMemory */,
+            Disk,
+            InMemory,
         };
 
 
@@ -51,13 +51,14 @@ namespace Exchange {
 
         // @brief Provides Current resume watch status
         // @text:AllowResumePoints
-        virtual Core::hresult AllowResumePoints(bool& allow /* @out */) = 0;
+        virtual Core::hresult GetAllowResumePoints(bool& allow /* @out */) const = 0;
         // @brief sets the current resume watch status
         // @text:SetAllowResumePoints
         virtual Core::hresult SetAllowResumePoints(const bool& value ) = 0;
 
         // @property
         // @brief Get the storage location
+        // @text: GetStorageLocation1
         virtual Core::hresult GetStorageLocation(StorageLocation& value /* @out */) const = 0;
     };
 }
