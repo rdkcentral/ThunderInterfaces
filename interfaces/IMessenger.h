@@ -20,13 +20,13 @@
 #pragma once
 
 #include "Module.h"
+// @insert <com/IIteratorType.h>
 
 
 namespace WPEFramework {
 
 namespace Exchange {
 
- 
 struct IRoomAdministrator : virtual public Core::IUnknown {
     enum { ID = ID_ROOMADMINISTRATOR };
 
@@ -64,6 +64,82 @@ struct IRoomAdministrator : virtual public Core::IUnknown {
     virtual IRoom* Join(const string& roomId, const string& userId, IRoom::IMsgNotification* messageSink) = 0;
 };
 
+
+// @json 1.0.0
+struct EXTERNAL IMessenger : virtual public PluginHost::JSONRPC {
+
+    enum security {
+        SECURE /* @text secure */,
+        INSECURE /* @text insecure */
+    };
+
+    using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
+    /* @event */
+    struct EXTERNAL INotification {
+
+        enum roomupdate {
+            CREATED /* @text created */,
+            DESTROYED /* @text destroyed */
+        };
+
+        enum userupdate {
+            JOINED /* @text joined */,
+            LEFT /* @text left */
+        };
+
+        // @statuslistener
+        // @brief Notifies of room status changes
+        // @details Immediately after registering to this notification the listener will sequentially receive updates
+        //          of all rooms that have been created so far.
+        // @param room: Name of the room that has changed its status (e.g. Lounge)
+        // @param action: New room status
+        // @param secure: Denotes if the room is secure
+        virtual void RoomUpdate(const string& room, const roomupdate action, const security secure) = 0;
+
+        // @statuslistener
+        // @brief Notifies of user status changes
+        // @details Imediately after registering to this notification the listener will sequentially receive updates of
+        //          all users that have joined the room so far.
+        // @param roomId: Token of ther room this notification relates to (e.g. 1e217990dd1cd4f66124)
+        // @param: user: Name of the user that has changed its status (e.g. Bob)
+        // @param action: New user status
+        virtual void UserUpdate(const string& roomId /* @index */, const string& user, const userupdate action) = 0;
+
+        // @brief Notifies of a message sent the the room
+        // @param roomId: Token of the room this notification relates to (e.g. 1e217990dd1cd4f66124)
+        // @param user: Name of the user that has sent the message (e.g. Bob)
+        // @param message: Contents of the sent message (e.g. "Hello")
+        virtual void Message(const string& roomId /* @index */, const string& user, const string& message) = 0;
+    };
+
+    // @brief Joins a messaging room
+    // @details If the specified room does not exist, then it will be created.
+    // @param room: Name of the room to join (e.g. Lounge)
+    // @param user: Name of ther user to join as (e.g. Bob)
+    // @param roomId: Token for accessing the room (unique for a user) (e.g. 1e217990dd1cd4f66124)
+    // @param secure: Denotes if the room is secure (by default not secure)
+    // @param acl: Access control list
+    // @retval ERROR_ILLEGAL_STATE: User name is already taken (i.e. the user has already joined the room)
+    // @retval ERROR_BAD_REQUEST: User name or room name is invalid
+    virtual Core::hresult Join(const string& room, const string& user, const security secure /* @optional */,
+                               IStringIterator* const acl /* @optional */, string& roomId /* @out */) = 0;
+
+    // @brief Leaves a messaging room
+    // @details The room ID becomes invalid after this call.
+    //          If there are no more users, the room will be destroyed and related resources freed.
+    // @param roomId: Token of the room to leave (e.g. 1e217990dd1cd4f66124)
+    // @retval ERROR_UNKNOWN_KEY: The room token is invalid
+    virtual Core::hresult Leave(const string& roomId) = 0;
+
+    // @brief Sends a messsage to a messaging room
+    // @param roomId: Token of the room to send the message to (e.g. 1e217990dd1cd4f66124)
+    // @param message: Contents of the message to send (e.g. "Hello")
+    // @retval ERROR_UNKNOWN_KEY: The room token is invalid
+    // @retval ERROR_BAD_REQUEST: The message is invalid
+    virtual Core::hresult Send(const string& roomId, const string& message) = 0;
+};
+
 } // namespace Exchange
 
-} // namespace WPEFramework
+}
