@@ -40,16 +40,16 @@ namespace Exchange {
             enum { ID = ID_ROOMADMINISTRATOR_ROOM };
 
             struct EXTERNAL ICallback : virtual public Core::IUnknown {
-            enum { ID = ID_ROOMADMINISTRATOR_ROOM_CALLBACK };
+                enum { ID = ID_ROOMADMINISTRATOR_ROOM_CALLBACK };
 
-            virtual void Joined(const string& userId) = 0;
-            virtual void Left(const string& userId) = 0;
+                virtual void Joined(const string& userId) = 0;
+                virtual void Left(const string& userId) = 0;
             };
 
             struct EXTERNAL IMsgNotification : virtual public Core::IUnknown {
-            enum { ID = ID_ROOMADMINISTRATOR_ROOM_MSGNOTIFICATION };
+                enum { ID = ID_ROOMADMINISTRATOR_ROOM_MSGNOTIFICATION };
 
-            virtual void Message(const string& message, const string& userId) = 0;
+                virtual void Message(const string& message, const string& userId) = 0;
             };
 
             virtual void SendMessage(const string& message) = 0;
@@ -128,7 +128,7 @@ namespace Exchange {
             // @retval ERROR_BAD_REQUEST: User name or room name is invalid
             // @retval ERROR_PRIVILEGED_REQUEST Room security errors
             virtual Core::hresult Join(const string& room, const string& user, const security secure /* @optional */,
-                                    IStringIterator* const acl /* @optional */, string& roomId /* @out */) = 0;
+                                       IStringIterator* const acl /* @optional */, string& roomId /* @out */) = 0;
 
             // @brief Leaves a messaging room
             // @details The room ID becomes invalid after this call.
