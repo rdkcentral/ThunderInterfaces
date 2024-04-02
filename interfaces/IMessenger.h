@@ -141,7 +141,6 @@ namespace Exchange {
             // @param roomId: Token of the room to send the message to (e.g. 1e217990dd1cd4f66124)
             // @param message: Contents of the message to send (e.g. "Hello!")
             // @retval ERROR_UNKNOWN_KEY: The room token is invalid
-            // @retval ERROR_BAD_REQUEST: The message is invalid
             virtual Core::hresult Send(const string& roomId, const string& message) = 0;
         };
 
