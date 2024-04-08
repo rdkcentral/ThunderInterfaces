@@ -127,8 +127,9 @@ namespace Exchange {
             // @retval ERROR_ILLEGAL_STATE: User name is already taken (i.e. the user has already joined the room)
             // @retval ERROR_BAD_REQUEST: User name or room name is invalid
             // @retval ERROR_PRIVILEGED_REQUEST Room security errors
-            virtual Core::hresult Join(const string& room, const string& user, const security secure /* @optional */,
-                                       IStringIterator* const acl /* @optional */, string& roomId /* @out */) = 0;
+            virtual Core::hresult Join(const Core::JSONRPC::Context& context, const string& room, const string& user,
+                                       const security secure /* @optional */, IStringIterator* const acl /* @optional */,
+                                       string& roomId /* @out */) = 0;
 
             // @brief Leaves a messaging room
             // @details The room ID becomes invalid after this call.
