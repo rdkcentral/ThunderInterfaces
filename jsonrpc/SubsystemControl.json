@@ -26,7 +26,9 @@
         "bluetooth",
         "websource",
         "graphics",
-        "streaming"
+        "streaming",
+        "cryptography",
+        "installation"
       ],
       "description": "The subsystem that needs to be controller",
       "example": "network"
