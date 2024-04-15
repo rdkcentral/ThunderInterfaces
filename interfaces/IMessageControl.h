@@ -42,17 +42,22 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
     };
 
     using IControlIterator = RPC::IIteratorType<Control, ID_MESSAGE_CONTROL_ITERATOR>;
+    using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
     // @brief Enables/disables a message control
     // @param type: Message type
     // @param module: Name of the module the message is originating from (e.g. Plugin_BluetoothControl)
     // @param category: Name of the message category (e.g. Information)
     // @param enabled: Denotes if control should be enabled (true) or disabled (false)
-    virtual uint32_t Enable(const messagetype type, const string& category, const string& module, const bool enabled) = 0;
+    virtual Core::hresult Enable(const messagetype type, const string& category, const string& module, const bool enabled) = 0;
+
+    // @property
+    // @brief Retrieves a list of current message modules
+    virtual Core::hresult Modules(IStringIterator*& modules /* @out */) const = 0;
 
     // @property
     // @brief Retrieves a list of current message controls
-    virtual uint32_t Controls(IControlIterator*& control /* @out */) const = 0;
+    virtual Core::hresult Controls(const string& module /* @index */, IControlIterator*& control /* @out */) const = 0;
   };
 
 } // namespace Exchange
