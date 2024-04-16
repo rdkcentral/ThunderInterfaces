@@ -20,7 +20,7 @@
 #pragma once
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
     struct EXTERNAL IRtspClient : virtual public Core::IUnknown {
         enum { ID = ID_RTSPCLIENT };

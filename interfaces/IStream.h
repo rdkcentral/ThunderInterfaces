@@ -22,7 +22,7 @@
 
 #define WPEPLAYER_PROCESS_NODE_ID "/tmp/player"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     struct EXTERNAL IStream : virtual public Core::IUnknown {

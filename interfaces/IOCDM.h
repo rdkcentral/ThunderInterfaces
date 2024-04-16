@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
 enum OCDM_RESULT : uint32_t {
@@ -392,5 +392,5 @@ private:
 
 
 } //namespace Exchange
-} //namespace WPEFramework
+} //namespace Thunder
 

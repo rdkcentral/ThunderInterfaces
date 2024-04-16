@@ -20,7 +20,7 @@
 #pragma once
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     // This interface gives direct access to a time synchronize / update
@@ -41,4 +41,4 @@ namespace Exchange {
     };
 
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

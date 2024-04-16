@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.12)
 
 project(Interfaces)
 
-find_package(WPEFramework)
+find_package(Thunder)
 
 set(INTERFACES_PATTERNS "I*.h" CACHE STRING "Patterns matching files for which stubs should be generated")
 set(JSONRPC_PATTERNS "*.json" CACHE STRING "Patterns matching files for which json stubs should be generated")
