@@ -255,9 +255,6 @@
     <CustomBuild Include="..\jsonrpc\LocationSync.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Messenger.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Netflix.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
