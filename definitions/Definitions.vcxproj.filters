@@ -345,5 +345,8 @@
     <CustomBuild Include="..\interfaces\IDictionary.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\interfaces\IMessenger.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>
