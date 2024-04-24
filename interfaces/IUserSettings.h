@@ -23,7 +23,7 @@
 
 namespace WPEFramework {
 namespace Exchange {
-
+// @json 1.0.0
 struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
   enum { ID = ID_USER_SETTINGS };
 
