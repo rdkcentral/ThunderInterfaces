@@ -303,7 +303,8 @@
         "samsung",
         "technicolor",
         "Amlogic_Inc",
-        "raspberrypi_org"
+        "raspberrypi_org",
+        "Pioneer"
       ],
       "description": "Device manufacturer",
       "example": "pace"
@@ -352,7 +353,8 @@
       "enum": [
         "dunfell",
         "morty",
-        "daisy"
+        "daisy",
+        "kirkstone"
       ],
       "description": "Yocto version",
       "example": "dunfell"
