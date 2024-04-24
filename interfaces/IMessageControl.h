@@ -56,7 +56,7 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
     virtual Core::hresult Modules(IStringIterator*& modules /* @out */) const = 0;
 
     // @property
-    // @brief Retrieves a list of current message controls
+    // @brief Retrieves a list of current message controls for a specific module
     virtual Core::hresult Controls(const string& module /* @index */, IControlIterator*& control /* @out */) const = 0;
   };
 
