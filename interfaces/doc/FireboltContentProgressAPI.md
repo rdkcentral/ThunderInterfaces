@@ -14,7 +14,7 @@ FireboltContentProgress interface for Thunder framework.
 
 - [Introduction](#head.Introduction)
 - [Description](#head.Description)
-- [Properties](#head.Properties)
+- [Methods](#head.Methods)
 - [Notifications](#head.Notifications)
 
 <a name="head.Introduction"></a>
@@ -23,7 +23,7 @@ FireboltContentProgress interface for Thunder framework.
 <a name="head.Scope"></a>
 ## Scope
 
-This document describes purpose and functionality of the FireboltContentProgress interface (version 1.0.0). It includes detailed specification about its properties provided and notifications sent.
+This document describes purpose and functionality of the FireboltContentProgress interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
 
 <a name="head.Case_Sensitivity"></a>
 ## Case Sensitivity
@@ -63,42 +63,40 @@ The table below provides and overview of terms and abbreviations used in this do
 
 FireboltContentProgress JSON-RPC interface.
 
-<a name="head.Properties"></a>
-# Properties
+<a name="head.Methods"></a>
+# Methods
 
-The following properties are provided by the FireboltContentProgress interface:
+The following methods are provided by the FireboltContentProgress interface:
 
-FireboltContentProgress interface properties:
+FireboltContentProgress interface methods:
 
-| Property | Description |
+| Method | Description |
 | :-------- | :-------- |
-| [Permit](#property.Permit) | Current status of resuming permissions |
-| [ResumePoint](#property.ResumePoint) (write-only) | Resume point details |
-| [ResumePoints](#property.ResumePoints) (read-only) | List of resume points |
+| [PermitResumePoints](#method.PermitResumePoints) | Sets resume point permission |
+| [UpdateResumePoint](#method.UpdateResumePoint) | Adds, updates or removes a resume point for/from an asset |
+| [ResumePoints](#method.ResumePoints) | Retrieves a list of resume points |
 
-<a name="property.Permit"></a>
-## *Permit [<sup>property</sup>](#head.Properties)*
+<a name="method.PermitResumePoints"></a>
+## *PermitResumePoints [<sup>method</sup>](#head.Methods)*
 
-Provides access to the current status of resuming permissions.
+Sets resume point permission.
 
 ### Description
 
-Allows to opt-out from storing progress
+AppID shall be passed through the security token.
 
-### Value
+### Parameters
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property) | object | Current status of resuming permissions |
-| (property).value | boolean | *...* |
-
-> The *appid* argument shall be passed as the index to the property, e.g. ``FireboltContentProgress.1.Permit@xyz``. ID of the application.
+| params | object | *...* |
+| params.allow | boolean | Allow or deny use of resume points |
 
 ### Result
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | boolean | Current status of resuming permissions |
+| result | null | Always null |
 
 ### Errors
 
@@ -108,157 +106,137 @@ Allows to opt-out from storing progress
 
 ### Example
 
-#### Get Request
+#### Request
 
 ```json
 {
   "jsonrpc": "2.0",
   "id": 42,
-  "method": "FireboltContentProgress.1.Permit@xyz"
-}
-```
-
-#### Get Response
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 42,
-  "result": false
-}
-```
-
-#### Set Request
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 42,
-  "method": "FireboltContentProgress.1.Permit@xyz",
+  "method": "FireboltContentProgress.1.PermitResumePoints",
   "params": {
-    "value": false
+    "allow": false
   }
 }
 ```
 
-#### Set Response
+#### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": "null"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a name="property.ResumePoint"></a>
-## *ResumePoint [<sup>property</sup>](#head.Properties)*
+<a name="method.UpdateResumePoint"></a>
+## *UpdateResumePoint [<sup>method</sup>](#head.Methods)*
 
-Provides access to the resume point details.
-
-> This property is **write-only**.
+Adds, updates or removes a resume point for/from an asset.
 
 ### Description
 
-Adds, updates or removes a resume point from/to an asset. Set Current and Duration fileds to 0 to remove the resume point.
+AppID shall be passed through the security token. Note that setting WatchedOn field to 0 removes the resume point.
 
-### Value
+### Parameters
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property) | object | Resume point details |
-| (property).value | object | Details of the resume point to add, update or remove |
-| (property).value.assetid | string | ID of the asset |
-| (property).value.current | integer | Position in seconds where the asset was paused |
-| (property).value.duration | integer | Duration of the asset in seconds |
-| (property).value?.watchedon | string | <sup>*(optional)*</sup> Date/time when the assed was paused (ISO 8601 Date/Time) |
-| (property).value?.iscompleted | boolean | <sup>*(optional)*</sup> Whether or not this viewing is considered complete as per the app's definition thereof |
+| params | object | *...* |
+| params.resumepoint | object | Details of the resume point to add, update or remove |
+| params.resumepoint.assetid | string | ID of the asset |
+| params.resumepoint.current | integer | Position in seconds where the asset was paused |
+| params.resumepoint.duration | integer | Duration of the asset in seconds |
+| params.resumepoint.watchedon | integer | Date/time when the assed was paused (in epoch) |
 
-> The *appid* argument shall be passed as the index to the property, e.g. ``FireboltContentProgress.1.ResumePoint@xyz``. ID of the application.
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | Always null |
 
 ### Errors
 
 | Message | Description |
 | :-------- | :-------- |
-| ```ERROR_BAD_REQUEST``` | App ID or the resume point details were invalid |
+| ```ERROR_BAD_REQUEST``` | Resume point details were invalid |
 | ```ERROR_ILLEGAL_STATE``` | Resume points are not permitted |
 | ```ERROR_PRIVILIGED_REQUEST``` | App security errors |
 
 ### Example
 
-#### Set Request
+#### Request
 
 ```json
 {
   "jsonrpc": "2.0",
   "id": 42,
-  "method": "FireboltContentProgress.1.ResumePoint@xyz",
+  "method": "FireboltContentProgress.1.UpdateResumePoint",
   "params": {
-    "value": {
+    "resumepoint": {
       "assetid": "partner.com/entity/123",
       "current": 125,
       "duration": 5400,
-      "watchedon": "2021-04-23T18:25:43.511Z",
-      "iscompleted": false
+      "watchedon": 1714395197
     }
   }
 }
 ```
 
-#### Set Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": "null"
-}
-```
-
-<a name="property.ResumePoints"></a>
-## *ResumePoints [<sup>property</sup>](#head.Properties)*
-
-Provides access to the list of resume points.
-
-> This property is **read-only**.
-
-### Value
-
-> The *appid* argument shall be passed as the index to the property, e.g. ``FireboltContentProgress.1.ResumePoints@xyz``. ID of the application.
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | array | List of resume points |
-| result[#] | object | *...* |
-| result[#].assetid | string | ID of the asset |
-| result[#].current | integer | Position in seconds where the asset was paused |
-| result[#].duration | integer | Duration of the asset in seconds |
-| result[#]?.watchedon | string | <sup>*(optional)*</sup> Date/time when the assed was paused (ISO 8601 Date/Time) |
-| result[#]?.iscompleted | boolean | <sup>*(optional)*</sup> Whether or not this viewing is considered complete as per the app's definition thereof |
-
-### Errors
-
-| Message | Description |
-| :-------- | :-------- |
-| ```ERROR_BAD_REQUEST``` | App ID was invalid |
-| ```ERROR_ILLEGAL_STATE``` | Resume points are not permitted |
-| ```ERROR_PRIVILIGED_REQUEST``` | App security errors |
-
-### Example
-
-#### Get Request
+#### Response
 
 ```json
 {
   "jsonrpc": "2.0",
   "id": 42,
-  "method": "FireboltContentProgress.1.ResumePoints@xyz"
+  "result": null
 }
 ```
 
-#### Get Response
+<a name="method.ResumePoints"></a>
+## *ResumePoints [<sup>method</sup>](#head.Methods)*
+
+Retrieves a list of resume points.
+
+### Description
+
+AppID shall be passed through the security token.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| resumepoints | array | List of resume points |
+| resumepoints[#] | object | *...* |
+| resumepoints[#].assetid | string | ID of the asset |
+| resumepoints[#].current | integer | Position in seconds where the asset was paused |
+| resumepoints[#].duration | integer | Duration of the asset in seconds |
+| resumepoints[#].watchedon | integer | Date/time when the assed was paused (in epoch) |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ERROR_ILLEGAL_STATE``` | Resume points are not permitted |
+| ```ERROR_PRIVILIGED_REQUEST``` | App security errors |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "FireboltContentProgress.1.ResumePoints"
+}
+```
+
+#### Response
 
 ```json
 {
@@ -269,8 +247,7 @@ Provides access to the list of resume points.
       "assetid": "partner.com/entity/123",
       "current": 125,
       "duration": 5400,
-      "watchedon": "2021-04-23T18:25:43.511Z",
-      "iscompleted": false
+      "watchedon": 1714395197
     }
   ]
 }
@@ -288,7 +265,7 @@ FireboltContentProgress interface events:
 | Notification | Description |
 | :-------- | :-------- |
 | [OnPermitChanged](#notification.OnPermitChanged) | Notifies that permision for resume points value has been changed |
-| [OnResumePointChanged](#notification.OnResumePointChanged) | Notifies that a resume point has been added, changed or removed |
+| [OnResumePointChanged](#notification.OnResumePointChanged) | Notifies that a resume point has been added, updated or removed |
 
 <a name="notification.OnPermitChanged"></a>
 ## *OnPermitChanged [<sup>notification</sup>](#head.Notifications)*
@@ -335,14 +312,11 @@ Notifies that permision for resume points value has been changed.
 <a name="notification.OnResumePointChanged"></a>
 ## *OnResumePointChanged [<sup>notification</sup>](#head.Notifications)*
 
-Notifies that a resume point has been added, changed or removed.
+Notifies that a resume point has been added, updated or removed.
 
 ### Parameters
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object | *...* |
-| params.assetid | string | ID of the asset of the resume point that was modified |
+This notification carries no parameters.
 
 > The *appId* argument will be passed within the designator, e.g. *abc.client.OnResumePointChanged*.
 
@@ -367,10 +341,7 @@ Notifies that a resume point has been added, changed or removed.
 ```json
 {
   "jsonrpc": "2.0",
-  "method": "abc.client.OnResumePointChanged",
-  "params": {
-    "assetid": "partner.com/entity/123"
-  }
+  "method": "abc.client.OnResumePointChanged"
 }
 ```
 
