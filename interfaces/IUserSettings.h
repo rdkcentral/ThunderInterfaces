@@ -23,7 +23,7 @@
 
 namespace WPEFramework {
 namespace Exchange {
-// @json 1.0.0
+/* @json */
 struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
   enum { ID = ID_USER_SETTINGS };
 
@@ -54,9 +54,9 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
   };
 
   /** Register notification interface */
-  virtual uint32_t Register(Exchange::IUserSettings::INotification *notification) = 0;
+  virtual uint32_t Register(Exchange::IUserSettings::INotification *notification /* @in */) = 0;
   /** Unregister notification interface */
-  virtual uint32_t Unregister(Exchange::IUserSettings::INotification *notification) = 0;
+  virtual uint32_t Unregister(Exchange::IUserSettings::INotification *notification /* @in */) = 0;
 
   /** Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive
    * tracks over normal audio track when enabled.*/
