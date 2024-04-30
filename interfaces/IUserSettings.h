@@ -60,7 +60,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
 
   /** Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive
    * tracks over normal audio track when enabled.*/
-  virtual uint32_t SetAudioDescription(bool enabled) = 0;
+  virtual uint32_t SetAudioDescription(const bool &enabled /* @in */) = 0;
   /** Gets the current AudioDescription setting.*/
   virtual uint32_t GetAudioDescription(bool &enabled /* @out */) const = 0;
 
@@ -69,14 +69,14 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
    * The players will pick the audio track that has the best match compared with
    * this list. In the absence of a matching track, the player should by best
    * effort select the preferred audio track.*/
-  virtual uint32_t SetPreferredAudioLanguages(const string &preferredLanguages) = 0;
+  virtual uint32_t SetPreferredAudioLanguages(const string &preferredLanguages  /* @in */) = 0;
   /** Gets the current PreferredAudioLanguages setting.*/
   virtual uint32_t GetPreferredAudioLanguages(string &preferredLanguages /* @out */) const = 0;
 
   /** Sets the preferred locale in a full BCP 47 value, including script,
    * region, variant. I.e. "en-US", "es-US", "en-CA", "fr-CA"
    */
-  virtual uint32_t SetLocale(const string &locale) = 0;
+  virtual uint32_t SetLocale(const string &locale  /* @in */) = 0;
   /** Gets the preferred locale */
   virtual uint32_t GetLocale(string &locale /* @out */) const = 0;
 
@@ -93,7 +93,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
    * players or apps that decode-display internally.
    * @param enabled Sets the state
    */
-  virtual uint32_t SetCaptions(bool enabled) = 0;
+  virtual uint32_t SetCaptions(const bool &enabled  /* @in */) = 0;
   /**
    * @brief Gets the Captions setting.
    * @param enabled Receives the state
@@ -108,7 +108,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
    * effort select the preferred subtitle track.
    * @param preferredLanguages Is the list to set (e.g. "eng,fra")
    */
-  virtual uint32_t SetPreferredCaptionsLanguages(const string &preferredLanguages) = 0;
+  virtual uint32_t SetPreferredCaptionsLanguages(const string &preferredLanguages  /* @in */) = 0;
   /**
    * @brief Gets the current PreferredCaptionsLanguages setting.
    */
@@ -119,7 +119,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
    * Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
    * @param service Identifies the service to display e.g. "CC3".
    */
-  virtual uint32_t SetPreferredClosedCaptionService(const std::string &service) = 0;
+  virtual uint32_t SetPreferredClosedCaptionService(const std::string &service  /* @in */) = 0;
   /**
    * @brief Gets the current PreferredClosedCaptionService setting.
    * @param service Identifies the service to display e.g. "CC3".
