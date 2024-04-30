@@ -147,7 +147,7 @@ AppID shall be passed through the security token. Note that setting WatchedOn fi
 | params.resumepoint.assetid | string | ID of the asset |
 | params.resumepoint.current | integer | Position in seconds where the asset was paused |
 | params.resumepoint.duration | integer | Duration of the asset in seconds |
-| params.resumepoint.watchedon | integer | Date/time when the assed was paused (in epoch) |
+| params.resumepoint.watchedon | string | Date/time when the assed was paused |
 
 ### Result
 
@@ -177,7 +177,7 @@ AppID shall be passed through the security token. Note that setting WatchedOn fi
       "assetid": "partner.com/entity/123",
       "current": 125,
       "duration": 5400,
-      "watchedon": 1714395197
+      "watchedon": "2024-04-30T05:33:46Z"
     }
   }
 }
@@ -215,7 +215,7 @@ This method takes no parameters.
 | resumepoints[#].assetid | string | ID of the asset |
 | resumepoints[#].current | integer | Position in seconds where the asset was paused |
 | resumepoints[#].duration | integer | Duration of the asset in seconds |
-| resumepoints[#].watchedon | integer | Date/time when the assed was paused (in epoch) |
+| resumepoints[#].watchedon | string | Date/time when the assed was paused |
 
 ### Errors
 
@@ -247,7 +247,7 @@ This method takes no parameters.
       "assetid": "partner.com/entity/123",
       "current": 125,
       "duration": 5400,
-      "watchedon": 1714395197
+      "watchedon": "2024-04-30T05:33:46Z"
     }
   ]
 }

@@ -38,7 +38,7 @@ namespace Exchange {
                 string AssetId /* @brief ID of the asset (e.g. partner.com/entity/123) */;
                 uint16_t Current /* @brief Position in seconds where the asset was paused (e.g. 125) */;
                 uint16_t Duration /* @brief Duration of the asset in seconds (e.g. 5400), zero for live content */;
-                uint64_t WatchedOn /* @brief Date/time when the assed was paused (in epoch) (e.g. 1714395197) */;
+                Core::Time WatchedOn /* @brief Date/time when the assed was paused (e.g. 2024-04-30T05:33:46Z) */;
             };
 
             using IResumePointInfoIterator = RPC::IIteratorType<ResumePointInfo, ID_FIREBOLT_CONTENTPROGRESS_APPRESUMEPOINTS_RESUMEPOINTINFO_ITERATOR>;
