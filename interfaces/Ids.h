@@ -381,7 +381,7 @@ namespace Exchange {
         ID_DNS_RECORD                                = ID_DNS_SERVER + 2,
 
         ID_USER_SETTINGS                             = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4F0,
-        ID_USER_SETTINGS_NOTIFICATION                = ID_USER_SETTINGS + 1,
+        ID_USER_SETTINGS_NOTIFICATION                = ID_USER_SETTINGS + 1
     };
 }
 }
