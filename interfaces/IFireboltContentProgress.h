@@ -97,7 +97,7 @@ namespace Exchange {
             // @details AppID shall be passed through the security token.
             // @param allow: Allow or deny use of resume points
             // @retval ERROR_PRIVILIGED_REQUEST: App security errors
-            virtual Core::hresult PermitResumePoints(const Core::JSONRPC::Context& context, const bool allow) const = 0;
+            virtual Core::hresult PermitResumePoints(const Core::JSONRPC::Context& context, const bool allow) = 0;
 
             // @text UpdateResumePoint
             // @brief Adds, updates or removes a resume point for/from an asset
