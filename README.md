@@ -1,3 +1,3 @@
 # ThunderInterfaces
 
-Documentation: https://webplatformforembedded.github.io/ServicesInterfaceDocumentation/DeviceInfoAPI/
+Documentation: https://webplatformforembedded.github.io/ServicesInterfaceDocumentation
