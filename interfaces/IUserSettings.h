@@ -23,107 +23,121 @@
 
 namespace WPEFramework {
 namespace Exchange {
-/* @json */
+ // @json
 struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
   enum { ID = ID_USER_SETTINGS };
 
+  // @event
   struct EXTERNAL INotification : virtual public Core::IUnknown {
     enum { ID = ID_USER_SETTINGS_NOTIFICATION };
 
-    /** The AudioDescription setting has changed. */
+    // @brief The AudioDescription setting has changed.
+    // @param enabled: Enabled/Disabled.
     virtual void OnAudioDescriptionChanged(bool enabled) = 0;
-    /** The PreferredAudioLanguages setting has changed. */
+
+    // @brief The preferredLanguages setting has changed.
+    // @param preferredLanguages: PreferredLanguages.
     virtual void OnPreferredAudioLanguagesChanged(const string preferredLanguages) = 0;
-    /** The Locale setting has changed. */
+
+    // @brief The Locale setting has changed.
+    // @param locale: Locale.
     virtual void OnLocaleChanged(const string &locale) = 0;
-    /**
-     * @brief The Captions setting has changed.
-     * @param enabled Indicates the new setting
-     */
+
+    // @brief The Captions setting has changed.
+    // @param enabled: Enabled/Disabled.
     virtual void OnCaptionsChanged(bool enabled) = 0;
-    /**
-     * @brief The PreferredCaptionsLanguages setting has changed.
-     * @param preferredLanguages Indicates the new setting
-     */
+
+    // @brief The PreferredCaptionsLanguages setting has changed.
+    // @param preferredLanguages: PreferredLanguages.
     virtual void OnPreferredCaptionsLanguagesChanged(const string &preferredLanguages) = 0;
-    /**
-     * @brief The PreferredClosedCaptionService setting has changed.
-     * @param service Valid values for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
-     */
+
+    // @brief The PreferredClosedCaptionService setting has changed.
+    // @param service: "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]".
     virtual void OnPreferredClosedCaptionServiceChanged(const std::string &service) = 0;
   };
 
-  /** Register notification interface */
-  virtual uint32_t Register(Exchange::IUserSettings::INotification *notification /* @in */) = 0;
-  /** Unregister notification interface */
-  virtual uint32_t Unregister(Exchange::IUserSettings::INotification *notification /* @in */) = 0;
+  virtual uint32_t Register(Exchange::IUserSettings::INotification* notification /* @in */) = 0;
+  virtual uint32_t Unregister(Exchange::IUserSettings::INotification* notification /* @in */) = 0;
 
-  /** Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive
-   * tracks over normal audio track when enabled.*/
+  // @property
+  // @brief Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled
+  // @param enabled: Enabled/Disabled
   virtual uint32_t SetAudioDescription(const bool &enabled /* @in */) = 0;
-  /** Gets the current AudioDescription setting.*/
+
+  // @property
+  // @brief Gets the current AudioDescription setting
+  // @param enabled: Enabled/Disabled
   virtual uint32_t GetAudioDescription(bool &enabled /* @out */) const = 0;
 
-  /** A prioritized list of ISO 639-2/B codes for the preferred audio languages,
-   * expressed as a comma separated lists of languages of zero of more elements.
-   * The players will pick the audio track that has the best match compared with
-   * this list. In the absence of a matching track, the player should by best
-   * effort select the preferred audio track.*/
+  // @property
+  // @brief A prioritized list of ISO 639-2/B codes for the preferred audio languages,
+  // expressed as a comma separated lists of languages of zero of more elements.
+  // The players will pick the audio track that has the best match compared with
+  // this list. In the absence of a matching track, the player should by best
+  // effort select the preferred audio track.*/
+  // @param preferredLanguages: PreferredLanguages
   virtual uint32_t SetPreferredAudioLanguages(const string &preferredLanguages  /* @in */) = 0;
-  /** Gets the current PreferredAudioLanguages setting.*/
+
+  // @property  
+  // @brief Gets the current PreferredAudioLanguages setting
+  // @param preferredLanguages: PreferredLanguages
   virtual uint32_t GetPreferredAudioLanguages(string &preferredLanguages /* @out */) const = 0;
 
-  /** Sets the preferred locale in a full BCP 47 value, including script,
-   * region, variant. I.e. "en-US", "es-US", "en-CA", "fr-CA"
-   */
+  // @property  
+  // @brief Sets the preferred locale in a full BCP 47 value, including script, region, variant
+  // @param locale: "en-US", "es-US", "en-CA", "fr-CA"
   virtual uint32_t SetLocale(const string &locale  /* @in */) = 0;
-  /** Gets the preferred locale */
+
+  // @property  
+  // @brief Gets the preferred locale
+  // @param locale: "en-US", "es-US", "en-CA", "fr-CA"
   virtual uint32_t GetLocale(string &locale /* @out */) const = 0;
 
-   /**
-   * @brief Sets Captions ON/OFF.
-   * @details A setting of ON indicates that Players should select a subtitle track for presentation
-   * The Setting does not influence any running sessions. It is up to the player to enforce the setting.
-   * This is a global state persisted by the TextTrack plug-in applying to all forms of text; closed captions, Captions
-   * and timed text types.
-   * Media players should to listen to OnCaptionsChanged notifications to react to platform wide dynamic state changes
-   * of this state while a playback is active.
-   * When media players start playback, they should also call the GetCaptions method to retrieve the current enabled state.
-   * This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media
-   * players or apps that decode-display internally.
-   * @param enabled Sets the state
-   */
+  // @property  
+  // @brief brief Sets Captions ON/OFF.
+  // @details A setting of ON indicates that Players should select a subtitle track for presentation
+  // The Setting does not influence any running sessions. It is up to the player to enforce the setting.
+  // This is a global state persisted by the TextTrack plug-in applying to all forms of text; closed captions, Captions
+  // and timed text types.
+  // Media players should to listen to OnCaptionsChanged notifications to react to platform wide dynamic state changes
+  // of this state while a playback is active.
+  // When media players start playback, they should also call the GetCaptions method to retrieve the current enabled state.
+  // This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media
+  // players or apps that decode-display internally 
+  // @param enabled Sets the state
   virtual uint32_t SetCaptions(const bool &enabled  /* @in */) = 0;
-  /**
-   * @brief Gets the Captions setting.
-   * @param enabled Receives the state
-   */
+
+  // @property  
+  // @brief Gets the Captions setting.
+  // @param enabled Receives the state
   virtual uint32_t GetCaptions(bool &enabled /* @out */) const = 0;
- /**
-   * @brief Set preferred languages for captions
-   * @details A prioritized list of ISO 639-2/B codes for the preferred Captions languages,
-   * expressed as a comma separated lists of languages of zero of more elements.
-   * The players will pick the subtitle track that has the best match compared with
-   * this list. In the absence of a matching track, the player should by best
-   * effort select the preferred subtitle track.
-   * @param preferredLanguages Is the list to set (e.g. "eng,fra")
-   */
+
+  // @property  
+  // @brief Set preferred languages for captions.
+  // @details A prioritized list of ISO 639-2/B codes for the preferred Captions languages,
+  // expressed as a comma separated lists of languages of zero of more elements.
+  // The players will pick the subtitle track that has the best match compared with
+  // this list. In the absence of a matching track, the player should by best
+  // effort select the preferred subtitle track. 
+  // @param preferredLanguages Is the list to set (e.g. "eng,fra")
   virtual uint32_t SetPreferredCaptionsLanguages(const string &preferredLanguages  /* @in */) = 0;
-  /**
-   * @brief Gets the current PreferredCaptionsLanguages setting.
-   */
+
+  // @property  
+  // @brief Gets the current PreferredCaptionsLanguages setting.
+  // @param preferredLanguages (e.g. "eng,fra")
   virtual uint32_t GetPreferredCaptionsLanguages(string &preferredLanguages /* @out */) const = 0;
- /**
-   * @brief Sets the PreferredClosedCaptionService.
-   * @details The setting should be honored by the player. The behaviour of AUTO may be player specific.
-   * Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
-   * @param service Identifies the service to display e.g. "CC3".
-   */
+
+  // @property  
+  // @brief Sets the PreferredClosedCaptionService.
+  // @details The setting should be honored by the player. The behaviour of AUTO may be player specific.
+  // Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]" 
+  // @param service Identifies the service to display e.g. "CC3".
+
   virtual uint32_t SetPreferredClosedCaptionService(const std::string &service  /* @in */) = 0;
-  /**
-   * @brief Gets the current PreferredClosedCaptionService setting.
-   * @param service Identifies the service to display e.g. "CC3".
-   */
+
+  // @property  
+  // @brief Gets the current PreferredClosedCaptionService setting.
+  // @param service Identifies the service to display e.g. "CC3".
   virtual uint32_t GetPreferredClosedCaptionService(std::string &service /* @out */) const = 0;
 };
 } // namespace Exchange
