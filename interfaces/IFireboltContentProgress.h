@@ -24,9 +24,27 @@
 
 namespace WPEFramework {
 
-namespace Exchange {
+namespace Firebolt {
 
-    struct EXTERNAL IFireboltContentProgress : virtual public Core::IUnknown {
+    struct EXTERNAL IPermission : virtual public Core::IUnknown {
+
+        enum { ID = ID_FIREBOLT_PERMISSION };
+
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
+
+            enum { ID = ID_FIREBOLT_PERMISSION_NOTIFICATION };
+
+            virtual void PermissionChanged(const string& appId) = 0;
+        };
+
+        virtual Core::hresult Register(INotification* sink) = 0;
+        virtual Core::hresult Unregister(const INotification* sink) = 0;
+
+        virtual Core::hresult Permission(const string& appId, const type permissionType, const bool allow) = 0;
+        virtual Core::hresult IsPermitted(const string& appId, const type permissionType, bool& allowed /* @out */) const = 0;
+   };
+
+    struct EXTERNAL IContentProgress : virtual public Core::IUnknown {
 
         enum { ID = ID_FIREBOLT_CONTENTPROGRESS };
 
@@ -47,19 +65,15 @@ namespace Exchange {
 
                 enum { ID = ID_FIREBOLT_CONTENTPROGRESS_APPRESUMEPOINTS_NOTIFICATION };
 
-                virtual void PermitChanged() = 0;
-                virtual void ResumePointChanged() = 0;
+                virtual void ResumePointChanged(const string& appId) = 0;
             };
 
             virtual Core::hresult Register(INotification* sink) = 0;
             virtual Core::hresult Unregister(const INotification* sink) = 0;
 
-            virtual Core::hresult Permit(const bool allow) = 0;
-            virtual Core::hresult IsPermitted(bool& allowed /* @out */) const = 0;
-
             virtual Core::hresult Update(const ResumePointInfo& resumePoint) = 0;
 
-            virtual Core::hresult Catalogue(IResumePointInfoIterator*& resumePoints /* @out */) const = 0;
+            virtual Core::hresult Catalog(IResumePointInfoIterator*& resumePoints /* @out */) const = 0;
         };
 
         virtual Core::hresult AppResumePoints(const string& appId, IAppResumePoints*& appResumePoints /* @out */) = 0;
@@ -68,11 +82,49 @@ namespace Exchange {
     namespace JSONRPC {
 
         /* @json 1.0.0 */
-        struct EXTERNAL IFireboltContentProgress {
+        struct EXTERNAL IPermission {
+            virtual ~IPermission() = default;
 
-            virtual ~IFireboltContentProgress() = default;
+            // @event
+            struct EXTERNAL INotification {
 
-            using ResumePointInfo = Exchange::IFireboltContentProgress::IAppResumePoints::ResumePointInfo;
+                virtual ~INotification() = default;
+
+                // @brief Notifies that permision for resume points value has been changed
+                // @param appId: ID of the applocation for which this notification relates to
+                // @param allow: Allow or deny use of resume points
+                virtual void OnPermitChanged(const string& appId /* @index */, const bool allow) = 0;
+            };
+
+            // @brief   Registers for event notifications on changes of the Permission for
+            //          data associated with the given AppId.
+            // @details AppID shall be passed through the security token.
+            // @retval  ERROR_NONE, registration accepted
+            // @retval  ERROR_DUPLICATE, registration already accepted, second registration
+            //          not accepted.
+            virtual Core::hresult Register(const Core::JSONRPC::Context& context) = 0;
+
+            // @brief   Unregisters for event notifications on changes of the Permission for
+            //          data associated with the given AppId.
+            // @details AppID shall be passed through the security token.
+            // @retval  ERROR_NONE, unregistration succeeded .
+            // @retval  ERROR_UNKNOWN_KEY, unregistration failed as there was no entry 
+            //          for the given app.
+            virtual Core::hresult Unregister(const Core::JSONRPC::Context& context) = 0;
+
+            // @brief Sets resume point permission
+            // @details AppID shall be passed through the security token.
+            // @param allow: Allow or deny use of resume points
+            // @retval ERROR_PRIVILIGED_REQUEST: App security errors
+            virtual Core::hresult PermitResumePoints(const Core::JSONRPC::Context& context, const bool allow) = 0;
+        };
+
+        /* @json 1.0.0 */
+        struct EXTERNAL IContentProgress {
+
+            virtual ~IContentProgress() = default;
+
+            using ResumePointInfo = Firebolt::IContentProgress::IAppResumePoints::ResumePointInfo;
             using IResumePointInfoIterator = RPC::IIteratorType<ResumePointInfo, 0>;
 
             // @event
@@ -80,26 +132,28 @@ namespace Exchange {
 
                 virtual ~INotification() = default;
 
-                // @text OnPermitChanged
-                // @brief Notifies that permision for resume points value has been changed
-                // @param appId: ID of the applocation for which this notification relates to
-                // @param allow: Allow or deny use of resume points
-                virtual void OnPermitChanged(const string& appId /* @index */, const bool allow) = 0;
-
                 // @text OnResumePointChanged
                 // @brief Notifies that a resume point has been added, updated or removed
                 // @param appId: ID of the application for which this notification relates to
                 virtual void OnResumePointChanged(const string& appId /* @index */) = 0;
             };
 
-            // @text PermitResumePoints
-            // @brief Sets resume point permission
+            // @brief   Registers for event notifications on changes of the ResumePoint for
+            //          content associated with the given AppId.
             // @details AppID shall be passed through the security token.
-            // @param allow: Allow or deny use of resume points
-            // @retval ERROR_PRIVILIGED_REQUEST: App security errors
-            virtual Core::hresult PermitResumePoints(const Core::JSONRPC::Context& context, const bool allow) = 0;
+            // @retval  ERROR_NONE, registration accepted
+            // @retval  ERROR_DUPLICATE, registration already accepted, second registration
+            //          not accepted.
+            virtual Core::hresult Register(const Core::JSONRPC::Context& context) = 0;
 
-            // @text UpdateResumePoint
+            // @brief   Unregisters for event notifications on changes of the ResumePoint for
+            //          content associated with the given AppId.
+            // @details AppID shall be passed through the security token.
+            // @retval  ERROR_NONE, unregistration succeeded .
+            // @retval  ERROR_UNKNOWN_KEY, unregistration failed as there was no entry 
+            //          for the given app.
+            virtual Core::hresult Unregister(const Core::JSONRPC::Context& context) = 0;
+
             // @brief Adds, updates or removes a resume point for/from an asset
             // @details AppID shall be passed through the security token.
             //          Note that setting WatchedOn field to 0 removes the resume point.
@@ -109,7 +163,6 @@ namespace Exchange {
             // @retval ERROR_PRIVILIGED_REQUEST: App security errors
             virtual Core::hresult UpdateResumePoint(const Core::JSONRPC::Context& context, const ResumePointInfo& resumePoint) = 0;
 
-            // @text ResumePoints
             // @brief Retrieves a list of resume points
             // @details AppID shall be passed through the security token.
             // @param resumePoints: List of resume points
