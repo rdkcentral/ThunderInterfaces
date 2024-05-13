@@ -19,7 +19,6 @@
 
 #pragma once
 #include "Module.h"
-
 namespace WPEFramework {
 namespace Exchange {
 
@@ -42,6 +41,11 @@ namespace Exchange {
             virtual void OnAllowResumePointsChanged(const bool value) = 0;
 
         };
+        struct entitlements {
+                string entitlements;
+                string startTime;
+                string endTime;
+        };
 
         ~IFireboltPrivacy() override = default;
 
@@ -51,11 +55,14 @@ namespace Exchange {
 
         // @brief Provides Current resume watch status
         // @text:AllowResumePoints
-        virtual Core::hresult GetAllowResumePoints(bool& allow /* @out */) const = 0;
+        virtual Core::hresult GetAllowResumePoints(const string& appId, bool& allow /* @out */) const = 0;
         // @brief sets the current resume watch status
         // @text:SetAllowResumePoints
-        virtual Core::hresult SetAllowResumePoints(const bool& value ) = 0;
+        virtual Core::hresult SetAllowResumePoints(const string& appId, const bool& value ) = 0;
 
+        // @brief sets the current resume watch status
+        // @text:SignIn
+        virtual Core::hresult SignIn(const string& appId, const entitlements& entitilements) = 0;
         // @property
         // @brief Get the storage location
         // @text: GetStorageLocation1

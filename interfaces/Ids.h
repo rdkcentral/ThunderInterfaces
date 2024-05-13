@@ -381,7 +381,10 @@ namespace Exchange {
         ID_DNS_RECORD                                = ID_DNS_SERVER + 2,
 
         ID_FIREBOLT_PRIVACY                          = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4F0,
-        ID_FIREBOLT_PRIVACY_NOTIFICATION             = ID_FIREBOLT_PRIVACY + 1
+        ID_FIREBOLT_PRIVACY_NOTIFICATION             = ID_FIREBOLT_PRIVACY + 1,
+
+        ID_FIREBOLT_DISCOVERY                        = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x500,
+        ID_FIREBOLT_DISCOVERY_NOTIFICATION           = ID_FIREBOLT_DISCOVERY + 1
     };
 }
 }
