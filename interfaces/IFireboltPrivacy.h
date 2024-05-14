@@ -60,13 +60,6 @@ namespace Exchange {
         // @text:SetAllowResumePoints
         virtual Core::hresult SetAllowResumePoints(const string& appId, const bool& value ) = 0;
 
-        // @brief sets the current resume watch status
-        // @text:SignIn
-        virtual Core::hresult SignIn(const string& appId, const entitlements& entitilements) = 0;
-        // @property
-        // @brief Get the storage location
-        // @text: GetStorageLocation1
-        virtual Core::hresult GetStorageLocation(StorageLocation& value /* @out */) const = 0;
     };
 }
 }

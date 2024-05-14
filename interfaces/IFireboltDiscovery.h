@@ -26,7 +26,7 @@ namespace WPEFramework {
 
 namespace Exchange {
 
-    struct EXTERNAL IFireboltDiscovery : virtual public Core::IUnknown {
+    struct EXTERNAL IFDiscovery : virtual public Core::IUnknown {
 
         enum { ID = ID_FIREBOLT_DISCOVERY };
 
@@ -41,31 +41,12 @@ namespace Exchange {
             virtual ~IFireboltDiscovery() = default;
 
 
-            // @event
-            struct EXTERNAL INotification {
-
-                virtual ~INotification() = default;
-
-                // @text onNavigateTo
-                // @brief Notifies that permision for resume points value has been changed
-                // @param appId: ID of the applocation for which this notification relates to
-                // @param allow: Allow or deny use of resume points
-                virtual void OnNavigateTo(const string& appId /* @index */, const bool allow) = 0;
-
-                // @text onPolicyChanged
-                // @brief Notifies that a resume point has been added, updated or removed
-                // @param appId: ID of the application for which this notification relates to
-                virtual void OnPolicyChanged(const string& appId /* @index */) = 0;
-            };
-            virtual Core::hresult Register(IFireboltDiscovery::INotification* sink) = 0;
-            virtual Core::hresult UnRegister(IFireboltDiscovery::INotification* sink) = 0;
-
-            // @text PermitResumePoints
-            // @brief Sets resume point permission
+            // @text SignIn
+            // @brief Signin the user in the app
             // @details AppID shall be passed through the security token.
-            // @param allow: Allow or deny use of resume points
+            // @param param: SignInParam
             // @retval ERROR_PRIVILIGED_REQUEST: App security errors
-            virtual Core::hresult PermitResumePoints(const Core::JSONRPC::Context& context, const Core::OptionalType<bool> param ) = 0;
+            virtual Core::hresult SignIn(const Core::JSONRPC::Context& context, const bool param ) = 0;
 
         };
 
