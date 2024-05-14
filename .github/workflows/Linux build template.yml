@@ -16,7 +16,7 @@ jobs:
     name: Build type - ${{matrix.build_type}}
     steps:
     - name: Install necessary packages
-      uses: nick-fields/retry@v2
+      uses: nick-fields/retry@v3
       with:
         timeout_minutes: 10
         max_attempts: 10
@@ -42,7 +42,7 @@ jobs:
 # ----- Regex & checkout -----
     - name: Checkout ThunderInterfaces - default
       if: ${{ !contains(github.event.pull_request.body, '[DependsOn=ThunderInterfaces:') }}
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         path: ThunderInterfaces
         repository: rdkcentral/ThunderInterfaces
@@ -58,7 +58,7 @@ jobs:
 
     - name: Checkout ThunderInterfaces - ${{steps.thunderinterfaces.outputs.first_match}}
       if: contains(github.event.pull_request.body, '[DependsOn=ThunderInterfaces:')
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         path: ThunderInterfaces
         repository: rdkcentral/ThunderInterfaces
