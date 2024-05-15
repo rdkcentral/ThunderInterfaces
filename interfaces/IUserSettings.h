@@ -37,11 +37,11 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
 
     // @brief The preferredLanguages setting has changed.
     // @param preferredLanguages: PreferredLanguages.
-    virtual void OnPreferredAudioLanguagesChanged(const string preferredLanguages) = 0;
+    virtual void OnPreferredAudioLanguagesChanged(const string& preferredLanguages) = 0;
 
     // @brief The PresentationLanguages setting has changed.
     // @param presentationLanguages: PresentationLanguages.
-    virtual void OnPresentationLanguageChanged(const string presentationLanguages) = 0;
+    virtual void OnPresentationLanguageChanged(const string& presentationLanguages) = 0;
 
     // @brief The Captions setting has changed.
     // @param enabled: Enabled/Disabled.
@@ -49,11 +49,11 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
 
     // @brief The PreferredCaptionsLanguages setting has changed.
     // @param preferredLanguages: PreferredLanguages.
-    virtual void OnPreferredCaptionsLanguagesChanged(const string preferredLanguages) = 0;
+    virtual void OnPreferredCaptionsLanguagesChanged(const string& preferredLanguages) = 0;
 
     // @brief The PreferredClosedCaptionService setting has changed.
     // @param service: "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]".
-    virtual void OnPreferredClosedCaptionServiceChanged(const string service) = 0;
+    virtual void OnPreferredClosedCaptionServiceChanged(const string& service) = 0;
   };
 
   virtual uint32_t Register(Exchange::IUserSettings::INotification* notification /* @in */) = 0;
