@@ -69,17 +69,17 @@ string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
 
 install(
         TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies
-        LIBRARY DESTINATION lib/${NAMESPACE_LIB}/proxystubs COMPONENT libs      # shared lib
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${NAMESPACE_LIB}/proxystubs COMPONENT libs      # shared lib
 )
 
 install(
         FILES ${INTERFACES_HEADERS}
-        DESTINATION include/${NAMESPACE}/interfaces
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces
 )
 
 install(
         FILES ${JSON_HEADERS}
-        DESTINATION include/${NAMESPACE}/interfaces/json
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json
 )
 
 include(CreateLink)
