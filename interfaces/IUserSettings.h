@@ -76,7 +76,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
   // this list. In the absence of a matching track, the player should by best
   // effort select the preferred audio track.*/
   // @param preferredLanguages: PreferredLanguages
-  virtual uint32_t SetPreferredAudioLanguages(const string preferredLanguages  /* @in */) = 0;
+  virtual uint32_t SetPreferredAudioLanguages(const string& preferredLanguages  /* @in */) = 0;
 
   // @property  
   // @brief Gets the current PreferredAudioLanguages setting
@@ -86,7 +86,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
   // @property  
   // @brief Sets the presentationLanguages in a full BCP 47 value, including script, region, variant
   // @param presentationLanguages: "en-US", "es-US", "en-CA", "fr-CA"
-  virtual uint32_t SetPresentationLanguage(const string presentationLanguages /* @in */) = 0;
+  virtual uint32_t SetPresentationLanguage(const string& presentationLanguages /* @in */) = 0;
 
   // @property  
   // @brief Gets the presentationLanguages
@@ -120,7 +120,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
   // this list. In the absence of a matching track, the player should by best
   // effort select the preferred subtitle track. 
   // @param preferredLanguages Is the list to set (e.g. "eng,fra")
-  virtual uint32_t SetPreferredCaptionsLanguages(const string preferredLanguages  /* @in */) = 0;
+  virtual uint32_t SetPreferredCaptionsLanguages(const string& preferredLanguages  /* @in */) = 0;
 
   // @property  
   // @brief Gets the current PreferredCaptionsLanguages setting.
@@ -133,7 +133,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
   // Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]" 
   // @param service Identifies the service to display e.g. "CC3".
 
-  virtual uint32_t SetPreferredClosedCaptionService(const string service  /* @in */) = 0;
+  virtual uint32_t SetPreferredClosedCaptionService(const string& service  /* @in */) = 0;
 
   // @property  
   // @brief Gets the current PreferredClosedCaptionService setting.
