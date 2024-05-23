@@ -300,10 +300,10 @@
     <CustomBuild Include="..\jsonrpc\SystemCommands.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\TestController.json">
+    <CustomBuild Include="..\qa_jsonrpc\TestController.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\TestUtility.json">
+    <CustomBuild Include="..\qa_jsonrpc\TestUtility.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\TimeSync.json">

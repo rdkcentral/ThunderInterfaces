@@ -290,10 +290,10 @@
     <CustomBuild Include="..\jsonrpc\SystemCommands.json">
       <FileType>Document</FileType>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\TestController.json">
+    <CustomBuild Include="..\qa_jsonrpc\TestController.json">
       <FileType>Document</FileType>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\TestUtility.json">
+    <CustomBuild Include="..\qa_jsonrpc\TestUtility.json">
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\TimeSync.json">
