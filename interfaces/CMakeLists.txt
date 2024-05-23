@@ -31,7 +31,7 @@ find_package(${NAMESPACE}COM REQUIRED)
 set(Target ${NAMESPACE}${PROJECT_NAME})
 
 if(NOT GENERATOR_SEARCH_PATH)
-    set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
+    set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE})
 endif()
 
 separate_arguments(INTERFACES_PATTERNS)
@@ -69,24 +69,24 @@ string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
 
 install(
         TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies
-        LIBRARY DESTINATION lib/${NAMESPACE_LIB}/proxystubs COMPONENT libs      # shared lib
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${NAMESPACE_LIB}/proxystubs COMPONENT libs      # shared lib
 )
 
 install(
         FILES ${INTERFACES_HEADERS}
-        DESTINATION include/${NAMESPACE}/interfaces
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces
 )
 
 install(
         FILES ${JSON_HEADERS}
-        DESTINATION include/${NAMESPACE}/interfaces/json
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json
 )
 
 include(CreateLink)
 
 CreateLink(
-        LINK "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/cdmi.h"
-        TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces/IDRM.h"
+        LINK "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/cdmi.h"
+        TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/IDRM.h"
 )
 
 
