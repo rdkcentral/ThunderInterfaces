@@ -80,7 +80,6 @@
 #include <interfaces/ISwitchBoard.h>
 #include <interfaces/ISystemCommands.h>
 #include <interfaces/ITextToSpeech.h>
-#include <interfaces/ITestUtility.h>
 #include <interfaces/ITimeSync.h>
 #include <interfaces/ITimeZone.h>
 #include <interfaces/IVoiceHandler.h>
@@ -94,7 +93,7 @@
 #include <interfaces/IZigWave.h>
 #include "ValuePoint.h"
 
-
+#include <qa_interfaces/ITestUtility.h>
 #include <qa_interfaces/ITestController.h>
 #include <qa_interfaces/ITestAutomation.h>
 #endif

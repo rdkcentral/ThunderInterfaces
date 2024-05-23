@@ -153,12 +153,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_SystemCommands.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_TestController.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_TestUtility.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeSync.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -298,12 +292,6 @@
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\SystemCommands.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\qa_jsonrpc\TestController.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\qa_jsonrpc\TestUtility.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\TimeSync.json">

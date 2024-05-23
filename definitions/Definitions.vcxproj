@@ -63,8 +63,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Streamer.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_SubsystemControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_SystemCommands.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_TestController.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_TestUtility.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeSync.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeZone.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_TraceControl.cpp" />
@@ -288,12 +286,6 @@
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\SystemCommands.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
-    <CustomBuild Include="..\qa_jsonrpc\TestController.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
-    <CustomBuild Include="..\qa_jsonrpc\TestUtility.json">
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\TimeSync.json">
