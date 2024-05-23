@@ -21,7 +21,7 @@
 #include "Module.h"
 
 namespace WPEFramework {
-    namespace Exchange {
+    namespace QualityAssurance {
 
         struct EXTERNAL ITestController : virtual public Core::IUnknown {
             enum { ID = ID_TESTCONTROLLER };
@@ -76,5 +76,5 @@ namespace WPEFramework {
             virtual ICategory* Category(const string& category) const = 0;
         };
 
-    } // namespace Exchange
+    } // namespace QualityAssurance
 } // namespace WPEFramework

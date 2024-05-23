@@ -156,16 +156,6 @@ namespace Exchange {
         ID_PACKAGER_PACKAGEINFOEX                    = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x1C0,
         ID_PACKAGER_PACKAGEINFOEX_ITERATOR           = ID_PACKAGER_PACKAGEINFOEX + 1,
 
-        ID_TESTCONTROLLER                            = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x1D0,
-        ID_TESTCONTROLLER_TEST                       = ID_TESTCONTROLLER + 1,
-        ID_TESTCONTROLLER_TEST_ITERATOR              = ID_TESTCONTROLLER + 2,
-        ID_TESTCONTROLLER_CATEGORY                   = ID_TESTCONTROLLER + 3,
-        ID_TESTCONTROLLER_CATEGORY_ITERATOR          = ID_TESTCONTROLLER + 4,
-
-        ID_TESTUTILITY                               = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x1E0,
-        ID_TESTUTILITY_COMMAND                       = ID_TESTUTILITY + 1,
-        ID_TESTUTILITY_ITERATOR                      = ID_TESTUTILITY + 2,
-
         ID_COMPOSITION                               = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x1F0,
         ID_COMPOSITION_CLIENT                        = ID_COMPOSITION + 1,
         ID_COMPOSITION_RENDER                        = ID_COMPOSITION + 2,
@@ -378,7 +368,12 @@ namespace Exchange {
 
         ID_DNS_SERVER                                = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4E0,
         ID_DNS_ZONE                                  = ID_DNS_SERVER + 1,
-        ID_DNS_RECORD                                = ID_DNS_SERVER + 2
+        ID_DNS_RECORD                                = ID_DNS_SERVER + 2,
+        
+        ID_TESTAUTOMATIONMEMORY                      = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4F0,
+        ID_TESTAUTOMATIONCOMRPC                      = ID_TESTAUTOMATIONMEMORY + 1,
+        ID_TESTAUTOMATIONCOMRPCINTERNAL              = ID_TESTAUTOMATIONMEMORY + 2
+
     };
 }
 }
