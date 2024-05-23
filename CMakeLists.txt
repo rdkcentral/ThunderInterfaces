@@ -48,4 +48,5 @@ if (BUILD_REFERENCE)
 endif()
 
 add_subdirectory(interfaces)
+add_subdirectory(qa_interfaces)
 add_subdirectory(definitions)
