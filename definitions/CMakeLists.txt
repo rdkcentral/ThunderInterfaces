@@ -52,7 +52,7 @@ file(GLOB QA_INTERFACE_FILE ${WORKING_VARIABLE})
 set(PUBLIC_HEADERS "definitions.h" "ValuePoint.h" "Module.h")
 
 if(NOT GENERATOR_SEARCH_PATH)
-    set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
+    set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE})
 endif()
 
 JsonGenerator(CODE INPUT ${JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} CPPIFDIR "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/")
@@ -105,7 +105,7 @@ target_include_directories(${Target}
         PRIVATE
           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
-          $<INSTALL_INTERFACE:include/${NAMESPACE}>
+          $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}>
        )
 
 install(
@@ -125,7 +125,7 @@ install(
 
 install(
         FILES ${QA_JSON_LINK_HEADERS}
-        DESTINATION include/${NAMESPACE}/qa_interfaces/json
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/qa_interfaces/json
 )
 
 InstallPackageConfig(
