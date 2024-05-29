@@ -19,11 +19,8 @@
 
 #pragma once
 
-#ifndef MODULE_NAME
-#define MODULE_NAME Definitions
-#endif
+#include "Module.h"
 
-#include <core/core.h>
 #include <messaging/messaging.h>
 #include <com/com.h>
 

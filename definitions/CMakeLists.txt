@@ -30,36 +30,60 @@ find_package(${NAMESPACE}Core REQUIRED)
 set(Target ${NAMESPACE}${PROJECT_NAME})
 
 separate_arguments(JSONRPC_PATTERNS)
-list(TRANSFORM JSONRPC_PATTERNS PREPEND "${CMAKE_SOURCE_DIR}/jsonrpc/")
-file(GLOB JSON_FILE ${JSONRPC_PATTERNS})
+set(WORKING_VARIABLE ${JSONRPC_PATTERNS})
+list(TRANSFORM WORKING_VARIABLE PREPEND "${CMAKE_SOURCE_DIR}/jsonrpc/")
+file(GLOB JSON_FILE ${WORKING_VARIABLE})
+
+separate_arguments(JSONRPC_PATTERNS)
+set(WORKING_VARIABLE ${JSONRPC_PATTERNS})
+list(TRANSFORM WORKING_VARIABLE PREPEND "${CMAKE_SOURCE_DIR}/qa_jsonrpc/")
+file(GLOB QA_JSON_FILE ${WORKING_VARIABLE})
 
 separate_arguments(INTERFACES_PATTERNS)
-list(TRANSFORM INTERFACES_PATTERNS PREPEND "${CMAKE_SOURCE_DIR}/interfaces/")
-file(GLOB INTERFACE_FILE ${INTERFACES_PATTERNS})
+set(WORKING_VARIABLE ${INTERFACES_PATTERNS})
+list(TRANSFORM WORKING_VARIABLE PREPEND "${CMAKE_SOURCE_DIR}/interfaces/")
+file(GLOB INTERFACE_FILE ${WORKING_VARIABLE})
 
-set(PUBLIC_HEADERS "definitions.h" "ValuePoint.h")
+separate_arguments(INTERFACES_PATTERNS)
+set(WORKING_VARIABLE ${INTERFACES_PATTERNS})
+list(TRANSFORM WORKING_VARIABLE PREPEND "${CMAKE_SOURCE_DIR}/qa_interfaces/")
+file(GLOB QA_INTERFACE_FILE ${WORKING_VARIABLE})
+
+set(PUBLIC_HEADERS "definitions.h" "ValuePoint.h" "Module.h")
 
 if(NOT GENERATOR_SEARCH_PATH)
-    set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
+    set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE})
 endif()
 
 JsonGenerator(CODE INPUT ${JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} CPPIFDIR "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/")
+JsonGenerator(CODE INPUT ${QA_JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/" CPPIFDIR "${CMAKE_CURRENT_SOURCE_DIR}/../qa_interfaces/" IFDIR "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/" CPP_INTERFACE_PATH "qa_interfaces" JSON_INTERFACE_PATH "qa_interfaces/json")
 JsonGenerator(CODE INPUT ${INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
+JsonGenerator(CODE NAMESPACE  WPEFramework::QualityAssurance INPUT ${QA_INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} CPP_INTERFACE_PATH "qa_interfaces" JSON_INTERFACE_PATH "qa_interfaces/json" )
 
 file(GLOB JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/JsonEnum*.cpp")
 file(GLOB JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/J*.h")
 
+file(GLOB QA_JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/JsonEnum*.cpp")
+file(GLOB QA_JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/J*.h")
+
+list(APPEND JSON_LINK_HEADERS "Module.h")
+list(APPEND QA_JSON_LINK_HEADERS "Module.h")
+
 include(CreateLink)
-CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h" TARGET "../Module.h")
-list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h")
-CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h" TARGET "../Ids.h")
-list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h")
-CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/Module.h" TARGET "../interfaces/Module.h")
-list(APPEND PUBLIC_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/Module.h")
+#CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h" TARGET "../Module.h")
+#list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h")
+#CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h" TARGET "../Ids.h")
+#list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h")
+#CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/Module.h" TARGET "../interfaces/Module.h")
+#list(APPEND PUBLIC_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/Module.h")
+#CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/QAIds.h" TARGET "../QAIds.h")
+#list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/QAIds.h")
 
 add_library(${Target} SHARED
         Definitions.cpp
+        Module.cpp
         ${JSON_ENUM_SOURCES}
+        ${QA_JSON_ENUM_SOURCES}
         )
 
 target_link_libraries(${Target}
@@ -81,22 +105,27 @@ target_include_directories(${Target}
         PRIVATE
           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
-          $<INSTALL_INTERFACE:include/${NAMESPACE}>
+          $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}>
        )
 
 install(
         TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies
-        ARCHIVE DESTINATION lib/ COMPONENT libs      # static lib
-        LIBRARY DESTINATION lib/ COMPONENT libs      # shared lib
-        RUNTIME DESTINATION bin COMPONENT libs      # binaries
-        FRAMEWORK DESTINATION bin/ COMPONENT libs    # for mac
-        PUBLIC_HEADER DESTINATION include/${NAMESPACE}/definitions COMPONENT devel   # headers for mac (note the different component -> different package)
-        INCLUDES DESTINATION include/${NAMESPACE}   # default include path
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/ COMPONENT libs      # static lib
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/ COMPONENT libs      # shared lib
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT libs      # binaries
+        FRAMEWORK DESTINATION ${CMAKE_INSTALL_BINDIR}/ COMPONENT libs    # for mac
+        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/definitions COMPONENT devel   # headers for mac (note the different component -> different package)
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}   # default include path
 )
 
 install(
         FILES ${JSON_LINK_HEADERS}
-        DESTINATION include/${NAMESPACE}/interfaces/json
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json
+)
+
+install(
+        FILES ${QA_JSON_LINK_HEADERS}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/qa_interfaces/json
 )
 
 InstallPackageConfig(

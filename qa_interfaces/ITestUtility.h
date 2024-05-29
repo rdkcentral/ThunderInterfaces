@@ -22,7 +22,7 @@
 #include "Module.h"
 
 namespace WPEFramework {
-namespace Exchange {
+namespace QualityAssurance {
 
     struct EXTERNAL ITestUtility : virtual public Core::IUnknown {
         enum { ID = ID_TESTUTILITY };
@@ -60,5 +60,5 @@ namespace Exchange {
         virtual uint32_t ShutdownTimeout(const uint32_t timeout) = 0;
     };
 
-} // namespace Exchange
+} // namespace QualityAssurance
 } // namespace WPEFramework
