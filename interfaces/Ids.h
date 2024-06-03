@@ -46,7 +46,7 @@
 
 // @insert <com/Ids.h>
 
-namespace WPEFramework {
+namespace Thunder {
 
 namespace Exchange {
 

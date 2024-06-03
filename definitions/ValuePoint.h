@@ -21,7 +21,7 @@
 #include "Module.h"
 #include <interfaces/IValuePoint.h>
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     class ValuePoint : public IValuePoint {

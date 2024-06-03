@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace QualityAssurance {
 
     struct EXTERNAL ITestUtility : virtual public Core::IUnknown {
@@ -61,4 +61,4 @@ namespace QualityAssurance {
     };
 
 } // namespace QualityAssurance
-} // namespace WPEFramework
+} // namespace Thunder

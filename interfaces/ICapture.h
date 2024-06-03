@@ -22,7 +22,7 @@
 
 
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     // @stubgen:omit

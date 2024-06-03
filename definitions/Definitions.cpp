@@ -98,7 +98,7 @@
 #include <qa_interfaces/ITestAutomation.h>
 #endif
 
-namespace WPEFramework {
+namespace Thunder {
 
 struct ScreenResolutionWidthHeight {
     Exchange::IDeviceVideoCapabilities::ScreenResolution resolution;

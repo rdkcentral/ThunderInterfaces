@@ -20,7 +20,7 @@
 #pragma once
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     // This interface show the use case of communicating transparently over process boundaries
@@ -43,4 +43,4 @@ namespace Exchange {
     };
 
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

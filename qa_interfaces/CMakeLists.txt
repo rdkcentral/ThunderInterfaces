@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.3)
 
 project(QAMarshalling)
 
-find_package(WPEFramework)
+find_package(Thunder)
 
 project_version(1.0.0)
 
@@ -37,7 +37,7 @@ endif()
 separate_arguments(INTERFACES_PATTERNS)
 file(GLOB QA_INTERFACES_HEADERS ${INTERFACES_PATTERNS})
 
-ProxyStubGenerator(NAMESPACE "WPEFramework::QualityAssurance" INPUT "${QA_INTERFACES_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
+ProxyStubGenerator(NAMESPACE "Thunder::QualityAssurance" INPUT "${QA_INTERFACES_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
 list(APPEND QA_INTERFACES_HEADERS Module.h QAIds.h)
 
