@@ -24,7 +24,7 @@
 // @insert <core/MessageStore.h>
 // @insert <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 
 namespace Exchange {
 
@@ -61,4 +61,4 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
   };
 
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

@@ -22,7 +22,7 @@
 #include "Module.h"
 #include "IExternal.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     // @stubgen:omit

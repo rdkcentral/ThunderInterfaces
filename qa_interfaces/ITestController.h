@@ -20,8 +20,8 @@
 #pragma once
 #include "Module.h"
 
-namespace WPEFramework {
-    namespace Exchange {
+namespace Thunder {
+    namespace QualityAssurance {
 
         struct EXTERNAL ITestController : virtual public Core::IUnknown {
             enum { ID = ID_TESTCONTROLLER };
@@ -76,5 +76,5 @@ namespace WPEFramework {
             virtual ICategory* Category(const string& category) const = 0;
         };
 
-    } // namespace Exchange
-} // namespace WPEFramework
+    } // namespace QualityAssurance
+} // namespace Thunder

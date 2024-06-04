@@ -79,9 +79,7 @@
 #include <interfaces/IStoreCache.h>
 #include <interfaces/ISwitchBoard.h>
 #include <interfaces/ISystemCommands.h>
-#include <interfaces/ITestController.h>
 #include <interfaces/ITextToSpeech.h>
-#include <interfaces/ITestUtility.h>
 #include <interfaces/ITimeSync.h>
 #include <interfaces/ITimeZone.h>
 #include <interfaces/IVoiceHandler.h>
@@ -94,11 +92,13 @@
 #include <interfaces/IWatchDog.h>
 #include <interfaces/IZigWave.h>
 #include "ValuePoint.h"
+
+#include <qa_interfaces/ITestUtility.h>
+#include <qa_interfaces/ITestController.h>
+#include <qa_interfaces/ITestAutomation.h>
 #endif
 
-MODULE_NAME_DECLARATION(BUILD_REFERENCE)
-
-namespace WPEFramework {
+namespace Thunder {
 
 struct ScreenResolutionWidthHeight {
     Exchange::IDeviceVideoCapabilities::ScreenResolution resolution;

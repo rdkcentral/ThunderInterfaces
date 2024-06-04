@@ -83,8 +83,6 @@
     <ClCompile Include="proxystubs\ProxyStubs_Stream.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_SwitchBoard.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_SystemCommands.cpp" />
-    <ClCompile Include="proxystubs\ProxyStubs_TestController.cpp" />
-    <ClCompile Include="proxystubs\ProxyStubs_TestUtility.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_TextToSpeech.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_TimeSync.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_TimeZone.cpp" />
@@ -151,7 +149,6 @@
     <ClInclude Include="IStream.h" />
     <ClInclude Include="ISwitchBoard.h" />
     <ClInclude Include="ISystemCommands.h" />
-    <ClInclude Include="ITestController.h" />
     <ClInclude Include="ITextToSpeech.h" />
     <ClInclude Include="ITimeSync.h" />
     <ClInclude Include="ITimeZone.h" />

@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
 struct EXTERNAL IStore : virtual public Core::IUnknown {
@@ -43,4 +43,4 @@ struct EXTERNAL IStore : virtual public Core::IUnknown {
 };
 
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     enum CryptographyVault : uint8_t {

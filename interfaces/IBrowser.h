@@ -22,7 +22,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     // This interface gives direct access to a Browser to change

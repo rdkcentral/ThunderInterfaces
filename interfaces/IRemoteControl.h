@@ -22,7 +22,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     struct EXTERNAL IRemoteControl : virtual public Core::IUnknown {

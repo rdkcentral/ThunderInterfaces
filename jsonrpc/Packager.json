@@ -19,7 +19,7 @@
           "package": {
             "description": "A name, an URL or a file path of the package to install",
             "type": "string",
-            "example": "wpeframework-plugin-netflix"
+            "example": "thunder-plugin-netflix"
           },
           "version": {
             "description": "Version of the package to install",

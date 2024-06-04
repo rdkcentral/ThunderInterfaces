@@ -20,7 +20,7 @@
 #pragma once
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     struct EXTERNAL IPlayGiga : virtual public Core::IUnknown {

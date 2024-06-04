@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     // @stubgen:omit
@@ -79,4 +79,4 @@ namespace Exchange {
 
 } // namespace Exchange
 
-} // namespace WPEFramework
+} // namespace Thunder

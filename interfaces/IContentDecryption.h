@@ -22,7 +22,7 @@
 #include "Module.h"
 #include "IDRM.h"
 
-namespace WPEFramework {
+namespace Thunder {
 
 namespace Exchange {
 
