@@ -61,9 +61,13 @@ set_target_properties(${Target} PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED YES
         FRAMEWORK FALSE
-        VERSION ${PROJECT_VERSION}
         SOVERSION ${PROJECT_VERSION_MAJOR}
         )
+
+if(HUMAN_VERSIONED_BINARIES)
+set_target_properties(${Target} PROPERTIES VERSION ${PROJECT_VERSION})
+endif()
+
 
 string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
 

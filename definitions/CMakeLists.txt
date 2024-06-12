@@ -96,10 +96,13 @@ set_target_properties(${Target} PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED YES
         FRAMEWORK FALSE
-        VERSION ${PROJECT_VERSION}
         SOVERSION ${PROJECT_VERSION_MAJOR}
         PUBLIC_HEADER "${PUBLIC_HEADERS}" # specify the public headers
         )
+
+if(HUMAN_VERSIONED_BINARIES)
+set_target_properties(${Target} PROPERTIES VERSION ${PROJECT_VERSION})
+endif()
 
 target_include_directories(${Target}
         PRIVATE
