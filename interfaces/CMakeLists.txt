@@ -68,18 +68,18 @@ set_target_properties(${Target} PROPERTIES
 string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
 
 install(
-        TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${NAMESPACE_LIB}/proxystubs COMPONENT libs      # shared lib
+        TARGETS ${Target} EXPORT ${Target}Targets
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${NAMESPACE_LIB}/proxystubs COMPONENT ${NAMESPACE}_Runtime NAMELINK_COMPONENT ${NAMESPACE}_Development
 )
 
 install(
         FILES ${INTERFACES_HEADERS}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces COMPONENT ${NAMESPACE}_Development
 )
 
 install(
         FILES ${JSON_HEADERS}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json COMPONENT ${NAMESPACE}_Development
 )
 
 include(CreateLink)
@@ -88,8 +88,3 @@ CreateLink(
         LINK "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/cdmi.h"
         TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/IDRM.h"
 )
-
-
-
-
-

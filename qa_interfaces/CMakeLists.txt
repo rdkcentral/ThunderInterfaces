@@ -67,11 +67,11 @@ set_target_properties(${Target} PROPERTIES
 string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
 
 install(
-        TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${NAMESPACE_LIB}/proxystubs COMPONENT libs      # shared lib
+        TARGETS ${Target} EXPORT ${Target}Targets
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${NAMESPACE_LIB}/proxystubs COMPONENT ${NAMESPACE}_Test NAMELINK_COMPONENT ${NAMESPACE}_Test_Development
 )
 
 install(
         FILES ${QA_INTERFACES_HEADERS}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/qa_interfaces
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/qa_interfaces COMPONENT ${NAMESPACE}_Test_Development
 )
