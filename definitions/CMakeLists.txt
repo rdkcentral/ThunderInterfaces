@@ -21,7 +21,7 @@ project(Definitions)
 
 find_package(Thunder)
 
-project_version(1.0.0)
+project_version(${Thunder_VERSION})
 
 find_package(CompileSettingsDebug REQUIRED)
 find_package(JsonGenerator REQUIRED)
