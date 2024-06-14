@@ -69,16 +69,6 @@ file(GLOB QA_JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/J*.h")
 list(APPEND JSON_LINK_HEADERS "Module.h")
 list(APPEND QA_JSON_LINK_HEADERS "Module.h")
 
-include(CreateLink)
-#CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h" TARGET "../Module.h")
-#list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h")
-#CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h" TARGET "../Ids.h")
-#list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h")
-#CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/Module.h" TARGET "../interfaces/Module.h")
-#list(APPEND PUBLIC_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/Module.h")
-#CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/QAIds.h" TARGET "../QAIds.h")
-#list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/QAIds.h")
-
 add_library(${Target} SHARED
         Definitions.cpp
         Module.cpp
