@@ -82,6 +82,11 @@ install(
 )
 
 install(
+        FILES ${CMAKE_CURRENT_BINARY_DIR}/cdmi.h
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} COMPONENT ${NAMESPACE}_Development
+)
+
+install(
         FILES ${JSON_HEADERS}
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json COMPONENT ${NAMESPACE}_Development
 )
@@ -89,6 +94,6 @@ install(
 include(CreateLink)
 
 CreateLink(
-        LINK "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/cdmi.h"
-        TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/IDRM.h"
+        LINK "${CMAKE_CURRENT_BINARY_DIR}/cdmi.h"
+        TARGET "${NAMESPACE}/interfaces/IDRM.h"
 )
