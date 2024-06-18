@@ -54,6 +54,10 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
     // @brief The PreferredClosedCaptionService setting has changed.
     // @param service: "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]".
     virtual void OnPreferredClosedCaptionServiceChanged(const string& service) = 0;
+
+    // @brief The PrivacyMode setting has changed.
+    // @param privacyMode: "SHARE", "DO_NOT_SHARE".
+    virtual void OnPrivacyModeChanged(const string& privacyMode) = 0;
   };
 
   virtual uint32_t Register(Exchange::IUserSettings::INotification* notification /* @in */) = 0;
@@ -139,6 +143,18 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown {
   // @brief Gets the current PreferredClosedCaptionService setting.
   // @param service Identifies the service to display e.g. "CC3".
   virtual uint32_t GetPreferredClosedCaptionService(string &service /* @out */) const = 0;
+
+  // @property  
+  // @brief Sets the PrivacyMode.
+  // @details The setting should be honored by the Telemetry.
+  // If privacyMode is "DO_NOT_SHARE", logs and crash report should not be uploaded.
+  // @param privacyMode: "SHARE", "DO_NOT_SHARE"
+  virtual uint32_t SetPrivacyMode(const string& privacyMode /* @in */) = 0;
+
+  // @property  
+  // @brief Gets the current PrivacyMode setting.
+  // @param privacyMode e.g "SHARE"
+  virtual uint32_t GetPrivacyMode(string &privacyMode /* @out */) const = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
