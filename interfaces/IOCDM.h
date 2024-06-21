@@ -128,6 +128,9 @@ struct ISession : virtual public Core::IUnknown {
     // Let the CDM know playback has stopped in order to disable output protection
     virtual void ResetOutputProtection() = 0;
 
+    // Set a name/value pair into the CDM
+    virtual void SetParameter(const std::string& name, const std::string& value) = 0;
+
     // During instantiation a callback is set, here we can decouple.
     virtual void Revoke(ISession::ICallback* callback) = 0;
 };
