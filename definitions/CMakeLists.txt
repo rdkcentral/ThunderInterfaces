@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.3)
 
 project(Definitions)
 
-find_package(WPEFramework)
+find_package(Thunder)
 
 project_version(1.0.0)
 
@@ -58,7 +58,7 @@ endif()
 JsonGenerator(CODE INPUT ${JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} CPPIFDIR "${CMAKE_CURRENT_SOURCE_DIR}/../interfaces/")
 JsonGenerator(CODE INPUT ${QA_JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/" CPPIFDIR "${CMAKE_CURRENT_SOURCE_DIR}/../qa_interfaces/" IFDIR "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/" CPP_INTERFACE_PATH "qa_interfaces" JSON_INTERFACE_PATH "qa_interfaces/json")
 JsonGenerator(CODE INPUT ${INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
-JsonGenerator(CODE NAMESPACE  WPEFramework::QualityAssurance INPUT ${QA_INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} CPP_INTERFACE_PATH "qa_interfaces" JSON_INTERFACE_PATH "qa_interfaces/json" )
+JsonGenerator(CODE NAMESPACE  Thunder::QualityAssurance INPUT ${QA_INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} CPP_INTERFACE_PATH "qa_interfaces" JSON_INTERFACE_PATH "qa_interfaces/json" )
 
 file(GLOB JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/JsonEnum*.cpp")
 file(GLOB JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/J*.h")

@@ -20,7 +20,7 @@
 #pragma once
 #include "../Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
     namespace Exchange {
         namespace External {
             // This interface allows for retrieval of memory usage specific to the implementor

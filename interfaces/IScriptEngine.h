@@ -1,7 +1,7 @@
 #pragma once
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     // @json 1.0.0

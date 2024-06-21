@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.3)
 
 project(Marshalling)
 
-find_package(WPEFramework)
+find_package(Thunder)
 
 project_version(1.0.0)
 

@@ -23,7 +23,7 @@
 //already added the below so it is not forgotten when to start generating proxy/stubs for this
 // @stubgen:include <com/IIteratorType.h>
  
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     // This interface allows for retrieval of memory usage specific to the implementor

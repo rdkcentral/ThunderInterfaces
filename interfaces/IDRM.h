@@ -154,7 +154,7 @@ private:
     size_t pos_;
 };
 
-namespace WPEFramework
+namespace Thunder
 {
    namespace PluginHost
    {
@@ -518,8 +518,8 @@ struct ISystemFactory {
     virtual IMediaKeys* Instance() = 0;
     virtual const char* KeySystem() const = 0;
     virtual const std::vector<std::string>& MimeTypes() const = 0;
-    virtual void Initialize(const WPEFramework::PluginHost::IShell * shell, const std::string& configline) = 0;
-    virtual void Deinitialize(const WPEFramework::PluginHost::IShell * shell) = 0;
+    virtual void Initialize(const Thunder::PluginHost::IShell * shell, const std::string& configline) = 0;
+    virtual void Deinitialize(const Thunder::PluginHost::IShell * shell) = 0;
     virtual CDMi_RESULT Enable() = 0;
     virtual CDMi_RESULT Disable() = 0;
 };
@@ -553,11 +553,11 @@ public:
         return (typeid(IMPLEMENTATION).name());
     }
 
-    void Initialize(const WPEFramework::PluginHost::IShell * shell, const std::string& configline) override
+    void Initialize(const Thunder::PluginHost::IShell * shell, const std::string& configline) override
     {
         Initialize(shell, configline, std::integral_constant<bool, HasOnShellAndSystemInitialize<IMPLEMENTATION>::Has>());
     }
-    void Deinitialize(const WPEFramework::PluginHost::IShell * shell) override
+    void Deinitialize(const Thunder::PluginHost::IShell * shell) override
     {
         Deinitialize(shell, std::integral_constant<bool, HasOnShellAndSystemDeinitialize<IMPLEMENTATION>::Has>());
     }
@@ -574,7 +574,7 @@ public:
 private:
     template <typename T>
     struct HasOnShellAndSystemInitialize {
-        template <typename U, void (U::*)(const WPEFramework::PluginHost::IShell *, const std::string&)>
+        template <typename U, void (U::*)(const Thunder::PluginHost::IShell *, const std::string&)>
         struct SFINAE {
         };
         template <typename U>
@@ -586,7 +586,7 @@ private:
 
     template <typename T>
     struct HasOnShellAndSystemDeinitialize {
-        template <typename U, void (U::*)(const WPEFramework::PluginHost::IShell *)>
+        template <typename U, void (U::*)(const Thunder::PluginHost::IShell *)>
         struct SFINAE {
         };
         template <typename U>
@@ -597,18 +597,18 @@ private:
     };
 
 
-    void Initialize(const WPEFramework::PluginHost::IShell * service, const std::string& configline, std::true_type) {
+    void Initialize(const Thunder::PluginHost::IShell * service, const std::string& configline, std::true_type) {
         _instance.Initialize(service, configline);
     }
 
-    void Initialize(const WPEFramework::PluginHost::IShell *, const std::string&, std::false_type) {
+    void Initialize(const Thunder::PluginHost::IShell *, const std::string&, std::false_type) {
     }
 
-    void Deinitialize(const WPEFramework::PluginHost::IShell * service, std::true_type) {
+    void Deinitialize(const Thunder::PluginHost::IShell * service, std::true_type) {
         _instance.Deinitialize(service);
     }
 
-    void Deinitialize(const WPEFramework::PluginHost::IShell *, std::false_type) {
+    void Deinitialize(const Thunder::PluginHost::IShell *, std::false_type) {
     }
 
     template <typename T>

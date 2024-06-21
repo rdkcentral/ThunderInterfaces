@@ -42,7 +42,7 @@
 #include <interfaces/json/ExternalMetadata.h>
 #include <interfaces/IDeviceInfo.h>
 
-namespace WPEFramework {
+namespace Thunder {
 
 	ENUM_CONVERSION_HANDLER(Exchange::IComposition::ScreenResolution)
 	ENUM_CONVERSION_HANDLER(Exchange::IStream::streamtype)

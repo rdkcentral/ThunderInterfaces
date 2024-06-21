@@ -23,7 +23,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     struct EXTERNAL IDeviceInfo : virtual public Core::IUnknown {
