@@ -17,11 +17,12 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(Marshalling)
+project(Marshalling
+        VERSION 5.0.0
+        DESCRIPTION "Component that abstracts the logic to transfer and receive COM-RPC objects"
+        LANGUAGES CXX)
 
 find_package(Thunder)
-
-project_version(${Thunder_VERSION})
 
 find_package(CompileSettingsDebug REQUIRED)
 find_package(ProxyStubGenerator REQUIRED)

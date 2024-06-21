@@ -17,11 +17,12 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(Definitions)
+project(Definitions
+        VERSION 5.0.0
+        DESCRIPTION "Shared lookup tables associated with interface enums."
+        LANGUAGES CXX)
 
 find_package(Thunder)
-
-project_version(${Thunder_VERSION})
 
 find_package(CompileSettingsDebug REQUIRED)
 find_package(JsonGenerator REQUIRED)
@@ -123,7 +124,7 @@ install(
 
 InstallPackageConfig(
         TARGETS ${Target}
-        DESCRIPTION "Share lookup tables associated with interface enums."
+        DESCRIPTION "${PROJECT_DESCRIPTION}"
         )
 
 InstallCMakeConfig(TARGETS ${Target})
