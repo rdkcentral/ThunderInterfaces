@@ -26,9 +26,34 @@ namespace WPEFramework {
 
 namespace Exchange {
 
-    struct EXTERNAL IFDiscovery : virtual public Core::IUnknown {
+
+    struct EXTERNAL IFireboltDiscovery : virtual public Core::IUnknown {
 
         enum { ID = ID_FIREBOLT_DISCOVERY };
+#if 1
+        struct EXTERNAL DiscoveryPolicy{
+            uint8_t enableRecommendation;
+            uint8_t shareWatchHistory;
+            uint8_t rememberWatchedProgram;
+        };
+#endif 
+#if 1
+        // @event
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
+            enum { ID = ID_FIREBOLT_DISCOVERY_NOTIFICATION };
+            ~INotification() override = default;
+
+            // @brief Notifies that PolicyValue Changed
+            /* @text:onPolicyChanged */
+            virtual void OnPolicyChanged(const struct DiscoveryPolicy policy) = 0;
+        };
+
+            // Pushing notifications to interested sinks
+            virtual Core::hresult Register(IFireboltDiscovery::INotification* sink) = 0;
+            virtual Core::hresult Unregister(IFireboltDiscovery::INotification* sink) = 0;
+#endif
+        // @brief Provides Current Policy in action
+        virtual Core::hresult GetDiscoveryPolicy(DiscoveryPolicy& policy /* @out */) = 0;
 
         virtual Core::hresult watched(const string& appId) = 0;
     };
@@ -36,17 +61,31 @@ namespace Exchange {
     namespace JSONRPC {
 
         /* @json 1.0.0 */
-        struct EXTERNAL IFireboltDiscovery {
+        struct EXTERNAL IFireboltDiscoveryJSONRPC {
 
-            virtual ~IFireboltDiscovery() = default;
+            virtual ~IFireboltDiscoveryJSONRPC() = default;
 
 
+            /* @event */
+            struct EXTERNAL INotification {
+
+                virtual ~INotification() = default;
+
+                // @brief Notifies change in the discovery policy
+                virtual void PolicyChanged(const IFireboltDiscovery::DiscoveryPolicy policy) = 0;
+            };
             // @text SignIn
             // @brief Signin the user in the app
             // @details AppID shall be passed through the security token.
-            // @param param: SignInParam
+            // @param signin: True - SignIn 
             // @retval ERROR_PRIVILIGED_REQUEST: App security errors
-            virtual Core::hresult SignIn(const Core::JSONRPC::Context& context, const bool param ) = 0;
+            virtual Core::hresult SignIn(const Core::JSONRPC::Context& context, const bool signin /*@optional*/) = 0;
+
+            // @text Policy
+            // @brief Signin the user in the app
+            // @details Get the current Discovery Policy
+            // @retval ERROR_PRIVILIGED_REQUEST: App security errors
+            virtual Core::hresult Policy(const Core::JSONRPC::Context& context, IFireboltDiscovery::DiscoveryPolicy& policy /*@out*/) = 0; 
 
         };
 

@@ -37,14 +37,14 @@ namespace Exchange {
             ~INotification() override = default;
 
             // @brief Notifies that Allow Resume points value change
-            /* @text:OnAllowResumePointsChanged */
+            /* @text:onAllowResumePointsChanged */
             virtual void OnAllowResumePointsChanged(const bool value) = 0;
-
-        };
-        struct entitlements {
-                string entitlements;
-                string startTime;
-                string endTime;
+            // @brief Notifies that Allow personalization value change
+            /* @text:onAllowPersonalizationChanged */
+            virtual void OnAllowPersonalizationChanged(const bool value) = 0;
+            // @brief Notifies that Allow Watch History value change
+            /* @text:onAllowWatchHistoryChanged */
+            virtual void OnAllowWatchHistoryChanged(const bool value) = 0;
         };
 
         ~IFireboltPrivacy() override = default;
@@ -55,10 +55,22 @@ namespace Exchange {
 
         // @brief Provides Current resume watch status
         // @text:AllowResumePoints
-        virtual Core::hresult GetAllowResumePoints(const string& appId, bool& allow /* @out */) const = 0;
+        virtual Core::hresult GetAllowResumePoints(bool& allow /* @out */) const = 0;
         // @brief sets the current resume watch status
         // @text:SetAllowResumePoints
-        virtual Core::hresult SetAllowResumePoints(const string& appId, const bool& value ) = 0;
+        virtual Core::hresult SetAllowResumePoints(const bool& value ) = 0;
+        // @brief Provides Current resume watch status
+        // @text:AllowPersonalization
+        virtual Core::hresult GetAllowPersonalization(bool& allow /* @out */) const = 0;
+        // @brief sets the current resume watch status
+        // @text:SetAllowPersonalization
+        virtual Core::hresult SetAllowPersonalization(const bool& value ) = 0;
+        // @brief Provides Current resume watch status
+        // @text:AllowWatchHistory
+        virtual Core::hresult GetAllowWatchHistory(bool& allow /* @out */) const = 0;
+        // @brief sets the current resume watch status
+        // @text:SetAllowWatchHistory
+        virtual Core::hresult SetAllowWatchHistory(const bool& value ) = 0;
 
     };
 }
