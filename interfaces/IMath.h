@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
     namespace Exchange {
 
         // This is an example to show the workings and how to develope a COMRPC/JSONRPC method/interface

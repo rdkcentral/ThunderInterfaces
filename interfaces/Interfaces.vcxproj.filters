@@ -181,12 +181,6 @@
     <ClCompile Include="proxystubs\ProxyStubs_SystemCommands.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_TestController.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_TestUtility.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="proxystubs\ProxyStubs_TextToSpeech.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -333,9 +327,6 @@
       <Filter>Interface Files</Filter>
     </ClInclude>
     <ClInclude Include="ISystemCommands.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ITestController.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
     <ClInclude Include="Ids.h">

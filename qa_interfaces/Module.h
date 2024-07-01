@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2022 Metrological
+ * Copyright 2020 Metrological
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,16 +19,20 @@
 
 #pragma once
 
-#include "Module.h"
+#ifndef MODULE_NAME
+#define MODULE_NAME QAInterfaces
+#endif
 
-namespace Thunder {
-namespace Exchange {
+#include <core/core.h>
 
-struct EXTERNAL IStoreCache : virtual public Core::IUnknown {
-    enum { ID = ID_STORE_CACHE };
+// These are interfaces offered by Thunder and used in the Plugins. Make them
+// available on interfaces that are exposed cross plugins.
+#include <plugins/IPlugin.h>
+#include <plugins/ISubSystem.h>
+#include <plugins/IShell.h>
+#include <plugins/IStateControl.h>
 
-    virtual uint32_t FlushCache() = 0;
-};
-
-} // namespace Exchange
-} // namespace Thunder
+// All identifiers to identify a QA interface are allocated in this same directory
+// in the file calls Ids.h, please extend it with your required interface number
+// if you are creating a new interface.
+#include "QAIds.h"

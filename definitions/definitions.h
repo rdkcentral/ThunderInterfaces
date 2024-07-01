@@ -19,11 +19,8 @@
 
 #pragma once
 
-#ifndef MODULE_NAME
-#define MODULE_NAME Definitions
-#endif
+#include "Module.h"
 
-#include <core/core.h>
 #include <messaging/messaging.h>
 #include <com/com.h>
 
@@ -45,7 +42,7 @@
 #include <interfaces/json/ExternalMetadata.h>
 #include <interfaces/IDeviceInfo.h>
 
-namespace WPEFramework {
+namespace Thunder {
 
 	ENUM_CONVERSION_HANDLER(Exchange::IComposition::ScreenResolution)
 	ENUM_CONVERSION_HANDLER(Exchange::IStream::streamtype)

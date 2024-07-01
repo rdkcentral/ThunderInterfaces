@@ -3,7 +3,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
@@ -118,6 +118,6 @@ namespace Exchange {
     };
 
 } // Exchange
-} // WPEFramework
+} // Thunder
 
 #endif //__ITEXTTOSPEECH_H

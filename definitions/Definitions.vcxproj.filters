@@ -153,12 +153,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_SystemCommands.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_TestController.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_TestUtility.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeSync.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -255,9 +249,6 @@
     <CustomBuild Include="..\jsonrpc\LocationSync.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Messenger.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Netflix.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
@@ -303,12 +294,6 @@
     <CustomBuild Include="..\jsonrpc\SystemCommands.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\TestController.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\TestUtility.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\TimeSync.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
@@ -346,6 +331,9 @@
       <Filter>Interfaces</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IDictionary.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IMessenger.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
   </ItemGroup>

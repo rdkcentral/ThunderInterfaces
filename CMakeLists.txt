@@ -1,4 +1,4 @@
-# If not stated otherwise in this file or this component's license file the
+# If not stated otherwise in this file or this component's license file the 
 # following copyright and licenses apply:
 #
 # Copyright 2020 Metrological
@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.12)
 
 project(Interfaces)
 
-find_package(WPEFramework)
+find_package(Thunder)
 
 set(INTERFACES_PATTERNS "I*.h" CACHE STRING "Patterns matching files for which stubs should be generated")
 set(JSONRPC_PATTERNS "*.json" CACHE STRING "Patterns matching files for which json stubs should be generated")
@@ -48,4 +48,5 @@ if (BUILD_REFERENCE)
 endif()
 
 add_subdirectory(interfaces)
+add_subdirectory(qa_interfaces)
 add_subdirectory(definitions)

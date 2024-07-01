@@ -17,7 +17,7 @@
 
 cmake_minimum_required(VERSION 3.3)
 
-project(Marshalling)
+project(QAMarshalling)
 
 find_package(Thunder)
 
@@ -35,17 +35,16 @@ if(NOT GENERATOR_SEARCH_PATH)
 endif()
 
 separate_arguments(INTERFACES_PATTERNS)
-file(GLOB INTERFACES_HEADERS ${INTERFACES_PATTERNS})
-ProxyStubGenerator(INPUT "${INTERFACES_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
+file(GLOB QA_INTERFACES_HEADERS ${INTERFACES_PATTERNS})
 
-file(GLOB JSON_HEADERS json/*.h)
-list(APPEND INTERFACES_HEADERS Portability.h)
-list(APPEND INTERFACES_HEADERS Module.h)
+ProxyStubGenerator(NAMESPACE "Thunder::QualityAssurance" INPUT "${QA_INTERFACES_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
-file(GLOB PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/ProxyStubs*.cpp")
+list(APPEND QA_INTERFACES_HEADERS Module.h QAIds.h)
+
+file(GLOB QA_PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/ProxyStubs*.cpp")
 add_library(${Target} SHARED
         Module.cpp
-        ${PROXY_STUB_SOURCES}
+        ${QA_PROXY_STUB_SOURCES}
         )
 
 target_include_directories(${Target} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/..)
@@ -73,23 +72,6 @@ install(
 )
 
 install(
-        FILES ${INTERFACES_HEADERS}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces
+        FILES ${QA_INTERFACES_HEADERS}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/qa_interfaces
 )
-
-install(
-        FILES ${JSON_HEADERS}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json
-)
-
-include(CreateLink)
-
-CreateLink(
-        LINK "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/cdmi.h"
-        TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/IDRM.h"
-)
-
-
-
-
-

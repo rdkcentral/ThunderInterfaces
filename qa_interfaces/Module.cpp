@@ -1,8 +1,8 @@
-/*
+ /*
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2022 Metrological
+ * Copyright 2020 Metrological
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,18 +17,14 @@
  * limitations under the License.
  */
 
-#pragma once
-
 #include "Module.h"
 
-namespace Thunder {
-namespace Exchange {
+#ifdef __WINDOWS__
 
-struct EXTERNAL IStoreCache : virtual public Core::IUnknown {
-    enum { ID = ID_STORE_CACHE };
+// ProxyStub code needs the definitions on windows for the default
+// Contstructor/Destructor implementations, generated EXTERNAL.
+#include <definitions/definitions.h>
 
-    virtual uint32_t FlushCache() = 0;
-};
+#endif
 
-} // namespace Exchange
-} // namespace Thunder
+MODULE_NAME_DECLARATION(BUILD_REFERENCE)

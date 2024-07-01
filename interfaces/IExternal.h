@@ -21,7 +21,7 @@
 #include "Module.h"
 #include "IValuePoint.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
     struct EXTERNAL IExternal : virtual public Core::IUnknown {
         enum { ID = ID_EXTERNAL };

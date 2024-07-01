@@ -20,7 +20,7 @@
 #pragma once
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     // @json 1.0.0 @uncompliant:collapsed
@@ -68,4 +68,4 @@ namespace Exchange {
     };
 
 } // Exchange
-} // WPEFramework
+} // Thunder
