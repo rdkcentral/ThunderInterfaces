@@ -131,7 +131,7 @@ struct ISession : virtual public Core::IUnknown {
     // During instantiation a callback is set, here we can decouple.
     virtual void Revoke(ISession::ICallback* callback) = 0;
 
-    virtual OCDM_RESULT SetParameter(const string& name VARIABLE_IS_NOT_USED, const string& value VARIABLE_IS_NOT_USED) { return (OCDM_METHOD_NOT_IMPLEMENTED); }
+    virtual OCDM_RESULT SetParameter(const string&, const string&) { return (OCDM_METHOD_NOT_IMPLEMENTED); }
 };
 
 struct ISessionExt : virtual public Core::IUnknown {
