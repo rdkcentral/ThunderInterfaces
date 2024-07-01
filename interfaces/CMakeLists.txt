@@ -15,13 +15,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.15)
 
-project(Marshalling)
+project(Marshalling
+        VERSION 5.0.0
+        DESCRIPTION "Component that abstracts the logic to transfer and receive COM-RPC objects"
+        LANGUAGES CXX)
 
 find_package(Thunder)
-
-project_version(1.0.0)
 
 find_package(CompileSettingsDebug REQUIRED)
 find_package(ProxyStubGenerator REQUIRED)
@@ -61,35 +62,39 @@ set_target_properties(${Target} PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED YES
         FRAMEWORK FALSE
-        VERSION ${PROJECT_VERSION}
         SOVERSION ${PROJECT_VERSION_MAJOR}
         )
+
+if(HUMAN_VERSIONED_BINARIES)
+set_target_properties(${Target} PROPERTIES VERSION ${PROJECT_VERSION})
+endif()
+
 
 string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
 
 install(
-        TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${NAMESPACE_LIB}/proxystubs COMPONENT libs      # shared lib
+        TARGETS ${Target} EXPORT ${Target}Targets
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${NAMESPACE_LIB}/proxystubs COMPONENT ${NAMESPACE}_Runtime NAMELINK_COMPONENT ${NAMESPACE}_Development
 )
 
 install(
         FILES ${INTERFACES_HEADERS}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces COMPONENT ${NAMESPACE}_Development
+)
+
+install(
+        FILES ${CMAKE_CURRENT_BINARY_DIR}/cdmi.h
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} COMPONENT ${NAMESPACE}_Development
 )
 
 install(
         FILES ${JSON_HEADERS}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json COMPONENT ${NAMESPACE}_Development
 )
 
 include(CreateLink)
 
 CreateLink(
-        LINK "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/cdmi.h"
-        TARGET "${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/IDRM.h"
+        LINK "${CMAKE_CURRENT_BINARY_DIR}/cdmi.h"
+        TARGET "${NAMESPACE}/interfaces/IDRM.h"
 )
-
-
-
-
-
