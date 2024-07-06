@@ -15,13 +15,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.15)
 
-project(QAMarshalling)
+project(QAMarshalling
+        VERSION 5.0.0
+        DESCRIPTION "Component that abstracts the logic to transfer and receive QA specific COM-RPC objects"
+        LANGUAGES CXX)
 
 find_package(Thunder)
-
-project_version(1.0.0)
 
 find_package(CompileSettingsDebug REQUIRED)
 find_package(ProxyStubGenerator REQUIRED)
@@ -60,18 +61,21 @@ set_target_properties(${Target} PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED YES
         FRAMEWORK FALSE
-        VERSION ${PROJECT_VERSION}
         SOVERSION ${PROJECT_VERSION_MAJOR}
         )
+
+if(HUMAN_VERSIONED_BINARIES)
+set_target_properties(${Target} PROPERTIES VERSION ${PROJECT_VERSION})
+endif()
 
 string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
 
 install(
-        TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${NAMESPACE_LIB}/proxystubs COMPONENT libs      # shared lib
+        TARGETS ${Target} EXPORT ${Target}Targets
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${NAMESPACE_LIB}/proxystubs COMPONENT ${NAMESPACE}_Test NAMELINK_COMPONENT ${NAMESPACE}_Test_Development
 )
 
 install(
         FILES ${QA_INTERFACES_HEADERS}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/qa_interfaces
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/qa_interfaces COMPONENT ${NAMESPACE}_Test_Development
 )

@@ -15,13 +15,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.15)
 
-project(Definitions)
+project(Definitions
+        VERSION 5.0.0
+        DESCRIPTION "Shared lookup tables associated with interface enums."
+        LANGUAGES CXX)
 
 find_package(Thunder)
-
-project_version(1.0.0)
 
 find_package(CompileSettingsDebug REQUIRED)
 find_package(JsonGenerator REQUIRED)
@@ -69,16 +70,6 @@ file(GLOB QA_JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/J*.h")
 list(APPEND JSON_LINK_HEADERS "Module.h")
 list(APPEND QA_JSON_LINK_HEADERS "Module.h")
 
-include(CreateLink)
-#CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h" TARGET "../Module.h")
-#list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h")
-#CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h" TARGET "../Ids.h")
-#list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h")
-#CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/Module.h" TARGET "../interfaces/Module.h")
-#list(APPEND PUBLIC_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/Module.h")
-#CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/QAIds.h" TARGET "../QAIds.h")
-#list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/QAIds.h")
-
 add_library(${Target} SHARED
         Definitions.cpp
         Module.cpp
@@ -96,10 +87,13 @@ set_target_properties(${Target} PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED YES
         FRAMEWORK FALSE
-        VERSION ${PROJECT_VERSION}
         SOVERSION ${PROJECT_VERSION_MAJOR}
         PUBLIC_HEADER "${PUBLIC_HEADERS}" # specify the public headers
         )
+
+if(HUMAN_VERSIONED_BINARIES)
+set_target_properties(${Target} PROPERTIES VERSION ${PROJECT_VERSION})
+endif()
 
 target_include_directories(${Target}
         PRIVATE
@@ -109,30 +103,28 @@ target_include_directories(${Target}
        )
 
 install(
-        TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/ COMPONENT libs      # static lib
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/ COMPONENT libs      # shared lib
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT libs      # binaries
-        FRAMEWORK DESTINATION ${CMAKE_INSTALL_BINDIR}/ COMPONENT libs    # for mac
-        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/definitions COMPONENT devel   # headers for mac (note the different component -> different package)
-        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}   # default include path
+        TARGETS ${Target} EXPORT ${Target}Targets
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/ COMPONENT ${NAMESPACE}_Development
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/ COMPONENT ${NAMESPACE}_Runtime  NAMELINK_COMPONENT ${NAMESPACE}_Development
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT ${NAMESPACE}_Runtime
+        FRAMEWORK DESTINATION ${CMAKE_INSTALL_BINDIR}/ COMPONENT ${NAMESPACE}_Runtime
+        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/definitions COMPONENT ${NAMESPACE}_Development
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}
 )
 
 install(
         FILES ${JSON_LINK_HEADERS}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json COMPONENT ${NAMESPACE}_Development  
 )
 
 install(
         FILES ${QA_JSON_LINK_HEADERS}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/qa_interfaces/json
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/qa_interfaces/json  COMPONENT ${NAMESPACE}_Test_Development
 )
 
 InstallPackageConfig(
         TARGETS ${Target}
-        DESCRIPTION "Share lookup tables associated with interface enums."
+        DESCRIPTION "${PROJECT_DESCRIPTION}"
         )
 
-
 InstallCMakeConfig(TARGETS ${Target})
-
