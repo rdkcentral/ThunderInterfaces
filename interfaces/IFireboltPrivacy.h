@@ -25,11 +25,6 @@ namespace Exchange {
     /* @json 1.0.0*/
     struct EXTERNAL IFireboltPrivacy : virtual public Core::IUnknown {
         enum { ID = ID_FIREBOLT_PRIVACY };
-        enum StorageLocation : uint8_t {
-            Disk,
-            InMemory,
-        };
-
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
