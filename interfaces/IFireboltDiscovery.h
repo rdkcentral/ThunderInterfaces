@@ -30,14 +30,12 @@ namespace Exchange {
     struct EXTERNAL IFireboltDiscovery : virtual public Core::IUnknown {
 
         enum { ID = ID_FIREBOLT_DISCOVERY };
-#if 1
         struct EXTERNAL DiscoveryPolicy{
-            uint8_t enableRecommendation;
-            uint8_t shareWatchHistory;
-            uint8_t rememberWatchedProgram;
+            bool enableRecommendation;
+            bool shareWatchHistory;
+            bool rememberWatchedProgram;
         };
-#endif 
-#if 1
+
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_FIREBOLT_DISCOVERY_NOTIFICATION };
@@ -51,7 +49,7 @@ namespace Exchange {
             // Pushing notifications to interested sinks
             virtual Core::hresult Register(IFireboltDiscovery::INotification* sink) = 0;
             virtual Core::hresult Unregister(IFireboltDiscovery::INotification* sink) = 0;
-#endif
+
         // @brief Provides Current Policy in action
         virtual Core::hresult GetDiscoveryPolicy(DiscoveryPolicy& policy /* @out */) = 0;
 
