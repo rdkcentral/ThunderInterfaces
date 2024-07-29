@@ -38,8 +38,6 @@
 
 #pragma once
 
-// @stubgen:skip
-
 // For the support of portable data types such as uint8_t.
 #include <stdint.h>
 #include <string>
@@ -48,111 +46,7 @@
 #include <vector>
 
 #include <interfaces/Portability.h>
-
-class BufferReader {
-private:
-    BufferReader() = delete;
-    BufferReader(const BufferReader&) = delete;
-    BufferReader& operator=(const BufferReader&) = delete;
-
-    // Internal implementation of multi-byte reads
-    template <typename T>
-    bool Read(T* v)
-    {
-        if ((v != nullptr) && (HasBytes(sizeof(T)) == true)) {
-            T tmp = 0;
-            for (size_t i = 0; i < sizeof(T); i++) {
-                tmp <<= 8;
-                tmp += buf_[pos_++];
-            }
-            *v = tmp;
-            return true;
-        }
-        return false;
-    }
-
-public:
-    inline BufferReader(const uint8_t* buf, size_t size)
-        : buf_(buf)
-        , size_(buf != NULL ? size : 0)
-        , pos_(0)
-    {
-    }
-    inline ~BufferReader() = default;
-
-public:
-    inline bool HasBytes(size_t count) const { return pos_ + count <= size_; }
-    inline bool IsEOF() const { return pos_ >= size_; }
-    inline const uint8_t* data() const { return buf_; }
-    inline size_t size() const { return size_; }
-    inline size_t pos() const { return pos_; }
-
-    // Read a value from the stream, performing endian correction,
-    // and advance the stream pointer.
-    inline bool Read1(uint8_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
-    inline bool Read2(uint16_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
-    inline bool Read2s(int16_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
-    inline bool Read4(uint32_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
-    inline bool Read4s(int32_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
-    inline bool Read8(uint64_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
-    inline bool Read8s(int64_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
-
-    inline bool ReadString(std::string* str, size_t count) WARNING_RESULT_NOT_USED
-    {
-        if ((str != nullptr) && (HasBytes(count) == true)) {
-            str->assign(buf_ + pos_, buf_ + pos_ + count);
-            pos_ += count;
-            return true;
-        }
-        return false;
-    }
-    inline bool ReadVec(std::vector<uint8_t>* vec, size_t count) WARNING_RESULT_NOT_USED
-    {
-        if ((vec != nullptr) && (HasBytes(count) == true)) {
-            vec->clear();
-            vec->insert(vec->end(), buf_ + pos_, buf_ + pos_ + count);
-            pos_ += count;
-            return true;
-        }
-        return false;
-    }
-
-    // These variants read a 4-byte integer of the corresponding signedness and
-    // store it in the 8-byte return type.
-    inline bool Read4Into8(uint64_t* v) WARNING_RESULT_NOT_USED
-    {
-        uint32_t tmp;
-        if ((v != nullptr) && (Read4(&tmp) == true)) {
-            *v = tmp;
-            return true;
-        }
-        return false;
-    }
-    inline bool Read4sInto8s(int64_t* v) WARNING_RESULT_NOT_USED
-    {
-        int32_t tmp;
-        if ((v != nullptr) && (Read4s(&tmp) == true)) {
-            *v = tmp;
-            return true;
-        }
-        return false;
-    }
-
-    // Advance the stream by this many bytes.
-    inline bool SkipBytes(size_t bytes) WARNING_RESULT_NOT_USED
-    {
-        if (HasBytes(bytes) == true) {
-            pos_ += bytes;
-            return true;
-        }
-        return false;
-    }
-
-private:
-    const uint8_t* buf_;
-    size_t size_;
-    size_t pos_;
-};
+#include <interfaces/DRMHelper.h>
 
 namespace Thunder
 {
@@ -189,7 +83,7 @@ namespace CDMi {
 #define MEDIA_KEY_STATUS_KEY_STATUS_PENDING 5
 #define MEDIA_KEY_STATUS_KEY_STATUS_MAX KEY_STATUS_PENDING
 
-typedef enum {
+enum CDMi_RESULT {
     CDMi_SUCCESS = 0,
     CDMi_S_FALSE = 1,
     CDMi_MORE_DATA_AVAILABLE = 2,
@@ -207,57 +101,56 @@ typedef enum {
     CDMi_SERVER_INVALID_MESSAGE = 0x8004C601,
     CDMi_SERVER_SERVICE_SPECIFIC = 0x8004C604,
     CDMi_BUSY_CANNOT_INITIALIZE = 0x8004DD00,
-} CDMi_RESULT;
+};
 
-typedef enum {
+enum LicenseType {
     Temporary,
     PersistentUsageRecord,
     PersistentLicense
-} LicenseType;
+};
 
-typedef enum {
+enum LicenseTypeExt {
     Invalid = 0,
     LimitedDuration,
     Standard
-} LicenseTypeExt;
+};
 
-typedef enum {
+enum SessionStateExt {
     LicenseAcquisitionState = 0,
     InactiveDecryptionState,
     ActiveDecryptionState,
     InvalidState
-} SessionStateExt;
+};
 
-typedef enum 
-{
+enum MediaType {
     Unknown = 0,
     Video,
     Audio,
     Data
-} MediaType;
+};
 
 // ISO/IEC 23001-7 defines two Common Encryption Schemes with Full Sample and Subsample modes
-typedef enum : uint8_t {
+enum EncryptionScheme : uint8_t {
     Clear = 0,
     AesCtr_Cenc,    // AES-CTR mode and Sub-Sample encryption
     AesCbc_Cbc1,    // AES-CBC mode and Sub-Sample encryption
     AesCtr_Cens,    // AES-CTR mode and Sub-Sample + patterned encryption
     AesCbc_Cbcs     // AES-CBC mode and Sub-Sample + patterned encryption + Constant IV
-} EncryptionScheme;
+};
 
 // CBCS & CENC3.0 pattern is a number of encrypted blocks followed a number of clear
 // blocks after which the pattern repeats.
-typedef struct {
+struct EncryptionPattern {
     uint32_t clear_blocks;
     uint32_t encrypted_blocks;
-} EncryptionPattern;
+};
 
-typedef struct {
+struct SubSampleInfo {
     uint16_t clear_bytes;
     uint32_t encrypted_bytes;
-} SubSampleInfo;
+};
 
-typedef struct {
+struct SampleInfo {
     EncryptionScheme   scheme;          // Encryption scheme used in this sample
     EncryptionPattern pattern;          // Encryption Pattern used in this sample
     uint8_t*           iv;              // Initialization vector(IV) to decrypt this sample
@@ -266,7 +159,7 @@ typedef struct {
     uint8_t            keyIdLength;     // Length of KeyId
     uint8_t            subSampleCount;  // Number or Sub-Samples in this sample
     SubSampleInfo*     subSample;       // SubSample mapping - Repeating pair of Clear bytes and Encrypted Bytes representing each subsample.
-} SampleInfo;
+};
 
 // IStreamProperties to provide information about the current stream
 class IStreamProperties {
@@ -513,6 +406,7 @@ struct IMediaSessionMetrics {
     virtual CDMi_RESULT Metrics (uint32_t& bufferLength, uint8_t buffer[]) const = 0;
 };
 
+// @stop
 struct ISystemFactory {
     virtual ~ISystemFactory() = default;
     virtual IMediaKeys* Instance() = 0;
