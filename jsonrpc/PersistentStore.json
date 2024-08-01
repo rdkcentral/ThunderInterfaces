@@ -2,31 +2,33 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
+    "version": "1.0.0",
     "title": "PertsistentStore API",
     "class": "PersistentStore",
-    "description": "Persistent Store JSON-RPC interface"
+    "description": "Persistent Store JSON-RPC interface",
+    "legacy": true
   },
   "common": {
     "$ref": "common.json"
   },
   "definitions": {
     "namespace": {
-      "summary": "Namespace",
+      "description": "Namespace",
       "type": "string",
       "example": "ns1"
     },
     "key": {
-      "summary": "Key",
+      "description": "Key",
       "type": "string",
       "example": "key1"
     },
     "value": {
-      "summary": "Value",
+      "description": "Value",
       "type": "string",
       "example": "value1"
     },
     "scope": {
-      "summary": "Scope",
+      "description": "Scope",
       "type": "string",
       "enum": [
         "device",
@@ -36,17 +38,17 @@
       "example": "device"
     },
     "size": {
-      "summary": "Size in bytes",
+      "description": "Size in bytes",
       "type": "number",
       "example": 100
     },
     "ttl": {
-      "summary": "Time in seconds",
+      "description": "Time in seconds",
       "type": "number",
       "example": 100
     },
     "success": {
-      "summary": "Legacy parameter (always true)",
+      "description": "Legacy parameter (always true)",
       "type": "boolean",
       "default": true,
       "example": true
