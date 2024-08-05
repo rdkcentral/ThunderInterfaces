@@ -26,6 +26,7 @@
 namespace Thunder {
 namespace Exchange {
 
+    // @json 1.0.0
     struct EXTERNAL IStore2 : virtual public Core::IUnknown {
         enum { ID = ID_STORE2 };
 
@@ -36,21 +37,27 @@ namespace Exchange {
             ACCOUNT
         };
 
+        // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_STORE2_NOTIFICATION };
 
             ~INotification() override = default;
 
-            virtual void ValueChanged(const ScopeType scope, const string& ns, const string& key, const string& value) = 0;
+            // @alt onValueChanged
+            virtual void ValueChanged(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value) = 0;
         };
 
         virtual uint32_t Register(Exchange::IStore2::INotification* notification) = 0;
         virtual uint32_t Unregister(Exchange::IStore2::INotification* notification) = 0;
 
-        virtual uint32_t SetValue(const ScopeType scope, const string& ns, const string& key, const string& value, const uint32_t ttl) = 0;
-        virtual uint32_t GetValue(const ScopeType scope, const string& ns, const string& key, string& value /* @out */, uint32_t& ttl /* @out */) = 0;
-        virtual uint32_t DeleteKey(const ScopeType scope, const string& ns, const string& key) = 0;
-        virtual uint32_t DeleteNamespace(const ScopeType scope, const string& ns) = 0;
+        // @alt setValue
+        virtual uint32_t SetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value, const uint32_t ttl) = 0;
+        // @alt getValue
+        virtual uint32_t GetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, string& value /* @out */, uint32_t& ttl /* @out */) = 0;
+        // @alt deleteKey
+        virtual uint32_t DeleteKey(const ScopeType scope, const string& ns /* @text:namespace */, const string& key) = 0;
+        // @alt deleteNamespace
+        virtual uint32_t DeleteNamespace(const ScopeType scope, const string& ns /* @text:namespace */) = 0;
     };
 
     struct EXTERNAL IStoreInspector : virtual public Core::IUnknown {
