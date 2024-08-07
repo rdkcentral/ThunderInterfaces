@@ -44,6 +44,11 @@ namespace Exchange {
             ~INotification() override = default;
 
             // @alt onValueChanged
+            // @brief Event method to notify value change
+            // @param scope: Scope of the value changed
+            // @param ns: Namespace of the value changed
+            // @param key: Key paired with changed value
+            // @param value: Changed value
             virtual void ValueChanged(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value) = 0;
         };
 
@@ -51,12 +56,31 @@ namespace Exchange {
         virtual uint32_t Unregister(Exchange::IStore2::INotification* notification) = 0;
 
         // @alt setValue
+        // @brief Set value for the given key
+        // @param scope: Scope of the value
+        // @param ns: Namespace of the value
+        // @param key: Key against the value to be set
+        // @param value: Value to be set against given key
+        // @param ttl: TTL value
         virtual uint32_t SetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value, const uint32_t ttl) = 0;
         // @alt getValue
+        // @brief Get value of the given key
+        // @param scope: Scope of the value
+        // @param ns: Namespace of the value
+        // @param key: Key against the value to be get
+        // @param value: Value to be get against given key
+        // @param ttl: TTL value
         virtual uint32_t GetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, string& value /* @out */, uint32_t& ttl /* @out */) = 0;
         // @alt deleteKey
+        // @brief Delete given key
+        // @param scope: Scope of the value
+        // @param ns: Namespace of the value
+        // @param key: Key to be deleted
         virtual uint32_t DeleteKey(const ScopeType scope, const string& ns /* @text:namespace */, const string& key) = 0;
         // @alt deleteNamespace
+        // @brief Delete given namespace
+        // @param scope: Scope of the value
+        // @param ns: Namespace to be deleted
         virtual uint32_t DeleteNamespace(const ScopeType scope, const string& ns /* @text:namespace */) = 0;
     };
 
