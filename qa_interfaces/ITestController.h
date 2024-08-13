@@ -108,7 +108,6 @@ namespace Thunder {
             // @retval ERROR_UNAVAILABLE: Unknown category/test
             // @retval ERROR_BAD_REQUEST: Bad testInfo
             virtual uint32_t Run(const TestInfo& testInfo /* @in */, ITestResultIterator*& testResults /* @out */) = 0;
- 
 
             /* @json:omit */
             virtual void Setup() = 0;

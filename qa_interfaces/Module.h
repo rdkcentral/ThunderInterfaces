@@ -35,4 +35,4 @@
 // All identifiers to identify a QA interface are allocated in this same directory
 // in the file calls Ids.h, please extend it with your required interface number
 // if you are creating a new interface.
-#include "QAIds.h"
+#include "Ids.h"

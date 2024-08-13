@@ -114,7 +114,7 @@ namespace QualityAssurance {
         // @param response: Parameter Data
         // @retval ERROR_UNAVAILABLE: Unknown command
         // @retval ERROR_BAD_REQUEST: Bad param data format
-        virtual uint32_t Parameters(const string& command /* @index */, IParameterInfoIterator*& input /* @out */, ParameterInfo& output /* @out */) const = 0;
+        virtual uint32_t Parameters(const string& command /* @input */, IParameterInfoIterator*& input /* @out */, ParameterInfo& output /* @out */) const = 0;
 
         // @brief RunCrash - Runs a crash test command
         // @param info: Info about crash test to be run
