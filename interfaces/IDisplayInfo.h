@@ -98,7 +98,7 @@ namespace Exchange {
         // @brief TV's Extended Display Identification Data
         // @param length: Length of EDID byte string
         // @param data: EDID byte string
-        virtual uint32_t EDID (uint16_t& length /* @inout */, uint8_t data[] /* @out @length:length */) const = 0;
+        virtual uint32_t EDID (uint16_t& length /* @inout */, uint8_t data[] /* @out @length:length @encode:base64 */) const = 0;
 
         // @brief Horizontal size in centimeters
         // @param width: Width in cm
