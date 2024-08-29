@@ -276,6 +276,8 @@ namespace WPEFramework
 } // namespace WPEFramework
 
 
+#ifndef SUPPORT_CAMEL_CASE_JSON_APIS
+
 /* JPowerManager.h will be generated with auto generated tool and it is calling _impl_(object of IPowerManager.h) methods
    starting with Capital letters,which will cause compilation error as IPowerManager interface method names are starting with
    small letters.
@@ -310,4 +312,6 @@ namespace WPEFramework
 #define GetWakeupSrcConfig getWakeupSrcConfig
 #define SystemModeChange systemModeChange
 #define GetPowerStateBeforeReboot getPowerStateBeforeReboot
+
+#endif /* !SUPPORT_CAMEL_CASE_JSON_APIS */
 
