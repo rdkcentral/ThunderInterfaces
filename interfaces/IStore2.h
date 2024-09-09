@@ -32,8 +32,8 @@ namespace Exchange {
         ~IStore2() override = default;
 
         enum ScopeType : uint8_t {
-            DEVICE,
-            ACCOUNT
+            DEVICE /* @text:device */,
+            ACCOUNT /* @text:account */
         };
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
