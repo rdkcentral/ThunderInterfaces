@@ -369,10 +369,13 @@ namespace Exchange {
         ID_DNS_SERVER                                = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4E0,
         ID_DNS_ZONE                                  = ID_DNS_SERVER + 1,
         ID_DNS_RECORD                                = ID_DNS_SERVER + 2,
-        
+
         ID_TESTAUTOMATIONMEMORY                      = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4F0,
         ID_TESTAUTOMATIONCOMRPC                      = ID_TESTAUTOMATIONMEMORY + 1,
-        ID_TESTAUTOMATIONCOMRPCINTERNAL              = ID_TESTAUTOMATIONMEMORY + 2
+        ID_TESTAUTOMATIONCOMRPCINTERNAL              = ID_TESTAUTOMATIONMEMORY + 2,
+
+        ID_CONTENTPROTECTION                         = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x500,
+        ID_CONTENTPROTECTION_NOTIFICATION            = ID_CONTENTPROTECTION + 1,
 
     };
 }
