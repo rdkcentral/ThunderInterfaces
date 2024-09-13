@@ -344,8 +344,10 @@ namespace Exchange {
         ID_NETWORKCONTROL_NETWORK_INFO_ITERATOR      = ID_NETWORKCONTROL + 2,
 
         ID_USER_SETTINGS                             = 0x000004E0,
-        ID_USER_SETTINGS_NOTIFICATION                = ID_USER_SETTINGS + 1
+        ID_USER_SETTINGS_NOTIFICATION                = ID_USER_SETTINGS + 1,
 
+        ID_APP_MANAGER                               = 0x000004F0,
+        ID_APP_MANAGER_NOTIFICATION                  = ID_APP_MANAGER + 1
     };
 }
 }
