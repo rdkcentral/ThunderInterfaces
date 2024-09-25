@@ -39,7 +39,7 @@ namespace Exchange {
             WPA_WPA2   = 0x40  /* @text: WPA_WPA2 */,
             UNKNOWN    = 0x00
         };
-        
+
         struct SecurityInfo {
             enum Key : uint8_t {
                 PSK        = 0x01  /* @text: PSK */,
@@ -52,10 +52,10 @@ namespace Exchange {
                 PSK_HASHED = 0x80  /* @text: PSK_HASHED */,
                 NONE       = 0x00
             };
-            
+
             Security method /* @brief Security method */;
-            Key keys        /* @bitmask @brief Security Keys */;
-        };    
+            Key keys        /* @encode:bitmask @brief Security Keys */;
+        };
         using ISecurityIterator = RPC::IIteratorType<SecurityInfo, ID_WIFICONTROL_SECURITY_INFO_ITERATOR>;
 
         struct NetworkInfo {
@@ -63,7 +63,7 @@ namespace Exchange {
             uint64_t bssid     /* @brief BSSID of the network */;
             uint32_t frequency /* @brief Frequency used */;
             int32_t signal     /* @brief Signal strength */;
-            Security security  /* @bitmask @brief Security method */;
+            Security security  /* @encode:bitmask @brief Security method */;
         };
         using INetworkInfoIterator = RPC::IIteratorType<NetworkInfo, ID_WIFICONTROL_NETWORK_INFO_ITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
