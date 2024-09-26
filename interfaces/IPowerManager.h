@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2024 Synamedia Ltd.
+ * Copyright 2024 RDK Management
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -247,7 +247,7 @@ namespace WPEFramework
         // @text getPowerStateBeforeReboot
         // @brief Get Power state before reboot
         // @param powerStateBeforeReboot: power state 
-        virtual uint32_t GetPowerStateBeforeReboot(string &powerStateBeforeReboot /* @out */) = 0;
+        virtual uint32_t GetPowerStateBeforeReboot(PowerState &powerStateBeforeReboot /* @out */) = 0;
 
 };
 } // namespace Exchange
