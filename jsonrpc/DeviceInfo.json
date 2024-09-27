@@ -343,6 +343,7 @@
     "make": {
       "type": "string",
       "enum": [
+        "westinghouse",
         "platco",
         "llama",
         "hisense",
