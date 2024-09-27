@@ -355,7 +355,8 @@
         "pace",
         "samsung",
         "technicolor",
-        "Amlogic_Inc"
+        "Amlogic_Inc",
+        "TPV"
       ],
       "description": "Device manufacturer",
       "example": "pace"
@@ -363,6 +364,7 @@
     "sku": {
       "type": "string",
       "enum": [
+        "PITU11MWR",
         "PLTL11AEI",
         "ZWCN11MWI",
         "SKTL11AEI",
@@ -397,6 +399,7 @@
     "yocto": {
       "type": "string",
       "enum": [
+        "kirkstone",
         "dunfell",
         "morty",
         "daisy"
