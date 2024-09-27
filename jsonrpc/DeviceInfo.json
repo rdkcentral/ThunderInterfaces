@@ -343,6 +343,7 @@
     "make": {
       "type": "string",
       "enum": [
+        "westinghouse",
         "platco",
         "llama",
         "hisense",
@@ -389,7 +390,11 @@
         "PX051AEI",
         "PXD01ANI",
         "SX022AN",
-        "TX061AEI"
+        "TX061AEI",
+        "PI",
+        "XUSHTC11MWR",
+        "XUSPTC11MWR",
+        "XUSHTB11MWR"
       ],
       "description": "Device model number or SKU",
       "example": "PX051AEI"
