@@ -362,7 +362,10 @@ namespace Exchange {
         ID_TEXT_TO_SPEECH_NOTIFICATION               = ID_TEXT_TO_SPEECH + 1,
 
         ID_USER_SETTINGS                             = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4D0,
-        ID_USER_SETTINGS_NOTIFICATION                = ID_USER_SETTINGS + 1
+        ID_USER_SETTINGS_NOTIFICATION                = ID_USER_SETTINGS + 1,
+
+        ID_POWER_MANAGER                             = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4E0,
+        ID_POWER_MANAGER_NOTIFICATION                = ID_POWER_MANAGER + 1
     };
 }
 }
