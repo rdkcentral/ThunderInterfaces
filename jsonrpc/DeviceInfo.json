@@ -358,7 +358,8 @@
         "technicolor",
         "Amlogic_Inc",
         "raspberrypi_org",
-        "Pioneer"
+        "Pioneer",
+        "TPV"
       ],
       "description": "Device manufacturer",
       "example": "pace"
