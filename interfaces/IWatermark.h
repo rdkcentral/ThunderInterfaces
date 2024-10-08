@@ -2,7 +2,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     struct PalettedImageData
@@ -43,4 +43,4 @@ namespace Exchange {
     };
 
 } // Exchange
-} // WPEFramework
+} // Thunder
