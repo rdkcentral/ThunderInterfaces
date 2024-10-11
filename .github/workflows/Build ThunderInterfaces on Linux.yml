@@ -19,7 +19,7 @@ jobs:
   ThunderInterfacesDevelopment:
     needs: Thunder
     if: contains(github.event.pull_request.body, '[ThunderInterfaces-Linux-template]')
-    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@${{github.ref}}
+    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@development/actions-template
 
   ThunderClientLibraries:
     needs: [ThunderInterfacesMaster, ThunderInterfacesDevelopment]
