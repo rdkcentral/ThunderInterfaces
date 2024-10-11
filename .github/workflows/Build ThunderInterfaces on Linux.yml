@@ -8,49 +8,27 @@ on:
     branches: ["master"]
 
 jobs:
-  GetFlags:
-    runs-on: ubuntu-latest
-
-    outputs:
-      template: ${{ steps.ThunderInterfacesLinux.outputs.template }}
-
-    name: Get Actions related flags from the PR
-    steps:
-    - name: Regex ThunderInterfaces
-      if: contains(github.event.pull_request.body, '[ThunderInterfaces-Linux-template:')
-      id: ThunderInterfacesLinuxRegex
-      uses: AsasInnab/regex-action@v1
-      with:
-        regex_pattern: '(?<=\[ThunderInterfaces-Linux-template:).*(?=\])'
-        regex_flags: 'gim'
-        search_string: ${{github.event.pull_request.body}}
-
-    - name: Save the output in case of a valid regex
-      if: contains(github.event.pull_request.body, '[ThunderInterfaces-Linux-template:')
-      id: ThunderInterfacesLinux
-      run: echo "template=${{steps.ThunderInterfacesLinuxRegex.outputs.first_match}}" >> "$GITHUB_OUTPUT"
-
   Thunder:
     uses: rdkcentral/Thunder/.github/workflows/Linux build template.yml@development/actions-pep668-error # change back to master
 
-  ThunderInterfaces:
-    needs: [Thunder, GetFlags]
-    runs-on: ubuntu-latest
-    steps:
-    - name: Print the output
-      run: echo ${{needs.GetFlags.outputs.template}}
-    - uses: jenseng/dynamic-uses@v1
-      with:
-        uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@${{needs.GetFlags.outputs.template != '' && needs.GetFlags.outputs.template || github.sha}}
+  ThunderInterfacesMaster:
+    needs: Thunder
+    if: ${{ !contains(github.event.pull_request.body, '[ThunderInterfaces-Linux-template]') }}
+    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@master
+
+  ThunderInterfacesDevelopment:
+    needs: Thunder
+    if: contains(github.event.pull_request.body, '[ThunderInterfaces-Linux-template]')
+    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@${{github.ref}}
 
   ThunderClientLibraries:
-    needs: ThunderInterfaces
+    needs: [ThunderInterfacesMaster, ThunderInterfacesDevelopment]
     uses: rdkcentral/ThunderClientLibraries/.github/workflows/Linux build template.yml@master
 
   ThunderNanoServices:
-    needs: ThunderInterfaces
+    needs: [ThunderInterfacesMaster, ThunderInterfacesDevelopment]
     uses: rdkcentral/ThunderNanoServices/.github/workflows/Linux build template.yml@master
 
   ThunderNanoServicesRDK:
-    needs: ThunderInterfaces
+    needs: [ThunderInterfacesMaster, ThunderInterfacesDevelopment]
     uses: WebPlatformForEmbedded/ThunderNanoServicesRDK/.github/workflows/Linux build template.yml@master
