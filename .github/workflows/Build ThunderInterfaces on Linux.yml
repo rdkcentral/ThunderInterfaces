@@ -11,24 +11,18 @@ jobs:
   Thunder:
     uses: rdkcentral/Thunder/.github/workflows/Linux build template.yml@development/actions-pep668-error # change back to master
 
-  ThunderInterfacesMaster:
+  ThunderInterfaces:
     needs: Thunder
-    if: ${{ !contains(github.event.pull_request.body, '[ThunderInterfaces-Linux-template]') }}
-    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@master
-
-  ThunderInterfacesDevelopment:
-    needs: Thunder
-    if: contains(github.event.pull_request.body, '[ThunderInterfaces-Linux-template]')
-    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@development/actions-template
+    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@development/actions-gcc-13 # change back to master
 
   ThunderClientLibraries:
-    needs: [ThunderInterfacesMaster, ThunderInterfacesDevelopment]
+    needs: ThunderInterfaces
     uses: rdkcentral/ThunderClientLibraries/.github/workflows/Linux build template.yml@master
 
   ThunderNanoServices:
-    needs: [ThunderInterfacesMaster, ThunderInterfacesDevelopment]
+    needs: ThunderInterfaces
     uses: rdkcentral/ThunderNanoServices/.github/workflows/Linux build template.yml@master
 
   ThunderNanoServicesRDK:
-    needs: [ThunderInterfacesMaster, ThunderInterfacesDevelopment]
+    needs: ThunderInterfaces
     uses: WebPlatformForEmbedded/ThunderNanoServicesRDK/.github/workflows/Linux build template.yml@master
