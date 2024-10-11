@@ -8,12 +8,33 @@ on:
     branches: ["master"]
 
 jobs:
+  GetFlags:
+    runs-on: ubuntu-latest
+
+    outputs:
+      template: ${{ steps.ThunderInterfacesLinux.outputs.template }}
+
+    name: Get Actions related flags from the PR
+    steps:
+    - name: Regex ThunderInterfaces
+      if: contains(github.event.pull_request.body, '[ThunderInterfaces-Linux-template:')
+      id: ThunderInterfacesLinuxRegex
+      uses: AsasInnab/regex-action@v1
+      with:
+        regex_pattern: '(?<=\[ThunderInterfaces-Linux-template:).*(?=\])'
+        regex_flags: 'gim'
+        search_string: ${{github.event.pull_request.body}}
+
+    - name: Save the output
+      if: contains(github.event.pull_request.body, '[ThunderInterfaces-Linux-template:')
+      run: echo "template=${{steps.ThunderInterfacesLinuxRegex.outputs.first_match}}" >> "$GITHUB_OUTPUT"
+
   Thunder:
     uses: rdkcentral/Thunder/.github/workflows/Linux build template.yml@development/actions-pep668-error # change back to master
 
   ThunderInterfaces:
-    needs: Thunder
-    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@development/actions-gcc-13 # change back to master
+    needs: [Thunder, GetFlags]
+    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@${{${{needs.GetFlags.outputs.template}} == '' && 'master' || ${{needs.GetFlags.outputs.template}}}} # change back to master
 
   ThunderClientLibraries:
     needs: ThunderInterfaces
