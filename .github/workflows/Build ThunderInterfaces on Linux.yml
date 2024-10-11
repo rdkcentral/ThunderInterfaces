@@ -40,6 +40,8 @@ jobs:
     needs: [Thunder, GetFlags]
     runs-on: ubuntu-latest
     steps:
+    - name: Print the output
+      run: echo ${{needs.GetFlags.outputs.template}}
     - uses: jenseng/dynamic-uses@v1
       with:
         uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@${{needs.GetFlags.outputs.template}}
