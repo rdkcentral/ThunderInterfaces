@@ -25,16 +25,20 @@ jobs:
         regex_flags: 'gim'
         search_string: ${{github.event.pull_request.body}}
 
-    - name: Save the output
+    - name: Save the output in case of a valid regex
       if: contains(github.event.pull_request.body, '[ThunderInterfaces-Linux-template:')
       run: echo "template=${{steps.ThunderInterfacesLinuxRegex.outputs.first_match}}" >> "$GITHUB_OUTPUT"
+
+    - name: Save the output in case of no regex
+      if: ${{ !contains(github.event.pull_request.body, '[ThunderInterfaces-Linux-template:') }}
+      run: echo "template=master" >> "$GITHUB_OUTPUT"
 
   Thunder:
     uses: rdkcentral/Thunder/.github/workflows/Linux build template.yml@development/actions-pep668-error # change back to master
 
   ThunderInterfaces:
     needs: [Thunder, GetFlags]
-    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@${{ needs.GetFlags.outputs.template != '' && needs.GetFlags.outputs.template || 'master' }} # change back to master
+    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@${{needs.GetFlags.outputs.template}} # change back to master
 
   ThunderClientLibraries:
     needs: ThunderInterfaces
