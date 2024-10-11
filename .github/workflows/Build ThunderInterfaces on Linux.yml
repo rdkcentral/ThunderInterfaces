@@ -41,7 +41,7 @@ jobs:
       run: echo ${{needs.GetFlags.outputs.template}}
     - uses: jenseng/dynamic-uses@v1
       with:
-        uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@${{needs.GetFlags.outputs.template != '' && needs.GetFlags.outputs.template || 'master'}}
+        uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@${{needs.GetFlags.outputs.template != '' && needs.GetFlags.outputs.template || github.sha}}
 
   ThunderClientLibraries:
     needs: ThunderInterfaces
