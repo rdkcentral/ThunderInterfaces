@@ -38,7 +38,11 @@ jobs:
 
   ThunderInterfaces:
     needs: [Thunder, GetFlags]
-    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@${{needs.GetFlags.outputs.template}} # change back to master
+    runs-on: ubuntu-latest
+    steps:
+    - uses: jenseng/dynamic-uses@v1
+      with:
+        uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@${{needs.GetFlags.outputs.template}}
 
   ThunderClientLibraries:
     needs: ThunderInterfaces
