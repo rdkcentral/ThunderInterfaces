@@ -13,7 +13,7 @@ jobs:
 
   ThunderInterfaces:
     needs: Thunder
-    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@development/actions-gcc-13 # change back to master
+    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@master
 
   ThunderClientLibraries:
     needs: ThunderInterfaces
