@@ -31,6 +31,11 @@
             "type": "string",
             "example": "RA01"
         },
+        "componentList": {
+            "summary": "Name of the component that is ready for migration",
+            "type": "string",
+            "example": "RA02"
+        },
         "resetType": {
             "summary": "Type indicates whether it should delete all entries in the datastore or componentList for migration or both",
             "type": "string",
@@ -144,10 +149,10 @@
             "result": {
                 "type": "object",
                 "properties": {
-                    "components": {
+                    "componentList": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/definitions/componentName"                       
+                            "$ref": "#/definitions/componentList"                       
                         }
                     },
                     "success": {
@@ -155,7 +160,7 @@
                     }
                 },
                 "required": [
-                    "components",
+                    "componentList",
                     "sucecss"
                 ]
             },
@@ -171,12 +176,12 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "component": {
+                    "componentName": {
                         "$ref": "#/definitions/componentName"
                     }
                 },
                 "required": [
-                    "component"
+                    "componentName"
                 ]
             },
             "result": {
