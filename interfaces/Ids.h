@@ -364,6 +364,8 @@ namespace Exchange {
         ID_USER_SETTINGS                             = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4D0,
         ID_USER_SETTINGS_NOTIFICATION                = ID_USER_SETTINGS + 1
 	
+	    ID_MIGRATION_PREPARER                        = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4E0,
+        ID_MIGRATION_PREPARER_NOTIFICATION           = ID_MIGRATION_PREPARER + 1    
     };
 }
 }

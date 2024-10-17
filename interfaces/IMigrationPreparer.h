@@ -27,7 +27,16 @@ namespace Exchange {
 struct EXTERNAL IMigrationPreparer : virtual public Core::IUnknown {
     enum { ID = ID_MIGRATION_PREPARER };
 
+    struct EXTERNAL INotification : virtual public Core::IUnknown {
+        enum { ID = ID_MIGRATION_PREPARER_NOTIFICATION };
+
+        virtual void ValueChanged(const string &name, const string &value) = 0;
+    };
+
     using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
+    virtual uint32_t Register(Exchange::IMigrationPreparer::INotification* notification /* @in */) = 0;
+    virtual uint32_t Unregister(Exchange::IMigrationPreparer::INotification* notification /* @in */) = 0;
 
     virtual uint32_t writeEntry(const string &name /* @in */, const string &value /* @in */) = 0;
     virtual uint32_t readEntry(const string& name /* @in */, string &result /* @out */) = 0;
