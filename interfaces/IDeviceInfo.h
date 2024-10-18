@@ -156,5 +156,6 @@ namespace Exchange {
         virtual uint32_t Atmos(bool& supportsAtmos /*@out*/) const = 0;
         virtual uint32_t CEC(bool& supportsCEC /*@out*/) const = 0;
     };
-}
+
+    }
 }

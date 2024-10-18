@@ -50,6 +50,25 @@ set(WORKING_VARIABLE ${INTERFACES_PATTERNS})
 list(TRANSFORM WORKING_VARIABLE PREPEND "${CMAKE_SOURCE_DIR}/qa_interfaces/")
 file(GLOB QA_INTERFACE_FILE ${WORKING_VARIABLE})
 
+if(ENABLE_LEGACY_INTERFACE_SUPPORT)
+    list(REMOVE_ITEM INTERFACE_FILE
+         "${CMAKE_SOURCE_DIR}/interfaces/IBrowserExt.h"
+         "${CMAKE_SOURCE_DIR}/interfaces/IDeviceInfoExt.h"
+         "${CMAKE_SOURCE_DIR}/interfaces/IMonitor.h"
+         "${CMAKE_SOURCE_DIR}/interfaces/IOCDMExt.h"
+         "${CMAKE_SOURCE_DIR}/interfaces/ISecurityAgent.h")
+else()
+    list(REMOVE_ITEM JSON_FILE "${CMAKE_SOURCE_DIR}/jsonrpc/DeviceInfo.json"
+        "${CMAKE_SOURCE_DIR}/jsonrpc/Monitor.json"
+        "${CMAKE_SOURCE_DIR}/jsonrpc/OCDM.json"
+        "${CMAKE_SOURCE_DIR}/jsonrpc/SecurityAgent.json"
+        "${CMAKE_SOURCE_DIR}/jsonrpc/StateControl.json")
+    list(REMOVE_ITEM INTERFACE_FILE
+        "${CMAKE_SOURCE_DIR}/interfaces/IDeviceInfo.h"
+        "${CMAKE_SOURCE_DIR}/interfaces/IBrowser.h"
+        "${CMAKE_SOURCE_DIR}/interfaces/IOCDM.h")
+endif()
+
 set(PUBLIC_HEADERS "definitions.h" "ValuePoint.h" "Module.h")
 
 if(NOT GENERATOR_SEARCH_PATH)

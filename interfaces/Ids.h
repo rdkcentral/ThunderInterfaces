@@ -61,6 +61,7 @@ namespace Exchange {
         ID_BROWSER_SCRIPTING                         = ID_BROWSER + 7,
         ID_BROWSER_COOKIEJAR                         = ID_BROWSER + 8,
         ID_BROWSER_COOKIEJAR_NOTIFICATION            = ID_BROWSER + 9,
+        ID_WEB_BROWSER_HEADERS_ITERATOR              = ID_BROWSER + 0xA,
 
         ID_POWER                                     = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x010,
         ID_POWER_NOTIFICATION                        = ID_POWER + 1,
@@ -248,6 +249,7 @@ namespace Exchange {
         ID_CONFIGURATION                             = ID_APPLICATION + 2,
 
         ID_DEVICE_INFO                               = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x370,
+#if ENABLE_LEGACY_INTERFACE_SUPPORT
         ID_DEVICE_CAPABILITIES_AUDIO                 = ID_DEVICE_INFO + 1,
         ID_DEVICE_CAPABILITIES_AUDIO_OUTPUT          = ID_DEVICE_INFO + 2,
         ID_DEVICE_CAPABILITIES_AUDIO_CAPABILITY      = ID_DEVICE_INFO + 3,
@@ -256,6 +258,18 @@ namespace Exchange {
         ID_DEVICE_CAPABILITIES_VIDEO                 = ID_DEVICE_INFO + 6,
         ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT          = ID_DEVICE_INFO + 7,
         ID_DEVICE_CAPABILITIES_RESOLUTION            = ID_DEVICE_INFO + 8,
+#else
+        ID_DEVICE_INFO_ADDRESSES                     = ID_DEVICE_INFO + 1,
+        ID_DEVICE_CAPABILITIES_AUDIO                 = ID_DEVICE_INFO + 2,
+        ID_DEVICE_CAPABILITIES_AUDIO_OUTPUT          = ID_DEVICE_INFO + 3,
+        ID_DEVICE_CAPABILITIES_VIDEO                 = ID_DEVICE_INFO + 4,
+        ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT          = ID_DEVICE_INFO + 5,
+        ID_ADDRESS_METADATA                          = ID_DEVICE_INFO + 6,
+        ID_DEVICE_METADATA                           = ID_DEVICE_INFO + 7,
+        ID_IMAGE_METADATA                            = ID_DEVICE_INFO + 8,
+        ID_SYSTEM_METADATA                           = ID_DEVICE_INFO + 9,
+        ID_SOCKET_METADATA                           = ID_DEVICE_INFO + 10,
+#endif
 
         ID_DIALSERVER                                = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x380,
         ID_DIALSERVER_APPLICATION                    = ID_DIALSERVER + 1,
@@ -273,6 +287,8 @@ namespace Exchange {
         ID_SESSION                                   = ID_ACCESSOROCDM + 2,
         ID_SESSION_CALLBACK                          = ID_ACCESSOROCDM + 3,
         ID_SESSION_EXTENSION                         = ID_ACCESSOROCDM + 4,
+        ID_OCDM_INFO                                 = ID_ACCESSOROCDM + 5,
+        ID_OCDM_DRMS_ITERATOR                        = ID_ACCESSOROCDM + 6,
 
         //Butler
         ID_BUTLER                                    = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x3D0,
@@ -376,7 +392,12 @@ namespace Exchange {
 
         ID_TESTAUTOMATIONMEMORY                      = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x9F0,
         ID_TESTAUTOMATIONCOMRPC                      = ID_TESTAUTOMATIONMEMORY + 1,
-        ID_TESTAUTOMATIONCOMRPCINTERNAL              = ID_TESTAUTOMATIONMEMORY + 2
+        ID_TESTAUTOMATIONCOMRPCINTERNAL              = ID_TESTAUTOMATIONMEMORY + 2,
+
+        ID_MONITOR                                   = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x500,
+        ID_MONITOR_NOTIFICATION                      = ID_MONITOR + 1,
+
+        ID_SECURITYAGENT                             = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x510
     };
 }
 }

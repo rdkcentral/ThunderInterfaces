@@ -27,7 +27,11 @@
 #include <interfaces/IBluetooth.h>
 #include <interfaces/IBluetoothAudio.h>
 #include <interfaces/IButler.h>
+#if ENABLE_LEGACY_INTERFACE_SUPPORT
 #include <interfaces/IBrowser.h>
+#else
+#include <interfaces/IBrowserExt.h>
+#endif
 #include <interfaces/ICapture.h>
 #include <interfaces/ICommand.h>
 #include <interfaces/IComposition.h>
@@ -35,7 +39,13 @@
 #include <interfaces/IContentDecryption.h>
 #include <interfaces/ICryptography.h>
 #include <interfaces/ICustomerCareOperations.h>
+
+#if ENABLE_LEGACY_INTERFACE_SUPPORT
 #include <interfaces/IDeviceInfo.h>
+#else
+#include <interfaces/IDeviceInfoExt.h>
+#endif
+
 #include <interfaces/IDictionary.h>
 #include <interfaces/IDisplayInfo.h>
 #include <interfaces/IDialServer.h>
@@ -186,6 +196,7 @@ ENUM_CONVERSION_BEGIN(Exchange::IBrightness::Brightness)
     { Exchange::IBrightness::SdrToHdrGraphicsBrightness_Max, _TXT("max") },
 ENUM_CONVERSION_END(Exchange::IBrightness::Brightness)
 
+#if ENABLE_LEGACY_INTERFACE_SUPPORT
 ENUM_CONVERSION_BEGIN(Exchange::IDeviceAudioCapabilities::AudioOutput)
     { Exchange::IDeviceAudioCapabilities::AudioOutput::AUDIO_OTHER, _TXT("OTHER") },
     { Exchange::IDeviceAudioCapabilities::AudioOutput::AUDIO_ANALOG, _TXT("ANALOG") },
@@ -264,6 +275,7 @@ ENUM_CONVERSION_BEGIN(Exchange::IDeviceVideoCapabilities::CopyProtection)
     { Exchange::IDeviceVideoCapabilities::CopyProtection::HDCP_21, _TXT("2.1") },
     { Exchange::IDeviceVideoCapabilities::CopyProtection::HDCP_22, _TXT("2.2") },
 ENUM_CONVERSION_END(Exchange::IDeviceVideoCapabilities::CopyProtection)
+#endif
 
 ENUM_CONVERSION_BEGIN(Exchange::IValuePoint::basic)
     { Exchange::IValuePoint::basic::regulator,      _TXT("regulator")      },

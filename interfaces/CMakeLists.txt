@@ -37,6 +37,21 @@ endif()
 
 separate_arguments(INTERFACES_PATTERNS)
 file(GLOB INTERFACES_HEADERS ${INTERFACES_PATTERNS})
+if(ENABLE_LEGACY_INTERFACE_SUPPORT)
+    list(REMOVE_ITEM INTERFACES_HEADERS "${CMAKE_SOURCE_DIR}/interfaces/IBrowserExt.h"
+        "${CMAKE_SOURCE_DIR}/interfaces/IDeviceInfoExt.h"
+        "${CMAKE_SOURCE_DIR}/interfaces/ICompositionExt.h"
+        "${CMAKE_SOURCE_DIR}/interfaces/IMonitor.h"
+        "${CMAKE_SOURCE_DIR}/interfaces/IOCDMExt.h"
+        "${CMAKE_SOURCE_DIR}/interfaces/ISecurityAgent.h")
+else()
+    list(REMOVE_ITEM INTERFACES_HEADERS
+        "${CMAKE_SOURCE_DIR}/interfaces/IBrowser.h"
+        "${CMAKE_SOURCE_DIR}/interfaces/IComposition.h"
+        "${CMAKE_SOURCE_DIR}/interfaces/IDeviceInfo.h"
+        "${CMAKE_SOURCE_DIR}/interfaces/IOCDM.h")
+endif()
+
 ProxyStubGenerator(INPUT "${INTERFACES_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
 file(GLOB JSON_HEADERS json/*.h)

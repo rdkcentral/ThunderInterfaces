@@ -392,6 +392,25 @@ private:
     ISession::KeyStatus _status;
 };
 
+// @stubgen:include <com/IIteratorType.h>
+// @json 1.0.0
+struct EXTERNAL IOCDM : virtual public Core::IUnknown {
+    enum { ID = ID_OCDM_INFO };
+
+    virtual ~IOCDM() = default;
+
+    using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
+    // @property
+    // @brief Retrieves all key systems available in the system (e.g. Nagra, PlayReady, WideVine etc)
+    // @param List of supported drms
+    virtual Core::hresult Systems(IStringIterator*& drms /* @out */) const = 0;
+    // @property
+    // @brief Retrieves all designators associated with a Key System (Nagra, PlayReady, WideVine).
+    // @param List of Keys against given DRM
+    virtual Core::hresult Designators(const string& drm /* @index */, IStringIterator*& keys /* @out */) const = 0;
+};
+
 } //namespace Exchange
 } //namespace Thunder
 
