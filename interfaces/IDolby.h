@@ -50,7 +50,7 @@ namespace Exchange {
                 PASSTHRU,
                 DOLBYDIGITAL,
                 DOLBYDIGITALPLUS,
-                SOUNDMODE_AUTO /* @text:Auto */
+                SOUNDMODE_AUTO
             };
 
             // @event @uncompliant:extended
