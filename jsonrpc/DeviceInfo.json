@@ -359,7 +359,8 @@
         "Amlogic_Inc",
         "raspberrypi_org",
         "Pioneer",
-        "TPV"
+        "TPV",
+	"RaspberryPi4"
       ],
       "description": "Device manufacturer",
       "example": "pace"
@@ -398,7 +399,8 @@
         "XUSHTC11MWR",
         "XUSPTC11MWR",
         "XUSHTB11MWR",
-        "PITU11MWR"
+        "PITU11MWR",
+	"RPi4"
       ],
       "description": "Device model number or SKU",
       "example": "PX051AEI"
