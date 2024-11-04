@@ -42,6 +42,7 @@ jobs:
       with:
         path: ThunderInterfaces
         repository: rdkcentral/ThunderInterfaces
+        ref: development/Actions-macOS # change to master
 
     - name: Regex ThunderInterfaces
       if: contains(github.event.pull_request.body, '[DependsOn=ThunderInterfaces:')
