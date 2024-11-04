@@ -3,7 +3,7 @@ name: Build ThunderInterfaces on MacOS
 on:
   workflow_dispatch:
   push:
-    branches: ["master"]
+    branches: ["development/Actions-macOS"] # change to master
   pull_request:
     branches: ["master"]
 
