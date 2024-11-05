@@ -12,7 +12,7 @@ jobs:
         build_type: [Debug, Release, MinSizeRel]
         shared_libs: [ON, OFF]
 
-    name: Build type - ${{matrix.shared_libs == 'OFF' && 'Static ' || ''}}${{matrix.build_type}}
+    name: Build type - ${{matrix.build_type}}
     steps:
 # --------- Installing packages & downloading artifacts ---------
     - name: Install necessary packages
