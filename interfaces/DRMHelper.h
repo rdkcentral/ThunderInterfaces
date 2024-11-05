@@ -44,6 +44,7 @@ private:
     BufferReader(const BufferReader&) = delete;
     BufferReader& operator=(const BufferReader&) = delete;
 
+PUSH_WARNING("-Wshift-count-overflow")
     // Internal implementation of multi-byte reads
     template <typename T>
     bool Read(T* v)
@@ -59,6 +60,7 @@ private:
         }
         return false;
     }
+POP_WARNING()
 
 public:
     inline BufferReader(const uint8_t* buf, size_t size)
