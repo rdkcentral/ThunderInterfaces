@@ -10,7 +10,6 @@ jobs:
     strategy:
       matrix:
         build_type: [Debug, Release, MinSizeRel]
-        shared_libs: [ON, OFF]
 
     name: Build type - ${{matrix.build_type}}
     steps:
