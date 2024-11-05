@@ -44,7 +44,6 @@ private:
     BufferReader(const BufferReader&) = delete;
     BufferReader& operator=(const BufferReader&) = delete;
 
-PUSH_WARNING(PUSH_WARNING_ARG_("-Wshift-count-overflow"))
     // Internal implementation of multi-byte reads
     template <typename T>
     bool Read(T* v)
@@ -60,7 +59,6 @@ PUSH_WARNING(PUSH_WARNING_ARG_("-Wshift-count-overflow"))
         }
         return false;
     }
-POP_WARNING()
 
 public:
     inline BufferReader(const uint8_t* buf, size_t size)
@@ -80,7 +78,14 @@ public:
 
     // Read a value from the stream, performing endian correction,
     // and advance the stream pointer.
-    inline bool Read1(uint8_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
+    inline bool Read1(uint8_t* v) WARNING_RESULT_NOT_USED
+    {
+        if ((v != nullptr) && (HasBytes(1) == true)) {
+            *v = buf_[pos_++];
+            return true;
+        }
+        return false;
+    }
     inline bool Read2(uint16_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
     inline bool Read2s(int16_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
     inline bool Read4(uint32_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
