@@ -78,7 +78,14 @@ public:
 
     // Read a value from the stream, performing endian correction,
     // and advance the stream pointer.
-    inline bool Read1(uint8_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
+    inline bool Read1(uint8_t* v) WARNING_RESULT_NOT_USED
+    {
+        if ((v != nullptr) && (HasBytes(1) == true)) {
+            *v = buf_[pos_++];
+            return true;
+        }
+        return false;
+    }
     inline bool Read2(uint16_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
     inline bool Read2s(int16_t* v) WARNING_RESULT_NOT_USED { return Read(v); }
     inline bool Read4(uint32_t* v) WARNING_RESULT_NOT_USED { return Read(v); }

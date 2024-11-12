@@ -19,8 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\interfaces\json\JsonEnum_BluetoothControl.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_BluetoothRemoteControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Browser.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_BrowserCookieJar.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_BrowserResources.cpp" />
@@ -232,12 +230,6 @@
     <ClInclude Include="definitions.h" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\jsonrpc\BluetoothControl.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\BluetoothRemoteControl.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Browser.json">
       <FileType>Document</FileType>
     </CustomBuild>
