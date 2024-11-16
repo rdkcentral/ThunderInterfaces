@@ -63,6 +63,8 @@ struct EXTERNAL IUSBHub : virtual public Core::IUnknown {
     ProductMetadata productInfo4;
   };
 
+  using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
   // @event 
   struct EXTERNAL INotification : virtual public Core::IUnknown {
     enum { ID = ID_USB_HUB_NOTIFICATION };
@@ -93,11 +95,11 @@ struct EXTERNAL IUSBHub : virtual public Core::IUnknown {
   
   // @brief Get a string array defning al devices hooked up to this hub.
   // @param iterator : List of USB devices (deviceName).
-  virtual Core::hresult Devices(RPC::IStringIterator*& iterator /* @out */) const = 0;
+  virtual Core::hresult Devices(IStringIterator*& iterator /* @out */) const = 0;
 
   // @brief Get a string array defning all devices hooked up to this hub cmpliant to the given vendorId/ProductId.
   // @param iterator : List of USB devices (deviceName).
-  virtual Core::hresult Devices(const uint16_t vendorId, const uint16_t productId, RPC::IStringIterator*& iterator /* @out */) const = 0;
+  virtual Core::hresult Devices(const uint16_t vendorId, const uint16_t productId, IStringIterator*& iterator /* @out */) const = 0;
 
   /** Gets the device metadata of a connected USB Devices.*/
   // @brief Get the metadata information about the name passed in the paramater.
@@ -108,10 +110,12 @@ struct EXTERNAL IUSBHub : virtual public Core::IUnknown {
   // @brief Acquire the respective driver for the device */
   // @param deviceName: Name of the device
   // @param device: interface to access the device.
+  /* @json:omit */
   virtual Core::hresult Acquire(const string& deviceName /* @in */, IDevice*& device /* @out */ ) const = 0;
 
   // @brief Relinquish the respective driver for the device */
   // @param device: Device to be released
+  /* @json:omit */
   virtual Core::hresult Relinquish(const IDevice*& device /* @out */) const = 0;
 };
  
