@@ -9,11 +9,11 @@ namespace Thunder {
 namespace Exchange {
 
 // @json
-struct EXTERNAL IUSBDevices : virtual public Core::IUnknown {
+struct EXTERNAL IUSBHub : virtual public Core::IUnknown {
 
-  enum { ID = ID_USB_DEVICE };
+  enum { ID = ID_USB_HUB };
 
-  ~IUSBDevices() override = default;
+  ~IUSBHub() override = default;
 
   enum Speed : uint8_t {
       SPEED_LOW = 1,
@@ -70,19 +70,19 @@ struct EXTERNAL IUSBDevices : virtual public Core::IUnknown {
     ~INotification() override = default;
 
     // @brief Device Plugged in on the bus notification
-    // @param USBDevice: USB information of the plugged in device
-    virtual void Announced(const DeviceMetadata& device) = 0;
+    // @param device: USB information of the plugged in device
+    virtual void Announce(const DeviceMetadata& device) = 0;
 
     // @brief Device removed from the bus notification
-    // @param USBDevice: USB information of the plugged in device
-    virtual void Revoked(const DeviceMetadata& device) = 0;
+    // @param device: USB information of the plugged in device
+    virtual void Revoke(const DeviceMetadata& device) = 0;
   };
 
-  struct EXTERNAL IChannel : virtual public Core::IUnknown {
+  struct EXTERNAL IDevice : virtual public Core::IUnknown {
 
       enum { ID = ID_USB_DEVICE };
 
-      ~IChannel() override = default;
+      ~IDevice() override = default;
   };
 
   /** Register notification interface */
@@ -91,30 +91,28 @@ struct EXTERNAL IUSBDevices : virtual public Core::IUnknown {
   /** Unregister notification interface */
   virtual Core::hresult Unregister(const INotification *notification) = 0;
   
-  /** Gets s list of USB devices hooked up to this device.*/
-  // @brief Get a string array defning al devices hooked up to this device.
+  // @brief Get a string array defning al devices hooked up to this hub.
   // @param iterator : List of USB devices (deviceName).
   virtual Core::hresult Devices(RPC::IStringIterator*& iterator /* @out */) const = 0;
 
-  /** Gets s list of USB devices hooked up to this device, filtered on vendorId/ProductId.*/
-  // @brief Get a string array defning al devices hooked up to this device cmpliant to the given vendorId/ProductId.
+  // @brief Get a string array defning all devices hooked up to this hub cmpliant to the given vendorId/ProductId.
   // @param iterator : List of USB devices (deviceName).
   virtual Core::hresult Devices(const uint16_t vendorId, const uint16_t productId, RPC::IStringIterator*& iterator /* @out */) const = 0;
 
   /** Gets the device metadata of a connected USB Devices.*/
   // @brief Get the metadata information about the name passed in the paramater.
-  // @param device : all the metadata of the requested deviceName device.
+  // @param deviceName: Name of the device
+  // @param device: all the metadata of the requested deviceName device.
   virtual Core::hresult Device(const string& deviceName, struct DeviceMetadata& device /* @out */ ) const = 0;
 
-  /** Binds the respective driver for the device */
-  // @brief Bind the respective driver for the device */
+  // @brief Acquire the respective driver for the device */
   // @param deviceName: Name of the device
-  virtual Core::hresult Bind(const string& deviceName /* @in */, IChannel*& channel /* @out */ ) const = 0;
+  // @param device: interface to access the device.
+  virtual Core::hresult Acquire(const string& deviceName /* @in */, IDevice*& device /* @out */ ) const = 0;
 
-  /** Unbinds the respective driver for the device */
-  // @brief Unbind the respective driver for the device */
-  // @param deviceName: Name of the device
-  virtual Core::hresult Unbind(const IChannel*& channel /* @out */) const = 0;
+  // @brief Relinquish the respective driver for the device */
+  // @param device: Device to be released
+  virtual Core::hresult Relinquish(const IDevice*& device /* @out */) const = 0;
 };
  
 } // namespace Exchange
