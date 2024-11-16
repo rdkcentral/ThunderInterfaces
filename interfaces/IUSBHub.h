@@ -65,7 +65,7 @@ struct EXTERNAL IUSBHub : virtual public Core::IUnknown {
 
   // @event 
   struct EXTERNAL INotification : virtual public Core::IUnknown {
-    enum { ID = ID_USB_DEVICE_NOTIFICATION };
+    enum { ID = ID_USB_HUB_NOTIFICATION };
 
     ~INotification() override = default;
 
