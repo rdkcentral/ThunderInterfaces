@@ -369,11 +369,14 @@ namespace Exchange {
         ID_DNS_SERVER                                = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4E0,
         ID_DNS_ZONE                                  = ID_DNS_SERVER + 1,
         ID_DNS_RECORD                                = ID_DNS_SERVER + 2,
-        
-        ID_TESTAUTOMATIONMEMORY                      = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4F0,
+
+        ID_USB_HUB                                   = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4F0,
+        ID_USB_HUB_NOTIFICATION                      = ID_USB_HUB + 1,
+        ID_USB_DEVICE                                = ID_USB_HUB + 2,
+
+        ID_TESTAUTOMATIONMEMORY                      = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x9F0,
         ID_TESTAUTOMATIONCOMRPC                      = ID_TESTAUTOMATIONMEMORY + 1,
         ID_TESTAUTOMATIONCOMRPCINTERNAL              = ID_TESTAUTOMATIONMEMORY + 2
-
     };
 }
 }
