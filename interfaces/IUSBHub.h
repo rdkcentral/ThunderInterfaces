@@ -97,9 +97,9 @@ struct EXTERNAL IUSBHub : virtual public Core::IUnknown {
   // @param iterator : List of USB devices (deviceName).
   virtual Core::hresult Devices(IStringIterator*& iterator /* @out */) const = 0;
 
-  // @brief Get a string array defning all devices hooked up to this hub cmpliant to the given vendorId/ProductId.
+  // @brief Get a string array defining all devices hooked up to this hub cmpliant to the given VendorId/ProductId 
   // @param iterator : List of USB devices (deviceName).
-  virtual Core::hresult Devices(const uint16_t vendorId, const uint16_t productId, IStringIterator*& iterator /* @out */) const = 0;
+  virtual Core::hresult VendorDevices(const uint16_t vendorId, const uint16_t productId, IStringIterator*& iterator /* @out */) const = 0;
 
   /** Gets the device metadata of a connected USB Devices.*/
   // @brief Get the metadata information about the name passed in the paramater.
