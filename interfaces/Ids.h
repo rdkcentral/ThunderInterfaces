@@ -109,8 +109,9 @@ namespace Exchange {
         ID_GUIDE                                     = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x0F0,
         ID_GUIDE_NOTIFICATION                        = ID_GUIDE + 1,
 
-        ID_VOICEHANDLER                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x100,
-        ID_VOICEPRODUCER                             = ID_VOICEHANDLER + 1,
+        ID_BLUETOOTHREMOTECONTROL                    = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x100,
+        ID_BLUETOOTHREMOTECONTROL_CALLBACK           = ID_BLUETOOTHREMOTECONTROL + 1,
+        ID_BLUETOOTHREMOTECONTROL_NOTIFICATION       = ID_BLUETOOTHREMOTECONTROL + 2,
 
         ID_WEBDRIVER                                 = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x110,
 
