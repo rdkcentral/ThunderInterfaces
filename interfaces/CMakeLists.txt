@@ -39,6 +39,7 @@ separate_arguments(INTERFACES_PATTERNS)
 file(GLOB INTERFACES_HEADERS ${INTERFACES_PATTERNS})
 if(ENABLE_LEGACY_INTERFACE_SUPPORT)
     list(REMOVE_ITEM INTERFACES_HEADERS "${CMAKE_SOURCE_DIR}/interfaces/IBrowserExt.h"
+        "${CMAKE_SOURCE_DIR}/interfaces/IDeviceIdentification.h"
         "${CMAKE_SOURCE_DIR}/interfaces/IDeviceInfoExt.h"
         "${CMAKE_SOURCE_DIR}/interfaces/ICompositionExt.h"
         "${CMAKE_SOURCE_DIR}/interfaces/IMonitor.h"

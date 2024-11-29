@@ -397,7 +397,9 @@ namespace Exchange {
         ID_MONITOR                                   = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x500,
         ID_MONITOR_NOTIFICATION                      = ID_MONITOR + 1,
 
-        ID_SECURITYAGENT                             = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x510
+        ID_SECURITYAGENT                             = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x510,
+
+        ID_DEVICEIDENTIFICATION                      = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x520
     };
 }
 }
