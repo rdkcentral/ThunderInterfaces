@@ -27,23 +27,26 @@
 #include <interfaces/IBluetooth.h>
 #include <interfaces/IBluetoothAudio.h>
 #include <interfaces/IButler.h>
-#if ENABLE_LEGACY_INTERFACE_SUPPORT
-#include <interfaces/IBrowser.h>
-#else
-#include <interfaces/IBrowserExt.h>
-#endif
 #include <interfaces/ICapture.h>
 #include <interfaces/ICommand.h>
-#include <interfaces/IComposition.h>
 #include <interfaces/IConfiguration.h>
 #include <interfaces/IContentDecryption.h>
 #include <interfaces/ICryptography.h>
 #include <interfaces/ICustomerCareOperations.h>
 
 #if ENABLE_LEGACY_INTERFACE_SUPPORT
+#include <interfaces/IBrowser.h>
+#include <interfaces/IComposition.h>
 #include <interfaces/IDeviceInfo.h>
 #else
+#include <interfaces/IBrowserExt.h>
+#include <interfaces/IDeviceIdentification.h>
 #include <interfaces/IDeviceInfoExt.h>
+#include <interfaces/ICompositionExt.h>
+#include <interfaces/LocationSync.h>
+#include <interfaces/IMonitor.h>
+#include <interfaces/IOCDMExt.h>
+#include <interfaces/ISecurityAgent.h>
 #endif
 
 #include <interfaces/IDictionary.h>
