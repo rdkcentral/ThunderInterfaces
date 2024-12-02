@@ -157,12 +157,12 @@ namespace Exchange {
             // @property
             // @brief Audio codecs supported by the audio sink device
             // @retval ERROR_ILLEGAL_STATE The sink device currently is not connected
-            virtual Core::hresult SupportedCodecs(audiocodec& codecs /* @out @bitmask */) const = 0;
+            virtual Core::hresult SupportedCodecs(audiocodec& codecs /* @out @encode:bitmask */) const = 0;
 
             // @property
             // @brief DRM schemes supported by the audio sink device
             // @retval ERROR_ILLEGAL_STATE The sink device currently is not connected
-            virtual Core::hresult SupportedDRMs(drmscheme& drms /* @out @bitmask */) const = 0;
+            virtual Core::hresult SupportedDRMs(drmscheme& drms /* @out @encode:bitmask */) const = 0;
 
             // @property
             // @brief Properites of the currently used audio codec
