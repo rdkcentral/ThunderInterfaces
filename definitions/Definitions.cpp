@@ -82,7 +82,6 @@
 #include <interfaces/ITextToSpeech.h>
 #include <interfaces/ITimeSync.h>
 #include <interfaces/ITimeZone.h>
-#include <interfaces/IVoiceHandler.h>
 #include <interfaces/IVolumeControl.h>
 #include <interfaces/IWebDriver.h>
 #include <interfaces/IWebPA.h>
@@ -153,12 +152,6 @@ ENUM_CONVERSION_BEGIN(Exchange::IStream::state)
     { Exchange::IStream::state::Controlled, _TXT(_T("Controlled")) },
     { Exchange::IStream::state::Error, _TXT(_T("Error")) },
 ENUM_CONVERSION_END(Exchange::IStream::state)
-
-ENUM_CONVERSION_BEGIN(Exchange::IVoiceProducer::IProfile::codec)
-    { Exchange::IVoiceProducer::IProfile::codec::UNDEFINED, _TXT(_T("undefined")) },
-    { Exchange::IVoiceProducer::IProfile::codec::PCM, _TXT(_T("pcm")) },
-    { Exchange::IVoiceProducer::IProfile::codec::ADPCM, _TXT(_T("adpcm")) },
-ENUM_CONVERSION_END(Exchange::IVoiceProducer::IProfile::codec)
 
 ENUM_CONVERSION_BEGIN(Exchange::IPower::PCState)
     { Exchange::IPower::On, _TXT(_T("on")) },

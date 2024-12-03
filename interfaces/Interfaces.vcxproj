@@ -153,7 +153,6 @@
     <ClInclude Include="ITimeSync.h" />
     <ClInclude Include="ITimeZone.h" />
     <ClInclude Include="IValuePoint.h" />
-    <ClInclude Include="IVoiceHandler.h" />
     <ClInclude Include="IWebDriver.h" />
     <ClInclude Include="IWebServer.h" />
     <ClInclude Include="IWifiControl.h" />

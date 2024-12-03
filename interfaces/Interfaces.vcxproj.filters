@@ -275,9 +275,6 @@
     <ClInclude Include="ITimeSync.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
-    <ClInclude Include="IVoiceHandler.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
     <ClInclude Include="IWebDriver.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
