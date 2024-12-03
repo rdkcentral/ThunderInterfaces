@@ -33,14 +33,19 @@
 #endif
 #endif
 
-#include <interfaces/IComposition.h>
 #include <interfaces/IExternal.h>
 #include <interfaces/IValuePoint.h>
 #include <interfaces/IStream.h>
 #include <interfaces/IVoiceHandler.h>
 #include <interfaces/IPower.h>
 #include <interfaces/json/ExternalMetadata.h>
+
+#if ENABLE_LEGACY_INTERFACE_SUPPORT
 #include <interfaces/IDeviceInfo.h>
+#include <interfaces/IComposition.h>
+#else
+#include <interfaces/ICompositionExt.h>
+#endif
 
 namespace Thunder {
 

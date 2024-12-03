@@ -69,6 +69,14 @@ namespace Exchange {
             EXCLUSIVELY_FROM_MAIN_DOCUMENT_DOMAIN = 3 /* @text:exclusivelyfrommaindocumentdomain */
         };
 
+        struct HeaderInfo {
+            string name /* @brief Header name */;
+            string value /* @brief Header value */;
+        };
+
+        using IHeadersIterator = RPC::IIteratorType<HeaderInfo, ID_WEB_BROWSER_HEADERS_ITERATOR>;
+        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
         // @event @uncompliant:extended  // NOTE: extended format is deprecated!! Do not just copy this line!
         struct INotification : virtual public Core::IUnknown {
             enum { ID = ID_WEBKITBROWSER_NOTIFICATION };
@@ -90,7 +98,8 @@ namespace Exchange {
             virtual void VisibilityChange(const bool hidden) = 0;
             // @brief Notifies that the web page requests to close its window
             virtual void PageClosure() = 0;
-            /* @json:omit */
+            // @brief A Base64 encoded JSON message from legacy $badger bridge
+            // @param message BridgeQuery string
             virtual void BridgeQuery(const string& message) = 0;
         };
 
@@ -115,9 +124,9 @@ namespace Exchange {
         virtual uint32_t FPS(uint8_t& fps /* @out */) const = 0;
 
         /* @json:omit */
-        virtual uint32_t HeaderList(string& headerlist /* @out */) const = 0;
+        DEPRECATED virtual uint32_t HeaderList(string& headerlist /* @out */) const = 0;
         /* @json:omit */
-        virtual uint32_t HeaderList(const string& headerlist ) = 0;
+        DEPRECATED virtual uint32_t HeaderList(const string& headerlist ) = 0;
 
         // @property
         // @brief UserAgent string used by the browser
@@ -149,6 +158,15 @@ namespace Exchange {
 
         // @brief Initiate garbage collection
         virtual uint32_t CollectGarbage() = 0;
+
+        // @property
+        // @brief Browser prefered languages
+        virtual uint32_t Languages(IStringIterator*& languages /* @out */) const = 0;
+        virtual uint32_t Languages(IStringIterator* const languages) = 0;
+        // @property
+        // @brief Headers to send on all requests that the browser makes
+        virtual uint32_t Headers(IHeadersIterator*& headers /* @out */) const = 0;
+        virtual uint32_t Headers(IHeadersIterator* const headers) = 0;
     };
 
     // @json 1.0.0 @uncompliant:extended
