@@ -87,7 +87,7 @@ struct EXTERNAL IUSBHub : virtual public Core::IUnknown {
 
       ~IDevice() override = default;
 
-      // virtual Core::hresult Write(const uint8_t data) = 0;
+      virtual Core::hresult Write(const uint8_t data) = 0;
   };
 
   /** Register notification interface */
@@ -113,11 +113,11 @@ struct EXTERNAL IUSBHub : virtual public Core::IUnknown {
   // @brief Acquire the respective driver for the device */
   // @param deviceName: Name of the device
   // @param device: interface to access the device.
-  virtual Core::hresult Acquire(const string& deviceName, IDevice*& device /* @out */ ) /* const */ = 0;
+  virtual Core::hresult Acquire(const string& deviceName, IDevice*& device /* @out */ )  const = 0;
 
   // @brief Relinquish the respective driver for the device */
-  // @param device: Device to be released
-  virtual Core::hresult Relinquish(const IDevice* device) /* const */ = 0;
+  // @param device: Device to be releasedconst
+  virtual Core::hresult Relinquish(const IDevice* device) const = 0;
 };
  
 } // namespace Exchange
