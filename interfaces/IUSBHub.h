@@ -80,11 +80,14 @@ struct EXTERNAL IUSBHub : virtual public Core::IUnknown {
     virtual void Revoke(const DeviceMetadata& device) = 0;
   };
 
+  // @json
   struct EXTERNAL IDevice : virtual public Core::IUnknown {
 
       enum { ID = ID_USB_DEVICE };
 
       ~IDevice() override = default;
+
+      // virtual Core::hresult Write(const uint8_t data) = 0;
   };
 
   /** Register notification interface */
@@ -110,13 +113,11 @@ struct EXTERNAL IUSBHub : virtual public Core::IUnknown {
   // @brief Acquire the respective driver for the device */
   // @param deviceName: Name of the device
   // @param device: interface to access the device.
-  /* @json:omit */
-  virtual Core::hresult Acquire(const string& deviceName /* @in */, IDevice*& device /* @out */ ) const = 0;
+  virtual Core::hresult Acquire(const string& deviceName, IDevice*& device /* @out */ ) /* const */ = 0;
 
   // @brief Relinquish the respective driver for the device */
   // @param device: Device to be released
-  /* @json:omit */
-  virtual Core::hresult Relinquish(const IDevice*& device /* @out */) const = 0;
+  virtual Core::hresult Relinquish(const IDevice* device) /* const */ = 0;
 };
  
 } // namespace Exchange
