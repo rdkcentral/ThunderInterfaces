@@ -62,8 +62,8 @@ namespace Exchange {
     // to enforce the best performance!
 
     // @stubgen:omit
-    struct EXTERNAL ICompositionBuffer {
-        virtual ~ICompositionBuffer() = default;
+    struct EXTERNAL ISimpleBuffer {
+        virtual ~ISimpleBuffer() = default;
         
         /**
          * @brief   frame buffer interface with hardware optimisation in mind
@@ -87,8 +87,6 @@ namespace Exchange {
             virtual uint32_t Offset() const = 0; // Offset of the plane from where the pixel data starts in the buffer.
         };
 
-        virtual uint32_t Identifier() const = 0;
-
         // Acquire (lock) the planes (Compositor or Client), the 
         // other user (Client or Compositor) of this object (process 
         // agnostic) can now not access the planes, they have to 
@@ -98,6 +96,20 @@ namespace Exchange {
         // received from Planes()
         virtual void Relinquish() = 0;
 
+        virtual uint32_t Width() const = 0; // Width of the allocated buffer in pixels
+        virtual uint32_t Height() const = 0; // Height of the allocated buffer in pixels
+        virtual uint32_t Format() const = 0; // Layout of a pixel according the fourcc format
+        virtual uint64_t Modifier() const = 0; // Pixel arrangement in the buffer, used to optimize for hardware
+
+        virtual DataType Type() const = 0;
+    }; // struct IPlainBuffer
+
+    struct ICompositionBuffer : public ISimpleBuffer {
+
+        ~ICompositionBuffer() override = default;
+
+        virtual uint32_t Identifier() const = 0;
+
         // Calling the Published() will fire the Action() method on the 
         // other side of the ICompositionBuffer.
         // So calling Publised() from the Client, triggers an Action() 
@@ -105,14 +117,8 @@ namespace Exchange {
         // will trigger the Action on the Client.
         virtual uint32_t Published() = 0; 
         virtual void Action() = 0;
-
-        virtual uint32_t Width() const = 0; // Width of the allocated buffer in pixels
-        virtual uint32_t Height() const = 0; // Height of the allocated buffer in pixels
-        virtual uint32_t Format() const = 0; // Layout of a pixel according the fourcc format
-        virtual uint64_t Modifier() const = 0; // Pixel arrangement in the buffer, used to optimize for hardware
-
-        virtual DataType Type() const = 0;
     }; // struct ICompositionBuffer
+
 
 } // namespace Exchange
 
