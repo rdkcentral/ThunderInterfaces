@@ -63,12 +63,11 @@ namespace Exchange {
 
     // @stubgen:omit
     struct EXTERNAL ICompositionBuffer {
+        virtual ~ICompositionBuffer() = default;
+        
         /**
          * @brief   frame buffer interface with hardware optimisation in mind
          */
-
-        using buffer_id = uintptr_t;
-
         enum DataType : uint8_t {
             TYPE_INVALID = 0x00, // Invalid buffer
             TYPE_DMA = 0x01, // DMA buffer  

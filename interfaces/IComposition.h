@@ -71,16 +71,16 @@ namespace Exchange {
 
             ~IClient() override = default;
 
-            struct EXTERNAL IProperties : virtual public Core::IUnknown {
-                enum { ID = ID_COMPOSITION_CLIENTPROPERTIES };
+            // struct EXTERNAL IProperties : virtual public Core::IUnknown {
+            //     enum { ID = ID_COMPOSITION_CLIENTPROPERTIES };
 
-                ~IProperties() override = default;
+            //     ~IProperties() override = default;
 
-                virtual uint32_t Stride() = 0; // bytes per row [(bit-per-pixel/8) * width]
-                virtual uint32_t Format() = 0; // pixel arrangement according the fourcc format
-                virtual uint32_t Offset() = 0;
-                virtual uint64_t Modifier() = 0;
-            };
+            //     virtual uint32_t Stride() = 0; // bytes per row [(bit-per-pixel/8) * width]
+            //     virtual uint32_t Format() = 0; // pixel arrangement according the fourcc format
+            //     virtual uint32_t Offset() = 0;
+            //     virtual uint64_t Modifier() = 0;
+            // };
 
             virtual Thunder::Core::instance_id Native() const { return 0; };
             virtual string Name() const = 0;
@@ -92,15 +92,15 @@ namespace Exchange {
             virtual uint32_t ZOrder() const = 0;
         };
 
-        struct EXTERNAL IRender : virtual public Core::IUnknown {
-            enum { ID = ID_COMPOSITION_RENDER };
+        // struct EXTERNAL IRender : virtual public Core::IUnknown {
+        //     enum { ID = ID_COMPOSITION_RENDER };
 
-            ~IRender() override = default;
+        //     ~IRender() override = default;
 
-            virtual void ScanOut() = 0;
-            virtual void PreScanOut() {};
-            virtual void PostScanOut() {};
-        };
+        //     virtual void ScanOut() = 0;
+        //     virtual void PreScanOut() {};
+        //     virtual void PostScanOut() {};
+        // };
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_COMPOSITION_NOTIFICATION };
