@@ -50,10 +50,6 @@ namespace Exchange {
     // 3) ICompositionBuffer::Relinquish()
     //    Unlock the planes, the Client can use/produce new contents on the  
     //    buffer. The content how it was is now copied to a new location.
-    // To signal across the process bounday that attention is needed (e.g. a 
-    // render is completed (Client side) or a VSync (output updated on Compositor
-    // side has occured, the actors (client/Compositor) can call Published() which 
-    // in turn will execute the Action() call in the other process...
 
     // NOTE:
     // --------------------------------------------------------------------------
@@ -62,8 +58,8 @@ namespace Exchange {
     // to enforce the best performance!
 
     // @stubgen:omit
-    struct EXTERNAL ISimpleBuffer {
-        virtual ~ISimpleBuffer() = default;
+    struct EXTERNAL ICompositionBuffer {
+        virtual ~ICompositionBuffer() = default;
         
         /**
          * @brief   frame buffer interface with hardware optimisation in mind
@@ -103,22 +99,6 @@ namespace Exchange {
 
         virtual DataType Type() const = 0;
     }; // struct IPlainBuffer
-
-    struct ICompositionBuffer : public ISimpleBuffer {
-
-        ~ICompositionBuffer() override = default;
-
-        virtual uint32_t Identifier() const = 0;
-
-        // Calling the Published() will fire the Action() method on the 
-        // other side of the ICompositionBuffer.
-        // So calling Publised() from the Client, triggers an Action() 
-        // on composition side. Calling Published() from the Compositor, 
-        // will trigger the Action on the Client.
-        virtual uint32_t Published() = 0; 
-        virtual void Action() = 0;
-    }; // struct ICompositionBuffer
-
 
 } // namespace Exchange
 
