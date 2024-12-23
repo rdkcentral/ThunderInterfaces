@@ -240,6 +240,7 @@ namespace Exchange {
             struct device {
                 string address /* @brief Bluetooth address */;
                 devicetype type /* @brief Bluetooth device type */;
+                string name /* @brief Bluetooth short name */;
             };
 
             struct adapterinfo {
