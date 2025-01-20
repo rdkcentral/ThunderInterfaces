@@ -56,7 +56,8 @@ namespace Exchange {
 
         enum class Type : uint8_t {
             NAMESPACE,
-            KEY
+            PERSISTENT_KEY,
+            VOLATILE_KEY
         };
 
         struct EXTERNAL PathEntry {
