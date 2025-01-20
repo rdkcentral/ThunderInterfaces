@@ -21,6 +21,9 @@
 
 #include "Module.h"
 
+#include "IVoiceHandler.h"
+// @insert "IVoiceHandler.h"
+
 namespace Thunder {
 
 namespace Exchange {
@@ -39,19 +42,6 @@ namespace Exchange {
             Core::OptionalType<string> manufacturer /* @brief Vendor/manufacturer name */;
         };
 
-        enum codectype : uint8_t {
-            PCM /* @text:pcm */,
-            IMA_ADPCM /* @text:ima-adpcm */
-        };
-
-        struct audioprofile {
-            // Samples are always little endian signed integers
-            codectype codec /* @brief Compression method (pcm: uncompressed) */;
-            uint8_t channels /* @brief Number of audio channels (e.g. 1) */;
-            uint8_t resolution /* @brief Sample resultion in bits (e.g. 16) */;
-            uint32_t sampleRate /* @brief Sample rate in hertz (e.g. 16000) */;
-        };
-
         // @event
         struct INotification : virtual public Core::IUnknown {
 
@@ -63,37 +53,8 @@ namespace Exchange {
             virtual void BatteryLevelChange(const uint8_t level) = 0;
         };
 
-        // @event
-        struct IAudioTransmissionCallback : virtual public Core::IUnknown {
-
-            enum { ID = ID_BLUETOOTHREMOTECONTROL_CALLBACK };
-
-            enum transmissionstate : uint8_t {
-                STOPPED,
-                STARTED
-            };
-
-            // @statuslistener
-            // @text audiotransmission
-            // @brief Signals beginning end of audio transmission
-            // @param state New state of the voice transmission
-            // @param profile Details of the audio format used in the voice transmission
-            virtual void StateChanged(const transmissionstate state) = 0;
-
-            // @text audioframe
-            // @brief Provides audio frame data
-            // @description Format of the data can be retrieved with AudioProfile call
-            // @param seq Frame number in current transmission (e.g. 1)
-            // @param size Size of the raw data frame in bytes (e.g. 400)
-            // @param data Raw audio data
-            virtual void Data(const uint16_t seq, const uint16_t size, const uint8_t data[] /* @length:size @encode:base64 */) = 0;
-        };
-
         virtual Core::hresult Register(INotification* const notification) = 0;
         virtual Core::hresult Unregister(const INotification* const notification) = 0;
-
-        // Note: Installing a callback and registering for a JSON-RPC notification is mutually exclusive.
-        virtual Core::hresult Callback(IAudioTransmissionCallback* const callback) = 0;
 
         // @brief Assigns a Bluetooth device as a RCU
         // @param address: Address of the Bluetooth device to assign
@@ -135,7 +96,7 @@ namespace Exchange {
         // @brief Details of used audio format
         // @retval ERROR_ILLEGAL_STATE The RCU device currently is not assigned
         // @retval ERROR_NOT_SUPPORTED The device does not support voice input
-        virtual Core::hresult AudioProfile(audioprofile& profile /* @out */) const = 0;
+        virtual Core::hresult AudioProfile(IVoiceTransmitter::audioprofile& profile /* @out */) const = 0;
     };
 
     namespace JSONRPC {
