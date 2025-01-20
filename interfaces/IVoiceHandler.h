@@ -23,6 +23,8 @@
 namespace Thunder {
 namespace Exchange {
 
+    struct EXTERNAL IVoiceHandler;
+
     /*
      * Interface responsible for producing audio data
      * The data that is produced must be signed big endian
@@ -61,7 +63,7 @@ namespace Exchange {
     };
 
     /* @json 1.0.0 @text:legacy_lowercase */
-    struct EXTERNAL IVoiceTransmitter {
+    struct EXTERNAL IVoiceTransmitter : virtual public Core::IUnknown {
 
         enum { ID = ID_VOICETRANSMITTER };
 
