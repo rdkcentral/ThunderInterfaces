@@ -20,12 +20,21 @@
 #pragma once
 #include "Module.h"
 
+ // @stubgen:include <com/IIteratorType.h>
+
 namespace Thunder {
 namespace Exchange {
 
     /* @json 1.0.0 */
+    // @description This interface is designed to use a service that keeps key value pairs inside namespaces, which can be nested if needed. Nested namespaces can be seperated by a delimiter when used in a path to a key.
+    //              The interface is designed with a usage pattern in mind where a namespace does not contain a huge amount of keys, but instead these would be spread over multiple (nested if desired) namespaces.
     struct EXTERNAL IDictionary : virtual public Core::IUnknown {
         enum { ID = ID_DICTIONARY };
+
+        ~IDictionary() override = default;
+
+        // Delimiter that can be used to seperate multiple namespaces in a path to a key
+        static constexpr TCHAR namespaceDelimiter = { _T('/') };
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
@@ -34,44 +43,43 @@ namespace Exchange {
             ~INotification() override = default;
 
             // @brief Changes on the subscribed namespace..
-            // @param nameSpace: NameSpace to be used
-            // @param key: Key to be used
-            // @param value: Value of the key
-            virtual void Modified(const string& nameSpace, const string& key, const string& value) = 0;
+            // @param path: Path to the key which value changed
+            // @param key: Key which value changed
+            // @param value: Value that changed
+            virtual void Modified(const string& path, const string& key, const string& value) = 0;
         };
-
-        struct EXTERNAL IIterator : virtual public Core::IUnknown {
-            enum { ID = ID_DICTIONARY_ITERATOR };
-
-            ~IIterator() override = default;
-
-            virtual void Reset() = 0;
-            virtual bool IsValid() const = 0;
-            virtual bool Next() = 0;
-
-            // Signal changes on the subscribed namespace..
-            virtual const string Key() const = 0;
-            virtual const string Value() const = 0;
-        };
-
-        ~IDictionary() override = default;
 
         // Allow to observe values in the dictionary. If they are changed, the sink gets notified.
-        virtual void Register(const string& nameSpace, struct IDictionary::INotification* sink) = 0;
-        virtual void Unregister(const string& nameSpace, struct IDictionary::INotification* sink) = 0;
+        virtual Core::hresult Register(const string& path, struct IDictionary::INotification* sink) = 0;
+        virtual Core::hresult Unregister(const string& path, const struct IDictionary::INotification* sink) = 0;
+
+        enum class Type : uint8_t {
+            NAMESPACE,
+            KEY
+        };
+
+        struct EXTERNAL PathEntry {
+            string name   /* @brief Name of Key or Namespace */;
+            Type type /* @brief Type */;
+        };
+        using IPathIterator = RPC::IIteratorType<PathEntry, ID_DICTIONARY_ITERATOR>;
+
 
         // @brief Getters for the dictionary.
-        // @param nameSpace: NameSpace to be used
+        // @param path: NameSpace path to be used
         // @param key: Key to be used
-        virtual Core::hresult Get(const string& nameSpace, const string& key, string& value /* @out */) const = 0;
+        // @param value: Value that was retrieved
+        virtual Core::hresult Get(const string& path, const string& key, string& value /* @out */) const = 0;
         // @brief Setters for the dictionary.
-        // @param nameSpace: NameSpace to be used
+        // @param path: NameSpace path to be used
         // @param key: Key to be used
         // @param value: Value to be set
-        virtual Core::hresult Set(const string& nameSpace, const string& key, const string& value) = 0;
+        virtual Core::hresult Set(const string& path, const string& key, const string& value) = 0;
 
-        // @json:omit
-        virtual IIterator* Get(const string& nameSpace) const = 0; 
+        // @brief Get a list of all entries for this namespace (could be keys or nested namespaces)
+        // @param path: Namespace path where to get the keys and/or nested namespaces for
+        // @param entries: Available nested namespaces and keys for this namespace path
+        virtual Core::hresult PathEntries(const string& path, IDictionary::IPathIterator*& entries /* @out */) const = 0;
     };
 }
 }
