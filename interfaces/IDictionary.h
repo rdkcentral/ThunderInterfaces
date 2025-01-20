@@ -26,7 +26,8 @@ namespace Thunder {
 namespace Exchange {
 
     /* @json 1.0.0 */
-    // @description This interface is designed to be used to access a service that keeps key value pairs inside namespaces, which can be nested if needed. Nested namespaces can be seperated by a delimiter when used in a path to a key.
+    // @description This interface is designed to be used to access a service that keeps key value pairs inside namespaces, which can be nested if needed. 
+    //              Nested namespaces can be seperated by a delimiter when used in a path to a key.
     //              The interface is designed with a usage pattern in mind where a namespace does not contain a huge amount of keys, but instead these would be spread over multiple (nested if desired) namespaces.
     struct EXTERNAL IDictionary : virtual public Core::IUnknown {
         enum { ID = ID_DICTIONARY };
