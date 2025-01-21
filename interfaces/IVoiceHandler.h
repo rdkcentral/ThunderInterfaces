@@ -63,9 +63,9 @@ namespace Exchange {
     };
 
     /* @json 1.0.0 @text:legacy_lowercase */
-    struct EXTERNAL IVoiceTransmitter : virtual public Core::IUnknown {
+    struct EXTERNAL IAudioTransmitter : virtual public Core::IUnknown {
 
-        enum { ID = ID_VOICETRANSMITTER };
+        enum { ID = ID_AUDIOTRANSMITTER };
 
         struct audioprofile {
             // Samples are always little endian signed integers
@@ -78,7 +78,7 @@ namespace Exchange {
         // @event
         struct ICallback: virtual public Core::IUnknown {
 
-            enum { ID = ID_VOICETRANSMITTER_CALLBACK };
+            enum { ID = ID_AUDIOTRANSMITTER_CALLBACK };
 
             enum transmissionstate : uint8_t {
                 STOPPED,
@@ -87,16 +87,15 @@ namespace Exchange {
 
             // @statuslistener
             // @text audiotransmission
-            // @brief Signals beginning end of audio transmission
-            // @param state New state of the voice transmission
-            // @param profile Details of the audio format used in the voice transmission
+            // @brief Signals the beginning or the end of audio transmission
+            // @param state New state of the audio transmission
+            // @param profile Details of the format used in the audio transmission
             virtual void StateChanged(const transmissionstate state, const Core::OptionalType<audioprofile>& profile) = 0;
 
             // @text audioframe
             // @brief Provides audio frame data
-            // @description Format of the data can be retrieved with AudioProfile call
             // @param seq Frame number in current transmission (e.g. 1)
-            // @param size Size of the raw data frame in bytes (e.g. 400)
+            // @param length Size of the raw data frame in bytes (e.g. 400)
             // @param data Raw audio data
             virtual void Data(const uint16_t seq, const uint16_t length, const uint8_t data[] /* @length:length @encode:base64 */) = 0;
         };

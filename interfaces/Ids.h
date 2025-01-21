@@ -111,8 +111,8 @@ namespace Exchange {
 
         ID_VOICEHANDLER                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x100,
         ID_VOICEPRODUCER                             = ID_VOICEHANDLER + 1,
-        ID_VOICETRANSMITTER                          = ID_VOICEHANDLER + 2,
-        ID_VOICETRANSMITTER_CALLBACK                 = ID_VOICEHANDLER + 3,
+        ID_AUDIOTRANSMITTER                          = ID_VOICEHANDLER + 2,
+        ID_AUDIOTRANSMITTER_CALLBACK                 = ID_VOICEHANDLER + 3,
 
         ID_WEBDRIVER                                 = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x110,
 
