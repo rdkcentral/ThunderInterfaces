@@ -31,7 +31,7 @@ namespace Exchange {
         enum { ID = ID_LOCATIONSYNC };
 
         struct locationinfo {
-	        string city /* @brief City name */;
+            string city /* @brief City name */;
             string country /* @brief Country name */;
             string region /* @brief Region name */;
             string timezone /* @brief Time zone information */;
