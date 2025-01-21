@@ -52,8 +52,8 @@ namespace Exchange {
         };
 
         // Allow to observe values in the dictionary. If they are changed, the sink gets notified.
-        virtual Core::hresult Register(const string& path, struct IDictionary::INotification* sink) = 0;
-        virtual Core::hresult Unregister(const string& path, const struct IDictionary::INotification* sink) = 0;
+        virtual Core::hresult Register(const string& path, IDictionary::INotification* sink) = 0;
+        virtual Core::hresult Unregister(const string& path, const IDictionary::INotification* sink) = 0;
 
         enum class Type : uint8_t {
             NAMESPACE,
