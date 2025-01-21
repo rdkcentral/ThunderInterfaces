@@ -63,13 +63,15 @@ namespace Exchange {
     };
 
     /* @json 1.0.0 @text:legacy_lowercase */
-    struct EXTERNAL IAudioTransmitter : virtual public Core::IUnknown {
+    struct EXTERNAL IAudioSource : virtual public Core::IUnknown {
 
-        enum { ID = ID_AUDIOTRANSMITTER };
+        enum { ID = ID_AUDIOSOURCE };
+
+        using codectype = IVoiceProducer::IProfile::codec;
 
         struct audioprofile {
             // Samples are always little endian signed integers
-            IVoiceProducer::IProfile::codec codec /* @brief Compression method (pcm: uncompressed) */;
+            codectype codec /* @brief Compression method (pcm: uncompressed) */;
             uint8_t channels /* @brief Number of audio channels (e.g. 1) */;
             uint8_t resolution /* @brief Sample resultion in bits (e.g. 16) */;
             uint32_t sampleRate /* @brief Sample rate in hertz (e.g. 16000) */;
@@ -78,9 +80,9 @@ namespace Exchange {
         // @event
         struct ICallback: virtual public Core::IUnknown {
 
-            enum { ID = ID_AUDIOTRANSMITTER_CALLBACK };
+            enum { ID = ID_AUDIOSOURCE_CALLBACK };
 
-            enum transmissionstate : uint8_t {
+            enum state : uint8_t {
                 STOPPED,
                 STARTED
             };
@@ -90,7 +92,7 @@ namespace Exchange {
             // @brief Signals the beginning or the end of audio transmission
             // @param state New state of the audio transmission
             // @param profile Details of the format used in the audio transmission
-            virtual void StateChanged(const transmissionstate state, const Core::OptionalType<audioprofile>& profile) = 0;
+            virtual void StateChanged(const state newState, const Core::OptionalType<audioprofile>& profile) = 0;
 
             // @text audioframe
             // @brief Provides audio frame data
@@ -103,6 +105,9 @@ namespace Exchange {
         // Note: Installing a callback and registering for a JSON-RPC notification is mutually exclusive.
         virtual Core::hresult Callback(ICallback* const callback) = 0;
 
+        // @property
+        // @brief Name of the audio source
+        virtual Core::hresult Name(string& name /* @out */) const = 0;
     };
 
 } // Exchange

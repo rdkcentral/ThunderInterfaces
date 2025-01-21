@@ -96,7 +96,7 @@ namespace Exchange {
         // @brief Details of used audio format
         // @retval ERROR_ILLEGAL_STATE The RCU device currently is not assigned
         // @retval ERROR_NOT_SUPPORTED The device does not support voice input
-        virtual Core::hresult AudioProfile(IVoiceTransmitter::audioprofile& profile /* @out */) const = 0;
+        virtual Core::hresult AudioProfile(IAudioSource::audioprofile& profile /* @out */) const = 0;
     };
 
     namespace JSONRPC {
