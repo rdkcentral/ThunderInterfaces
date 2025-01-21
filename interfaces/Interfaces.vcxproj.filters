@@ -193,9 +193,6 @@
     <ClCompile Include="proxystubs\ProxyStubs_ValuePoint.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_VoiceHandler.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="proxystubs\ProxyStubs_VolumeControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -273,9 +270,6 @@
       <Filter>Interface Files</Filter>
     </ClInclude>
     <ClInclude Include="ITimeSync.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IVoiceHandler.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
     <ClInclude Include="IWebDriver.h">

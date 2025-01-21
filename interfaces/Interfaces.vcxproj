@@ -87,7 +87,6 @@
     <ClCompile Include="proxystubs\ProxyStubs_TimeSync.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_TimeZone.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_ValuePoint.cpp" />
-    <ClCompile Include="proxystubs\ProxyStubs_VoiceHandler.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_VolumeControl.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_WatchDog.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_WebDriver.cpp" />
@@ -153,7 +152,6 @@
     <ClInclude Include="ITimeSync.h" />
     <ClInclude Include="ITimeZone.h" />
     <ClInclude Include="IValuePoint.h" />
-    <ClInclude Include="IVoiceHandler.h" />
     <ClInclude Include="IWebDriver.h" />
     <ClInclude Include="IWebServer.h" />
     <ClInclude Include="IWifiControl.h" />
