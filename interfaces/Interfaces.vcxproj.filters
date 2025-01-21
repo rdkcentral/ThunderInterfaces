@@ -193,9 +193,6 @@
     <ClCompile Include="proxystubs\ProxyStubs_ValuePoint.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_VoiceHandler.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="proxystubs\ProxyStubs_VolumeControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
