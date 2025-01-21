@@ -228,9 +228,6 @@
     <CustomBuild Include="..\jsonrpc\DIALServer.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\DisplayInfo.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\DTV.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
@@ -241,9 +238,6 @@
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\IOConnector.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\IOControl.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\LocationSync.json">
@@ -264,9 +258,6 @@
     <CustomBuild Include="..\jsonrpc\PerformanceMonitor.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\PlayerInfo.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Power.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
@@ -282,9 +273,6 @@
     <CustomBuild Include="..\jsonrpc\SecurityAgent.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Spark.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\StateControl.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
@@ -295,9 +283,6 @@
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\TimeSync.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\TraceControl.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
