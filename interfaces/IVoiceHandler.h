@@ -20,14 +20,19 @@
 #pragma once
 #include "Module.h"
 
+#include "IAudioStream.h"
+// @insert "IAudioStream.h"
+
 namespace Thunder {
 namespace Exchange {
 
     struct EXTERNAL IVoiceHandler;
 
+    // This API is deprecated in favour of IAudioStream
+
     /*
      * Interface responsible for producing audio data
-     * The data that is produced must be signed big endian
+     * The data that is produced must be signed little endian
      */
     struct EXTERNAL IVoiceProducer : virtual public Core::IUnknown {
         enum { ID = ID_VOICEPRODUCER };
@@ -35,11 +40,7 @@ namespace Exchange {
         struct EXTERNAL IProfile : virtual public Core::IUnknown {
             enum { ID = ID_VOICEPRODUCER_PROFILE };
 
-            enum codec : uint8_t {
-                UNDEFINED = 0,
-                PCM /* @text:pcm */,
-                ADPCM /* @text:adpcm */
-            };
+            using codec = Exchange::IAudioStream::codectype;
 
             virtual codec Codec() const = 0;
             virtual uint8_t Channels() const = 0;
@@ -62,53 +63,5 @@ namespace Exchange {
         virtual void Data(const uint32_t sequenceNo, const uint8_t data[] /* @length:length */, const uint16_t length) = 0;
     };
 
-    /* @json 1.0.0 @text:legacy_lowercase */
-    struct EXTERNAL IAudioSource : virtual public Core::IUnknown {
-
-        enum { ID = ID_AUDIOSOURCE };
-
-        using codectype = IVoiceProducer::IProfile::codec;
-
-        struct audioprofile {
-            // Samples are always little endian signed integers
-            codectype codec /* @brief Compression method (pcm: uncompressed) */;
-            uint8_t channels /* @brief Number of audio channels (e.g. 1) */;
-            uint8_t resolution /* @brief Sample resultion in bits (e.g. 16) */;
-            uint32_t sampleRate /* @brief Sample rate in hertz (e.g. 16000) */;
-        };
-
-        // @event
-        struct ICallback: virtual public Core::IUnknown {
-
-            enum { ID = ID_AUDIOSOURCE_CALLBACK };
-
-            enum state : uint8_t {
-                STOPPED,
-                STARTED
-            };
-
-            // @statuslistener
-            // @text audiotransmission
-            // @brief Signals the beginning or the end of audio transmission
-            // @param state New state of the audio transmission
-            // @param profile Details of the format used in the audio transmission
-            virtual void StateChanged(const state newState, const Core::OptionalType<audioprofile>& profile) = 0;
-
-            // @text audioframe
-            // @brief Provides audio frame data
-            // @param seq Frame number in current transmission (e.g. 1)
-            // @param length Size of the raw data frame in bytes (e.g. 400)
-            // @param data Raw audio data
-            virtual void Data(const uint16_t seq, const uint16_t length, const uint8_t data[] /* @length:length @encode:base64 */) = 0;
-        };
-
-        // Note: Installing a callback and registering for a JSON-RPC notification is mutually exclusive.
-        virtual Core::hresult Callback(ICallback* const callback) = 0;
-
-        // @property
-        // @brief Name of the audio source
-        virtual Core::hresult Name(string& name /* @out */) const = 0;
-    };
-
 } // Exchange
-}
+} // Thunder

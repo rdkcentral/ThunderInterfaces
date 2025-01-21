@@ -21,9 +21,6 @@
 
 #include "Module.h"
 
-#include "IVoiceHandler.h"
-// @insert "IVoiceHandler.h"
-
 namespace Thunder {
 
 namespace Exchange {
@@ -91,28 +88,7 @@ namespace Exchange {
         // @retval ERROR_ILLEGAL_STATE The RCU device currently is not assigned
         virtual Core::hresult VoiceControl(bool& value /* @out */) const = 0;
         virtual Core::hresult VoiceControl(const bool value) = 0;
-
-        // @property
-        // @brief Details of used audio format
-        // @retval ERROR_ILLEGAL_STATE The RCU device currently is not assigned
-        // @retval ERROR_NOT_SUPPORTED The device does not support voice input
-        virtual Core::hresult AudioProfile(IAudioSource::audioprofile& profile /* @out */) const = 0;
     };
-
-    namespace JSONRPC {
-
-        // @json 1.0.0 @text:legacy_lowercase
-        struct IBluetoothRemoteControlLegacy {
-
-            virtual ~IBluetoothRemoteControlLegacy() = default;
-
-            // @property @deprecated
-            // @brief Name of the RCU device
-            // @retval ERROR_ILLEGAL_STATE The RCU device is not assigned
-            virtual Core::hresult Name(string& name /* @out */) const = 0;
-        };
-
-    }
 
 } // namespace Exchange
 
