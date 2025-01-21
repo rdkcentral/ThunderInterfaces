@@ -276,9 +276,6 @@
     <CustomBuild Include="..\jsonrpc\IOControl.json">
       <FileType>Document</FileType>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\LocationSync.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Monitor.json">
       <FileType>Document</FileType>
     </CustomBuild>
