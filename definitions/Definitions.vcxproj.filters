@@ -288,5 +288,8 @@
     <CustomBuild Include="..\interfaces\IMessenger.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\interfaces\ILocationSync.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>
