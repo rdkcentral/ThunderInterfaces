@@ -38,7 +38,7 @@ namespace Exchange {
             string publicip /* @brief Public IP */;
         };
 
-	    // @event
+        // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
 
             enum { ID = ID_LOCATIONSYNC_NOTIFICATION };
