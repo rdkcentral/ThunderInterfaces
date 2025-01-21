@@ -39,7 +39,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_InputSwitch.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_IOConnector.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_IOControl.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_LocationSync.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Math.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_MessageControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Messenger.cpp" />
