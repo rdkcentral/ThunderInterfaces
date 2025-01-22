@@ -32,7 +32,7 @@ namespace Exchange {
             PCM = 1 /* @text:PCM */,
             IMA_ADPCM = 2 /* @text:IMA-ADPCM */,
 
-            _  /* @end */,
+            _ /* @end */,
             ADPCM = IMA_ADPCM
         };
 
@@ -44,7 +44,7 @@ namespace Exchange {
             uint8_t channels /* @brief Number of audio channels (e.g. 1) */;
             uint8_t resolution /* @brief Sample resultion in bits (e.g. 16) */;
             uint32_t sampleRate /* @brief Sample rate in hertz (e.g. 16000) */;
-            Core::OptionalType<uint32_t> bitRate /* @brief Bit rate of the compressed stream (e.g. 8000) */;
+            Core::OptionalType<uint32_t> bitRate /* @brief Data rate of the compressed stream in bits per second (e.g. 64000) */;
         };
 
         enum streamstate : uint8_t {
@@ -60,9 +60,9 @@ namespace Exchange {
 
             // @statuslistener
             // @text audiotransmission
-            // @brief Signals state of the audio stream
-            // @param state New state of the audio stream
-            // @param profile Details on the format used in the audio stream
+            // @brief Signals state of the stream
+            // @param state New state of the stream
+            // @param profile Details on the format used in the stream
             virtual void StateChanged(const streamstate state, const Core::OptionalType<audioprofile>& profile) = 0;
         };
 
@@ -71,8 +71,8 @@ namespace Exchange {
 
             enum { ID = ID_AUDIOSTREAM_CALLBACK };
 
-            // @text audioframe
             // @brief Provides audio data
+            // @text audioframe
             // @param seq Frame number in current transmission (e.g. 1)
             // @param timestamp Timestamp of the frame
             // @param length Size of the raw data frame in bytes (e.g. 400)
@@ -88,7 +88,7 @@ namespace Exchange {
         virtual Core::hresult Callback(ICallback* const callback) = 0;
 
         // @property
-        // @brief Name of the audio stream
+        // @brief Name of the stream
         // @retval ERROR_ILLEGAL_STATE The stream is not ready for this operation
         virtual Core::hresult Name(string& name /* @out */) const = 0;
 
@@ -103,11 +103,11 @@ namespace Exchange {
 
         // @property
         // @text audioprofile
-        // @brief Preferred profile of the audio stream
+        // @brief Preferred profile of the stream
         // @retval ERROR_NOT_SUPPORTED Profile change is not supported by this stream
         // @retval ERROR_ILLEGAL_STATE The stream is not ready for this operation
         // @retval ERROR_BAD_REQUEST The profile specified is invalid
-        // @retval ERROR_INPROGRESS Transmission is ongoing, profile will be changed with next streaming
+        // @retval ERROR_INPROGRESS Stream is started, profile will be changed for the next streaming
         virtual Core::hresult Profile(const audioprofile& profile) = 0;
         virtual Core::hresult Profile(audioprofile& profile /* @out */) const = 0;
 

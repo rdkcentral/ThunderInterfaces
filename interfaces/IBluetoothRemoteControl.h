@@ -70,8 +70,8 @@ namespace Exchange {
         virtual Core::hresult Device(string& address /* @out */) const = 0;
 
         // @property
-        // @brief Device metadata
         // @alt-deprecated:info
+        // @brief Device metadata
         // @retval ERROR_ILLEGAL_STATE The RCU device currently is not assigned
         virtual Core::hresult Metadata(unitmetadata& info /* @out */) const = 0;
 
