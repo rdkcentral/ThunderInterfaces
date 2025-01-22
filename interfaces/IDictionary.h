@@ -29,7 +29,8 @@ namespace Exchange {
     // @description This interface is designed to be used to access a service that keeps key value pairs inside namespaces, which can be nested if needed. 
     //              Nested namespaces can be seperated by a delimiter when used in a path to a key.
     //              The interface is designed with a usage pattern in mind where a namespace does not contain a huge amount of keys, but instead these would be spread over multiple (nested if desired) namespaces.
-    //              If desired keys can also be in the root/empty namespace, for this pass an empty string or a string only containing the NameSpace delimiter
+    //              If desired keys can also be in the root/empty namespace, for this pass an empty string or a string only containing the NameSpace delimiter. Please note if passing full paths, these should 
+    //              not be terminated with a Namespace delimiter
     struct EXTERNAL IDictionary : virtual public Core::IUnknown {
         enum { ID = ID_DICTIONARY };
 
