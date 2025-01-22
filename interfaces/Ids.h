@@ -385,6 +385,8 @@ namespace Exchange {
         ID_WATERMARK                                 = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x510,
         ID_WATERMARK_NOTIFICATION                    = ID_WATERMARK + 2,
 
+        ID_SYSTEMAUDIOPLAYER                         = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x520,
+        ID_SYSTEMAUDIOPLAYER_NOTIFICATION            = ID_SYSTEMAUDIOPLAYER + 1,
     };
 }
 }
