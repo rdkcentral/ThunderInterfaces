@@ -31,11 +31,11 @@ namespace Exchange {
         enum { ID = ID_LOCATIONSYNC };
 
         struct locationinfo {
-            string city /* @brief City name */;
-            string country /* @brief Country name */;
-            string region /* @brief Region name */;
-            string timezone /* @brief Time zone information */;
-            string publicip /* @brief Public IP */;
+            string city /* @brief City name (e.g. Wroclaw) */;
+            string country /* @brief Country name (e.g. Poland) */;
+            string region /* @brief Region name (e.g. Silesia) */;
+            string timeZone /* @brief Time zone information (e.g. CET-1CEST,M3.5.0,M10.5.0/3) */;
+            string publicIP /* @brief Public IP (e.g. 78.11.117.118) */;
         };
 
         // @event
@@ -51,7 +51,6 @@ namespace Exchange {
         virtual Core::hresult Unregister(const INotification* const notification) = 0;
 
         // @brief Synchronize the location
-        // @retval ERROR_NONE Success
         // @retval ERROR_GENERAL Failed to synchdonize the location
         // @retval ERROR_UNAVAILABLE Locator is not available 
         // @retval ERROR_INCORRECT_URL The URL is incorrect
@@ -60,7 +59,6 @@ namespace Exchange {
 
         // @property
         // @brief Get information about the location
-        // @retval ERROR_NONE Success
         // @retval ERROR_UNAVAILABLE Either the internet or the location information is not available
         virtual Core::hresult Location(locationinfo& info /* @out */) const = 0;
 
