@@ -39,7 +39,7 @@ namespace Exchange {
         // @property
         // @text deviceidentification
         // @brief Get device paltform specific information
-        // @retval ERROR_UNAVAILABLE Identifykation not availbale
+        // @retval ERROR_UNAVAILABLE Identification not availbale
         virtual Core::hresult Identification(DeviceInfo& info /* @out */) const = 0;
 
     };
