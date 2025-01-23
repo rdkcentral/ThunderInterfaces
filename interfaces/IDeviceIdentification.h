@@ -31,14 +31,13 @@ namespace Exchange {
         enum { ID = ID_DEVICEIDENTIFICATION };
 
         struct DeviceInfo {
-            string firmwareversion /* @brief Version of the device firmware */;
-            string chipset /* @brief Chipset used for this device */;
-            string deviceid /* @brief Device ID */;
+            string firmwareVersion /* @brief Version of the device firmware (e.g. 1.0.0) */;
+            string chipset /* @brief Chipset used for this device (e.g. BCM2711) */;
+            string deviceID /* @brief Device ID (e.g. WPEuCfrLF45) */;
         };
 
         // @property
         // @brief Get device paltform specific information
-        // @retval ERROR_NONE Success
         virtual Core::hresult DeviceIdentification(DeviceInfo& info /* @out */) const = 0;
 
     };
