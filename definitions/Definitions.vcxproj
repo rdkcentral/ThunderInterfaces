@@ -254,9 +254,6 @@
     <CustomBuild Include="..\jsonrpc\Containers.json">
       <FileType>Document</FileType>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\DeviceIdentification.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\DeviceInfo.json">
       <FileType>Document</FileType>
     </CustomBuild>
