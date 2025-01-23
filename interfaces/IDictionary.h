@@ -49,7 +49,7 @@ namespace Exchange {
             // @param path: Path to the key which value changed
             // @param key: Key which value changed
             // @param value: Value that changed
-            virtual void Modified(const string& path, const string& key, const string& value) = 0;
+            virtual void Modified(const string& path /* @index */, const string& key, const string& value) = 0;
         };
 
         // Allow to observe values in the dictionary. If they are changed, the sink gets notified.
