@@ -37,8 +37,9 @@ namespace Exchange {
         };
 
         // @property
+        // @text deviceidentification
         // @brief Get device paltform specific information
-        virtual Core::hresult DeviceIdentification(DeviceInfo& info /* @out */) const = 0;
+        virtual Core::hresult Identification(DeviceInfo& info /* @out */) const = 0;
 
     };
 
