@@ -31,9 +31,9 @@ namespace Exchange {
         enum { ID = ID_DEVICEIDENTIFICATION };
 
         struct DeviceInfo {
+            string deviceID /* @brief Device ID (e.g. WPEuCfrLF45) */;
             Core::OptionalType<string> firmwareVersion /* @brief Version of the device firmware (e.g. 1.0.0) */;
             Core::OptionalType<string> chipset /* @brief Chipset used for this device (e.g. BCM2711) */;
-            Core::OptionalType<string> deviceID /* @brief Device ID (e.g. WPEuCfrLF45) */;
         };
 
         // @property
