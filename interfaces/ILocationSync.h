@@ -60,7 +60,7 @@ namespace Exchange {
         // @property
         // @brief Get information about the location
         // @retval ERROR_UNAVAILABLE Either the internet or the location information is not available
-        virtual Core::hresult Location(locationinfo& info /* @out */) const = 0;
+        virtual Core::hresult Location(LocationInfo& info /* @out */) const = 0;
 
     };
 
