@@ -387,6 +387,9 @@ namespace Exchange {
 
         ID_SYSTEMAUDIOPLAYER                         = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x520,
         ID_SYSTEMAUDIOPLAYER_NOTIFICATION            = ID_SYSTEMAUDIOPLAYER + 1,
+      
+        ID_LOCATIONSYNC                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x530,
+        ID_LOCATIONSYNC_NOTIFICATION                 = ID_LOCATIONSYNC + 1,
     };
 }
 }
