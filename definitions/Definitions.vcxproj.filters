@@ -27,12 +27,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_NetworkControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_BluetoothControl.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_BluetoothRemoteControl.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Browser.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -75,9 +69,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Dictionary.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_DisplayInfo.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_DTV.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -88,9 +79,6 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_IOConnector.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_IOControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_LocationSync.cpp">
@@ -117,9 +105,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_PerformanceMonitor.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_PlayerInfo.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Power.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -133,12 +118,6 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_SecureShellServer.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_SecurityAgent.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_Spark.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_StateControl.cpp">
@@ -157,9 +136,6 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeZone.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_TraceControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_ValuePoint.cpp">
@@ -195,12 +171,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\jsonrpc\BluetoothControl.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\BluetoothRemoteControl.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Browser.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
@@ -270,9 +240,6 @@
     <CustomBuild Include="..\jsonrpc\SecureShellServer.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\SecurityAgent.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\StateControl.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
@@ -319,6 +286,9 @@
       <Filter>Interfaces</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IMessenger.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ISecurityAgent.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
   </ItemGroup>
