@@ -419,6 +419,7 @@
     <ClInclude Include="IZigWave.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
+    <ClInclude Include="IMemoryMonitor.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />

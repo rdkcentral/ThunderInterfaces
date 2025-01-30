@@ -128,6 +128,7 @@
     <ClInclude Include="IKeyHandler.h" />
     <ClInclude Include="ILanguageTag.h" />
     <ClInclude Include="IMemory.h" />
+    <ClInclude Include="IMemoryMonitor.h" />
     <ClInclude Include="IMessageControl.h" />
     <ClInclude Include="INetflix.h" />
     <ClInclude Include="INetflixSecurity.h" />
