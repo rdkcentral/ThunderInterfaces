@@ -25,17 +25,17 @@ namespace Thunder {
 
 namespace Exchange {
 
-    // @json 1.0.0 @uncompliant:collapsed @text:legacy_lowercase
+    // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL ILocationSync : virtual public Core::IUnknown {
 
         enum { ID = ID_LOCATIONSYNC };
 
         struct LocationInfo {
-            string city /* @brief City name (e.g. Wroclaw) */;
-            string country /* @brief Country name (e.g. Poland) */;
-            string region /* @brief Region name (e.g. Silesia) */;
-            string timeZone /* @brief Time zone information (e.g. CET-1CEST,M3.5.0,M10.5.0/3) */;
-            string publicIP /* @brief Public IP (e.g. 78.11.117.118) */;
+            Core::OptionalType<string> city /* @brief City name (e.g. Wroclaw) */;
+            Core::OptionalType<string> country /* @brief Country name (e.g. Poland) */;
+            Core::OptionalType<string> region /* @brief Region name (e.g. Silesia) */;
+            Core::OptionalType<string> timeZone /* @deprecated @brief Time zone information (e.g. CET-1CEST,M3.5.0,M10.5.0/3) */;
+            Core::OptionalType<string> publicIP /* @deprecated @brief Public IP (e.g. 78.11.117.118) */;
         };
 
         // @event
@@ -44,7 +44,8 @@ namespace Exchange {
             enum { ID = ID_LOCATIONSYNC_NOTIFICATION };
 
             // @brief Signals a location change
-            virtual void LocationChange() = 0;
+            // @alt:deprecated locationchange
+            virtual void Updated() = 0;
         };
 
         virtual Core::hresult Register(INotification* const notification) = 0;
