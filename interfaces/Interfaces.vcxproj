@@ -110,6 +110,7 @@
     <ClInclude Include="IConfiguration.h" />
     <ClInclude Include="IContentDecryption.h" />
     <ClInclude Include="ICryptography.h" />
+    <ClInclude Include="IDeviceIdentification.h" />
     <ClInclude Include="IDeviceInfo.h" />
     <ClInclude Include="IDIALServer.h" />
     <ClInclude Include="IDictionary.h" />

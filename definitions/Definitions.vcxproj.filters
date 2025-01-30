@@ -54,9 +54,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Containers.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_DeviceIdentification.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_DeviceInfo.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -118,6 +115,9 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_SecureShellServer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\interfaces\json\JsonEnum_SecurityAgent.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_StateControl.cpp">
@@ -184,9 +184,6 @@
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Containers.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\DeviceIdentification.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\DeviceInfo.json">
@@ -289,6 +286,9 @@
       <Filter>Interfaces</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\ISecurityAgent.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IDeviceIdentification.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
   </ItemGroup>
