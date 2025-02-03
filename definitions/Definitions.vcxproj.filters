@@ -96,9 +96,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_OCDM.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_Packager.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_PerformanceMonitor.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -219,9 +216,6 @@
     <CustomBuild Include="..\jsonrpc\OCDM.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Packager.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\PerformanceMonitor.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
@@ -289,6 +283,9 @@
       <Filter>Interfaces</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IDeviceIdentification.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IPackager.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
   </ItemGroup>
