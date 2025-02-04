@@ -395,7 +395,7 @@ private:
 // @insert <com/IIteratorType.h>
 
     // @json 1.0.0 @text:legacy_lowercase
-    struct EXTERNAL IOpenCDMi : virtual public Core::IUnknown {
+    struct EXTERNAL IOpenCDM : virtual public Core::IUnknown {
 
         enum { ID = ID_OCDM };
 
