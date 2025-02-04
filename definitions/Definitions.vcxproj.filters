@@ -285,8 +285,5 @@
     <CustomBuild Include="..\interfaces\IDeviceIdentification.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\interfaces\IPackager.h">
-      <Filter>Interfaces</Filter>
-    </CustomBuild>
   </ItemGroup>
 </Project>
