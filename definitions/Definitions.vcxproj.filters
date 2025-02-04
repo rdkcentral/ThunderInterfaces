@@ -150,6 +150,9 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_OCDM.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\interfaces\json\JsonEnum_OpenCDM.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="definitions.h">

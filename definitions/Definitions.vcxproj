@@ -44,6 +44,7 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Netflix.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_NetworkControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_OCDM.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_OpenCDM.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Packager.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_PerformanceMonitor.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Power.cpp" />
@@ -102,10 +103,10 @@
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ClInclude</OutputItemType>
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ClInclude</OutputItemType>
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ClInclude</OutputItemType>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JOpenCDM.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JOpenCDM.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JOpenCDM.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JOpenCDM.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JOCDM.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JOCDM.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JOCDM.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JOCDM.h</Outputs>
     </CustomBuild>
     <ClInclude Include="ValuePoint.h" />
     <CustomBuild Include="..\interfaces\IMath.h">
