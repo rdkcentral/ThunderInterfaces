@@ -39,7 +39,7 @@ namespace Exchange {
 
         // @property
         // @brief DRM key systems
-        // @retval ERROR_BAD_REQUEST Invalid DRM name
+        // @retval ERROR_UNKNOWN_KEY Invalid DRM name
         virtual Core::hresult Designators(const string& keySystem /* @index */, IStringIterator*& designators /* @out */) const = 0;
     };
 
