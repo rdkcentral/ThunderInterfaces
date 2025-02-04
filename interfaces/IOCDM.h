@@ -26,22 +26,22 @@
 namespace Thunder {
 namespace Exchange {
 
-    // @json 1.0.0 @text:legacy_lowercase
-    struct EXTERNAL IOpenCDM : virtual public Core::IUnknown {
+// @json 1.0.0 @text:legacy_lowercase
+struct EXTERNAL IOpenCDM : virtual public Core::IUnknown {
 
-        enum { ID = ID_OPENCDM };
+    enum { ID = ID_OPENCDM };
 
-        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+    using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
-        // @property
-        // @brief Supported DRM systems
-        virtual Core::hresult Systems(IStringIterator*& keySystems /* @out */) const = 0;
+    // @property
+    // @brief Supported DRM systems
+    virtual Core::hresult Systems(IStringIterator*& keySystems /* @out */) const = 0;
 
-        // @property
-        // @brief Designators of a specified DRM system
-        // @retval ERROR_UNKNOWN_KEY Invalid DRM name
-        virtual Core::hresult Designators(const string& keySystem /* @index */, IStringIterator*& designators /* @out */) const = 0;
-    };
+    // @property
+    // @brief Designators of a specified DRM system
+    // @retval ERROR_UNKNOWN_KEY Invalid DRM name
+    virtual Core::hresult Designators(const string& keySystem /* @index */, IStringIterator*& designators /* @out */) const = 0;
+};
 
 enum OCDM_RESULT : uint32_t {
     OCDM_SUCCESS = 0,
