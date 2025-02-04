@@ -38,7 +38,7 @@ namespace Exchange {
         virtual Core::hresult Systems(IStringIterator*& keySystems /* @out */) const = 0;
 
         // @property
-        // @brief DRM key systems
+        // @brief Designators of a specified DRM system
         // @retval ERROR_UNKNOWN_KEY Invalid DRM name
         virtual Core::hresult Designators(const string& keySystem /* @index */, IStringIterator*& designators /* @out */) const = 0;
     };
