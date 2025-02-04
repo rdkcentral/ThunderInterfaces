@@ -73,7 +73,7 @@ namespace Exchange {
         // @json:omit
         virtual void Unregister(const INotification* observer) = 0;
         // @json:omit
-        virtual uint32_t Configure(PluginHost::IShell* service) = 0;
+        DEPRECATED virtual uint32_t Configure(PluginHost::IShell* service) = 0;
 
         // @brief Install a package given by a name, an URL or a file path
         // @param Name, URL or file path of the package to install (e.g. thunder-plugin-netflix)
