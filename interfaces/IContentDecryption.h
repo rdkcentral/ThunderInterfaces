@@ -43,12 +43,10 @@ namespace Exchange {
             FAILED
         };
 
-        /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
 
             enum {ID = ID_CONTENTDECRYPTION_NOTIFICATION};
 
-            /* @brief initialization status. */
             virtual void initializationStatus(const std::string& drm,
                                               const Status status) = 0;
         };
