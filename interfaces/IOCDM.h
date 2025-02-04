@@ -29,7 +29,7 @@ namespace Exchange {
     // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL IOpenCDM : virtual public Core::IUnknown {
 
-        enum { ID = ID_OCDM };
+        enum { ID = ID_OPENCDM };
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
