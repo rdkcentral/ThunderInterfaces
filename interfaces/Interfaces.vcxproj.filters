@@ -422,6 +422,12 @@
     <ClInclude Include="ILocationSync.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
+    <ClInclude Include="ISecurityAgent.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDeviceIdentification.h">
+      <Filter>Interface Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />

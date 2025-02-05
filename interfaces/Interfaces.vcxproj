@@ -110,6 +110,7 @@
     <ClInclude Include="IConfiguration.h" />
     <ClInclude Include="IContentDecryption.h" />
     <ClInclude Include="ICryptography.h" />
+    <ClInclude Include="IDeviceIdentification.h" />
     <ClInclude Include="IDeviceInfo.h" />
     <ClInclude Include="IDIALServer.h" />
     <ClInclude Include="IDictionary.h" />
@@ -144,6 +145,7 @@
     <ClInclude Include="IRtspClient.h" />
     <ClInclude Include="IRustBridge.h" />
     <ClInclude Include="IScriptEngine.h" />
+    <ClInclude Include="ISecurityAgent.h" />
     <ClInclude Include="IStore.h" />
     <ClInclude Include="IStoreCache.h" />
     <ClInclude Include="IStream.h" />
