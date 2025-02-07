@@ -72,9 +72,9 @@ namespace Exchange {
             };
 
             // @brief Signals an action taken by the Monitor
-            // @param Callsign of the service the Monitor acted upon (e.g. WebServer)
-            // @param Ation executed by the Monitor on a service (e.g. Deactivate)
-            // @param Mssage describing the reason the action was taken (e.g. EXCEEDED_MEMORY)
+            // @param callsign: Callsign of the service the Monitor acted upon (e.g. WebServer)
+            // @param action: Ation executed by the Monitor on a service (e.g. Deactivate)
+            // @param reason: Mssage describing the reason the action was taken (e.g. EXCEEDED_MEMORY)
             virtual void StatusChanged(const string& callsign, const action action, const Core::OptionalType<reason>& reason) = 0;
         };
 
@@ -83,24 +83,24 @@ namespace Exchange {
 
         // @property
         // @brief Limits of restarting of a service
-        // @param Callsign of the service (e.g. WebServer)
-        // @param Limits of restarts applying to a given service
+        // @param callsign: Callsign of the service (e.g. WebServer)
+        // @param restart: Limits of restarts applying to a given service
         virtual Core::hresult RestartingLimits(const string& callsign /* @index */, const Restart& restart) = 0;
         virtual Core::hresult RestartingLimits(const string& callsign /* @index */, Restart& restart /* @out */) const = 0;
 
         // @property
         // @brief List of services watched by the Monitor
-        // @param List of monitored services
+        // @param observables: List of monitored services
         virtual Core::hresult Observables(IStringIterator*& observables /* @out */) const = 0;
 
         // @property
         // @brief Memory statistics for a given service
-        // @param Callsign of the service (e.g. WebServer)
-        // @param Statistics for the requested callsign
+        // @param callsign: Callsign of the service (e.g. WebServer)
+        // @param statistics: Statistics for the requested callsign
         virtual Core::hresult MeasurementData(const string& callsign /* @index */, Statistics& statistics /* @out */) const = 0;
 
         // @brief Resets memory statistics for a given service
-        // @param Callsign of the service (e.g. WebServer)
+        // @param callsign: Callsign of the service (e.g. WebServer)
         virtual Core::hresult ResetStatistics(const string& callsign) = 0;
     };
 
