@@ -91,7 +91,7 @@ namespace Exchange {
             // @brief Notifies that the web page requests to close its window
             virtual void PageClosure() = 0;
             // @brief A Base64 encoded JSON message from legacy $badger bridge
-            // @param Requested action
+            // @param message: Requested action
             virtual void BridgeQuery(const string& message) = 0;
         };
 
@@ -118,7 +118,7 @@ namespace Exchange {
         // @property
         // @text headers
         // @brief Headers to send on all requests that the browser makes
-        // @param Single string containing a list of headers
+        // @param headerlist: Single string containing a list of headers
         virtual Core::hresult HeaderList(string& headerlist /* @out @opaque */) const = 0;
         virtual Core::hresult HeaderList(const string& headerlist /* @opaque */) = 0;
 
@@ -164,13 +164,13 @@ namespace Exchange {
         // @brief Removes contents of a directory from the persistent storage
         // @alt:deprecated delete
         // @description Use this method to recursively delete contents of a directory
-        // @param Path to directory (within the persistent storage) to delete contents of (e.g. .cache/wpe/disk-cache)
+        // @param path: Path to directory (within the persistent storage) to delete contents of (e.g. .cache/wpe/disk-cache)
         // @retval ERROR_UNKNOWN_KEY The given path cannot be empty
         virtual Core::hresult DeleteDir(const string& path) = 0;
 
         // @property
         // @brief User preferred languages
-        // @param List of langauges preferred by the user 
+        // @param languages: List of langauges preferred by the user
         virtual Core::hresult Languages(IStringIterator*& languages /* @out */) const = 0;
         virtual Core::hresult Languages(IStringIterator* const languages) = 0;
 
