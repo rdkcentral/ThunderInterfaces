@@ -61,6 +61,7 @@ namespace Exchange {
         ID_BROWSER_SCRIPTING                         = ID_BROWSER + 7,
         ID_BROWSER_COOKIEJAR                         = ID_BROWSER + 8,
         ID_BROWSER_COOKIEJAR_NOTIFICATION            = ID_BROWSER + 9,
+        ID_WEB_BROWSER_EXT                           = ID_BROWSER + 10,
 
         ID_POWER                                     = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x010,
         ID_POWER_NOTIFICATION                        = ID_POWER + 1,
