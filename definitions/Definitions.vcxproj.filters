@@ -231,9 +231,6 @@
     <CustomBuild Include="..\jsonrpc\SecureShellServer.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\SecurityAgent.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\StateControl.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
@@ -280,6 +277,9 @@
       <Filter>Interfaces</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IMessenger.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ISecurityAgent.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IDeviceIdentification.h">
