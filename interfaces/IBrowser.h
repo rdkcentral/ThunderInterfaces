@@ -170,6 +170,7 @@ namespace Exchange {
 
         // @property
         // @brief User preferred languages
+        // @param List of langauges preferred by the user 
         virtual Core::hresult Languages(IStringIterator*& languages /* @out */) const = 0;
         virtual Core::hresult Languages(IStringIterator* const languages) = 0;
 
