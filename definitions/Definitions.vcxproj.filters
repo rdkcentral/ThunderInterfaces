@@ -78,9 +78,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_IOConnector.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_LocationSync.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Math.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -204,9 +201,6 @@
     <CustomBuild Include="..\jsonrpc\IOConnector.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\LocationSync.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Netflix.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
@@ -277,6 +271,9 @@
       <Filter>Interfaces</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IMessenger.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ILocationSync.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\ISecurityAgent.h">

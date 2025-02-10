@@ -395,7 +395,10 @@ namespace Exchange {
 
         ID_DEVICEIDENTIFICATION                      = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x540,
 
-        ID_SECURITYAGENT                             = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x550
+        ID_SECURITYAGENT                             = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x550,
+      
+        ID_LOCATIONSYNC                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x560,
+        ID_LOCATIONSYNC_NOTIFICATION                 = ID_LOCATIONSYNC + 1
     };
 }
 }
