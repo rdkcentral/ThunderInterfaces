@@ -54,9 +54,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Containers.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_DeviceIdentification.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_DeviceInfo.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -79,9 +76,6 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_IOConnector.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_LocationSync.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Math.cpp">
@@ -189,9 +183,6 @@
     <CustomBuild Include="..\jsonrpc\Containers.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\DeviceIdentification.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\DeviceInfo.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
@@ -211,9 +202,6 @@
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\IOConnector.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\LocationSync.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Netflix.json">
@@ -241,9 +229,6 @@
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\SecureShellServer.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\SecurityAgent.json">
       <Filter>Contracts</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\StateControl.json">
@@ -295,6 +280,15 @@
       <Filter>Interfaces</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IMemoryMonitor.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ILocationSync.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ISecurityAgent.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IDeviceIdentification.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
   </ItemGroup>
