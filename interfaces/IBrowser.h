@@ -162,11 +162,12 @@ namespace Exchange {
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         // @brief Removes contents of a directory from the persistent storage
-        // @alt:deprecated delete
+        // @alt delete
+        // @deprecated
         // @description Use this method to recursively delete contents of a directory
         // @param path: Path to directory (within the persistent storage) to delete contents of (e.g. .cache/wpe/disk-cache)
         // @retval ERROR_UNKNOWN_KEY The given path cannot be empty
-        virtual Core::hresult DeleteDir(const string& path) = 0;
+        DEPRECATED virtual Core::hresult DeleteDir(const string& path) = 0;
 
         // @property
         // @brief User preferred languages
