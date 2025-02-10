@@ -25,7 +25,7 @@ namespace Thunder {
     namespace Exchange {
 
         // This is an example to show the workings and how to develope a COMRPC/JSONRPC method/interface
-        /* @json 1.0.0 */
+        /* @json 1.0.0 @text:legacy_lowercase */
         struct EXTERNAL IMath : virtual public Core::IUnknown {
 
             enum { ID = ID_MATH };

@@ -27,7 +27,7 @@
 namespace Thunder {
 namespace Exchange {
 
-    /* @json 1.0.0 */
+    /* @json 1.0.0 @text:legacy_lowercase */
     struct EXTERNAL IPackageManager : virtual public Core::IUnknown {
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
