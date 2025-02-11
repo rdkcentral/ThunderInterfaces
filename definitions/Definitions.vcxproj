@@ -44,7 +44,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_NetworkControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_OCDM.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_OpenCDM.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_Packager.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_PerformanceMonitor.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Power.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Provisioning.cpp" />
@@ -337,9 +336,6 @@
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\OCDM.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Packager.json">
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\PerformanceMonitor.json">
