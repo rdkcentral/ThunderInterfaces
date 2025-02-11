@@ -43,7 +43,7 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Netflix.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_NetworkControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_OCDM.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_Packager.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_OpenCDM.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_PerformanceMonitor.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Power.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Provisioning.cpp" />
@@ -132,6 +132,20 @@
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ClInclude</OutputItemType>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JDeviceIdentification.h</Outputs>
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ClInclude</OutputItemType>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IOCDM.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ClInclude</OutputItemType>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JOpenCDM.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JOpenCDM.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JOpenCDM.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JOpenCDM.h</Outputs>
     </CustomBuild>
     <ClInclude Include="ValuePoint.h" />
     <CustomBuild Include="..\interfaces\IMath.h">
@@ -322,9 +336,6 @@
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\OCDM.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Packager.json">
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\PerformanceMonitor.json">
