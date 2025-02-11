@@ -84,9 +84,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Messenger.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_Monitor.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Netflix.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -145,6 +142,9 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_ZigWave.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\interfaces\json\JsonEnum_MemoryMonitor.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -277,6 +277,9 @@
       <Filter>Interfaces</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IMessenger.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IMemoryMonitor.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\ILocationSync.h">
