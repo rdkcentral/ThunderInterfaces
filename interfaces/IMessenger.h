@@ -65,7 +65,7 @@ namespace Exchange {
 
     namespace JSONRPC {
 
-        // @json 1.0.0
+        // @json 1.0.0 @text:legacy_lowercase
         struct EXTERNAL IMessenger {
 
             virtual ~IMessenger() = default;
