@@ -90,7 +90,8 @@ namespace Exchange {
             virtual void VisibilityChange(const bool hidden) = 0;
             // @brief Notifies that the web page requests to close its window
             virtual void PageClosure() = 0;
-            /* @json:omit */
+            // @brief A Base64 encoded JSON message from legacy $badger bridge
+            // @param message: Requested action
             virtual void BridgeQuery(const string& message) = 0;
         };
 
@@ -114,10 +115,12 @@ namespace Exchange {
         // @param fps: Current FPS
         virtual uint32_t FPS(uint8_t& fps /* @out */) const = 0;
 
-        /* @json:omit */
-        virtual uint32_t HeaderList(string& headerlist /* @out */) const = 0;
-        /* @json:omit */
-        virtual uint32_t HeaderList(const string& headerlist ) = 0;
+        // @property
+        // @text headers
+        // @brief Headers to send on all requests that the browser makes
+        // @param headerlist: Single string containing a list of headers
+        virtual Core::hresult HeaderList(string& headerlist /* @out @opaque */) const = 0;
+        virtual Core::hresult HeaderList(const string& headerlist /* @opaque */) = 0;
 
         // @property
         // @brief UserAgent string used by the browser
@@ -149,6 +152,29 @@ namespace Exchange {
 
         // @brief Initiate garbage collection
         virtual uint32_t CollectGarbage() = 0;
+    };
+
+    // @json 1.0.0 @text:legacy_lowercase @uncompliant:extended
+    struct EXTERNAL IWebBrowserExt : virtual public Core::IUnknown {
+
+        enum { ID = ID_WEB_BROWSER_EXT };
+
+        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
+        // @brief Removes contents of a directory from the persistent storage
+        // @alt delete
+        // @deprecated
+        // @description Use this method to recursively delete contents of a directory
+        // @param path: Path to directory (within the persistent storage) to delete contents of (e.g. .cache/wpe/disk-cache)
+        // @retval ERROR_UNKNOWN_KEY The given path cannot be empty
+        DEPRECATED virtual Core::hresult DeleteDir(const string& path) = 0;
+
+        // @property
+        // @brief User preferred languages
+        // @param languages: List of langauges preferred by the user
+        virtual Core::hresult Languages(IStringIterator*& languages /* @out */) const = 0;
+        virtual Core::hresult Languages(IStringIterator* const languages) = 0;
+
     };
 
     // @json 1.0.0 @uncompliant:extended
