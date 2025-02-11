@@ -86,7 +86,7 @@ namespace Exchange {
             virtual Core::hresult Delay(uint32_t& delayMs /* @out */) const = 0;
         };
 
-        // @json 1.0.0
+        // @json 1.0.0 @text:legacy_lowercase
         // @prefix sink
         struct EXTERNAL ISink : virtual public Core::IUnknown {
 
@@ -180,7 +180,7 @@ namespace Exchange {
             virtual Core::hresult Stream(StreamProperties& properties /* @out */) const = 0;
        };
 
-        // @json 1.0.0
+        // @json 1.0.0 @text:legacy_lowercase
         // @prefix source
         struct EXTERNAL ISource: virtual public Core::IUnknown {
 
