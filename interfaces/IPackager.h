@@ -23,6 +23,7 @@
 namespace Thunder {
 namespace Exchange {
 
+    // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL IPackager : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGER };
 
@@ -49,7 +50,7 @@ namespace Exchange {
             enum { ID = ID_PACKAGER_INSTALLATIONINFO };
             virtual state State() const = 0;
             virtual uint8_t Progress() const = 0;
-	    virtual string AppName() const = 0;
+            virtual string AppName() const = 0;
             virtual uint32_t ErrorCode() const = 0;
             virtual uint32_t Abort() = 0;
         };
@@ -67,10 +68,25 @@ namespace Exchange {
             virtual void RepositorySynchronize(uint32_t status) = 0;
         };
 
+        // @json:omit
         virtual void Register(INotification* observer) = 0;
+        // @json:omit
         virtual void Unregister(const INotification* observer) = 0;
-        virtual uint32_t Configure(PluginHost::IShell* service) = 0;
-        virtual uint32_t Install(const string& name, const string& version, const string& arch) = 0;
+        // @json:omit
+        DEPRECATED virtual uint32_t Configure(PluginHost::IShell* service) = 0;
+
+        // @brief Install a package given by a name, an URL or a file path
+        // @param name: Name, URL or file path of the package to install (e.g. thunder-plugin-netflix)
+        // @param version: Version of the package to install (e.g. 1.0)
+        // @param arch: Architecture of the package to install (e.g. arm)
+        // @retval ERROR_INPROGRESS Other installation/synchronization is already in progress
+        // @retval ERROR_GENERAL Opkg package manager not initialized successfully
+        virtual uint32_t Install(const string& name, const string& version /* @opptional */, const string& arch /* @opptional */) = 0;
+
+        // @brief Synchronize repository manifest with a repository
+        // @alt::deprecated synchronize
+        // @retval ERROR_INPROGRESS Other installation/synchronization is already in progress
+        // @retval ERROR_GENERAL Opkg package manager not initialized successfully
         virtual uint32_t SynchronizeRepository() = 0;
     };
 }
