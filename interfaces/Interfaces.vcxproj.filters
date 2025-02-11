@@ -419,6 +419,9 @@
     <ClInclude Include="IZigWave.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
+    <ClInclude Include="IMemoryMonitor.h" />
+      <Filter>Interface Files</Filter>
+    </ClInclude>
     <ClInclude Include="ILocationSync.h">
       <Filter>Interface Files</Filter>
     </ClInclude>
