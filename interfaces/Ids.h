@@ -276,6 +276,7 @@ namespace Exchange {
         ID_SESSION                                   = ID_ACCESSOROCDM + 2,
         ID_SESSION_CALLBACK                          = ID_ACCESSOROCDM + 3,
         ID_SESSION_EXTENSION                         = ID_ACCESSOROCDM + 4,
+        ID_OPENCDM                                   = ID_ACCESSOROCDM + 5,
 
         //Butler
         ID_BUTLER                                    = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x3D0,

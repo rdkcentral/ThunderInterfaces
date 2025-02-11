@@ -87,7 +87,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Netflix.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_OCDM.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_PerformanceMonitor.cpp">
@@ -139,6 +138,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_ZigWave.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\interfaces\json\JsonEnum_OCDM.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\interfaces\json\JsonEnum_OpenCDM.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_MemoryMonitor.cpp">
@@ -283,6 +288,9 @@
       <Filter>Interfaces</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IDeviceIdentification.h">
+      <Filter>Interfaces</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IOCDM.h">
       <Filter>Interfaces</Filter>
     </CustomBuild>
   </ItemGroup>
