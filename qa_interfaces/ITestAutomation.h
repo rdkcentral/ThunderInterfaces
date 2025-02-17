@@ -24,7 +24,7 @@
 namespace Thunder {
 namespace QualityAssurance {
 
-    // @json 1.0.0
+    // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL IMemory : virtual public Core::IUnknown {
         // Ask Pierre if using namespace+interface as ID! Is there a coding guide line
         enum { ID = ID_TESTAUTOMATIONMEMORY };
@@ -45,7 +45,7 @@ namespace QualityAssurance {
     };
 
 
-    // @json 1.0.0
+    // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL IComRpc : virtual public Core::IUnknown {
         // Ask Pierre if using namespace+interface as ID! Is there a coding guide line
         enum { ID = ID_TESTAUTOMATIONCOMRPC };

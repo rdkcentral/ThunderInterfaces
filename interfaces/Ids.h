@@ -61,6 +61,7 @@ namespace Exchange {
         ID_BROWSER_SCRIPTING                         = ID_BROWSER + 7,
         ID_BROWSER_COOKIEJAR                         = ID_BROWSER + 8,
         ID_BROWSER_COOKIEJAR_NOTIFICATION            = ID_BROWSER + 9,
+        ID_WEB_BROWSER_EXT                           = ID_BROWSER + 10,
 
         ID_POWER                                     = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x010,
         ID_POWER_NOTIFICATION                        = ID_POWER + 1,
@@ -109,9 +110,11 @@ namespace Exchange {
         ID_GUIDE                                     = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x0F0,
         ID_GUIDE_NOTIFICATION                        = ID_GUIDE + 1,
 
-        ID_BLUETOOTHREMOTECONTROL                    = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x100,
-        ID_BLUETOOTHREMOTECONTROL_CALLBACK           = ID_BLUETOOTHREMOTECONTROL + 1,
-        ID_BLUETOOTHREMOTECONTROL_NOTIFICATION       = ID_BLUETOOTHREMOTECONTROL + 2,
+        ID_VOICEHANDLER                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x100,
+        ID_VOICEPRODUCER                             = ID_VOICEHANDLER + 1,
+        ID_AUDIOSTREAM                               = ID_VOICEHANDLER + 2,
+        ID_AUDIOSTREAM_CALLBACK                      = ID_VOICEHANDLER + 3,
+        ID_AUDIOSTREAM_NOTIFICATION                  = ID_VOICEHANDLER + 4,
 
         ID_WEBDRIVER                                 = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x110,
 
@@ -274,6 +277,7 @@ namespace Exchange {
         ID_SESSION                                   = ID_ACCESSOROCDM + 2,
         ID_SESSION_CALLBACK                          = ID_ACCESSOROCDM + 3,
         ID_SESSION_EXTENSION                         = ID_ACCESSOROCDM + 4,
+        ID_OPENCDM                                   = ID_ACCESSOROCDM + 5,
 
         //Butler
         ID_BUTLER                                    = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x3D0,
@@ -387,6 +391,19 @@ namespace Exchange {
 
         ID_SYSTEMAUDIOPLAYER                         = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x520,
         ID_SYSTEMAUDIOPLAYER_NOTIFICATION            = ID_SYSTEMAUDIOPLAYER + 1,
+
+        ID_BLUETOOTHREMOTECONTROL                    = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x530,
+        ID_BLUETOOTHREMOTECONTROL_NOTIFICATION       = ID_BLUETOOTHREMOTECONTROL + 1,
+
+        ID_DEVICEIDENTIFICATION                      = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x540,
+
+        ID_SECURITYAGENT                             = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x550,
+      
+        ID_LOCATIONSYNC                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x560,
+        ID_LOCATIONSYNC_NOTIFICATION                 = ID_LOCATIONSYNC + 1,
+          
+        ID_MEMORY_MONITOR                            = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x570,
+        ID_MEMORY_MONITOR_NOTIFICATION               = ID_MEMORY_MONITOR + 1
     };
 }
 }
