@@ -156,7 +156,7 @@ struct ISessionExt : virtual public Core::IUnknown {
         uint16_t drmHeaderLength)
         = 0;
 
-    virtual OCDM_RESULT GetChallengeDataExt(uint8_t* challenge /* @inout @length:challengeSize */,
+    virtual OCDM_RESULT GetChallengeDataExt(uint8_t* challenge /* @out @length:challengeSize */,
         uint16_t& challengeSize /* @inout */,
         uint32_t isLDL)
         = 0;
