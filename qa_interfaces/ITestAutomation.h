@@ -26,7 +26,6 @@ namespace QualityAssurance {
 
     // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL IMemory : virtual public Core::IUnknown {
-        // Ask Pierre if using namespace+interface as ID! Is there a coding guide line
         enum { ID = ID_TESTAUTOMATIONMEMORY };
 
         ~IMemory() override = default;
@@ -47,7 +46,6 @@ namespace QualityAssurance {
 
     // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL IComRpc : virtual public Core::IUnknown {
-        // Ask Pierre if using namespace+interface as ID! Is there a coding guide line
         enum { ID = ID_TESTAUTOMATIONCOMRPC };
 
         ~IComRpc() override = default;
@@ -64,6 +62,18 @@ namespace QualityAssurance {
 
             virtual Core::hresult BigStringTest(const string& testString /* @restrict: (4M-1) */) = 0;
         };
+    };
+
+    // @json 1.0.0 @text:legacy_lowercase
+    struct EXTERNAL ITestUtils : virtual public Core::IUnknown {
+        enum { ID = ID_TESTAUTOMATIONUTILS };
+
+        ~ITestUtils() override = default;
+
+        // @method
+        // @brief Causes a crash
+        // @retval none
+        virtual Core::hresult Crash() const = 0;
     };
 
 }
