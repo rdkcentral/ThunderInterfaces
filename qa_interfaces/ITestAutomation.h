@@ -66,5 +66,18 @@ namespace QualityAssurance {
         };
     };
 
+    // @json 1.0.0 @text:legacy_lowercase
+    struct EXTERNAL ITestUtils : virtual public Core::IUnknown {
+        // Ask Pierre if using namespace+interface as ID! Is there a coding guide line
+        enum { ID = ID_TESTUTILS };
+
+        ~ITestUtils() override = default;
+
+        // @method
+        // @brief Validates big string over proxy-stub with given length of KB
+        // @retval ERROR_GENERAL Failed to verify
+        virtual Core::hresult Crash() const = 0;
+    };
+
 }
 }
