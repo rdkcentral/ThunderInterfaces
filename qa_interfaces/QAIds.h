@@ -55,7 +55,7 @@ namespace QualityAssurance {
         ID_TESTAUTOMATIONMEMORY                      = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET,
         ID_TESTAUTOMATIONCOMRPC                      = ID_TESTAUTOMATIONMEMORY + 1,
         ID_TESTAUTOMATIONCOMRPCINTERNAL              = ID_TESTAUTOMATIONMEMORY + 2,
-        ID_TESTUTILS                                 = ID_TESTAUTOMATIONMEMORY + 3,
+        ID_TESTAUTOMATIONUTILS                       = ID_TESTAUTOMATIONMEMORY + 3,
 
         ID_TESTCONTROLLER                            = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x010,
         ID_TESTCONTROLLER_TEST                       = ID_TESTCONTROLLER + 1,
