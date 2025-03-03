@@ -74,8 +74,8 @@ namespace QualityAssurance {
         ~ITestUtils() override = default;
 
         // @method
-        // @brief Validates big string over proxy-stub with given length of KB
-        // @retval ERROR_GENERAL Failed to verify
+        // @brief Causes a crash
+        // @retval none
         virtual Core::hresult Crash() const = 0;
     };
 
