@@ -30,13 +30,11 @@ namespace QualityAssurance {
 
         ~IMemory() override = default;
        
-        // @method
         // @brief Allocates Memory as given size of MB
         // @retval ERROR_GENERAL Failed to allocate memory
         virtual Core::hresult AllocateMemory(const uint32_t size) = 0;
 
 
-        // @method
         // @brief Frees the allocated memory
         // @retval ERROR_GENERAL Failed to free allocated memory
         virtual Core::hresult FreeAllocatedMemory() = 0;
@@ -50,7 +48,6 @@ namespace QualityAssurance {
 
         ~IComRpc() override = default;
 
-        // @method
         // @brief Validates big string over proxy-stub with given length of KB
         // @retval ERROR_GENERAL Failed to verify
         virtual Core::hresult TestBigString(const uint32_t length) = 0;
@@ -70,9 +67,7 @@ namespace QualityAssurance {
 
         ~ITestUtils() override = default;
 
-        // @method
         // @brief Causes a crash
-        // @retval none
         virtual Core::hresult Crash() const = 0;
     };
 
