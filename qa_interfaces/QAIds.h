@@ -56,7 +56,6 @@ namespace QualityAssurance {
         ID_TESTAUTOMATIONCOMRPC                      = ID_TESTAUTOMATIONMEMORY + 1,
         ID_TESTAUTOMATIONCOMRPCINTERNAL              = ID_TESTAUTOMATIONMEMORY + 2,
         ID_TESTAUTOMATIONUTILS                       = ID_TESTAUTOMATIONMEMORY + 3,
-        ID_TESTTEXTOPTIONS                           = ID_TESTAUTOMATIONMEMORY + 4,
 
         ID_TESTCONTROLLER                            = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x010,
         ID_TESTCONTROLLER_TEST                       = ID_TESTCONTROLLER + 1,
@@ -67,6 +66,15 @@ namespace QualityAssurance {
         ID_TESTUTILITY                               = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x020,
         ID_TESTUTILITY_COMMAND                       = ID_TESTUTILITY + 1,
         ID_TESTUTILITY_ITERATOR                      = ID_TESTUTILITY + 2,
+
+        ID_TESTTEXTOPTIONS                           = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x030,
+        ID_TESTTEXTOPTIONS_NOTIFICATION              = ID_TESTAUTOMATIONMEMORY + 1,
+        ID_TESTLEGACY                                = ID_TESTAUTOMATIONMEMORY + 2,
+        ID_TESTLEGACY_NOTIFICATION                   = ID_TESTAUTOMATIONMEMORY + 3,
+        ID_TESTKEEP                                  = ID_TESTAUTOMATIONMEMORY + 4,
+        ID_TESTKEEP_NOTIFICATION                     = ID_TESTAUTOMATIONMEMORY + 5,
+        ID_TESTCUSTOM                                = ID_TESTAUTOMATIONMEMORY + 6,
+        ID_TESTCUSTOM_NOTIFICATION                   = ID_TESTAUTOMATIONMEMORY + 7
 
     };
 }
