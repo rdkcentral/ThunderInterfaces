@@ -18,12 +18,16 @@
  */
 
 #pragma once
+
 #include "Module.h"
 
 namespace Thunder {
+
 namespace Exchange {
 
+    // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL IPower : virtual public Core::IUnknown {
+
         enum { ID = ID_POWER };
 
         enum PCState : uint8_t {
@@ -40,19 +44,40 @@ namespace Exchange {
             After  = 2
         };
 
+        // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
+
             enum { ID = ID_POWER_NOTIFICATION };
 
-            virtual void StateChange(const PCState origin, const PCState destination, const PCPhase phase) = 0;
+            // @brief Signals a change in the power state
+            // @param origin: The state the device is transitioning from (e.g. ActiveStandby)
+            // @param destination: The state the device is transitioning to (e.g. SuspendToRAM)
+            // @param phase: The phase of the transition (e.g. After)
+            virtual Core::hresult StateChange(const PCState origin, const PCState destination, const PCPhase phase) = 0;
         };
 
-        virtual void Register(IPower::INotification* sink) = 0;
-        virtual void Unregister(IPower::INotification* sink) = 0;
+        virtual Core::hresult Register(INotification* const sink) = 0;
+        virtual Core::hresult Unregister(const INotification* const sink) = 0;
 
-        virtual PCState GetState() const = 0;
-        virtual uint32_t SetState(const PCState, const uint32_t) = 0;
+        // @property
+        // @brief Get the current power state
+        // @param state: The current power state (e.g. PassiveStandby)
+        virtual Core::hresult GetState(PCState& state /* @out */) const = 0;
+
+        // @brief Set the power state
+        // @param state: The power state to set (e.g. Hibernate)
+        // @param waitTime: The time to wait for the power state to be set in seconds (e.g. 10)
+        // @retval ERROR_GENERAL: General failure
+        // @retval ERROR_DUPLICATE_KEY: Trying to set the same power mode
+        // @retval ERROR_ILLEGAL_STATE: Power state is not supported
+        // @retval ERROR_BAD_REQUEST: Invalid Power state or Bad JSON param data format
+        virtual Core::hresult SetState(const PCState& state, const uint32_t waitTime) = 0;
+
+        // @json:omit
         virtual void PowerKey() = 0;
     };
-}
+
+} // namespace Exchange
+
 }
 
