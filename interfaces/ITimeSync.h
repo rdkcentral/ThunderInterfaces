@@ -86,7 +86,8 @@ namespace Exchange {
         // @property
         // @brief Current system time
         // @description Upon setting this property automatic time synchronization will be stopped. Usage of this property is deprecated and the SubSystem control plugin can be used as an alternative to achieve the same
-        // @retval ERROR_BADREQUEST: The time is invalid
+        // @param time: System time in ISO8601 format (e.g. 2019-05-07T07:20:26Z)
+        // @retval ERROR_BAD_REQUEST: The time is invalid
         virtual Core::hresult Time(Core::Time& time /* @out */) const = 0;
         // @deprecated
         DEPRECATED virtual Core::hresult Time(const Core::Time& time) = 0;
