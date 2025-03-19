@@ -103,6 +103,8 @@ namespace Exchange {
 
         ID_TIMESYNC                                  = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x0D0,
         ID_TIMESYNC_NOTIFICATION                     = ID_TIMESYNC + 1,
+        ID_TIMESYNC_ISOURCE                          = ID_TIMESYNC + 2,
+        ID_TIMESYNC_ISOURCE_NOTIFICATION             = ID_TIMESYNC + 3,
 
         ID_IPNETWORK                                 = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x0E0,
         ID_IPNETWORK_DNSSERVER                       = ID_IPNETWORK + 1,
