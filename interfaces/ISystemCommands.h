@@ -18,17 +18,24 @@
  */
 
 #pragma once
+
 #include "Module.h"
 
-
 namespace Thunder {
+
 namespace Exchange {
 
-    // @stubgen:omit
+    // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL ISystemCommands : virtual public Core::IUnknown {
+
         enum { ID = ID_SYSTEMCOMMAND };
 
-        virtual uint32_t USBReset(const string& device) = 0;
+        // @brief Resets a USB device
+        // @description With this method a USB device can be reset using USBFS_RESET ioctl command
+        // @param device: USB device to reset (e.g. /dev/usb/001)
+        // @retval ERROR_GENERAL Failed to reset USB device
+        // @retval ERROR_UNAVAILABLE Unknown USB device
+        virtual Core::hresult USBReset(const string& device) = 0;
     };
 }
 }
