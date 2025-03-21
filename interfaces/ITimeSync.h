@@ -97,8 +97,8 @@ namespace Exchange {
         virtual void Register(INotification* notification) = 0;
         virtual void Unregister(INotification* notification) = 0;
 
-        virtual uint32_t GetStatus(TSStatus &status /*@out*/ );
-        virtual uint32_t SetConfiguration(const TimeSyncConfiguration &config, TSErrorDetail &status/* @out */);
+        virtual uint32_t GetStatus(TSStatus &status /*@out*/ ) const {return 0;};
+        virtual uint32_t SetConfiguration(const TimeSyncConfiguration& config /* @in */, TSErrorDetail&status/* @out */){return 0;};
 
         virtual uint32_t Synchronize() = 0;
         virtual void Cancel() = 0;
