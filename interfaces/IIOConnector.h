@@ -28,30 +28,30 @@ namespace Exchange {
     // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL IIOConnector : virtual public Core::IUnknown {
 
-    enum { ID = ID_IOCONNECTOR };
+        enum { ID = ID_IOCONNECTOR };
 
-    // @event
-    struct EXTERNAL INotification : virtual public Core::IUnknown {
+        // @event
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
 
-        enum { ID = ID_IOCONNECTOR_NOTIFICATION };
+            enum { ID = ID_IOCONNECTOR_NOTIFICATION };
 
-        // @brief Notifies about GPIO pin activity
-        // @description Register to this event to be notified about pin value changes
+            // @brief Notifies about GPIO pin activity
+            // @description Register to this event to be notified about pin value changes
+            // @param id: pin ID (e.g. 189)
+            // @param value: value of the pin (e.g. 1)
+            virtual void Activity(const uint16_t id /* @index */, const int32_t value) = 0;
+        };
+
+        virtual Core::hresult Register(const uint16_t id, INotification* const notification) = 0;
+        virtual Core::hresult Unregister(const uint16_t id, const INotification* const notification) = 0;
+
+        // @property
+        // @brief GPIO pin value
         // @param id: pin ID (e.g. 189)
         // @param value: value of the pin (e.g. 1)
-        virtual void Activity(const string& id /* @index */, const int32_t& value) = 0;
-    };
-
-    virtual Core::hresult Register(const string& id, INotification* const notification) = 0;
-    virtual Core::hresult Unregister(const string& id, const INotification* const notification) = 0;
-
-    // @property
-    // @brief GPIO pin value
-    // @param index: pin ID (e.g. 189)
-    // @param pinvalue: value of the pin (e.g. 1)
-    // @retval ERROR_UNKNOWN_KEY Unknown pin ID given
-    virtual Core::hresult Pin(const string& index /* @index */, const int32_t& pinvalue) = 0;
-    virtual Core::hresult Pin(const string& index /* @index */, int32_t& pinvalue /* @out */) const = 0;
+        // @retval ERROR_UNKNOWN_KEY Unknown pin ID given
+        virtual Core::hresult Pin(const uint16_t id /* @index */, const int32_t value) = 0;
+        virtual Core::hresult Pin(const uint16_t id /* @index */, int32_t& value /* @out */) const = 0;
 
     };
 
