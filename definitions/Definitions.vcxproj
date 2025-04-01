@@ -160,6 +160,20 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JTimeSync.h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JTimeSync.h</Outputs>
     </CustomBuild>
+    <CustomBuild Include="..\interfaces\ISystemCommands.h">
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ClInclude</OutputItemType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JSystemCommands.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JSystemCommands.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JSystemCommands.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JSystemCommands.h</Outputs>
+    </CustomBuild>
     <ClInclude Include="ValuePoint.h" />
     <CustomBuild Include="..\interfaces\IMath.h">
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JMath.h</Outputs>
@@ -370,9 +384,6 @@
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Streamer.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\SystemCommands.json">
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
