@@ -35,7 +35,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_StateControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Streamer.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_SubsystemControl.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_SystemCommands.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeZone.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_ValuePoint.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_WatchDog.cpp" />
@@ -87,9 +86,9 @@
     <CustomBuild Include="..\jsonrpc\SecureShellServer.json" />
     <CustomBuild Include="..\jsonrpc\StateControl.json" />
     <CustomBuild Include="..\jsonrpc\Streamer.json" />
-    <CustomBuild Include="..\jsonrpc\SystemCommands.json" />
     <CustomBuild Include="..\jsonrpc\SubsystemControl.json" />
     <CustomBuild Include="..\interfaces\ITimeSync.h" />
+    <CustomBuild Include="..\interfaces\ISystemCommands.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jsonrpc\common.json" />
