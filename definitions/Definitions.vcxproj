@@ -58,6 +58,7 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_ValuePoint.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_WatchDog.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_WebBrowser.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_WifiControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_ZigWave.cpp" />
     <ClCompile Include="Definitions.cpp" />
   </ItemGroup>
@@ -159,6 +160,16 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JTimeSync.h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JTimeSync.h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JTimeSync.h</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IWifiControl.h">
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ClInclude</OutputItemType>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JWifiControl.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JWifiControl.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JWifiControl.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JWifiControl.h</Outputs>
     </CustomBuild>
     <ClInclude Include="ValuePoint.h" />
     <CustomBuild Include="..\interfaces\IMath.h">
