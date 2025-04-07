@@ -30,6 +30,7 @@ namespace Exchange {
 
         enum { ID = ID_POWER };
 
+        // @text:keep
         enum PCState : uint8_t {
             On = 1, // S0.
             ActiveStandby = 2, // S1.
