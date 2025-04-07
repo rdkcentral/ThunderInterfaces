@@ -106,9 +106,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_SubsystemControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_SystemCommands.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeZone.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
