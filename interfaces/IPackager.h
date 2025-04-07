@@ -84,7 +84,7 @@ namespace Exchange {
         virtual uint32_t Install(const string& name, const string& version /* @opptional */, const string& arch /* @opptional */) = 0;
 
         // @brief Synchronize repository manifest with a repository
-        // @alt::deprecated synchronize
+        // @alt:deprecated synchronize
         // @retval ERROR_INPROGRESS Other installation/synchronization is already in progress
         // @retval ERROR_GENERAL Opkg package manager not initialized successfully
         virtual uint32_t SynchronizeRepository() = 0;
