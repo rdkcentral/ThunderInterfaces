@@ -86,9 +86,9 @@
     <CustomBuild Include="..\jsonrpc\SecureShellServer.json" />
     <CustomBuild Include="..\jsonrpc\StateControl.json" />
     <CustomBuild Include="..\jsonrpc\Streamer.json" />
+    <CustomBuild Include="..\jsonrpc\SystemCommands.json" />
     <CustomBuild Include="..\jsonrpc\SubsystemControl.json" />
     <CustomBuild Include="..\interfaces\ITimeSync.h" />
-    <CustomBuild Include="..\interfaces\ISystemCommands.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jsonrpc\common.json" />
