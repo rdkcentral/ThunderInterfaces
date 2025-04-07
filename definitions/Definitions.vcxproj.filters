@@ -260,10 +260,10 @@
     <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\SystemCommands.json">
-      <Filter>JSON Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\interfaces\IOCDM.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ISystemCommands.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
   </ItemGroup>
