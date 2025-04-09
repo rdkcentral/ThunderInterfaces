@@ -106,9 +106,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_SubsystemControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_SystemCommands.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeZone.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -260,10 +257,10 @@
     <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\SystemCommands.json">
-      <Filter>JSON Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\interfaces\IOCDM.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ISystemCommands.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
   </ItemGroup>
