@@ -17,7 +17,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_DTV.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_FirmwareControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_InputSwitch.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_IOConnector.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Math.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_MemoryMonitor.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_MessageControl.cpp" />
@@ -76,7 +75,6 @@
     <CustomBuild Include="..\jsonrpc\DTV.json" />
     <CustomBuild Include="..\jsonrpc\FirmwareControl.json" />
     <CustomBuild Include="..\jsonrpc\InputSwitch.json" />
-    <CustomBuild Include="..\jsonrpc\IOConnector.json" />
     <CustomBuild Include="..\jsonrpc\Monitor.json" />
     <CustomBuild Include="..\jsonrpc\Netflix.json" />
     <CustomBuild Include="..\jsonrpc\OCDM.json" />
@@ -90,6 +88,7 @@
     <CustomBuild Include="..\jsonrpc\SystemCommands.json" />
     <CustomBuild Include="..\jsonrpc\SubsystemControl.json" />
     <CustomBuild Include="..\interfaces\ITimeSync.h" />
+    <CustomBuild Include="..\interfaces\IIOConnector.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jsonrpc\common.json" />
