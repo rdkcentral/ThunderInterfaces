@@ -27,22 +27,27 @@ namespace Exchange {
     struct EXTERNAL INTPClient : virtual public Core::IUnknown {
         enum { ID = ID_NTPCLIENT };
         
-        enum TSStatus: uint8_t {
-            TS_DISABLED = 0,
-            TS_UNSYNCHRONIZED,
-            TS_SYNCHRONIZED,
-            TS_ERROR
+        enum NTPClientStatus: uint8_t {
+            NTPCLIENT_DISABLED = 0,
+            NTPCLIENT_UNSYNCHRONIZED,
+            NTPCLIENT_SYNCHRONIZED,
+            NTPCLIENT_ERROR
         };
 
-        enum TSTransmissionMode: uint8_t {
-            TS_MODE_UNICAST = 0,
-            TS_MODE_BROADCAST,
-            TS_MODE_MULTICAST,
-            TS_MODE_MANYCAST
+        enum NTPClientTransmissionMode: uint8_t {
+            NTPCLIENT_MODE_UNICAST = 0,
+            NTPCLIENT_MODE_BROADCAST,
+            NTPCLIENT_MODE_MULTICAST,
+            NTPCLIENT_MODE_MANYCAST
+        };
+
+        enum NTPClientSyncMode: uint8_t {
+            NTPCLIENT_MODE_QUICK_SYNC = 0,
+            NTPCLIENT_MODE_NORMAL = 1,
         };
         
-        struct TimeSyncConfiguration {
-            TSTransmissionMode mode; // Unicast / Broadcast / Multicast / Manycast
+        struct NTPClientConfiguration {
+            NTPClientTransmissionMode mode; // Unicast / Broadcast / Multicast / Manycast
             uint32_t port; // the port used to send NTP packets
             uint32_t version; 
             //Comma-separated list of strings. Points to a CSV list of NTP servers or pools. 
@@ -92,11 +97,29 @@ namespace Exchange {
         virtual uint32_t Register(INTPClient::INotification* sink) = 0;
         virtual uint32_t Unregister(INTPClient::INotification* sink) = 0;
 
-        virtual uint32_t GetStatus(TSStatus &status /*@out*/ ) const = 0;
-        virtual uint32_t SetConfiguration(const TimeSyncConfiguration& config /* @in */) = 0;
+        // @property
+        // @brief sysnchronize the time
+        // @description sysnchronize the time by calling client utility(eg:chrony)
+        // @param mode: synchronisation mode 
+        virtual uint32_t Synchronise(const NTPClientSyncMode& mode /* @in */) = 0;
 
-        virtual uint32_t Synchronize() = 0;
+        // @property
+        // @brief status of synchronization
+        // @description Get status whether time is synchronized or not
+        // @param status: Enum value  
+        virtual uint32_t GetStatus(NTPClientStatus &status /*@out*/ ) const = 0;
+
+        // @property
+        // @brief Current synchronized system time 
+        // @description Get Current synchronized system time in ISO8601 format (e.g. 2019-05-07T07:20:26Z)
+        // @param time: System time in ISO8601 format 
         virtual uint32_t GetSyncTime(string& time /* @out */) const = 0;
+
+        // @property
+        // @brief Set configuration
+        // @description Set configuration in config file for the client utility(eg: chrony.conf)
+        // @param config: configuration structure 
+        virtual uint32_t SetConfiguration(const NTPClientConfiguration& config /* @in */) = 0;
     };
 
 } // namespace Exchange
