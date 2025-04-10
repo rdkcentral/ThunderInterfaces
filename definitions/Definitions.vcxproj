@@ -53,11 +53,11 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_StateControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Streamer.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_SubsystemControl.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_SystemCommands.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeZone.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_ValuePoint.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_WatchDog.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_WebBrowser.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_WifiControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_ZigWave.cpp" />
     <ClCompile Include="Definitions.cpp" />
   </ItemGroup>
@@ -159,6 +159,30 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JTimeSync.h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JTimeSync.h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JTimeSync.h</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IWifiControl.h">
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ClInclude</OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ClInclude</OutputItemType>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JWifiControl.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JWifiControl.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JWifiControl.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JWifiControl.h</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ISystemCommands.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ClInclude</OutputItemType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ClInclude</OutputItemType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ClInclude</OutputItemType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ClInclude</OutputItemType>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JSystemCommands.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JSystemCommands.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JSystemCommands.h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JSystemCommands.h</Outputs>
     </CustomBuild>
     <ClInclude Include="ValuePoint.h" />
     <CustomBuild Include="..\interfaces\IMath.h">
@@ -370,9 +394,6 @@
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Streamer.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\SystemCommands.json">
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
