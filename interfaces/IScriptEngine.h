@@ -4,7 +4,7 @@
 namespace Thunder {
 namespace Exchange {
 
-    // @json 1.0.0
+    // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL IScriptEngine : virtual public Core::IUnknown {
         enum { ID = ID_SCRIPT_ENGINE };
 

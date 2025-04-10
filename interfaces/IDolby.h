@@ -26,7 +26,7 @@ namespace Exchange {
 
     namespace Dolby {
 
-        // @json 1.0.0 @uncompliant:extended
+        // @json 1.0.0 @uncompliant:extended @text:legacy_lowercase
         struct EXTERNAL IOutput : virtual public Core::IUnknown {
 
             enum { ID = ID_DOLBY_OUTPUT };

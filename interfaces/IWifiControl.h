@@ -25,7 +25,7 @@
 namespace Thunder {
 namespace Exchange {
 
-    /* @json 1.0.0 */
+    /* @json 1.0.0 @text:legacy_lowercase */
     struct EXTERNAL IWifiControl : virtual public Core::IUnknown {
         enum { ID = ID_WIFICONTROL };
 
@@ -54,28 +54,28 @@ namespace Exchange {
             };
 
             Security method /* @brief Security method */;
-            Key keys        /* @encode:bitmask @brief Security Keys */;
+            Core::OptionalType<Key> keys /* @encode:bitmask @brief Security Keys */;
         };
         using ISecurityIterator = RPC::IIteratorType<SecurityInfo, ID_WIFICONTROL_SECURITY_INFO_ITERATOR>;
 
         struct NetworkInfo {
-            string ssid        /* @brief SSID of the network */;
-            uint64_t bssid     /* @brief BSSID of the network */;
-            uint32_t frequency /* @brief Frequency used */;
-            int32_t signal     /* @brief Signal strength */;
-            Security security  /* @encode:bitmask @brief Security method */;
+            Core::OptionalType<string> ssid /* @brief SSID of the network */;
+            uint64_t bssid                  /* @brief BSSID of the network */;
+            uint32_t frequency              /* @brief Frequency used */;
+            int32_t signal                  /* @brief Signal strength */;
+            Security security               /* @encode:bitmask @brief Security method */;
         };
         using INetworkInfoIterator = RPC::IIteratorType<NetworkInfo, ID_WIFICONTROL_NETWORK_INFO_ITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct ConfigInfo {
-            bool hidden           /* @brief Visibility of the router (hidden or visible) */;
-            bool accesspoint      /* @brief Accesspoint or not */;
-            string ssid           /* @brief SSID of the router/ap */;
-            string secret         /* @brief Secret key used */;
-            string identity       /* @brief Identity */;
-            Security method       /* @brief Security method */;
-            SecurityInfo::Key key /* @brief Security Info: method and keys */;
+            bool hidden                               /* @brief Visibility of the router (hidden or visible) */;
+            bool accesspoint                          /* @brief Accesspoint or not */;
+            Core::OptionalType<string> ssid           /* @brief SSID of the router/ap */;
+            Core::OptionalType<string> secret         /* @brief Secret key used */;
+            Core::OptionalType<string> identity       /* @brief Identity */;
+            Security method                           /* @brief Security method */;
+            Core::OptionalType<SecurityInfo::Key> key /* @brief Security Info: method and keys */;
         };
 
         // @event
