@@ -1,37 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Contracts">
-      <UniqueIdentifier>{6975244d-cb23-4d09-a334-80cf1e1b4845}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{3c5d92bc-9901-475e-bb35-643cd2f2296b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{c5ebb452-1dd1-4410-9a69-da3188dc9cd5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Interfaces">
-      <UniqueIdentifier>{832f72b9-f988-4a91-98b6-0a6e62b7ca87}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Generated Files">
-      <UniqueIdentifier>{cd531e85-d48e-4490-989c-8353fa16792e}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Definitions.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_MessageControl.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_NetworkControl.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_BluetoothControl.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_BluetoothRemoteControl.cpp">
-      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Browser.cpp">
       <Filter>Generated Files</Filter>
@@ -60,9 +31,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Containers.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_DeviceIdentification.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_DeviceInfo.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -73,9 +41,6 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Dictionary.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_DisplayInfo.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_DTV.cpp">
@@ -90,34 +55,31 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_IOConnector.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_IOControl.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_LocationSync.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Math.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\interfaces\json\JsonEnum_MemoryMonitor.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\interfaces\json\JsonEnum_MessageControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Messenger.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_Monitor.cpp">
+    <ClCompile Include="..\interfaces\json\JsonEnum_Netflix.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_Netflix.cpp">
+    <ClCompile Include="..\interfaces\json\JsonEnum_NetworkControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_OCDM.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_Packager.cpp">
+    <ClCompile Include="..\interfaces\json\JsonEnum_OpenCDM.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_PerformanceMonitor.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_PlayerInfo.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Power.cpp">
@@ -135,12 +97,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_SecureShellServer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_SecurityAgent.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_Spark.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_StateControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -150,16 +106,7 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_SubsystemControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_SystemCommands.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_TimeSync.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeZone.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_TraceControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_ValuePoint.cpp">
@@ -171,155 +118,172 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_WebBrowser.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\interfaces\json\JsonEnum_WifiControl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_ZigWave.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="definitions.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\interfaces\json\ExternalMetadata.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="ValuePoint.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\jsonrpc\Browser.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\Butler.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\Cobalt.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\Compositor.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\Containers.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\DeviceInfo.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\DHCPServer.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\DIALServer.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\DTV.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IBrowser.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IDeviceIdentification.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IDictionary.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ILocationSync.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IMath.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IMemoryMonitor.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IMessageControl.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IMessenger.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\INetworkControl.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IScriptEngine.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ISecurityAgent.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ITimeSync.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ITimeZone.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IValuePoint.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IWatchDog.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IWifiControl.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IZigWave.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\FirmwareControl.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\InputSwitch.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\IOConnector.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\Monitor.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\Netflix.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\OCDM.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\PerformanceMonitor.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\Power.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\Provisioning.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\RemoteControl.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\SecureShellServer.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\StateControl.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\Streamer.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IOCDM.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ISystemCommands.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jsonrpc\common.json">
-      <Filter>Contracts</Filter>
+      <Filter>JSON Files</Filter>
     </None>
     <None Include="..\jsonrpc\WebKitBrowser.json">
-      <Filter>Contracts</Filter>
+      <Filter>JSON Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\jsonrpc\BluetoothControl.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\BluetoothRemoteControl.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Browser.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Butler.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Cobalt.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Compositor.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Containers.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\DeviceIdentification.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\DeviceInfo.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\DHCPServer.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\DIALServer.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\DTV.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\FirmwareControl.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\InputSwitch.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\IOConnector.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\LocationSync.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Netflix.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Monitor.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\OCDM.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Packager.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\PerformanceMonitor.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Power.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Provisioning.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\RemoteControl.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\SecureShellServer.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\SecurityAgent.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\StateControl.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Streamer.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\SystemCommands.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\TimeSync.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
-      <Filter>Contracts</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\IMath.h">
-      <Filter>Interfaces</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\IZigWave.h">
-      <Filter>Interfaces</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\IValuePoint.h">
-      <Filter>Interfaces</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\ITimeZone.h">
-      <Filter>Interfaces</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\IBrowser.h">
-      <Filter>Interfaces</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\IMessageControl.h">
-      <Filter>Interfaces</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\INetworkControl.h">
-      <Filter>Interfaces</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\IWatchDog.h">
-      <Filter>Interfaces</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\IScriptEngine.h">
-      <Filter>Interfaces</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\IDictionary.h">
-      <Filter>Interfaces</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\IMessenger.h">
-      <Filter>Interfaces</Filter>
-    </CustomBuild>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{5083385d-c0f4-4e2b-838a-f4aa51d2a951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{81d0a068-8151-4a4b-95df-340981e3e0b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface Files">
+      <UniqueIdentifier>{dbf3aff7-6d8c-4b9d-81db-40120a86bec7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JSON Files">
+      <UniqueIdentifier>{59dae841-dc89-457c-b9f5-7f097f7f7906}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

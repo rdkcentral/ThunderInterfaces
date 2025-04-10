@@ -21,8 +21,27 @@
 
 #include "Module.h"
 
+// @insert <com/IIteratorType.h>
+
 namespace Thunder {
 namespace Exchange {
+
+// @json 1.0.0 @text:legacy_lowercase
+struct EXTERNAL IOpenCDM : virtual public Core::IUnknown {
+
+    enum { ID = ID_OPENCDM };
+
+    using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
+    // @property
+    // @brief Supported DRM systems
+    virtual Core::hresult Systems(IStringIterator*& keySystems /* @out */) const = 0;
+
+    // @property
+    // @brief Designators of a specified DRM system
+    // @retval ERROR_UNKNOWN_KEY Invalid DRM name
+    virtual Core::hresult Designators(const string& keySystem /* @index */, IStringIterator*& designators /* @out */) const = 0;
+};
 
 enum OCDM_RESULT : uint32_t {
     OCDM_SUCCESS = 0,
@@ -158,7 +177,7 @@ struct ISessionExt : virtual public Core::IUnknown {
         uint16_t drmHeaderLength)
         = 0;
 
-    virtual OCDM_RESULT GetChallengeDataExt(uint8_t* challenge /* @inout @length:challengeSize @maxlength:challengeSize */,
+    virtual OCDM_RESULT GetChallengeDataExt(uint8_t* challenge /* @out @length:challengeSize @maxlength:challengeSize */,
         uint16_t& challengeSize /* @inout */,
         uint32_t isLDL)
         = 0;
@@ -391,7 +410,6 @@ private:
     uint8_t _kid[KEY_LENGTH];
     ISession::KeyStatus _status;
 };
-
 
 } //namespace Exchange
 } //namespace Thunder

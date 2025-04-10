@@ -23,7 +23,7 @@
 namespace Thunder {
 namespace Exchange {
 
-    // @json 1.0.0 @uncompliant:collapsed
+    // @json 1.0.0 @uncompliant:collapsed @text:legacy_lowercase
     struct EXTERNAL IAmazonPrime : virtual public Core::IUnknown {
 
         enum { ID = ID_AMAZONPRIME };
