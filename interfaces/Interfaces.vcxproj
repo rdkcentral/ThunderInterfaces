@@ -125,6 +125,7 @@
     <ClInclude Include="IFocus.h" />
     <ClInclude Include="IGuide.h" />
     <ClInclude Include="IInputSwitch.h" />
+    <ClInclude Include="IIOConnector.h" />
     <ClInclude Include="IIPNetwork.h" />
     <ClInclude Include="IKeyHandler.h" />
     <ClInclude Include="ILanguageTag.h" />
