@@ -35,6 +35,7 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_DTV.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_FirmwareControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_InputSwitch.cpp" />
+    <ClCompile Include="..\interfaces\json\JsonEnum_IOConnector.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Math.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_MemoryMonitor.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_MessageControl.cpp" />
@@ -158,20 +159,6 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JTimeSync.h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JTimeSync.h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JTimeSync.h</Outputs>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\IIOConnector.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
-      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ClInclude</OutputItemType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
-      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ClInclude</OutputItemType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
-      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ClInclude</OutputItemType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
-      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ClInclude</OutputItemType>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JIOConnector.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JIOConnector.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JIOConnector.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JIOConnector.h</Outputs>
     </CustomBuild>
     <ClInclude Include="ValuePoint.h" />
     <CustomBuild Include="..\interfaces\IMath.h">
@@ -350,6 +337,9 @@
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\InputSwitch.json">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\IOConnector.json">
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Monitor.json">
