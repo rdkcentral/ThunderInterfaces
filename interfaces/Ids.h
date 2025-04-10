@@ -405,7 +405,9 @@ namespace Exchange {
         ID_LOCATIONSYNC_NOTIFICATION                 = ID_LOCATIONSYNC + 1,
           
         ID_MEMORY_MONITOR                            = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x570,
-        ID_MEMORY_MONITOR_NOTIFICATION               = ID_MEMORY_MONITOR + 1
+        ID_MEMORY_MONITOR_NOTIFICATION               = ID_MEMORY_MONITOR + 1,
+          
+        ID_ANALYTICS                                 = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x580
     };
 }
 }
