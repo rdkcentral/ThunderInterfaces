@@ -98,8 +98,8 @@ namespace Exchange {
         virtual uint32_t Unregister(INTPClient::INotification* sink) = 0;
 
         // @property
-        // @brief sysnchronize the time
-        // @description sysnchronize the time by calling client utility(eg:chrony)
+        // @brief sysnchronise the time
+        // @description sysnchronise the time by calling client utility(eg:chrony)
         // @param mode: synchronisation mode 
         virtual uint32_t SynchroniseTime(const NTPClientSyncMode& mode /* @in */) = 0;
 
