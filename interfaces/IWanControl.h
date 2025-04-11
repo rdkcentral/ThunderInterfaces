@@ -99,7 +99,6 @@ namespace Exchange {
             struct Dhcpv6Info           dhcpv6Info           /* @brief Network IPv6 Information */;
         };
 
-        using INetworkInfoIterator = RPC::IIteratorType<NetworkInfo, ID_WANCONTROL_NETWORK_INFO_ITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         // @event
