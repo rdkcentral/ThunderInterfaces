@@ -101,7 +101,7 @@ namespace Exchange {
         // @brief sysnchronize the time
         // @description sysnchronize the time by calling client utility(eg:chrony)
         // @param mode: synchronisation mode 
-        virtual uint32_t Synchronise(const NTPClientSyncMode& mode /* @in */) = 0;
+        virtual uint32_t SynchroniseTime(const NTPClientSyncMode& mode /* @in */) = 0;
 
         // @property
         // @brief status of synchronization
