@@ -55,7 +55,7 @@ namespace Exchange {
             enum { ID = ID_RADIOCONTROL_NOTIFICATION };
             ~INotification() override = default;
 
-            // events
+            virtual uint32_t RadioStatuRadioStatuss(const uint8_t radioIndex) = 0;
 
         };
         ~IRadioControl() override = default;
