@@ -262,6 +262,8 @@ namespace Exchange {
         ID_DEVICE_CAPABILITIES_VIDEO                 = ID_DEVICE_INFO + 6,
         ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT          = ID_DEVICE_INFO + 7,
         ID_DEVICE_CAPABILITIES_RESOLUTION            = ID_DEVICE_INFO + 8,
+        ID_SYSTEM_INFO                               = ID_DEVICE_INFO + 9,
+        ID_SYSTEM_INFO_NETWORK_INTERFACE             = ID_DEVICE_INFO + 10,
 
         ID_DIALSERVER                                = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x380,
         ID_DIALSERVER_APPLICATION                    = ID_DIALSERVER + 1,
