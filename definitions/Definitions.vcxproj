@@ -28,9 +28,7 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Cobalt.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Compositor.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Containers.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_DeviceAudioCapabilities.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_DeviceInfo.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_DeviceVideoCapabilities.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_DHCPServer.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_DIALServer.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Dictionary.cpp" />
@@ -56,7 +54,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Streamer.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_SubsystemControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_SystemCommands.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_SystemInfo.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeZone.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_ValuePoint.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_WatchDog.cpp" />
@@ -173,20 +170,6 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JWifiControl.h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JWifiControl.h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JWifiControl.h</Outputs>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\IDeviceInfo.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
-      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ClInclude</OutputItemType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
-      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ClInclude</OutputItemType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
-      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ClInclude</OutputItemType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">python  "$(ToolPath)\JsonGenerator\JsonGenerator.py" -I "$(FrameworkPath)\" -I "$(ProjectDir)\" --keep-empty --case-convention legacy -c -j "$(ProjectDir)../interfaces" -o "$(ProjectDir)../interfaces/json" "%(FullPath)" --force</Command>
-      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ClInclude</OutputItemType>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JDeviceInfo.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JDeviceInfo.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JDeviceInfo.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)../interfaces/json/JDeviceInfo.h</Outputs>
     </CustomBuild>
     <ClInclude Include="ValuePoint.h" />
     <CustomBuild Include="..\interfaces\IMath.h">
@@ -347,6 +330,9 @@
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Containers.json">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\DeviceInfo.json">
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\DHCPServer.json">

@@ -31,6 +31,9 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Containers.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\interfaces\json\JsonEnum_DeviceInfo.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_DHCPServer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -124,18 +127,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_ZigWave.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_DeviceInfo.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_SystemInfo.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_DeviceAudioCapabilities.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_DeviceVideoCapabilities.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="definitions.h">
@@ -162,6 +153,9 @@
       <Filter>JSON Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Containers.json">
+      <Filter>JSON Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\jsonrpc\DeviceInfo.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\DHCPServer.json">
@@ -270,9 +264,6 @@
       <Filter>JSON Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IOCDM.h">
-      <Filter>Interface Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\interfaces\IDeviceInfo.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
   </ItemGroup>
