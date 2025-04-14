@@ -152,15 +152,6 @@ ENUM_CONVERSION_BEGIN(Exchange::IStream::state)
     { Exchange::IStream::state::Error, _TXT(_T("Error")) },
 ENUM_CONVERSION_END(Exchange::IStream::state)
 
-ENUM_CONVERSION_BEGIN(Exchange::IPower::PCState)
-    { Exchange::IPower::On, _TXT(_T("on")) },
-    { Exchange::IPower::ActiveStandby, _TXT(_T("active")) },
-    { Exchange::IPower::PassiveStandby, _TXT(_T("passive")) },
-    { Exchange::IPower::SuspendToRAM, _TXT(_T("suspended")) },
-    { Exchange::IPower::Hibernate, _TXT(_T("hibernate")) },
-    { Exchange::IPower::PowerOff, _TXT(_T("off")) }, 
-ENUM_CONVERSION_END(Exchange::IPower::PCState)
-
 ENUM_CONVERSION_BEGIN(Exchange::External::Metadata::protocol)
     { Exchange::External::Metadata::protocol::I2C,      _TXT(_T("I2C"))      },
     { Exchange::External::Metadata::protocol::ONEWIRE,  _TXT(_T("1W"))       },
