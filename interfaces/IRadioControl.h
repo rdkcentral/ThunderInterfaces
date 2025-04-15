@@ -78,7 +78,7 @@ namespace Exchange {
         // @brief Enable the radio for provided radioIndex
         virtual uint32_t Enable(const uint8_t radioIndex /* @index */) = 0;
 
-        // @brief Diable the radio for provided radioIndex
+        // @brief Disable the radio for provided radioIndex
         virtual uint32_t Disable(const uint8_t radioIndex /* @index */) = 0;
 
     };
