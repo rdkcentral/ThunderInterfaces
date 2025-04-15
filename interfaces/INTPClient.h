@@ -26,7 +26,14 @@ namespace Exchange {
     // @json 
     struct EXTERNAL INTPClient : virtual public Core::IUnknown {
         enum { ID = ID_NTPCLIENT };
-        
+
+        enum NTPClientStatus: uint8_t {
+            NTPCLIENT_DISABLED = 0,
+            NTPCLIENT_UNSYNCHRONIZED,
+            NTPCLIENT_SYNCHRONIZED,
+            NTPCLIENT_ERROR
+        };
+
         enum IPMode : uint8_t {
             Auto, // tries either ipv4 or ipv6 depending on router stack and endpoint availability
             IPv4Only, // only attempts ntp over IPv4
@@ -49,6 +56,12 @@ namespace Exchange {
         // @description sysnchronise the time by calling client utility(eg:chrony)
         // @param mode: synchronisation mode 
         virtual uint32_t SynchroniseTime(const string& server /* @in */, const IPMode& mode /* @in */) = 0;
+
+        // @property
+        // @brief status of synchronization
+        // @description Get status whether time is synchronized or not
+        // @param status: Enum value  
+        virtual uint32_t GetStatus(NTPClientStatus &status /*@out*/ ) const = 0;
 
     };
 
