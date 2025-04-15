@@ -368,7 +368,7 @@ namespace Exchange {
         ID_APP_MANAGER_NOTIFICATION                  = ID_APP_MANAGER + 1,
 
         ID_NTPCLIENT                                 = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x510,
-        ID_NTPCLIENT_NOTIFICATION                    = ID_NTPCLIENT + 1
+        ID_NTPCLIENT_NOTIFICATION                    = ID_NTPCLIENT + 1,
 
         ID_RADIOCONTROL                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x520,
 	ID_RADIOCONTROL_NOTIFICATION                 = ID_RADIOCONTROL + 1,
