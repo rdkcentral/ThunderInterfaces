@@ -37,7 +37,7 @@ namespace Exchange {
             bool acsEnable;           //Enable/diable auto channel selection
             bool dfsEnable;           //Enable/Disable dynamic frequency selection
             uint16_t guardInterval;   //Configure gaurdInterval value per radio
-            bool status;              //Enable/Disable each radio
+            bool enable;              //Enable/Disable each radio
         };
 
         struct RadioCapabilities {
@@ -48,14 +48,14 @@ namespace Exchange {
 
         };
 
-        using IRadioCapIterator = RPC::IIteratorType<RadioCap, ID_RADIOCONTROL_RADIOCAP_ITERATOR>;
+        using IRadioCapabilitiesIterator = RPC::IIteratorType<RadioCapabilities, ID_RADIOCONTROL_RADIOCAPABILITIES_ITERATOR>;
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_RADIOCONTROL_NOTIFICATION };
             ~INotification() override = default;
 
-            virtual uint32_t RadioStatuRadioStatuss(const uint8_t radioIndex) = 0;
+            virtual uint32_t RadioStatusChanged(const uint8_t radioIndex, const bool status) = 0;
 
         };
         ~IRadioControl() override = default;
@@ -64,7 +64,7 @@ namespace Exchange {
         virtual uint32_t Unregister(IRadioControl::INotification* sink) = 0;
 
         // @brief Provides available networks information
-        virtual uint32_t DeviceCapabilities(string& country /* @out */, uint8_t& noofradios /* @out */, IRadioCapIterator*& radioCap /* @out */) const = 0;
+        virtual uint32_t DeviceCapabilities(string& country /* @out */, uint8_t& noofradios /* @out */, IRadioCapabilitiesIterator*& radioCapabilities /* @out */) const = 0;
 
         // @property
         // NOTE: Setting the config by indicating the radioindex.
@@ -75,8 +75,11 @@ namespace Exchange {
         // @brief Change channel for provided radioIndex
         virtual uint32_t Channel(const uint8_t radioIndex /* @index */,const uint32_t radioChannel) = 0;
 
-        // @brief Change status for provided radioIndex
-        virtual uint32_t Status(const uint8_t radioIndex /* @index */, const bool status) = 0;
+        // @brief Enable the radio for provided radioIndex
+        virtual uint32_t Enable(const uint8_t radioIndex /* @index */) = 0;
+
+        // @brief Diable the radio for provided radioIndex
+        virtual uint32_t Disable(const uint8_t radioIndex /* @index */) = 0;
 
     };
 
