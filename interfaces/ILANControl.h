@@ -49,6 +49,8 @@ namespace Exchange {
             STATEFUL,
             STATELESS
         };
+/*
+        This can be used in future versions where vector type is supported
 
         struct NetworkInterface {
             string ifname;
@@ -57,6 +59,7 @@ namespace Exchange {
 
         using INetworkInterfaceIterator = RPC::IIteratorType<NetworkInterface, ID_LANCONTROL_NETWORK_INTERFACE_ITERATOR>;
         
+*/
         enum StatusType : uint8_t {
             DOWN,
             UP
@@ -71,15 +74,18 @@ namespace Exchange {
             bool brStpEnable;
             uint16_t brMTU;
             string ipv4Address;
-            IStringIterator ipv6Addresses;
+            /*IStringIterator ipv6Addresses;*/ // Iterator type is not supported in struct
+            string ipv6Addresses;
             string ipv4RangeStart;
             string ipv4RangeEnd;
             IPv6AddressAssignmentMode ipv6AddressAssignmentMode;
             string ipv6ULA;
             string ipv6RangeStart;
             string ipv6RangeEnd;
-            IStringIterator dnsNameservers;
-            INetworkInterfaceIterator attachedInterfaces;
+            /*IStringIterator dnsNameservers;*/ // Iterator type is not supported in struct
+            string dnsNameservers;
+            /*INetworkInterfaceIterator attachedInterfaces;*/ // Iterator type is not supported in struct
+            string ifname;
         };
         
         struct ClientDevice {
