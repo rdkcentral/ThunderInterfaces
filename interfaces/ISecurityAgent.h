@@ -32,8 +32,8 @@ namespace Exchange {
 
         // @brief Validates a token
         // @description Checks whether the token is valid and properly signed
-        // @param Token that will be validated (e.g. eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9)
-        // @param Tells whether token's signature is correct
+        // @param token Token that will be validated (e.g. eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9)
+        // @param valid Tells whether token's signature is correct
         virtual Core::hresult Validate(const string& token, bool& valid /* @out */) const = 0;
 
     };
