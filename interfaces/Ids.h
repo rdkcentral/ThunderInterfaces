@@ -211,6 +211,7 @@ namespace Exchange {
         ID_INPUT_PIN_CATALOG                         = ID_INPUT_PIN + 2,
 
         ID_MATH                                      = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x290,
+        ID_HUPPEL= ID_MATH + 1,
 
         ID_VOICEPRODUCER_PROFILE                     = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x2A0,
 
@@ -365,7 +366,13 @@ namespace Exchange {
         ID_USER_SETTINGS_NOTIFICATION                = ID_USER_SETTINGS + 1,
 
         ID_APP_MANAGER                               = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4E0,
-        ID_APP_MANAGER_NOTIFICATION                  = ID_APP_MANAGER + 1
+        ID_APP_MANAGER_NOTIFICATION                  = ID_APP_MANAGER + 1,
+
+        ID_TOPICEXCHANGE                             = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x4F0,
+        ID_TOPICEXCHANGE_NOTIFICATION                = ID_TOPICEXCHANGE + 1,
+        ID_TOPICEXCHANGE_TOPIC_MSGNOTIFICATION       = ID_TOPICEXCHANGE + 2
+
+
 
     };
 }
