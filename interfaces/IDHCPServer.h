@@ -35,7 +35,7 @@ namespace Exchange {
         struct Lease {
             string name /* @brief Client identifier (or client hardware address if identifier is absent) (e.g. 00e04c326c56) */;
             string ip /* @brief Client IP address (e.g. 192.168.0.10) */;
-            Core::OptionalType<string> expires /* @brief Client IP expiration time (in ISO8601 format, empty: never expires) (e.g. 2019-05-07T07:20:26Z) */;
+            Core::OptionalType<Core::Time> expires /* @brief Client IP expiration time (in ISO8601 format, empty: never expires) (e.g. 2019-05-07T07:20:26Z) */;
         };
 
         struct Server {
