@@ -52,9 +52,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_InputSwitch.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_IOConnector.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Math.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -221,9 +218,6 @@
     <CustomBuild Include="..\jsonrpc\InputSwitch.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\IOConnector.json">
-      <Filter>JSON Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Monitor.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
@@ -261,6 +255,9 @@
       <Filter>Interface Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\ISystemCommands.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IIOConnector.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
   </ItemGroup>
