@@ -79,9 +79,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_PerformanceMonitor.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_Power.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Provisioning.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -215,9 +212,6 @@
     <CustomBuild Include="..\jsonrpc\FirmwareControl.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\InputSwitch.json">
-      <Filter>JSON Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Monitor.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
@@ -228,9 +222,6 @@
       <Filter>JSON Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\PerformanceMonitor.json">
-      <Filter>JSON Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Power.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Provisioning.json">
@@ -258,6 +249,10 @@
       <Filter>Interface Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IIOConnector.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IPower.h" />
+    <CustomBuild Include="..\interfaces\IInputSwitch.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
   </ItemGroup>
