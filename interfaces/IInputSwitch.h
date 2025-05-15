@@ -28,6 +28,7 @@ namespace Thunder {
 namespace Exchange {
 
     // This interface gives direct access to a time synchronize / update
+    // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL IInputSwitch : virtual public Core::IUnknown {
         enum { ID = ID_INPUT_SWITCH };
 
@@ -37,35 +38,30 @@ namespace Exchange {
             SLAVE
         };
 
-        virtual RPC::IStringIterator* Consumers() const = 0;
-        virtual bool Consumer(const string& name) const = 0;
-        virtual uint32_t Consumer(const string& name, const mode value) = 0;
-
-        virtual uint32_t Select(const string& name) = 0;
-    };
-
-    // @json 1.0.0 @text:legacy_lowercase
-    struct EXTERNAL IInputSwitchChannel : virtual public Core::IUnknown {
-
-        enum { ID = ID_INPUT_SWITCH_CHANNEL };
-
-        struct Channel {
+        struct ChannelData {
             string name /* @brief Callsign associated with this channel (e.g. WebKitBrowser) */;
             bool enabled /* @brief Is the channel enabled to receive info (e.g. true) */;
         };
 
-        typedef RPC::IIteratorType<Channel, ID_INPUT_SWITCH_CHANNEL_CHANNELS> IChannelIterator;
+        typedef RPC::IIteratorType<ChannelData, ID_INPUT_SWITCH_CHANNELS> IChannelIterator;
+
+        // @json:omit
+        virtual RPC::IStringIterator* Consumers() const = 0;
+        // @json:omit
+        virtual bool Consumer(const string& name) const = 0;
+        // @json:omit
+        virtual uint32_t Consumer(const string& name, const mode value) = 0;
+
+        // @brief Enable the given channel, disabling all other not immune channels
+        // @param name: Callsign that is the owner of this channel (e.g. WebKitBrowser)
+        // @retval ERROR_UNKNOWN_KEY: Failed to find a channel with the given name
+        virtual Core::hresult Select(const string& name) = 0;
 
         // @brief Enable or Disable the throughput through the given channel
         // @param name: Callsign that is the owner of this channel (e.g. WebKitBrowser)
         // @param enabled: Enable or disable the throughput of data through this channel (e.g. true)
-        // @retval ERROR_UNKNOWN_KEY: Failed to scan
+        // @retval ERROR_UNKNOWN_KEY: Failed to find a channel with the given name
         virtual Core::hresult Channel(const string& name, const bool enabled) = 0;
-
-        // @brief Enable the given channel, disabling all other not immune channels
-        // @param name: Callsign that is the owner of this channel (e.g. WebKitBrowser)
-        // @retval ERROR_UNKNOWN_KEY: Failed to scan
-        virtual Core::hresult Select(const string& name) = 0;
 
         // @property
         // @brief Check the status of the requested channel

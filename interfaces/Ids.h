@@ -236,8 +236,7 @@ namespace Exchange {
         ID_AVSCONTROLLER_NOTIFICATION                = ID_AVSCLIENT + 2,
 
         ID_INPUT_SWITCH                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x310,
-        ID_INPUT_SWITCH_CHANNEL                      = ID_INPUT_SWITCH + 1,
-        ID_INPUT_SWITCH_CHANNEL_CHANNELS             = ID_INPUT_SWITCH + 2,
+        ID_INPUT_SWITCH_CHANNELS                     = ID_INPUT_SWITCH + 1,
 
         ID_DOLBY_OUTPUT                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x320,
         ID_DOLBY_OUTPUT_NOTIFICATION                 = ID_DOLBY_OUTPUT + 1,
