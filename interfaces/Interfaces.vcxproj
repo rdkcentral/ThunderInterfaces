@@ -387,4 +387,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <Target Name="CustomCleanGeneratedFiles" BeforeTargets="Clean">
+    <RemoveDir Directories="proxystubs" />
+      <ItemGroup>
+        <JsonFolder Include="json\*.*" Exclude="json\ExternalMetadata.h" />
+        <Definitions Include="definitions.h" />
+      </ItemGroup>
+    <Delete Files="@(JsonFolder)" />
+    <Delete Files="@(Definitions)" />
+  </Target>
 </Project>
