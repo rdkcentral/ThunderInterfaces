@@ -39,11 +39,6 @@ namespace Exchange {
         // @retval ERROR_BAD_REQUEST: Setting a subsystem to disabled is not supported
         virtual Core::hresult Activate(const PluginHost::ISubSystem::subsystem subsystem, const Core::OptionalType<string>& configuration /* @opaque */) = 0;
 
-        // @brief Deactivates a subsystem
-        // @description This method allows a subsystem to be deactivated from the outside. This is usefull in case Thunder can not determine the availability of a subsystem but it needs to be triggered from the outside.
-        // @param subsystem: Subsystem to deactivate (e.g. network)
-        virtual Core::hresult Deactivate(const PluginHost::ISubSystem::subsystem subsystem) = 0;
-
     };
 
 } // namespace Exchange
