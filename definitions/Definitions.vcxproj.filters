@@ -79,9 +79,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_PerformanceMonitor.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_Power.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Provisioning.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -150,9 +147,6 @@
       <Filter>JSON Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\DeviceInfo.json">
-      <Filter>JSON Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\DHCPServer.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\DIALServer.json">
@@ -230,9 +224,6 @@
     <CustomBuild Include="..\jsonrpc\PerformanceMonitor.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Power.json">
-      <Filter>JSON Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Provisioning.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
@@ -258,6 +249,10 @@
       <Filter>Interface Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IIOConnector.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IPower.h" />
+    <CustomBuild Include="..\interfaces\IDHCPServer.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
   </ItemGroup>

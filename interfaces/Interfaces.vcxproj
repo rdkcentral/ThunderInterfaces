@@ -112,6 +112,7 @@
     <ClInclude Include="ICryptography.h" />
     <ClInclude Include="IDeviceIdentification.h" />
     <ClInclude Include="IDeviceInfo.h" />
+    <ClInclude Include="IDHCPServer.h" />
     <ClInclude Include="IDIALServer.h" />
     <ClInclude Include="IDictionary.h" />
     <ClInclude Include="IDisplayInfo.h" />
