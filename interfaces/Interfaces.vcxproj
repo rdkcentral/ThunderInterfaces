@@ -151,6 +151,7 @@
     <ClInclude Include="IStore.h" />
     <ClInclude Include="IStoreCache.h" />
     <ClInclude Include="IStream.h" />
+    <ClInclude Include="ISubsystemControl.h" />
     <ClInclude Include="ISwitchBoard.h" />
     <ClInclude Include="ISystemCommands.h" />
     <ClInclude Include="ITextToSpeech.h" />
