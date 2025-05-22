@@ -408,7 +408,9 @@ namespace Exchange {
         ID_MEMORY_MONITOR_NOTIFICATION               = ID_MEMORY_MONITOR + 1,
 
         ID_IOCONNECTOR                               = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x580,
-        ID_IOCONNECTOR_NOTIFICATION                  = ID_IOCONNECTOR + 1
+        ID_IOCONNECTOR_NOTIFICATION                  = ID_IOCONNECTOR + 1,
+
+        ID_SUBSYSTEM_CONTROL                         = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x590
     };
 }
 }
