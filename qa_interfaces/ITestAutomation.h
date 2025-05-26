@@ -72,19 +72,19 @@ namespace QualityAssurance {
             ThirdOption = 2
         };
 
-        // @event
-        struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_TESTTEXTOPTIONS_NOTIFICATION };
-            ~INotification() override = default;
-
-            virtual void TestEvent() = 0;
-        };
-
         struct EXTERNAL TestDetails
             {
                 string testDetailsFirst;
                 string testDetailsSecond;
             };
+
+        // @event
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
+            enum { ID = ID_TESTTEXTOPTIONS_NOTIFICATION };
+            ~INotification() override = default;
+
+            virtual void TestEvent(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
+        };
 
 
         ~ITestTextOptions() override = default;
@@ -104,18 +104,18 @@ namespace QualityAssurance {
                 ThirdOption = 2
             };
 
+            struct EXTERNAL TestDetails
+            {
+                string testDetailsFirst;
+                string testDetailsSecond;
+            };
+
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown {
                 enum { ID = ID_TESTLEGACY_NOTIFICATION };
                 ~INotification() override = default;
 
-                virtual void TestEvent() = 0;
-            };
-
-            struct EXTERNAL TestDetails
-            {
-                string testDetailsFirst;
-                string testDetailsSecond;
+                virtual void TestEvent(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
             };
 
             ~ITestLegacy() override = default;
@@ -134,18 +134,18 @@ namespace QualityAssurance {
                 ThirdOption = 2
             };
 
+            struct EXTERNAL TestDetails
+            {
+                string testDetailsFirst;
+                string testDetailsSecond;
+            };
+
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown {
                 enum { ID = ID_TESTKEEP_NOTIFICATION };
                 ~INotification() override = default;
 
-                virtual void TestEvent() = 0;
-            };
-
-            struct EXTERNAL TestDetails
-            {
-                string testDetailsFirst;
-                string testDetailsSecond;
+                virtual void TestEvent(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
             };
 
             ~ITestKeep() override = default;
@@ -164,18 +164,18 @@ namespace QualityAssurance {
                 ThirdOption = 2
             };
 
+            struct EXTERNAL TestDetails
+            {
+                string testDetailsFirst;
+                string testDetailsSecond;
+            };
+
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown {
                 enum { ID = ID_TESTCUSTOM_NOTIFICATION };
                 ~INotification() override = default;
 
-                virtual void TestEvent() = 0;
-            };
-
-            struct EXTERNAL TestDetails
-            {
-                string testDetailsFirst;
-                string testDetailsSecond;
+                virtual void TestEvent(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
             };
 
             ~ITestCustom() override = default;
