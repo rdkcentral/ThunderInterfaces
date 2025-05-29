@@ -112,8 +112,10 @@ namespace Exchange {
 
         // @alt closeDrmSession
         // @param sessionId sec manager generated playback session id
+        // @param response video platform specific response data
         virtual uint32_t CloseDrmSession(
-            uint32_t sessionId /* @text:sessionId */)
+            uint32_t sessionId /* @text:sessionId */,
+            string& response /* @text:closeSessionResponse @out */)
             = 0;
 
         // @alt showWatermark
