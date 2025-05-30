@@ -116,6 +116,51 @@ namespace Exchange {
         // @param name: video output port name
         virtual uint32_t PortName (string& name /* @out */) const = 0;
 
+        // @property
+        // @brief The status 'HDCP compliant' will return true 
+        // if the display device is connected and HDCP is in an 
+        // authenticated state. The internal display is intended
+        //  for sink devices (TVs), while the connected display 
+        //  device is for streaming source devices (STBs).
+        // @param isHDCPCompliant: compliant/ non compliant
+        virtual uint32_t IsHDCPCompliant(bool& isHDCPCompliant /* @out */) const = 0;
+
+        // @property
+        // @brief This status indicates whether HDCP 
+        // is enabled in the software stack. Typically, 
+        // HDCP is enabled by default on all devices 
+        // but can be disabled by setting a software flag.
+        // @param isHDCPEnabled: enabled/not enabled
+        virtual uint32_t IsHDCPEnabled(bool& isHDCPEnabled /* @out */) const = 0;
+
+        // @property
+        // @brief This field indicates the HDCP support status, 
+        // serving as a static indicator for HDCP compatibility. 
+        // HDCP support is enabled by default on all RDK devices, 
+        // ensuring compatibility with protected content.
+        // @param isHDCPSupported: supported/not supported
+        virtual uint32_t IsHDCPSupported(bool& isHDCPSupported /* @out */) const = 0;
+
+        // @property
+        // @brief Gets hdcp status reason as integer status code
+        // @param hdcpReason: hdcp status reason as intiger status code
+        virtual uint32_t HdcpReason(uint32_t& hdcpReason /* @out */) const = 0;
+
+        // @property
+        // @brief The supported HDCP version refers to the HDCP version of the host device.
+        // @param value: protocol
+        virtual uint32_t SupportedHDCPVersion (HDCPProtectionType& value /* @out */) const = 0;
+
+        // @property
+        // @brief Display HDCP version
+        // @param value: protocol
+        virtual uint32_t DisplayHDCPVersion (HDCPProtectionType& value /* @out */) const = 0;
+
+        // @property
+        // @brief Current HDCP version
+        // @param value: protocol
+        virtual uint32_t CurrentHDCPVersion (HDCPProtectionType& value /* @out */) const = 0;
+
     };
 
     /* @json */
