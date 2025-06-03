@@ -142,6 +142,7 @@
     <ClInclude Include="Module.h" />
     <ClInclude Include="ValuePoint.h" />
     <ClInclude Include="IIOConnector.h" />
+    <ClInclude Include="ISubsystemControl.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />

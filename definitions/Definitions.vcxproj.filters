@@ -239,9 +239,6 @@
     <CustomBuild Include="..\jsonrpc\Streamer.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\SubsystemControl.json">
-      <Filter>JSON Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\interfaces\IOCDM.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
@@ -252,7 +249,12 @@
       <Filter>Interface Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IPower.h" />
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="..\interfaces\IInputSwitch.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\ISubsystemControl.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
   </ItemGroup>

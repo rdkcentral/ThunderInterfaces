@@ -151,6 +151,7 @@
     <ClInclude Include="IStore.h" />
     <ClInclude Include="IStoreCache.h" />
     <ClInclude Include="IStream.h" />
+    <ClInclude Include="ISubsystemControl.h" />
     <ClInclude Include="ISwitchBoard.h" />
     <ClInclude Include="ISystemCommands.h" />
     <ClInclude Include="ITextToSpeech.h" />
@@ -387,4 +388,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <Target Name="CustomCleanGeneratedFiles" BeforeTargets="Clean">
+    <RemoveDir Directories="proxystubs" />
+      <ItemGroup>
+        <JsonFolder Include="json\*.*" Exclude="json\ExternalMetadata.h" />
+        <Definitions Include="definitions.h" />
+      </ItemGroup>
+    <Delete Files="@(JsonFolder)" />
+    <Delete Files="@(Definitions)" />
+  </Target>
 </Project>
