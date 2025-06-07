@@ -65,6 +65,7 @@ namespace Exchange {
 
         virtual void Register(ITextToSpeech::INotification* sink) = 0;
         virtual void Unregister(ITextToSpeech::INotification* sink) = 0;
+        virtual void RegisterWithCallsign(const string callsign,ITextToSpeech::INotification* sink) = 0;
         
         // @property
         // @brief Query the status/enable tts
