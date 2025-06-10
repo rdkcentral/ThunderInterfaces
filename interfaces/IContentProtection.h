@@ -41,6 +41,30 @@ namespace Exchange {
             INACTIVE /* @text:inactive */
         };
 
+        enum Error : uint16_t {
+            INVALID_KEY_SYSTEM = 21003,
+            INVALID_LICENSE_REQUEST = 21004,
+            INVALID_CONTENT_METADATA = 21005,
+            INVALID_MEDIA_USAGE = 21006,
+            INVALID_ACCESS_TOKEN = 21007,
+            INVALID_ACCESS_ATTRIBUTES = 21008,
+            INVALID_SESSION_ID = 21009,
+            INVALID_CLIENT_ID = 21012,
+            INVALID_WATERMARKING_SYSTEM = 21014,
+            INVALID_CONTENT_ATTRIBUTES = 21015,
+            DRM_GENERAL_FAILURE = 22001,
+            DRM_TIMEOUT = 22003,
+            DRM_CONNECTION_FAILURE = 22004,
+            DRM_ACCESS_TOKEN_EXPIRED = 22008,
+            DRM_MAC_KEY_OR_TOKEN_NOT_PROVISIONED = 22011,
+            DRM_ALLOCATION_ERROR = 22012,
+            DRM_SEC_API_USAGE_FAILURE = 22013,
+            DRM_ENTITLEMENT_OR_CONTENT_AVAILABILITY_FAILURE = 22015,
+            WATERMARKING_GENERAL_FAILURE = 23001,
+            WATERMARKING_TIMEOUT = 23003,
+            WATERMARKING_ALLOCATION_ERROR = 23012
+        };
+
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_CONTENTPROTECTION_NOTIFICATION };
@@ -88,6 +112,27 @@ namespace Exchange {
         // (e.g. 930762523)
         // @param response video platform specific response data
         // (e.g. "{\"license\":\"...\",\"refreshDuration\":0}")
+        // @retval 21003 Invalid or unknown key system parameter
+        // @retval 21004 Invalid DRM license request parameter
+        // @retval 21005 Invalid content metadata
+        // @retval 21006 Invalid media usage parameter
+        // @retval 21007 Invalid access token parameter
+        // @retval 21008 Invalid access attributes parameter
+        // @retval 21009 Invalid session identifier
+        // @retval 21012 Invalid client identifier
+        // @retval 21014 Invalid watermarking system parameter
+        // @retval 21015 Invalid content attributes parameter
+        // @retval 22001 General or internal DRM failure
+        // @retval 22003 DRM license service network timeout
+        // @retval 22004 DRM license network connection failure
+        // @retval 22008 Access token expired
+        // @retval 22011 MAC key or token not provisioned
+        // @retval 22012 Memory allocation error
+        // @retval 22013 Security API usage failure
+        // @retval 22015 Entitlement or content availability failure
+        // @retval 23001 General or internal failure
+        // @retval 23003 Request/network time out
+        // @retval 23012 Memory allocation error
         virtual uint32_t OpenDrmSession(
             const string& clientId /* @text:clientId */,
             const string& appId /* @text:appId */,
@@ -101,7 +146,7 @@ namespace Exchange {
         // @alt setDrmSessionState
         // @param sessionId sec manager generated playback session id
         // (e.g. 930762523)
-        // @retval ERROR_ILLEGAL_STATE Invalid sessionId
+        // @retval 21009 Invalid session identifier
         virtual uint32_t SetDrmSessionState(
             uint32_t sessionId /* @text:sessionId */,
             State sessionState /* @text:sessionState */)
@@ -115,7 +160,27 @@ namespace Exchange {
         // (e.g. "{\"sessionConfiguration\":{\"distributedTraceId\":\"...\"},\"accessToken\":\"...\",\"contentMetadata\":\"...\"}")
         // @param response video platform specific response data
         // (e.g. "{\"license\":\"...\",\"refreshDuration\":0}")
-        // @retval ERROR_ILLEGAL_STATE Invalid sessionId
+        // @retval 21003 Invalid or unknown key system parameter
+        // @retval 21004 Invalid DRM license request parameter
+        // @retval 21005 Invalid content metadata
+        // @retval 21006 Invalid media usage parameter
+        // @retval 21007 Invalid access token parameter
+        // @retval 21008 Invalid access attributes parameter
+        // @retval 21009 Invalid session identifier
+        // @retval 21012 Invalid client identifier
+        // @retval 21014 Invalid watermarking system parameter
+        // @retval 21015 Invalid content attributes parameter
+        // @retval 22001 General or internal DRM failure
+        // @retval 22003 DRM license service network timeout
+        // @retval 22004 DRM license network connection failure
+        // @retval 22008 Access token expired
+        // @retval 22011 MAC key or token not provisioned
+        // @retval 22012 Memory allocation error
+        // @retval 22013 Security API usage failure
+        // @retval 22015 Entitlement or content availability failure
+        // @retval 23001 General or internal failure
+        // @retval 23003 Request/network time out
+        // @retval 23012 Memory allocation error
         virtual uint32_t UpdateDrmSession(
             uint32_t sessionId /* @text:sessionId */,
             const string& licenseRequest /* @text:licenseRequest */,
@@ -127,7 +192,8 @@ namespace Exchange {
         // @param sessionId sec manager generated playback session id
         // (e.g. 930762523)
         // @param response video platform specific response data
-        // @retval ERROR_ILLEGAL_STATE Invalid sessionId
+        // @retval 21009 Invalid session identifier
+        // @retval 21012 Invalid client identifier
         virtual uint32_t CloseDrmSession(
             uint32_t sessionId /* @text:sessionId */,
             string& response /* @text:closeSessionResponse @out */)
