@@ -143,6 +143,7 @@
     <ClInclude Include="ValuePoint.h" />
     <ClInclude Include="IIOConnector.h" />
     <ClInclude Include="ISubsystemControl.h" />
+    <ClInclude Include="IPluginAsyncStateControl.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
