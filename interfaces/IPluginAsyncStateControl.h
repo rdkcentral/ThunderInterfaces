@@ -49,10 +49,12 @@ namespace Exchange {
         // @param delay: delay to be used (in ms) between initialization retries (default used when not specified)
         // @param cb: callback interface called on success or failure
         // @retval ERROR_INPROGRESS Activation request is already in progress for this callsign
+        // @retval ERROR_ILLEGAL_STATE Plugin with this callsign is in an invalid state for it to be able to be started (e.g. DESTROYED or UNAVAILABLE)
+        // @retval ERROR_NOT_EXIST Plugin is unknown to Thunder (at this moment in case of Dynamic plugins)
         virtual Core::hresult Activate(const string& callsign, const Core::OptionalType<uint8_t>& maxnumberretries, const Core::OptionalType<uint16_t>& delay, IActivationCallback* const cb) = 0;
 
         // @brief Abort a previously started Activate request
-        // @retval ERROR_ILLEGAL_STATE There is no ongoing activation request
+        // @retval ERROR_NOT_EXIST There is no ongoing activation request 
         virtual Core::hresult AbortActivate(const string& callsign) = 0;
 
     };
