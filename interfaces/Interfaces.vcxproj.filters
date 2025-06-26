@@ -73,6 +73,7 @@
     <ClCompile Include="proxystubs\ProxyStubs_WebServer.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_WifiControl.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_ZigWave.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_PluginAsyncStateControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IAmazonPrime.h" />

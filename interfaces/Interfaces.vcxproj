@@ -69,6 +69,7 @@
     <ClCompile Include="proxystubs\ProxyStubs_Performance.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_PlayerInfo.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_PlayGiga.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_PluginAsyncStateControl.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Power.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Provisioning.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_RemoteControl.cpp" />

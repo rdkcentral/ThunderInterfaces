@@ -25,6 +25,8 @@ namespace Exchange {
 
     struct EXTERNAL IPluginAsyncStateControl : virtual public Core::IUnknown {
 
+        enum { ID = ID_PLUGINASYNCSTATECONTROL };
+
         ~IPluginAsyncStateControl() override = default;
 
         struct EXTERNAL IActivationCallback : virtual public Core::IUnknown {
@@ -37,7 +39,7 @@ namespace Exchange {
                 ABORTED
             };
 
-            // @brief callback called when an activation request has finished.
+            // @brief callback called when an activation request has finished. Note this can be called while the Activate call has not yet returned
             // @param state result state of the activation request (ABORTED when AbortActivate was called AND the plugin did not reach activated state yet before the request was aborted, otherwise SUCCESS will be reported as a result of an AbortActivate request)
             // @param numberofretries Number of retries that happened the moment this callback was called
             virtual void Finished(const string& callsign, const state state, const uint8_t numberofretries) = 0;
