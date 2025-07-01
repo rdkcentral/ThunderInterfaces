@@ -88,6 +88,27 @@ namespace Exchange {
         // (e.g. 930762523)
         // @param response video platform specific response data
         // (e.g. "{\"license\":\"...\",\"refreshDuration\":0}")
+        // @retval 21003 Invalid key system
+        // @retval 21004 Invalid license request
+        // @retval 21005 Invalid content metadata
+        // @retval 21006 Invalid media usage
+        // @retval 21007 Invalid access token
+        // @retval 21008 Invalid access attributes
+        // @retval 21009 Invalid session id
+        // @retval 21012 Invalid client id
+        // @retval 21014 Invalid watermarking system
+        // @retval 21015 Invalid content attributes
+        // @retval 22001 DRM general failure
+        // @retval 22003 DRM license timeout
+        // @retval 22004 DRM license network failure
+        // @retval 22008 DRM access token expired
+        // @retval 22011 DRM MAC token not provisioned
+        // @retval 22012 DRM memory allocation error
+        // @retval 22013 DRM SecAPI usage failure
+        // @retval 22016 DRM entitlement error
+        // @retval 23001 Watermark general failure
+        // @retval 23003 Watermark request timeout
+        // @retval 23012 Watermark memory allocation error
         virtual uint32_t OpenDrmSession(
             const string& clientId /* @text:clientId */,
             const string& appId /* @text:appId */,
@@ -101,7 +122,7 @@ namespace Exchange {
         // @alt setDrmSessionState
         // @param sessionId sec manager generated playback session id
         // (e.g. 930762523)
-        // @retval ERROR_ILLEGAL_STATE Invalid sessionId
+        // @retval 21009 Invalid session id
         virtual uint32_t SetDrmSessionState(
             uint32_t sessionId /* @text:sessionId */,
             State sessionState /* @text:sessionState */)
@@ -115,7 +136,27 @@ namespace Exchange {
         // (e.g. "{\"sessionConfiguration\":{\"distributedTraceId\":\"...\"},\"accessToken\":\"...\",\"contentMetadata\":\"...\"}")
         // @param response video platform specific response data
         // (e.g. "{\"license\":\"...\",\"refreshDuration\":0}")
-        // @retval ERROR_ILLEGAL_STATE Invalid sessionId
+        // @retval 21003 Invalid key system
+        // @retval 21004 Invalid license request
+        // @retval 21005 Invalid content metadata
+        // @retval 21006 Invalid media usage
+        // @retval 21007 Invalid access token
+        // @retval 21008 Invalid access attributes
+        // @retval 21009 Invalid session id
+        // @retval 21012 Invalid client id
+        // @retval 21014 Invalid watermarking system
+        // @retval 21015 Invalid content attributes
+        // @retval 22001 DRM general failure
+        // @retval 22003 DRM license timeout
+        // @retval 22004 DRM license network failure
+        // @retval 22008 DRM access token expired
+        // @retval 22011 DRM MAC token not provisioned
+        // @retval 22012 DRM memory allocation error
+        // @retval 22013 DRM SecAPI usage failure
+        // @retval 22016 DRM entitlement error
+        // @retval 23001 Watermark general failure
+        // @retval 23003 Watermark request timeout
+        // @retval 23012 Watermark memory allocation error
         virtual uint32_t UpdateDrmSession(
             uint32_t sessionId /* @text:sessionId */,
             const string& licenseRequest /* @text:licenseRequest */,
@@ -127,7 +168,8 @@ namespace Exchange {
         // @param sessionId sec manager generated playback session id
         // (e.g. 930762523)
         // @param response video platform specific response data
-        // @retval ERROR_ILLEGAL_STATE Invalid sessionId
+        // @retval 21009 Invalid session id
+        // @retval 21012 Invalid client id
         virtual uint32_t CloseDrmSession(
             uint32_t sessionId /* @text:sessionId */,
             string& response /* @text:closeSessionResponse @out */)
