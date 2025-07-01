@@ -21,6 +21,8 @@
 
 #include "Module.h"
 
+// @insert <com/IIteratorType.h>
+
 namespace Thunder {
 
 namespace Exchange {
@@ -43,6 +45,19 @@ namespace Exchange {
 
         virtual Core::hresult Register(INotification* const notification) = 0;
         virtual Core::hresult Unregister(const INotification* const notification) = 0;
+
+        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
+        // @property
+        // @brief Get the list of switches available in the switchboard
+        // @param switches: An iterator to the list of switches
+        virtual Core::hresult Switches(IStringIterator*& switches /* @out */) const = 0;
+
+        // @property
+        // @brief Get a callsign of the default switch
+        // @param callsign: The callsign of the default switch (e.g. WebKitBrowser)
+        // @retval ERROR_UNAVAILABLE: No default switch available
+        virtual Core::hresult Default(string& callsign /* @out */) const = 0;
 
         // @property
         // @brief Check if a plugin is active
