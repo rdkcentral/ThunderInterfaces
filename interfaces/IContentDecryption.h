@@ -22,6 +22,8 @@
 #include "Module.h"
 #include "IDRM.h"
 
+// @insert <com/ICOM.h>
+
 namespace Thunder {
 
 namespace Exchange {
