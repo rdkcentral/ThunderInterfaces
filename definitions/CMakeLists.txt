@@ -22,7 +22,7 @@ project(Definitions
         DESCRIPTION "Shared lookup tables associated with interface enums."
         LANGUAGES CXX)
 
-find_package(Thunder)
+find_package(bridge)
 
 find_package(CompileSettingsDebug REQUIRED)
 find_package(JsonGenerator REQUIRED)
@@ -61,11 +61,13 @@ JsonGenerator(CODE INPUT ${QA_JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qa_
 JsonGenerator(CODE INPUT ${INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 JsonGenerator(CODE NAMESPACE  Thunder::QualityAssurance INPUT ${QA_INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} CPP_INTERFACE_PATH "qa_interfaces" JSON_INTERFACE_PATH "qa_interfaces/json" )
 
-file(GLOB JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/JsonEnum*.cpp")
-file(GLOB JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/J*.h")
+file(GLOB JSON_ENUM_SOURCES     "${CMAKE_CURRENT_BINARY_DIR}/generated/JsonEnum*.cpp")
+file(GLOB JSON_SPECIFIC_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/J*.h")
+file(GLOB JSON_LINK_HEADERS     "${CMAKE_CURRENT_BINARY_DIR}/generated/json_*.h")
 
-file(GLOB QA_JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/JsonEnum*.cpp")
-file(GLOB QA_JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/J*.h")
+file(GLOB QA_JSON_ENUM_SOURCES     "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/JsonEnum*.cpp")
+file(GLOB QA_JSON_SPECIFIC_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/J*.h")
+file(GLOB QA_JSON_LINK_HEADERS     "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/json_*.h")
 
 list(APPEND JSON_LINK_HEADERS "Module.h")
 list(APPEND QA_JSON_LINK_HEADERS "Module.h")
@@ -113,8 +115,18 @@ install(
 )
 
 install(
+        FILES ${JSON_SPECIFIC_HEADERS}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json COMPONENT ${NAMESPACE}_Development  
+)
+
+install(
         FILES ${JSON_LINK_HEADERS}
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json COMPONENT ${NAMESPACE}_Development  
+)
+
+install(
+        FILES ${QA_JSON_SPECIFIC_HEADERS}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/qa_interfaces/json  COMPONENT ${NAMESPACE}_Test_Development
 )
 
 install(

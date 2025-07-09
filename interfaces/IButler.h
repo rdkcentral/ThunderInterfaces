@@ -1,4 +1,4 @@
-/*
+ /*
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
@@ -23,51 +23,56 @@
 #include <plugins/IShell.h>
 #include <interfaces/IValuePoint.h>
 
-// @stubgen:include <com/IIteratorType.h>
+// @stubgen:include "IValuePoint.h"
+// @stubgen:include <com/ICOM.h>
 
 namespace Thunder {
 	namespace Exchange {
 
-		struct IValuePoint;
-
+		// @json 1.0.0 
 		struct EXTERNAL IButler : virtual public Core::IUnknown {
-
 			~IButler() override = default;
 
 			enum { ID = ID_BUTLER };
 
+			// @event
 			struct EXTERNAL INotification : virtual public Core::IUnknown {
-
 				~INotification() override = default;
 
 				enum { ID = ID_BUTLER_NOTIFICATION };
 
 				// Push changes. If we a new IValuePoint is offered or revoked
-				virtual void Added(IValuePoint* element) = 0;
-				virtual void Removed(IValuePoint* element) = 0;
+				virtual void Added(IValuePoint* const element) = 0;
+				virtual void Removed(IValuePoint* const element) = 0;
 
 				// Push changes. If the Current value changes.
-				virtual void Updated(IValuePoint* element) = 0;
+				virtual void Updated(IValuePoint* const element) = 0;
 
 				// Push changes. If the Current metadata of the value point changes
-				virtual void Metadata(IValuePoint* element) = 0;
+				virtual void Metadata(IValuePoint* const element)= 0;
 			};
 
 			// Register for any changes on the elements the butler knows.
-			virtual void Register(INotification* sink) = 0;
-			virtual void Unregister(INotification* sink) = 0;
+			virtual Core::hresult Register(INotification* const sink) = 0;
+			virtual Core::hresult Unregister(const INotification* sink) = 0;
 
 			// Get Access to a specific IValuePoint, by specifying a proper identifaction. 
-			virtual IValuePoint* Element(const string& name) = 0;
-			virtual IValuePoint* Element(const uint32_t id) = 0;
-			virtual string Source(const uint32_t module) const = 0;
+			virtual Core::hresult Name(const string& name, IValuePoint*& valuePoint /* @out */) = 0;
+			virtual Core::hresult Identifier(const uint32_t id, IValuePoint*& valuePoint /* @out */) = 0;
 
-			virtual uint32_t Branch(const string& path) = 0;
-			virtual uint32_t Link(const string& path, const uint32_t id) = 0;
-			virtual uint32_t Move(const string& path, const string& newName) = 0;
-			virtual uint32_t Delete(const string& path) = 0;
+			virtual Core::hresult Branch(const string& path) = 0;
+			virtual Core::hresult Move(const string& path, const string& newName) = 0;
+			virtual Core::hresult Delete(const string& path) = 0;
 
-			virtual RPC::IValueIterator* Orphans(const uint8_t module) const = 0;
+			// Returns the callsign of the plugin that is the origin of this IValuePoint Id.
+			virtual Core::hresult Source(const uint32_t id, string& callsign/* @out */) const = 0;
+
+			// Associate (link) the given IValuePoint id to given path with leaf name.
+			virtual Core::hresult Link(const string& name, const uint32_t id) = 0;
+
+			// Returns all the ValuePointis that have no name but are announced through the
+			// ICatalog of the IValuePoint.
+                        virtual Core::hresult Orphans(const uint8_t module, RPC::IValueIterator*& iterator /* @out */) const = 0;
 		};
 	}
 } // Namespace Exchange

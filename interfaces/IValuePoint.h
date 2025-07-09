@@ -22,29 +22,35 @@
 
 namespace Thunder {
 namespace Exchange {
-
-    /* @json 1.0.0 */
+    // @json 1.0.0 @encode:lookup
     struct EXTERNAL IValuePoint : virtual public Core::IUnknown {
         enum { ID = ID_VALUE_POINT };
 
+        // @json 1.0.0
         struct EXTERNAL ICatalog : virtual public Core::IUnknown {
             enum { ID = ID_VALUE_POINT_CATALOG };
 
-            /* json omit */
+            // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown {
                 enum { ID = ID_VALUE_POINT_CATALOG_NOTIFICATION };
 
-                virtual void Activated(IValuePoint* source) = 0;
-                virtual void Deactivated(IValuePoint* source) = 0;
+                // @brief Signal a new IValuePoint, with the given Id became actived.
+                // @param id: Id of the IValuePoint
+                virtual void Activated(IValuePoint* const id) = 0;
+
+                // @brief Signal a new IValuePoint, with the given Id became deactived.
+                // @param id: Id of the IValuePoint
+                virtual void Deactivated(IValuePoint* const id) = 0;
             };
 
             // Pushing notifications to interested sinks
-            virtual void Register(ICatalog::INotification* sink) = 0;
-            virtual void Unregister(const ICatalog::INotification* sink) = 0;
-            virtual IValuePoint* Resource(const uint32_t id) = 0;
+            virtual Core::hresult Register(INotification* const sink) = 0;
+            virtual Core::hresult Unregister(const INotification* sink) = 0;
+
+            virtual Core::hresult Resource(const uint32_t id, IValuePoint*& interface /* @out */) = 0;
         };
 
-        /* @event */
+        // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_VALUE_POINT_NOTIFICATION };
 
@@ -52,6 +58,7 @@ namespace Exchange {
             // @brief Signal event any change in value
             // @param id: Id of the value
             virtual void Update(const uint32_t id) = 0;
+
             // @brief Signal event any change in Metadata
             // @param id: Id of the Metadata
             virtual void Metadata(const uint32_t id) = 0;
@@ -112,46 +119,54 @@ namespace Exchange {
             deactivated  = 0x02
         };
 
+        struct Info {
+            basic                      base;
+            specific                   extended;
+            dimension                  type;
+            uint8_t                    fraction;
+            Core::OptionalType<string> metadata;
+        };
+
         // Pushing notifications to interested sinks
-        virtual void Register(INotification* sink) = 0;
-        virtual void Unregister(INotification* sink) = 0;
+        virtual Core::hresult Register(INotification* const sink) = 0;
+        virtual Core::hresult Unregister(const INotification* sink) = 0;
 
         // @property
         // @brief Each IValuePoint instance has a unique identifier that identifies the instance. The 
         //        value returned here return the unique ID of this IValuePoint.
-        virtual uint32_t Identifier(uint32_t& ID /* @out */) const = 0;
+        virtual Core::hresult Identifier(uint32_t& ID /* @out */) const = 0;
 
         // @property
         // @brief If this IValuePoint belongs to a bundle that has multiple IValuePoints the id
         //        that identifies the bundle and the result will be Core::ERROR_NONE. If it does 
         //        not belong to a bundle, this call returns Core::ERROR_UNAVAILABLE,
-        virtual uint32_t Bundle(uint32_t& ID /* @out */) const = 0;
+        virtual Core::hresult Bundle(uint32_t& ID /* @out */) const = 0;
 
         // @property
         // @brief Current state/condition of this IValuePoint
-        virtual uint32_t Condition(condition& value /* @out */) const = 0;
+        virtual Core::hresult Condition(condition& value /* @out */) const = 0;
 
         // @property
         // @brief Characteristics of this IValuePoint(IElement)
-        virtual uint32_t Type(uint32_t& value /* @out */) const = 0;
+        virtual Core::hresult Type(uint32_t& value /* @out */) const = 0;
 
         // @property
         // @brief The minimum value this IValuePoint(IElement) can reach.
-        virtual uint32_t Minimum(int32_t& value /* @out */) const = 0;
+        virtual Core::hresult Minimum(int32_t& value /* @out */) const = 0;
 
         // @property
         // @brief The maximum value this IValuePoint(IElement) can reach.
-        virtual uint32_t Maximum(int32_t& value /* @out */) const = 0;
+        virtual Core::hresult Maximum(int32_t& value /* @out */) const = 0;
 
         // @property
         // @brief The current value of this IValuePoint.
         // @param value: Represent the current value of this IValuePoint.
-        virtual uint32_t Value(int32_t& value /* @out */) const = 0;
-        virtual uint32_t Value(const int32_t value) = 0;
+        virtual Core::hresult Value(int32_t& value /* @out */) const = 0;
+        virtual Core::hresult Value(const int32_t value) = 0;
 
         // @property
         // @brief There most be more than meets the eye, report it as a JSON string.
-        virtual uint32_t Metadata(string& value /* @out */) const = 0;
+        virtual Core::hresult Metadata(Info& value /* @out */) const = 0;
 
         // Periodically we might like to be evaluated, call this method at a set time.
         /* @json:omit */
@@ -160,15 +175,15 @@ namespace Exchange {
         // ------------------------------------------------------------------------
         // Convenience methods to extract interesting information from the Type()
         // ------------------------------------------------------------------------
-        /* @json:omit */
+        // @json:omit
         static basic Basic(const uint32_t instanceType);
-        /* @json:omit */
+        // @json:omit
         static dimension Dimension(const uint32_t instanceType);
-        /* @json:omit */
+        // @json:omit
         static specific Specific(const uint32_t instanceType);
-        /* @json:omit */
+        // @json:omit
         static uint8_t Decimals(const uint32_t instanceType);
-        /* @json:omit */
+        // @json:omit
         static uint32_t Type(const basic base, const specific spec, const dimension dim, const uint8_t decimals);
     };
 
