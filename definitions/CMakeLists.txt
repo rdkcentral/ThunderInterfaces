@@ -22,7 +22,7 @@ project(Definitions
         DESCRIPTION "Shared lookup tables associated with interface enums."
         LANGUAGES CXX)
 
-find_package(bridge)
+find_package(Thunder)
 
 find_package(CompileSettingsDebug REQUIRED)
 find_package(JsonGenerator REQUIRED)
