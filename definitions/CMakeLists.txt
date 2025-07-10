@@ -63,9 +63,11 @@ JsonGenerator(CODE NAMESPACE  Thunder::QualityAssurance INPUT ${QA_INTERFACE_FIL
 
 file(GLOB JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/JsonEnum*.cpp")
 file(GLOB JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/J*.h")
+file(GLOB JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/json_*.h")
 
 file(GLOB QA_JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/JsonEnum*.cpp")
 file(GLOB QA_JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/J*.h")
+file(GLOB QA_JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/json_*.h")
 
 list(APPEND JSON_LINK_HEADERS "Module.h")
 list(APPEND QA_JSON_LINK_HEADERS "Module.h")
