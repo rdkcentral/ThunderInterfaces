@@ -20,6 +20,8 @@
 #pragma once
 #include "Module.h"
 
+// @insert <com/ICOM.h>
+
 #define WPEPLAYER_PROCESS_NODE_ID "/tmp/player"
 
 namespace Thunder {
