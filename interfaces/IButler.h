@@ -23,8 +23,8 @@
 #include <plugins/IShell.h>
 #include <interfaces/IValuePoint.h>
 
-// @stubgen:include "IValuePoint.h"
 // @stubgen:include <com/ICOM.h>
+// @stubgen:include "IValuePoint.h"
 
 namespace Thunder {
 	namespace Exchange {
@@ -72,7 +72,7 @@ namespace Thunder {
 
 			// Returns all the ValuePointis that have no name but are announced through the
 			// ICatalog of the IValuePoint.
-                        virtual Core::hresult Orphans(const uint8_t module, RPC::IValueIterator*& iterator /* @out */) const = 0;
+      virtual Core::hresult Orphans(const uint8_t module, RPC::IValueIterator*& iterator /* @out */) const = 0;
 		};
 	}
 } // Namespace Exchange
