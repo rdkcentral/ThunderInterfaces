@@ -435,9 +435,6 @@
     <CustomBuild Include="..\jsonrpc\OCDM.json">
       <FileType>Document</FileType>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\PerformanceMonitor.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Provisioning.json">
       <FileType>Document</FileType>
     </CustomBuild>

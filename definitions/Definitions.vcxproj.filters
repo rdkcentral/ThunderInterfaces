@@ -221,9 +221,6 @@
     <CustomBuild Include="..\jsonrpc\OCDM.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\PerformanceMonitor.json">
-      <Filter>JSON Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Provisioning.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
