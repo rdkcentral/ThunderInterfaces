@@ -255,6 +255,9 @@
     <CustomBuild Include="..\interfaces\ISubsystemControl.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\interfaces\IPluginAsyncStateControl.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jsonrpc\common.json">
