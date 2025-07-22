@@ -265,10 +265,7 @@
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IValuePoint.h">
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)../interfaces/json/JValuePoint.h</Outputs>
-      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      
-      
-      </OutputItemType>
+      <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ClInclude</OutputItemType>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)../interfaces/json/JValuePoint.h</Outputs>
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ClInclude</OutputItemType>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)../interfaces/json/JValuePoint.h</Outputs>
