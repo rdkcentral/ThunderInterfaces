@@ -1,8 +1,6 @@
 #ifndef __ITEXTTOSPEECH_H
 #define __ITEXTTOSPEECH_H
 
-// @insert <com/ICOM.h>
-
 #include "Module.h"
 
 namespace Thunder {

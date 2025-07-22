@@ -20,8 +20,6 @@
 #pragma once
 #include "Module.h"
 
-// @insert <com/ICOM.h>
-
 namespace Thunder {
 namespace Exchange {
 

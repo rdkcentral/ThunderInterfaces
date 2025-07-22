@@ -23,7 +23,7 @@
 #include <plugins/IShell.h>
 #include <interfaces/IValuePoint.h>
 
-// @stubgen:include <com/ICOM.h>
+// @stubgen:include <com/IIteratorType.h>
 
 namespace Thunder {
 	namespace Exchange {

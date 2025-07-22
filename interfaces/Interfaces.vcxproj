@@ -69,7 +69,6 @@
     <ClCompile Include="proxystubs\ProxyStubs_Performance.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_PlayerInfo.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_PlayGiga.cpp" />
-    <ClCompile Include="proxystubs\ProxyStubs_PluginAsyncStateControl.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Power.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Provisioning.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_RemoteControl.cpp" />
@@ -142,7 +141,6 @@
     <ClInclude Include="IPackager.h" />
     <ClInclude Include="IPerformance.h" />
     <ClInclude Include="IPlayGiga.h" />
-    <ClInclude Include="IPluginAsyncStateControl.h" />
     <ClInclude Include="IPower.h" />
     <ClInclude Include="IProvisioning.h" />
     <ClInclude Include="IRPCLink.h" />
@@ -392,10 +390,10 @@
   </ImportGroup>
   <Target Name="CustomCleanGeneratedFiles" BeforeTargets="Clean">
     <RemoveDir Directories="proxystubs" />
-    <ItemGroup>
-      <JsonFolder Include="json\*.*" Exclude="json\ExternalMetadata.h" />
-      <Definitions Include="definitions.h" />
-    </ItemGroup>
+      <ItemGroup>
+        <JsonFolder Include="json\*.*" Exclude="json\ExternalMetadata.h" />
+        <Definitions Include="definitions.h" />
+      </ItemGroup>
     <Delete Files="@(JsonFolder)" />
     <Delete Files="@(Definitions)" />
   </Target>
