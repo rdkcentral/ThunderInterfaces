@@ -65,6 +65,7 @@
 #include <interfaces/IPerformance.h>
 #include <interfaces/IPlayerInfo.h>
 #include <interfaces/IPlayGiga.h>
+#include <interfaces/IPluginAsyncStateControl.h>
 #include <interfaces/IPower.h>
 #include <interfaces/IProvisioning.h>
 #include <interfaces/IRemoteControl.h>

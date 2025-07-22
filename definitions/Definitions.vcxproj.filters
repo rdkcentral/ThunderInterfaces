@@ -249,10 +249,15 @@
       <Filter>Interface Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IPower.h" />
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="..\interfaces\ISubsystemControl.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IPerformance.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IPluginAsyncStateControl.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
   </ItemGroup>
