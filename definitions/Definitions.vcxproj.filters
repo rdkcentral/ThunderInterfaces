@@ -224,9 +224,6 @@
     <CustomBuild Include="..\jsonrpc\OCDM.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\PerformanceMonitor.json">
-      <Filter>JSON Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Provisioning.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
@@ -253,6 +250,9 @@
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IPower.h" />
     <CustomBuild Include="..\interfaces\ISubsystemControl.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IPerformance.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
   </ItemGroup>
