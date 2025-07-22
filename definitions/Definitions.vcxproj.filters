@@ -76,9 +76,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_OpenCDM.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_PerformanceMonitor.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Provisioning.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -256,6 +253,9 @@
       <Filter>Interface Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IPluginAsyncStateControl.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IPerformance.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
   </ItemGroup>
