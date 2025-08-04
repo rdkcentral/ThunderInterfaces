@@ -28,7 +28,7 @@ namespace Sample {
     // @json 1.0.0
     struct ISimpleInstanceObjects : virtual public Core::IUnknown {
 
-        enum { ID = IUnknown::ID_OFFSET_CUSTOM + 0x0110 };
+        enum { ID = ID_SIMPLEINSTANCEOBJECTS };
 
         enum state : uint8_t {
             ENABLED,
@@ -38,13 +38,13 @@ namespace Sample {
         // @json @encode:autolookup
         struct IDevice : virtual public Core::IUnknown {
 
-            enum { ID = ISimpleInstanceObjects::ID + 1 };
+            enum { ID = ID_DEVICE };
 
             // @event
             // A notification per instance of device
             struct INotification : virtual public Core::IUnknown {
 
-                enum { ID = ISimpleInstanceObjects::ID + 2 };
+                enum { ID = ID_INSTANCE_NOTIFICATION };
 
                 // @brief Signals device name changes
                 // @param state New name of the device

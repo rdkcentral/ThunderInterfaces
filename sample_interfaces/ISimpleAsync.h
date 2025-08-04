@@ -30,7 +30,7 @@ namespace Sample {
     // @json 1.0.0
     struct ISimpleAsync : public virtual Core::IUnknown {
 
-        enum { ID = IUnknown::ID_OFFSET_CUSTOM + 0x0100 };
+        enum { ID = ID_SIMPLEASYNC };
 
         enum state : uint8_t {
             DISCONNECTED,
@@ -43,7 +43,7 @@ namespace Sample {
 
         struct ICallback : public virtual Core::IUnknown {
 
-            enum { ID = ISimpleAsync::ID + 1 };
+            enum { ID = ID_CALLBACK };
 
             // Generator will create its implementation of this interface
             // and supply the object to the called async method. The
@@ -107,7 +107,7 @@ namespace Sample {
         // @event
         struct INotification : public virtual Core::IUnknown {
 
-            enum { ID = ISimpleAsync::ID + 2 };
+            enum { ID = ID_ASYNC_NOTIFICATION };
 
             // @brief Signals completion of the Connect method
             // @param address Device address (e.g. [11,22] )
@@ -146,7 +146,7 @@ namespace Sample {
         // @event
         struct IBindNotification : public virtual Core::IUnknown {
 
-            enum { ID = ISimpleAsync::ID + 3 };
+            enum { ID = ID_BINDNOTIFICATION };
 
             // @brief Signals completion of the Connect method
             // @param address Device address (e.g. [11,22] )

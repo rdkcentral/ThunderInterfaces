@@ -28,17 +28,17 @@ namespace Sample {
     // @json 1.0.0
     struct ISimpleCustomObjects : virtual public Core::IUnknown {
 
-        enum { ID = IUnknown::ID_OFFSET_CUSTOM + 0x0120 };
+        enum { ID = ID_SIMPLECUSTOMOBJECTS };
 
         // @json @encode:lookup
         struct IAccessory: virtual public Core::IUnknown {
 
-            enum { ID = IUnknown::ID_OFFSET_CUSTOM + 1 };
+            enum { ID = ID_ACCESSORY };
 
             // @event
             struct INotification : public Core::IUnknown {
 
-                enum { ID = IUnknown::ID_OFFSET_CUSTOM + 2 };
+                enum { ID = ID_CUSTOM_NOTIFICATION };
 
                 // @statuslistener
                 // @brief Signals addition of a accessory
@@ -64,7 +64,7 @@ namespace Sample {
         // @event
         struct INotification : public Core::IUnknown {
 
-            enum { ID = IUnknown::ID_OFFSET_CUSTOM + 2 };
+            enum { ID = ID_CUSTOM_NOTIFICATION };
 
             // @statuslistener
             // @brief Signals addition of a accessory

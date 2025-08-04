@@ -56,11 +56,18 @@ namespace Sample {
         
         ID_SIMPLEASYNC                               = RPC::IDS::ID_EXTERNAL_SAMPLE_INTERFACE_OFFSET + 0x010,
         ID_CALLBACK                                  = ID_SIMPLEASYNC + 1,
-
-        ID_SIMPLEINSTANCEOBJECTS                     = RPC::IDS::ID_EXTERNAL_SAMPLE_INTERFACE_OFFSET + 0x020,
-        ID_NOTIFICATION                              = ID_SIMPLEINSTANCEOBJECTS + 1,
+        ID_ASYNC_NOTIFICATION                        = ID_SIMPLEASYNC + 2,
+        ID_BINDNOTIFICATION                          = ID_SIMPLEASYNC + 3,
         
 
+        ID_SIMPLEINSTANCEOBJECTS                     = RPC::IDS::ID_EXTERNAL_SAMPLE_INTERFACE_OFFSET + 0x020,
+        ID_DEVICE                                    = ID_SIMPLEINSTANCEOBJECTS + 1,
+        ID_INSTANCE_NOTIFICATION                     = ID_SIMPLEINSTANCEOBJECTS + 2,
+        
+        ID_SIMPLECUSTOMOBJECTS                       = RPC::IDS::ID_EXTERNAL_SAMPLE_INTERFACE_OFFSET + 0x030,
+        ID_ACCESSORY                                 = ID_SIMPLECUSTOMOBJECTS + 1,
+        ID_CUSTOM_NOTIFICATION                       = ID_SIMPLECUSTOMOBJECTS + 2,
+        
     };
 }
 }
