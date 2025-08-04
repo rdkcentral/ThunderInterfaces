@@ -52,6 +52,7 @@
 #include <interfaces/IKeyHandler.h>
 #include <interfaces/ILisa.h>
 #include <interfaces/ILanguageTag.h>
+#include <interfaces/IMath.h>
 #include <interfaces/IMemory.h>
 #include <interfaces/IMessenger.h>
 #include <interfaces/IMessageControl.h>
@@ -96,7 +97,6 @@
 #include <qa_interfaces/ITestController.h>
 #include <qa_interfaces/ITestAutomation.h>
 
-#include <sample_interfaces/IMath.h>
 #include <sample_interfaces/ISimpleInstanceObjects.h>
 #include <sample_interfaces/ISimpleAsync.h>
 #endif

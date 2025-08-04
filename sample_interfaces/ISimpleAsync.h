@@ -146,7 +146,7 @@ namespace Sample {
         // @event
         struct IBindNotification : public virtual Core::IUnknown {
 
-            enum { ID = ID_BINDNOTIFICATION };
+            enum { ID = ID_BIND_NOTIFICATION };
 
             // @brief Signals completion of the Connect method
             // @param address Device address (e.g. [11,22] )

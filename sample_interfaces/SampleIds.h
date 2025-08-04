@@ -57,7 +57,7 @@ namespace Sample {
         ID_SIMPLEASYNC                               = RPC::IDS::ID_EXTERNAL_SAMPLE_INTERFACE_OFFSET + 0x010,
         ID_CALLBACK                                  = ID_SIMPLEASYNC + 1,
         ID_ASYNC_NOTIFICATION                        = ID_SIMPLEASYNC + 2,
-        ID_BINDNOTIFICATION                          = ID_SIMPLEASYNC + 3,
+        ID_BIND_NOTIFICATION                         = ID_SIMPLEASYNC + 3,
         
 
         ID_SIMPLEINSTANCEOBJECTS                     = RPC::IDS::ID_EXTERNAL_SAMPLE_INTERFACE_OFFSET + 0x020,
