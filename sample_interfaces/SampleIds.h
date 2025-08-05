@@ -51,8 +51,6 @@ namespace Thunder {
 namespace Sample {
 
     enum IDS : uint32_t {
-
-        ID_MATH                                      = RPC::IDS::ID_EXTERNAL_SAMPLE_INTERFACE_OFFSET,
         
         ID_SIMPLEASYNC                               = RPC::IDS::ID_EXTERNAL_SAMPLE_INTERFACE_OFFSET + 0x010,
         ID_CALLBACK                                  = ID_SIMPLEASYNC + 1,
