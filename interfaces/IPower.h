@@ -61,11 +61,13 @@ namespace Exchange {
         virtual Core::hresult Unregister(const INotification* const sink) = 0;
 
         // @property
+        // @alt:deprecated state
         // @brief Get the current power state
         // @param state: The current power state (e.g. PassiveStandby)
         virtual Core::hresult GetState(PCState& state /* @out */) const = 0;
 
         // @brief Set the power state
+        // @alt:deprecated set
         // @param state: The power state to set (e.g. Hibernate)
         // @param waitTime: The time to wait for the power state to be set in seconds (e.g. 10)
         // @retval ERROR_GENERAL: General failure
