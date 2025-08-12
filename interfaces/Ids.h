@@ -188,6 +188,7 @@ namespace Exchange {
         ID_DSGCC_CLIENT_NOTIFICATION                 = ID_DSGCC_CLIENT + 1,
 
         ID_PERFORMANCE                               = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x230,
+        ID_PERFORMANCE_NOTIFICATION                  = ID_PERFORMANCE + 1,
 
         ID_WEBPA                                     = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x240,
         ID_WEBPA_CLIENT                              = ID_WEBPA + 1,
@@ -408,7 +409,10 @@ namespace Exchange {
         ID_MEMORY_MONITOR_NOTIFICATION               = ID_MEMORY_MONITOR + 1,
 
         ID_IOCONNECTOR                               = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x580,
-        ID_IOCONNECTOR_NOTIFICATION                  = ID_IOCONNECTOR + 1
+        ID_IOCONNECTOR_NOTIFICATION                  = ID_IOCONNECTOR + 1,
+
+        ID_SIMPLEPLUGIN                              = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x590,
+        ID_SIMPLEPLUGIN_NOTIFICATION                 = ID_SIMPLEPLUGIN + 1
     };
 }
 }

@@ -18,18 +18,33 @@
  */
 
 #pragma once
+
 #include "Module.h"
 
 namespace Thunder {
 namespace Exchange {
 
+    // @json 1.0.0
     struct EXTERNAL IPerformance : virtual public Core::IUnknown {
 
         enum { ID = ID_PERFORMANCE };
 
-        virtual uint32_t Send(const uint16_t sendSize, const uint8_t buffer[] /* @length:sendSize @in */ ) = 0;
-        virtual uint32_t Receive(uint16_t& bufferSize /* @inout */, uint8_t buffer[] /* @length:bufferSize @out */) const = 0;
-        virtual uint32_t Exchange(uint16_t& bufferSize /* @inout */, uint8_t buffer[] /* @length:bufferSize @maxlength:maxBufferSize @inout*/, const uint16_t maxBufferSize) = 0;
+        // @event
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
+            enum { ID = ID_PERFORMANCE_NOTIFICATION };
+
+            virtual void Event(const string& description) = 0;
+        };
+
+        // Register for COM_RPC notifications
+        virtual uint32_t Register(IPerformance::INotification* sink /* @in */) = 0;
+
+        // Unregister for COM_RPC notifications
+        virtual uint32_t Unregister(IPerformance::INotification* sink /* @in */) = 0;
+
+        virtual uint32_t Send(const uint16_t sendSize /* @in */, const uint8_t buffer[] /* @length:sendSize @maxlength:sendSize @in */ ) = 0;
+        virtual uint32_t Receive(uint16_t& bufferSize /* @inout */, uint8_t buffer[] /* @length:bufferSize @maxlength:bufferSize @out */) const = 0;
+        virtual uint32_t Exchange(uint16_t& bufferSize /* @inout */, uint8_t buffer[] /* @length:bufferSize @maxlength:maxBufferSize @inout*/, const uint16_t maxBufferSize /* @in */) = 0;
     };
 }
 }
