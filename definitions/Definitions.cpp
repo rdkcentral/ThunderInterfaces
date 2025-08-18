@@ -99,6 +99,7 @@
 
 #include <sample_interfaces/ISimpleInstanceObjects.h>
 #include <sample_interfaces/ISimpleAsync.h>
+#include <sample_interfaces/ISimpleCustomObjects.h>
 #endif
 
 namespace Thunder {
