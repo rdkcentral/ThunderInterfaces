@@ -77,5 +77,5 @@ install(
 
 install(
         FILES ${EXAMPLE_INTERFACES_HEADERS}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/example_interfaces COMPONENT ${NAMESPACE}_Example_Development
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/examples COMPONENT ${NAMESPACE}_Example_Development
 )
