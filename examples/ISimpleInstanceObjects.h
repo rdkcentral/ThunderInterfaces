@@ -23,7 +23,7 @@
 
 namespace Thunder {
 
-namespace Sample {
+namespace Example {
 
     // @json 1.0.0
     struct ISimpleInstanceObjects : virtual public Core::IUnknown {
@@ -97,6 +97,6 @@ namespace Sample {
         virtual Core::hresult Relinquish(IDevice* const device) = 0;
     };
 
-} // namespace Sample
+} // namespace Example
 
 }

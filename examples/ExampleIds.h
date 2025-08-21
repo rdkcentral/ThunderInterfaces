@@ -19,7 +19,7 @@
 
 #pragma once
 
-// This file holds all the identifiers (uint32_t) used to identify a sample interface. From this
+// This file holds all the identifiers (uint32_t) used to identify a EXAMPLE interface. From this
 // identifier, the comrpc framework can find the proper proxy/stub in case of communicating
 // over a process boundary.
 // Some users do not "fully" rebuild the system in case of changes. If this means that the
@@ -28,7 +28,7 @@
 // allowed to be changed, the ID associated with the interface should also not be changed
 // and thus should be "fixed".
 
-// So if you extend this file by defining a new sample interface ID make sure it is defined (has
+// So if you extend this file by defining a new EXAMPLE interface ID make sure it is defined (has
 // an actual value) and once the enum label has a value, never change it again.
 
 // As some interfaces might be grouped, the first ID of the group is assigned a value, the
@@ -48,21 +48,21 @@
 
 namespace Thunder {
 
-namespace Sample {
+namespace Example {
 
     enum IDS : uint32_t {
         
-        ID_SIMPLEASYNC                               = RPC::IDS::ID_EXTERNAL_SAMPLE_INTERFACE_OFFSET + 0x010,
+        ID_SIMPLEASYNC                               = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x010,
         ID_CALLBACK                                  = ID_SIMPLEASYNC + 1,
         ID_ASYNC_NOTIFICATION                        = ID_SIMPLEASYNC + 2,
         ID_BIND_NOTIFICATION                         = ID_SIMPLEASYNC + 3,
         
 
-        ID_SIMPLEINSTANCEOBJECTS                     = RPC::IDS::ID_EXTERNAL_SAMPLE_INTERFACE_OFFSET + 0x020,
+        ID_SIMPLEINSTANCEOBJECTS                     = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x020,
         ID_DEVICE                                    = ID_SIMPLEINSTANCEOBJECTS + 1,
         ID_INSTANCE_NOTIFICATION                     = ID_SIMPLEINSTANCEOBJECTS + 2,
         
-        ID_SIMPLECUSTOMOBJECTS                       = RPC::IDS::ID_EXTERNAL_SAMPLE_INTERFACE_OFFSET + 0x030,
+        ID_SIMPLECUSTOMOBJECTS                       = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x030,
         ID_ACCESSORY                                 = ID_SIMPLECUSTOMOBJECTS + 1,
         ID_CUSTOM_NOTIFICATION                       = ID_SIMPLECUSTOMOBJECTS + 2,
         

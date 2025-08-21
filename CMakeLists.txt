@@ -48,6 +48,6 @@ if (BUILD_REFERENCE)
 endif()
 
 add_subdirectory(interfaces)
-add_subdirectory(sample_interfaces)
+add_subdirectory(examples)
 add_subdirectory(qa_interfaces)
 add_subdirectory(definitions)

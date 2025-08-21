@@ -23,7 +23,7 @@
 
 namespace Thunder {
 
-namespace Sample {
+namespace Example {
 
     // @json 1.0.0
     struct ISimpleCustomObjects : virtual public Core::IUnknown {
@@ -86,6 +86,6 @@ namespace Sample {
         virtual Core::hresult Accessory(const string& name /* @index */, IAccessory*& accessory /* @out */) const = 0;
     };
 
-} // namespace Sample
+} // namespace Example
 
 }

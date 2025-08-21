@@ -30,4 +30,4 @@
 #include <plugins/IShell.h>
 #include <plugins/IStateControl.h>
 
-#include "SampleIds.h"
+#include "ExampleIds.h"

@@ -25,7 +25,7 @@
 
 namespace Thunder {
 
-namespace Sample {
+namespace Example {
 
     // @json 1.0.0
     struct ISimpleAsync : public virtual Core::IUnknown {
@@ -194,6 +194,6 @@ namespace Sample {
 
     };
 
-} // namespace Sample
+} // namespace Example
 
 }

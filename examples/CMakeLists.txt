@@ -17,7 +17,7 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(SampleMarshalling
+project(ExampleMarshalling
         VERSION 5.0.0
         DESCRIPTION "Component that abstracts the logic to transfer and receive COM-RPC objects"
         LANGUAGES CXX)
@@ -36,16 +36,16 @@ if(NOT GENERATOR_SEARCH_PATH)
 endif()
 
 separate_arguments(INTERFACES_PATTERNS)
-file(GLOB SAMPLE_INTERFACES_HEADERS ${INTERFACES_PATTERNS})
+file(GLOB EXAMPLE_INTERFACES_HEADERS ${INTERFACES_PATTERNS})
 
-ProxyStubGenerator(NAMESPACE "Thunder::Sample" INPUT "${SAMPLE_INTERFACE_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/sample_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
+ProxyStubGenerator(NAMESPACE "Thunder::Example" INPUT "${EXAMPLE_INTERFACE_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/example_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
-list(APPEND SAMPLE_INTERFACES_HEADERS Module.h SampleIds.h)
+list(APPEND EXAMPLE_INTERFACES_HEADERS Module.h ExampleIds.h)
 
-file(GLOB SAMPLE_PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/sample_generated/ProxyStubs*.cpp")
+file(GLOB EXAMPLE_PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/example_generated/ProxyStubs*.cpp")
 add_library(${Target} SHARED
         Module.cpp
-        ${SAMPLE_PROXY_STUB_SOURCES}
+        ${EXAMPLE_PROXY_STUB_SOURCES}
         )
 
 target_include_directories(${Target} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/..)
@@ -72,10 +72,10 @@ string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
 
 install(
         TARGETS ${Target} EXPORT ${Target}Targets
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${NAMESPACE_LIB}/proxystubs COMPONENT ${NAMESPACE}_Test NAMELINK_COMPONENT ${NAMESPACE}_Sample_Development
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${NAMESPACE_LIB}/proxystubs COMPONENT ${NAMESPACE}_Test NAMELINK_COMPONENT ${NAMESPACE}_Example_Development
 )
 
 install(
-        FILES ${SAMPLE_INTERFACES_HEADERS}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/sample_interfaces COMPONENT ${NAMESPACE}_Sample_Development
+        FILES ${EXAMPLE_INTERFACES_HEADERS}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/example_interfaces COMPONENT ${NAMESPACE}_Example_Development
 )
