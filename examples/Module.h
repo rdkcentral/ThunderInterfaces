@@ -20,7 +20,7 @@
 #pragma once
 
 #ifndef MODULE_NAME
-#define MODULE_NAME sample_interfaces
+#define MODULE_NAME examples
 #endif
 
 #include <core/core.h>
