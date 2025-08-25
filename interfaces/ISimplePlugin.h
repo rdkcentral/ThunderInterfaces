@@ -27,16 +27,15 @@ struct EXTERNAL ISimplePlugin : virtual public Core::IUnknown {
     virtual uint32_t DoSomething() = 0;
 
     // Start the implemented service
-    virtual uint32_t ServiceStart(uint32_t waitTime /* @in */)
-    {
-        return Core::ERROR_NONE;
-    }
+    virtual uint32_t ServiceStart(VARIABLE_IS_NOT_USED uint32_t waitTime /* @in */) = 0;
 
     // Stop the implemented service
-    virtual uint32_t ServiceStop(uint32_t waitTime /* @in */)
-    {
-        return Core::ERROR_NONE;
-    }
+    virtual uint32_t ServiceStop(VARIABLE_IS_NOT_USED uint32_t waitTime /* @in */) = 0;
 };
 
 } } // namespace Thunder::Exchange
+
+
+// Abstract
+// Naming
+// const
