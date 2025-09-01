@@ -96,6 +96,10 @@
 #include <qa_interfaces/ITestUtility.h>
 #include <qa_interfaces/ITestController.h>
 #include <qa_interfaces/ITestAutomation.h>
+
+#include <example_interfaces/ISimpleInstanceObjects.h>
+#include <example_interfaces/ISimpleAsync.h>
+#include <example_interfaces/ISimpleCustomObjects.h>
 #endif
 
 namespace Thunder {
