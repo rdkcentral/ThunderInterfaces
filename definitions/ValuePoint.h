@@ -22,9 +22,9 @@
 #include <interfaces/IValuePoint.h>
 
 namespace Thunder {
-namespace Exchange {
+namespace Implementation {
 
-    class ValuePoint : public IValuePoint {
+    class ValuePoint : public Exchange::IValuePoint {
     private:
         enum notify : uint8_t {
             NONE     = 0x00,
@@ -271,8 +271,10 @@ namespace Exchange {
         // IValuePoint default interface implementation
         // ------------------------------------------------------------------------
         // Pushing notifications to interested sinks
-        void Register(IValuePoint::INotification* sink) override
+        Core::hresult Register(IValuePoint::INotification* const sink) override
         {
+            Core::hresult result (Core::ERROR_DUPLICATE_KEY);
+
             _adminLock.Lock();
 
             Notifiers::iterator index = std::find(_clients.begin(), _clients.end(), sink);
@@ -281,12 +283,17 @@ namespace Exchange {
                 sink->AddRef();
                 _clients.push_back(sink);
                 sink->Update(_id);
+                result = Core::ERROR_NONE;
             }
 
             _adminLock.Unlock();
+
+            return (result);
         }
-        void Unregister(IValuePoint::INotification* sink) override
+        Core::hresult Unregister(const IValuePoint::INotification* sink) override
         {
+            Core::hresult result (Core::ERROR_UNKNOWN_KEY);
+
             _adminLock.Lock();
 
             Notifiers::iterator index = std::find(_clients.begin(), _clients.end(), sink);
@@ -294,42 +301,49 @@ namespace Exchange {
             if (index != _clients.end()) {
                 sink->Release();
                 _clients.erase(index);
+                result = Core::ERROR_NONE;
             }
 
             _adminLock.Unlock();
+
+            return (result);
         }
 
-        uint32_t Identifier(uint32_t& ID /* @out */) const override {
+        Core::hresult Identifier(uint32_t& ID /* @out */) const override {
             ID = Identifier();
             return (Core::ERROR_NONE);
         }
 
-        uint32_t Bundle(uint32_t& ID /* @out */) const override {
+        Core::hresult Bundle(uint32_t& ID /* @out */) const override {
             return (Core::ERROR_UNAVAILABLE);
         }
 
-        uint32_t Condition(condition& value /* @out */) const  override {
+        Core::hresult Condition(condition& value /* @out */) const  override {
             value = Condition();;
             return (Core::ERROR_NONE);
         }
 
-        uint32_t Type(uint32_t& value /* @out */) const  override {
+        Core::hresult Type(uint32_t& value /* @out */) const  override {
             value = _type;
             return (Core::ERROR_NONE);
         }
 
-        uint32_t Minimum(int32_t& value /* @out */) const  override {
+        Core::hresult Minimum(int32_t& value /* @out */) const  override {
             value = Minimum();
             return (Core::ERROR_NONE);
         }
 
-        uint32_t Metadata(string& value /* @out */) const override
+        Core::hresult Metadata(IValuePoint::Info& value /* @out */) const override
         {
-            value = _metadata;
+            value.base = IValuePoint::Basic(_type);
+            value.extended = IValuePoint::Specific(_type);
+            value.type = IValuePoint::Dimension(_type);
+            value.fraction = IValuePoint::Decimals(_type);
+            value.metadata.Clear();
             return (Core::ERROR_NONE);
         }
 
-        uint32_t Value(int32_t& value) const override {
+        Core::hresult Value(int32_t& value) const override {
             uint32_t result = Core::ERROR_UNAVAILABLE;
 
             _adminLock.Lock();
@@ -348,7 +362,7 @@ namespace Exchange {
             return (result);
         }
 
-        uint32_t Value(const int32_t value) override {
+        Core::hresult Value(const int32_t value) override {
 
             uint32_t result = Core::ERROR_UNAVAILABLE;
 
@@ -381,7 +395,7 @@ namespace Exchange {
             return (result);
         }
 
-        uint32_t Maximum(int32_t& value /* @out */) const  override {
+        Core::hresult Maximum(int32_t& value /* @out */) const  override {
             value = Maximum();
             return (Core::ERROR_NONE);
         }
