@@ -181,7 +181,7 @@ namespace Example {
         };
 
         virtual Core::hresult Tables(const bool fill, std::vector<string>& stringTables /* @out @restrict:10 */) = 0;
-        virtual Core::hresult Tables2(const bool fill, std::vector<string>& stringTables /* @out @restrict:10 */, std::vector<uint8_t>& intTables /* @out */) = 0;
+        virtual Core::hresult Tables2(const bool fill, std::vector<string>& stringTables /* @out @restrict:10 */, std::vector<uint8_t>& intTables /* @out @restrict:10 */) = 0;
         virtual Core::hresult Tables3(const bool fill, Core::OptionalType<std::vector<string>>& stringTables /* @out @restrict:10 */) = 0;
         virtual Core::hresult Tables4(const bool fill, RPC::IStringIterator*& stringTables /* @out */) = 0;
         virtual Core::hresult Tables5(const bool fill, RPC::IStringIterator*& stringTables /* @out */, RPC::IValueIterator*& intTables /* @out */) = 0;
