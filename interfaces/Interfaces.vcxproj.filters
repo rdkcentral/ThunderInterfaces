@@ -1,436 +1,150 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Module.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_AmazonPrime.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Application.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_AVNClient.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_AVSClient.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Bluetooth.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_BluetoothAudio.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Browser.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Butler.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Capture.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Composition.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Configuration.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_ContentDecryption.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Cryptography.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_CustomerCareOperations.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_DeviceInfo.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_DIALServer.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Dictionary.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_DisplayInfo.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_DNSServer.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Dolby.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_DsgccClient.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_External.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Focus.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Guide.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_InputPin.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_InputSwitch.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_IPNetwork.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_KeyHandler.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_LanguageTag.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_LISA.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Math.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_MediaPlayer.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Memory.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_MessageControl.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Messenger.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Netflix.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_NetflixSecurity.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_NetworkControl.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_NetworkTools.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_OCDM.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_PackageManager.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Packager.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Performance.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_PlayerInfo.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_PlayGiga.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Power.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Provisioning.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_RemoteControl.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_ResourceMonitor.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_RPCLink.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_RtspClient.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_RustBridge.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_ScriptEngine.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_SecureShellServer.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Store.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_StoreCache.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_Stream.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_SwitchBoard.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_SystemCommands.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_TextToSpeech.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_TimeSync.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_TimeZone.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_ValuePoint.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_VolumeControl.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_WatchDog.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_WebDriver.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_WebPA.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_WebServer.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_WifiControl.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubs_ZigWave.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="proxystubs\ProxyStubsMetadata.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
+    <ClCompile Include="Module.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubsMetadata.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_AmazonPrime.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Application.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_AVNClient.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_AVSClient.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Bluetooth.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_BluetoothAudio.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Browser.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Butler.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Capture.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Composition.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Configuration.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_ContentDecryption.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Cryptography.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_CustomerCareOperations.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_DeviceInfo.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_DIALServer.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Dictionary.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_DisplayInfo.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_DNSServer.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Dolby.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_DsgccClient.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_External.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Focus.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Guide.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_InputPin.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_InputSwitch.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_IPNetwork.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_KeyHandler.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_LanguageTag.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_LISA.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Math.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_MediaPlayer.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Memory.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_MessageControl.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Messenger.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Netflix.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_NetflixSecurity.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_NetworkControl.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_NetworkTools.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_OCDM.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_PackageManager.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Packager.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Performance.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_PlayerInfo.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_PlayGiga.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Power.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Provisioning.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_RemoteControl.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_ResourceMonitor.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_RPCLink.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_RtspClient.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_RustBridge.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_ScriptEngine.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_SecureShellServer.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Store.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_StoreCache.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_Stream.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_SwitchBoard.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_SystemCommands.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_TextToSpeech.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_TimeSync.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_TimeZone.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_ValuePoint.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_VolumeControl.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_WatchDog.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_WebDriver.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_WebPA.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_WebServer.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_WifiControl.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_ZigWave.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_PluginAsyncStateControl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{08108e2f-1ffd-48e0-89d9-23f5409dc0eb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{4ee0c8e4-3ba3-4683-8c6f-23463d09d9d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Interface Files">
-      <UniqueIdentifier>{379b5f39-b7a5-466c-bd91-4f42b78a78bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Generated Files">
-      <UniqueIdentifier>{94509df5-c439-4303-be5b-8d14fd112d48}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Module.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IBrowser.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ICommand.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDictionary.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IMemory.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="INetflix.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="INetflixSecurity.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ISwitchBoard.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IWebServer.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IComposition.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IKeyHandler.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IProvisioning.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ITimeSync.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IWebDriver.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IRPCLink.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IAVNClient.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IBluetooth.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ICapture.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IContentDecryption.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDRM.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDsgccClient.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IExternal.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IGuide.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IIPNetwork.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IPackager.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IPerformance.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IPlayGiga.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IPower.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IRtspClient.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ISystemCommands.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Ids.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IAVSClient.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDisplayInfo.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IInputSwitch.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IStream.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IExternalBase.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IButler.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IConfiguration.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ICryptography.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDIALServer.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDeviceInfo.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IOCDM.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IValuePoint.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ITimeZone.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IMessageControl.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IRustBridge.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ValuePoint.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IScriptEngine.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDNSServer.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IApplication.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDolby.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IAmazonPrime.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IBluetoothAudio.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ILanguageTag.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IPackageManager.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IFocus.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="INetworkTools.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IStore.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IWifiControl.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ITextToSpeech.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IStoreCache.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IZigWave.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
+    <ClInclude Include="IAmazonPrime.h" />
+    <ClInclude Include="IApplication.h" />
+    <ClInclude Include="IAVNClient.h" />
+    <ClInclude Include="IAVSClient.h" />
+    <ClInclude Include="IBluetooth.h" />
+    <ClInclude Include="IBluetoothAudio.h" />
+    <ClInclude Include="IBrowser.h" />
+    <ClInclude Include="IButler.h" />
+    <ClInclude Include="ICapture.h" />
+    <ClInclude Include="ICommand.h" />
+    <ClInclude Include="IComposition.h" />
+    <ClInclude Include="IConfiguration.h" />
+    <ClInclude Include="IContentDecryption.h" />
+    <ClInclude Include="ICryptography.h" />
+    <ClInclude Include="IDeviceIdentification.h" />
+    <ClInclude Include="IDeviceInfo.h" />
+    <ClInclude Include="IDIALServer.h" />
+    <ClInclude Include="IDictionary.h" />
+    <ClInclude Include="IDisplayInfo.h" />
+    <ClInclude Include="IDNSServer.h" />
+    <ClInclude Include="IDolby.h" />
+    <ClInclude Include="IDRM.h" />
+    <ClInclude Include="Ids.h" />
+    <ClInclude Include="IDsgccClient.h" />
+    <ClInclude Include="IExternal.h" />
+    <ClInclude Include="IExternalBase.h" />
+    <ClInclude Include="IFocus.h" />
+    <ClInclude Include="IGuide.h" />
+    <ClInclude Include="IInputSwitch.h" />
+    <ClInclude Include="IIPNetwork.h" />
+    <ClInclude Include="IKeyHandler.h" />
+    <ClInclude Include="ILanguageTag.h" />
+    <ClInclude Include="ILocationSync.h" />
+    <ClInclude Include="IMemory.h" />
     <ClInclude Include="IMemoryMonitor.h" />
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ILocationSync.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ISecurityAgent.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDeviceIdentification.h">
-      <Filter>Interface Files</Filter>
-    </ClInclude>
+    <ClInclude Include="IMessageControl.h" />
+    <ClInclude Include="INetflix.h" />
+    <ClInclude Include="INetflixSecurity.h" />
+    <ClInclude Include="INetworkTools.h" />
+    <ClInclude Include="IOCDM.h" />
+    <ClInclude Include="IPackageManager.h" />
+    <ClInclude Include="IPackager.h" />
+    <ClInclude Include="IPerformance.h" />
+    <ClInclude Include="IPlayGiga.h" />
+    <ClInclude Include="IPower.h" />
+    <ClInclude Include="IProvisioning.h" />
+    <ClInclude Include="IRPCLink.h" />
+    <ClInclude Include="IRtspClient.h" />
+    <ClInclude Include="IRustBridge.h" />
+    <ClInclude Include="IScriptEngine.h" />
+    <ClInclude Include="ISecurityAgent.h" />
+    <ClInclude Include="IStore.h" />
+    <ClInclude Include="IStoreCache.h" />
+    <ClInclude Include="IStream.h" />
+    <ClInclude Include="ISwitchBoard.h" />
+    <ClInclude Include="ISystemCommands.h" />
+    <ClInclude Include="ITextToSpeech.h" />
+    <ClInclude Include="ITimeSync.h" />
+    <ClInclude Include="ITimeZone.h" />
+    <ClInclude Include="IValuePoint.h" />
+    <ClInclude Include="IWebDriver.h" />
+    <ClInclude Include="IWebServer.h" />
+    <ClInclude Include="IWifiControl.h" />
+    <ClInclude Include="IZigWave.h" />
+    <ClInclude Include="Module.h" />
+    <ClInclude Include="ValuePoint.h" />
+    <ClInclude Include="IIOConnector.h" />
+    <ClInclude Include="ISubsystemControl.h" />
+    <ClInclude Include="IPluginAsyncStateControl.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />

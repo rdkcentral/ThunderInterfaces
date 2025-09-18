@@ -65,6 +65,7 @@
 #include <interfaces/IPerformance.h>
 #include <interfaces/IPlayerInfo.h>
 #include <interfaces/IPlayGiga.h>
+#include <interfaces/IPluginAsyncStateControl.h>
 #include <interfaces/IPower.h>
 #include <interfaces/IProvisioning.h>
 #include <interfaces/IRemoteControl.h>
@@ -95,6 +96,10 @@
 #include <qa_interfaces/ITestUtility.h>
 #include <qa_interfaces/ITestController.h>
 #include <qa_interfaces/ITestAutomation.h>
+
+#include <example_interfaces/ISimpleInstanceObjects.h>
+#include <example_interfaces/ISimpleAsync.h>
+#include <example_interfaces/ISimpleCustomObjects.h>
 #endif
 
 namespace Thunder {
@@ -152,15 +157,6 @@ ENUM_CONVERSION_BEGIN(Exchange::IStream::state)
     { Exchange::IStream::state::Controlled, _TXT(_T("Controlled")) },
     { Exchange::IStream::state::Error, _TXT(_T("Error")) },
 ENUM_CONVERSION_END(Exchange::IStream::state)
-
-ENUM_CONVERSION_BEGIN(Exchange::IPower::PCState)
-    { Exchange::IPower::On, _TXT(_T("on")) },
-    { Exchange::IPower::ActiveStandby, _TXT(_T("active")) },
-    { Exchange::IPower::PassiveStandby, _TXT(_T("passive")) },
-    { Exchange::IPower::SuspendToRAM, _TXT(_T("suspended")) },
-    { Exchange::IPower::Hibernate, _TXT(_T("hibernate")) },
-    { Exchange::IPower::PowerOff, _TXT(_T("off")) }, 
-ENUM_CONVERSION_END(Exchange::IPower::PCState)
 
 ENUM_CONVERSION_BEGIN(Exchange::External::Metadata::protocol)
     { Exchange::External::Metadata::protocol::I2C,      _TXT(_T("I2C"))      },

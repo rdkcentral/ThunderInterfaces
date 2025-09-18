@@ -24,30 +24,30 @@
 namespace Thunder {
 namespace Exchange {
 
-    // The ICompositionBuffer is an interface definition to communicate across 
+    // The IGraphicsBuffer is an interface definition to communicate across 
     // process boundaries between two actors, the Client and the Compositor. 
     // Client:     Producing content in the buffer
     // Compositor: Consuming the content (move to another Buffer)
     // 
     // From a Client perspective:
-    // 1) ICompositionBuffer::Acquire(50)
+    // 1) IGraphicsBuffer::Acquire(50)
     //    Locks the planes so the Compositor can not and will not use this
     //    buffer in the process of creating a new composition.
     // 2) IIterator::Plane::Accessor()
     //    Write anything the client likes onto the buffer
-    // 3) ICompositionBuffer::Relinquish()
+    // 3) IGraphicsBuffer::Relinquish()
     //    Unlock the planes, the Compositor can use/consume what is on the 
     //    buffer and move it to wherever the compositor likes.
     //
     // From a Compositor perspective:
     // 1) a screen update is requested, iterate over all Buffers available 
-    //    in the Compositor and call ICompositionBuffer::Acquire(0), no need 
+    //    in the Compositor and call IGraphicsBuffer::Acquire(0), no need 
     //    to wait cause if the producer (Client) is working on the buffer we
     //    do not want to consume it.
     // 2) IIterator::Plane::Accessor()
     //    Read anything from the buffer the client has written on it and move it
     //    to a new buffer.
-    // 3) ICompositionBuffer::Relinquish()
+    // 3) IGraphicsBuffer::Relinquish()
     //    Unlock the planes, the Client can use/produce new contents on the  
     //    buffer. The content how it was is now copied to a new location.
 
@@ -58,8 +58,8 @@ namespace Exchange {
     // to enforce the best performance!
 
     // @stubgen:omit
-    struct EXTERNAL ICompositionBuffer {
-        virtual ~ICompositionBuffer() = default;
+    struct EXTERNAL IGraphicsBuffer {
+        virtual ~IGraphicsBuffer() = default;
         
         /**
          * @brief   frame buffer interface with hardware optimisation in mind
@@ -88,6 +88,7 @@ namespace Exchange {
         // agnostic) can now not access the planes, they have to 
         // wait till they become availabe again.....
         virtual IIterator* Acquire(const uint32_t timeoutMs) = 0;
+
         // Relinquish (unlock) the Planes. End lifetime of the IIterator
         // received from Planes()
         virtual void Relinquish() = 0;
@@ -98,7 +99,7 @@ namespace Exchange {
         virtual uint64_t Modifier() const = 0; // Pixel arrangement in the buffer, used to optimize for hardware
 
         virtual DataType Type() const = 0;
-    }; // struct IPlainBuffer
+    }; // struct IGraphicsBuffer
 
 } // namespace Exchange
 

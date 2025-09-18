@@ -69,6 +69,7 @@
     <ClCompile Include="proxystubs\ProxyStubs_Performance.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_PlayerInfo.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_PlayGiga.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_PluginAsyncStateControl.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Power.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Provisioning.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_RemoteControl.cpp" />
@@ -125,6 +126,7 @@
     <ClInclude Include="IFocus.h" />
     <ClInclude Include="IGuide.h" />
     <ClInclude Include="IInputSwitch.h" />
+    <ClInclude Include="IIOConnector.h" />
     <ClInclude Include="IIPNetwork.h" />
     <ClInclude Include="IKeyHandler.h" />
     <ClInclude Include="ILanguageTag.h" />
@@ -140,6 +142,7 @@
     <ClInclude Include="IPackager.h" />
     <ClInclude Include="IPerformance.h" />
     <ClInclude Include="IPlayGiga.h" />
+    <ClInclude Include="IPluginAsyncStateControl.h" />
     <ClInclude Include="IPower.h" />
     <ClInclude Include="IProvisioning.h" />
     <ClInclude Include="IRPCLink.h" />
@@ -150,6 +153,7 @@
     <ClInclude Include="IStore.h" />
     <ClInclude Include="IStoreCache.h" />
     <ClInclude Include="IStream.h" />
+    <ClInclude Include="ISubsystemControl.h" />
     <ClInclude Include="ISwitchBoard.h" />
     <ClInclude Include="ISystemCommands.h" />
     <ClInclude Include="ITextToSpeech.h" />
@@ -386,4 +390,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <Target Name="CustomCleanGeneratedFiles" BeforeTargets="Clean">
+    <RemoveDir Directories="proxystubs" />
+    <ItemGroup>
+      <JsonFolder Include="json\*.*" Exclude="json\ExternalMetadata.h" />
+      <Definitions Include="definitions.h" />
+    </ItemGroup>
+    <Delete Files="@(JsonFolder)" />
+    <Delete Files="@(Definitions)" />
+  </Target>
 </Project>
