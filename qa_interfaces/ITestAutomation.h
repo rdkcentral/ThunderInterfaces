@@ -89,9 +89,9 @@ namespace QualityAssurance {
 
         ~ITestTextOptions() override = default;
 
-        // @brief Validates standart which is camelCase
+        // @brief Validates standard which is camelCase
         // @retval ERROR_GENERAL Failed to verify
-        virtual Core::hresult TestStandart(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
+        virtual Core::hresult TestStandard(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
 
 
         // @json 1.0.0 @text:legacy_lowercase
