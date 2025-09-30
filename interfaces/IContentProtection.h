@@ -88,6 +88,7 @@ namespace Exchange {
         // (e.g. 930762523)
         // @param response video platform specific response data
         // (e.g. "{\"license\":\"...\",\"refreshDuration\":0}")
+        // @retval 21002 Invalid aspect dimension
         // @retval 21003 Invalid key system
         // @retval 21004 Invalid license request
         // @retval 21005 Invalid content metadata
@@ -109,6 +110,7 @@ namespace Exchange {
         // @retval 23001 Watermark general failure
         // @retval 23003 Watermark request timeout
         // @retval 23012 Watermark memory allocation error
+        // @retval 23014 Watermark perceptibility error
         virtual uint32_t OpenDrmSession(
             const string& clientId /* @text:clientId */,
             const string& appId /* @text:appId */,
@@ -136,6 +138,7 @@ namespace Exchange {
         // (e.g. "{\"sessionConfiguration\":{\"distributedTraceId\":\"...\"},\"accessToken\":\"...\",\"contentMetadata\":\"...\"}")
         // @param response video platform specific response data
         // (e.g. "{\"license\":\"...\",\"refreshDuration\":0}")
+        // @retval 21002 Invalid aspect dimension
         // @retval 21003 Invalid key system
         // @retval 21004 Invalid license request
         // @retval 21005 Invalid content metadata
@@ -157,6 +160,7 @@ namespace Exchange {
         // @retval 23001 Watermark general failure
         // @retval 23003 Watermark request timeout
         // @retval 23012 Watermark memory allocation error
+        // @retval 23014 Watermark perceptibility error
         virtual uint32_t UpdateDrmSession(
             uint32_t sessionId /* @text:sessionId */,
             const string& licenseRequest /* @text:licenseRequest */,
