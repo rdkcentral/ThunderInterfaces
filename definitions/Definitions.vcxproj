@@ -56,6 +56,7 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_WifiControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_ZigWave.cpp" />
     <ClCompile Include="Definitions.cpp" />
+    <ClCompile Include="Module.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\interfaces\IDictionary.h">
@@ -738,4 +739,5 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
 </Project>
+
 
