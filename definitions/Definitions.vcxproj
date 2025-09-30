@@ -51,7 +51,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Streamer.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_SubsystemControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeZone.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_ValuePoint.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_WatchDog.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_WebBrowser.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_WifiControl.cpp" />
@@ -739,3 +738,4 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
 </Project>
+
