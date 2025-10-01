@@ -1,5 +1,8 @@
 name: Build ThunderInterfaces on Windows
 
+permissions:
+  contents: read
+
 on:
   workflow_dispatch:
   push:
