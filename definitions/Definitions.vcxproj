@@ -24,7 +24,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_BrowserResources.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_BrowserScripting.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_BrowserSecurity.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_Butler.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Cobalt.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Compositor.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_Containers.cpp" />
@@ -52,12 +51,12 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_Streamer.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_SubsystemControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_TimeZone.cpp" />
-    <ClCompile Include="..\interfaces\json\JsonEnum_ValuePoint.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_WatchDog.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_WebBrowser.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_WifiControl.cpp" />
     <ClCompile Include="..\interfaces\json\JsonEnum_ZigWave.cpp" />
     <ClCompile Include="Definitions.cpp" />
+    <ClCompile Include="Module.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\interfaces\IDictionary.h">
@@ -380,9 +379,6 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\jsonrpc\Browser.json">
-      <FileType>Document</FileType>
-    </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\Butler.json">
       <FileType>Document</FileType>
     </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Cobalt.json">
@@ -742,9 +738,6 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties _1_1_4jsonrpc_4Butler_1json__JsonSchema="&quot;" />
-    </VisualStudio>
-  </ProjectExtensions>
 </Project>
+
+
