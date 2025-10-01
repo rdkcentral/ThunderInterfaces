@@ -61,6 +61,130 @@ namespace QualityAssurance {
         };
     };
 
+    // @json 1.0.0
+    // @brief Validates jsonrpc document generation based on given parameters
+    struct EXTERNAL ITestTextOptions : virtual public Core::IUnknown {
+        enum { ID = ID_TESTTEXTOPTIONS };
+
+        enum EnumTextOptions : uint8_t {
+            FIRST_OPTION = 0,
+            SECOND_OPTION = 1,
+            ThirdOption = 2
+        };
+
+        struct EXTERNAL TestDetails
+            {
+                string testDetailsFirst;
+                string testDetailsSecond;
+            };
+
+        // @event
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
+            enum { ID = ID_TESTTEXTOPTIONS_NOTIFICATION };
+            ~INotification() override = default;
+
+            virtual void TestEvent(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
+        };
+
+
+        ~ITestTextOptions() override = default;
+
+        // @brief Validates standard which is camelCase
+        // @retval ERROR_GENERAL Failed to verify
+        virtual Core::hresult TestStandard(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
+
+
+        // @json 1.0.0 @text:legacy_lowercase
+        struct EXTERNAL ITestLegacy : virtual public Core::IUnknown {
+            enum { ID = ID_TESTLEGACY };
+
+            enum EnumTextOptions : uint8_t {
+                FIRST_OPTION = 0,
+                SECOND_OPTION = 1,
+                ThirdOption = 2
+            };
+
+            struct EXTERNAL TestDetails
+            {
+                string testDetailsFirst;
+                string testDetailsSecond;
+            };
+
+            // @event
+            struct EXTERNAL INotification : virtual public Core::IUnknown {
+                enum { ID = ID_TESTLEGACY_NOTIFICATION };
+                ~INotification() override = default;
+
+                virtual void TestEvent(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
+            };
+
+            ~ITestLegacy() override = default;
+            // @brief Validates legacy which is lowercase
+            // @retval ERROR_GENERAL Failed to verify
+            virtual Core::hresult TestLegacy(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
+        };
+
+        // @json 1.0.0 @text:keep
+        struct EXTERNAL ITestKeep : virtual public Core::IUnknown {
+            enum { ID = ID_TESTKEEP };
+
+            enum EnumTextOptions : uint8_t {
+                FIRST_OPTION = 0,
+                SECOND_OPTION = 1,
+                ThirdOption = 2
+            };
+
+            struct EXTERNAL TestDetails
+            {
+                string testDetailsFirst;
+                string testDetailsSecond;
+            };
+
+            // @event
+            struct EXTERNAL INotification : virtual public Core::IUnknown {
+                enum { ID = ID_TESTKEEP_NOTIFICATION };
+                ~INotification() override = default;
+
+                virtual void TestEvent(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
+            };
+
+            ~ITestKeep() override = default;
+            // @brief Validates keep which is as same as it's coded
+            // @retval ERROR_GENERAL Failed to verify
+            virtual Core::hresult TestKeeP(const uint32_t firstTestParaM, const uint32_t secondTestParaM, const TestDetails& thirdTestParaM, const EnumTextOptions fourthTestParaM) = 0;
+        };
+
+        // @json 1.0.0 @text:custom=lower,upper,lowersnake,uppersnake,pascal,lower
+        struct EXTERNAL ITestCustom : virtual public Core::IUnknown {
+            enum { ID = ID_TESTCUSTOM };
+
+            enum EnumTextOptions : uint8_t {
+                FIRST_OPTION = 0,
+                SECOND_OPTION = 1,
+                ThirdOption = 2
+            };
+
+            struct EXTERNAL TestDetails
+            {
+                string testDetailsFirst;
+                string testDetailsSecond;
+            };
+
+            // @event
+            struct EXTERNAL INotification : virtual public Core::IUnknown {
+                enum { ID = ID_TESTCUSTOM_NOTIFICATION };
+                ~INotification() override = default;
+
+                virtual void TestEvent(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
+            };
+
+            ~ITestCustom() override = default;
+            // @brief Validates custom generation
+            // @retval ERROR_GENERAL Failed to verify
+            virtual Core::hresult TestCustom(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
+        };
+    };
+
     // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL ITestUtils : virtual public Core::IUnknown {
         enum { ID = ID_TESTAUTOMATIONUTILS };
