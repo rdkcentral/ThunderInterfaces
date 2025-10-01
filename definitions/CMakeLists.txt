@@ -50,6 +50,11 @@ set(WORKING_VARIABLE ${INTERFACES_PATTERNS})
 list(TRANSFORM WORKING_VARIABLE PREPEND "${CMAKE_SOURCE_DIR}/qa_interfaces/")
 file(GLOB QA_INTERFACE_FILE ${WORKING_VARIABLE})
 
+separate_arguments(INTERFACES_PATTERNS)
+set(WORKING_VARIABLE ${INTERFACES_PATTERNS})
+list(TRANSFORM WORKING_VARIABLE PREPEND "${CMAKE_SOURCE_DIR}/example_interfaces/")
+file(GLOB EXAMPLE_INTERFACE_FILE ${WORKING_VARIABLE})
+
 set(PUBLIC_HEADERS "definitions.h" "ValuePoint.h" "Module.h")
 
 if(NOT GENERATOR_SEARCH_PATH)
@@ -60,21 +65,30 @@ JsonGenerator(CODE INPUT ${JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/genera
 JsonGenerator(CODE INPUT ${QA_JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/" CPPIFDIR "${CMAKE_CURRENT_SOURCE_DIR}/../qa_interfaces/" IFDIR "${CMAKE_CURRENT_SOURCE_DIR}/../jsonrpc/" CPP_INTERFACE_PATH "qa_interfaces" JSON_INTERFACE_PATH "qa_interfaces/json")
 JsonGenerator(CODE INPUT ${INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 JsonGenerator(CODE NAMESPACE  Thunder::QualityAssurance INPUT ${QA_INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} CPP_INTERFACE_PATH "qa_interfaces" JSON_INTERFACE_PATH "qa_interfaces/json" )
+JsonGenerator(CODE NAMESPACE Thunder::Example INPUT ${EXAMPLE_INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/example_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH}  CPP_INTERFACE_PATH "example_interfaces" JSON_INTERFACE_PATH "example_interfaces/json")
 
 file(GLOB JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/JsonEnum*.cpp")
 file(GLOB JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/J*.h")
+file(GLOB JSON_WRAP_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/json_*.h")
 
 file(GLOB QA_JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/JsonEnum*.cpp")
 file(GLOB QA_JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/J*.h")
+file(GLOB QA_JSON_WRAP_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/qa_generated/json_*.h")
+
+file(GLOB EXAMPLE_JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/example_generated/JsonEnum*.cpp")
+file(GLOB EXAMPLE_JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/example_generated/J*.h")
+file(GLOB EXAMPLE_JSON_WRAP_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/example_generated/json_*.h")
 
 list(APPEND JSON_LINK_HEADERS "Module.h")
 list(APPEND QA_JSON_LINK_HEADERS "Module.h")
+list(APPEND EXAMPLE_JSON_LINK_HEADERS "Module.h")
 
 add_library(${Target} SHARED
         Definitions.cpp
         Module.cpp
         ${JSON_ENUM_SOURCES}
         ${QA_JSON_ENUM_SOURCES}
+        ${EXAMPLE_JSON_ENUM_SOURCES}
         )
 
 target_link_libraries(${Target}
@@ -118,10 +132,29 @@ install(
 )
 
 install(
+        FILES ${JSON_WRAP_HEADERS}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/interfaces/json COMPONENT ${NAMESPACE}_Development  
+)
+
+install(
         FILES ${QA_JSON_LINK_HEADERS}
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/qa_interfaces/json  COMPONENT ${NAMESPACE}_Test_Development
 )
 
+install(
+        FILES ${QA_JSON_WRAP_HEADERS}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/qa_interfaces/json  COMPONENT ${NAMESPACE}_Test_Development
+)
+
+install(
+        FILES ${EXAMPLE_JSON_LINK_HEADERS}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/example_interfaces/json  COMPONENT ${NAMESPACE}_Example_Development
+)
+
+install(
+        FILES ${EXAMPLE_JSON_WRAP_HEADERS}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${NAMESPACE}/example_interfaces/json  COMPONENT ${NAMESPACE}_Example_Development
+)
 InstallPackageConfig(
         TARGETS ${Target}
         DESCRIPTION "${PROJECT_DESCRIPTION}"

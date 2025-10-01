@@ -1,8 +1,8 @@
-/*
+ /*
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2020 Metrological
+ * Copyright 2024 Metrological
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,30 +17,14 @@
  * limitations under the License.
  */
 
-#pragma once
 #include "Module.h"
 
-// @insert <com/ICOM.h>
+#ifdef __WINDOWS__
 
-namespace Thunder {
-namespace Exchange {
+// ProxyStub code needs the definitions on windows for the default
+// Contstructor/Destructor implementations, generated EXTERNAL.
+#include <definitions/definitions.h>
 
-    // This interface gives direct access to a time synchronize / update
-    struct EXTERNAL IInputSwitch : virtual public Core::IUnknown {
-        enum { ID = ID_INPUT_SWITCH };
+#endif
 
-        enum mode : uint8_t {
-            ENABLED,
-            DISABLED,
-            SLAVE
-        };
-
-        virtual RPC::IStringIterator* Consumers() const = 0;
-        virtual bool Consumer(const string& name) const = 0;
-        virtual uint32_t Consumer(const string& name, const mode value) = 0;
-
-        virtual uint32_t Select(const string& name) = 0;
-    };
-
-} // namespace Exchange
-} // namespace Thunder
+MODULE_NAME_DECLARATION(BUILD_REFERENCE)

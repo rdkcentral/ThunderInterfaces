@@ -65,6 +65,7 @@
 #include <interfaces/IPerformance.h>
 #include <interfaces/IPlayerInfo.h>
 #include <interfaces/IPlayGiga.h>
+#include <interfaces/IPluginAsyncStateControl.h>
 #include <interfaces/IPower.h>
 #include <interfaces/IProvisioning.h>
 #include <interfaces/IRemoteControl.h>
@@ -95,6 +96,10 @@
 #include <qa_interfaces/ITestUtility.h>
 #include <qa_interfaces/ITestController.h>
 #include <qa_interfaces/ITestAutomation.h>
+
+#include <example_interfaces/ISimpleInstanceObjects.h>
+#include <example_interfaces/ISimpleAsync.h>
+#include <example_interfaces/ISimpleCustomObjects.h>
 #endif
 
 namespace Thunder {
@@ -248,46 +253,6 @@ ENUM_CONVERSION_BEGIN(Exchange::IDeviceVideoCapabilities::CopyProtection)
     { Exchange::IDeviceVideoCapabilities::CopyProtection::HDCP_21, _TXT("2.1") },
     { Exchange::IDeviceVideoCapabilities::CopyProtection::HDCP_22, _TXT("2.2") },
 ENUM_CONVERSION_END(Exchange::IDeviceVideoCapabilities::CopyProtection)
-
-ENUM_CONVERSION_BEGIN(Exchange::IValuePoint::basic)
-    { Exchange::IValuePoint::basic::regulator,      _TXT("regulator")      },
-    { Exchange::IValuePoint::basic::measurement,    _TXT("measurment")     },
-    { Exchange::IValuePoint::basic::group,          _TXT("group")          },
-    { Exchange::IValuePoint::basic::identification, _TXT("identification") },
-ENUM_CONVERSION_END(Exchange::IValuePoint::basic)
-
-ENUM_CONVERSION_BEGIN(Exchange::IValuePoint::specific)
-    { Exchange::IValuePoint::specific::general,         _TXT("general")         },
-    { Exchange::IValuePoint::specific::electricity,     _TXT("electricity")     },
-    { Exchange::IValuePoint::specific::water,           _TXT("water")           },
-    { Exchange::IValuePoint::specific::gas,             _TXT("gas")             },
-    { Exchange::IValuePoint::specific::air,             _TXT("air")             },
-    { Exchange::IValuePoint::specific::smoke,           _TXT("smoke")           },
-    { Exchange::IValuePoint::specific::carbonMonoxide,  _TXT("carbonmonoxide")  },
-    { Exchange::IValuePoint::specific::carbonDioxide,   _TXT("carbondioxide")   },
-    { Exchange::IValuePoint::specific::temperature,     _TXT("temperature")     },
-    { Exchange::IValuePoint::specific::accessControl,   _TXT("accesscontrol")   },
-    { Exchange::IValuePoint::specific::burglar,         _TXT("burglar")         },
-    { Exchange::IValuePoint::specific::powerManagement, _TXT("powermanagement") },
-    { Exchange::IValuePoint::specific::system,          _TXT("system")          },
-    { Exchange::IValuePoint::specific::emergency,       _TXT("emergency")       },
-    { Exchange::IValuePoint::specific::clock,           _TXT("clock")           },
-    { Exchange::IValuePoint::specific::light,           _TXT("light")           },
-ENUM_CONVERSION_END(Exchange::IValuePoint::specific)
-
-ENUM_CONVERSION_BEGIN(Exchange::IValuePoint::dimension)
-    { Exchange::IValuePoint::dimension::logic,      _TXT("logic")      },
-    { Exchange::IValuePoint::dimension::percentage, _TXT("percentage") },
-    { Exchange::IValuePoint::dimension::kwh,        _TXT("kwh")        },
-    { Exchange::IValuePoint::dimension::kvah,       _TXT("kvah")       },
-    { Exchange::IValuePoint::dimension::pulses,     _TXT("pulses")     },
-    { Exchange::IValuePoint::dimension::degrees,    _TXT("degrees")    },
-    { Exchange::IValuePoint::dimension::units,      _TXT("units")      },
-    { Exchange::IValuePoint::dimension::lux,        _TXT("lux")        },
-    { Exchange::IValuePoint::dimension::volt,       _TXT("volt")       },
-    { Exchange::IValuePoint::dimension::ampere,     _TXT("ampere")     },
-
-ENUM_CONVERSION_END(Exchange::IValuePoint::dimension)
 
 namespace Exchange
 {
