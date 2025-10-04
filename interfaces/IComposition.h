@@ -57,7 +57,11 @@ namespace Exchange {
         static uint32_t WidthFromResolution(const ScreenResolution resolution);
         static uint32_t HeightFromResolution(const ScreenResolution resolution);
 
-        static ScreenResolution ResolutionFromHeightWidth(const uint32_t height, const uint32_t width);
+        static ScreenResolution ResolutionFromWidthHeightRefresh(const uint32_t height, const uint32_t width, const uint32_t refresh);
+
+        static ScreenResolution ResolutionFromHeightWidth(const uint32_t height, const uint32_t width){
+            return ResolutionFromWidthHeightRefresh(height, width, 0);
+        }
 
         struct Rectangle {
             int32_t x;

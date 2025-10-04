@@ -114,25 +114,27 @@ struct ScreenResolutionWidthHeight {
 ScreenResolutionWidthHeight resolutionWidthHeightTable[] = {
 
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_Unknown,   0,    0,    0 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_480i,      640,  480,  60000 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_480p,      640,  480,  60000 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_576i,      1024, 576,  60000 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_576p,      1024, 576,  60000 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_480i,      640,  480,  0 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_480p,      640,  480,  0 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_576i,      1024, 576,  0 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_576p,      1024, 576,  0 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_576p50Hz,  1024, 576,  50000 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_720p,      1280, 720,  60000 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_720p,      1280, 720,  0 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_720p50Hz,  1280, 720,  50000 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080i,     1920, 1080, 60000 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080i,     1920, 1080, 0 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080i25Hz, 1920, 1080, 25000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080i50Hz, 1920, 1080, 50000 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p,     1920, 1080, 60000 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p,     1920, 1080, 0 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p24Hz, 1920, 1080, 24000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p25Hz, 1920, 1080, 25000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p30Hz, 1920, 1080, 30000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p50Hz, 1920, 1080, 50000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p60Hz, 1920, 1080, 60000 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p,     3840, 2160, 0 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p30Hz, 3840, 2160, 30000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p50Hz, 3840, 2160, 50000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p60Hz, 3840, 2160, 60000 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_4320p    , 7680, 4320, 0 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_4320p30Hz, 7680, 4320, 30000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_4320p60Hz, 7680, 4320, 60000 },
 };
@@ -239,9 +241,11 @@ ENUM_CONVERSION_BEGIN(Exchange::IDeviceVideoCapabilities::ScreenResolution)
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p30Hz, _TXT("1080p30") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p50Hz, _TXT("1080p50") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p60Hz, _TXT("1080p60") },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p, _TXT("2160p") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p30Hz, _TXT("2160p30") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p50Hz, _TXT("2160p50") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p60Hz, _TXT("2160p60") },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_4320p, _TXT("4320p") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_4320p30Hz, _TXT("4320p30") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_4320p60Hz, _TXT("4320p60") },
 ENUM_CONVERSION_END(Exchange::IDeviceVideoCapabilities::ScreenResolution)
@@ -270,6 +274,16 @@ namespace Exchange
     uint32_t IComposition::RefreshRateFromResolution(const IComposition::ScreenResolution resolution)
     {
         return ((static_cast<uint32_t>(resolution) < sizeof(resolutionWidthHeightTable) / sizeof(ScreenResolutionWidthHeight)) ? resolutionWidthHeightTable[static_cast<uint32_t>(resolution)].refresh: 0);
+    }
+
+    IComposition::ScreenResolution IComposition::ResolutionFromWidthHeightRefresh(uint32_t width, uint32_t height, uint32_t refresh)
+    {
+        for (const auto& entry : resolutionWidthHeightTable) {
+            if (entry.width == width && entry.height == height && entry.refresh == refresh) {
+                return static_cast<IComposition::ScreenResolution>(entry.resolution);
+            }
+        }
+        return IComposition::ScreenResolution::ScreenResolution_Unknown;
     }
 
     // ------------------------------------------------------------------------
