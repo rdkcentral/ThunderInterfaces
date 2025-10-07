@@ -67,6 +67,15 @@ namespace QualityAssurance {
         ID_TESTUTILITY_COMMAND                       = ID_TESTUTILITY + 1,
         ID_TESTUTILITY_ITERATOR                      = ID_TESTUTILITY + 2,
 
+        ID_TESTTEXTOPTIONS                           = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x030,
+        ID_TESTTEXTOPTIONS_NOTIFICATION              = ID_TESTTEXTOPTIONS + 1,
+        ID_TESTLEGACY                                = ID_TESTTEXTOPTIONS + 2,
+        ID_TESTLEGACY_NOTIFICATION                   = ID_TESTTEXTOPTIONS + 3,
+        ID_TESTKEEP                                  = ID_TESTTEXTOPTIONS + 4,
+        ID_TESTKEEP_NOTIFICATION                     = ID_TESTTEXTOPTIONS + 5,
+        ID_TESTCUSTOM                                = ID_TESTTEXTOPTIONS + 6,
+        ID_TESTCUSTOM_NOTIFICATION                   = ID_TESTTEXTOPTIONS + 7
+
     };
 }
 }
