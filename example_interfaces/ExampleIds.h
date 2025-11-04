@@ -19,7 +19,7 @@
 
 #pragma once
 
-// This file holds all the identifiers (uint32_t) used to identify a QA interface. From this
+// This file holds all the identifiers (uint32_t) used to identify a EXAMPLE interface. From this
 // identifier, the comrpc framework can find the proper proxy/stub in case of communicating
 // over a process boundary.
 // Some users do not "fully" rebuild the system in case of changes. If this means that the
@@ -28,7 +28,7 @@
 // allowed to be changed, the ID associated with the interface should also not be changed
 // and thus should be "fixed".
 
-// So if you extend this file by defining a new QA interface ID make sure it is defined (has
+// So if you extend this file by defining a new EXAMPLE interface ID make sure it is defined (has
 // an actual value) and once the enum label has a value, never change it again.
 
 // As some interfaces might be grouped, the first ID of the group is assigned a value, the
@@ -48,34 +48,24 @@
 
 namespace Thunder {
 
-namespace QualityAssurance {
+namespace Example {
 
     enum IDS : uint32_t {
+        
+        ID_SIMPLEASYNC                               = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x010,
+        ID_CALLBACK                                  = ID_SIMPLEASYNC + 1,
+        ID_ASYNC_NOTIFICATION                        = ID_SIMPLEASYNC + 2,
+        ID_BIND_NOTIFICATION                         = ID_SIMPLEASYNC + 3,
+        
 
-        ID_TESTAUTOMATIONMEMORY                      = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET,
-        ID_TESTAUTOMATIONCOMRPC                      = ID_TESTAUTOMATIONMEMORY + 1,
-        ID_TESTAUTOMATIONCOMRPCINTERNAL              = ID_TESTAUTOMATIONMEMORY + 2,
-        ID_TESTAUTOMATIONUTILS                       = ID_TESTAUTOMATIONMEMORY + 3,
-
-        ID_TESTCONTROLLER                            = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x010,
-        ID_TESTCONTROLLER_TEST                       = ID_TESTCONTROLLER + 1,
-        ID_TESTCONTROLLER_TEST_ITERATOR              = ID_TESTCONTROLLER + 2,
-        ID_TESTCONTROLLER_CATEGORY                   = ID_TESTCONTROLLER + 3,
-        ID_TESTCONTROLLER_CATEGORY_ITERATOR          = ID_TESTCONTROLLER + 4,
-
-        ID_TESTUTILITY                               = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x020,
-        ID_TESTUTILITY_COMMAND                       = ID_TESTUTILITY + 1,
-        ID_TESTUTILITY_ITERATOR                      = ID_TESTUTILITY + 2,
-
-        ID_TESTTEXTOPTIONS                           = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x030,
-        ID_TESTTEXTOPTIONS_NOTIFICATION              = ID_TESTTEXTOPTIONS + 1,
-        ID_TESTLEGACY                                = ID_TESTTEXTOPTIONS + 2,
-        ID_TESTLEGACY_NOTIFICATION                   = ID_TESTTEXTOPTIONS + 3,
-        ID_TESTKEEP                                  = ID_TESTTEXTOPTIONS + 4,
-        ID_TESTKEEP_NOTIFICATION                     = ID_TESTTEXTOPTIONS + 5,
-        ID_TESTCUSTOM                                = ID_TESTTEXTOPTIONS + 6,
-        ID_TESTCUSTOM_NOTIFICATION                   = ID_TESTTEXTOPTIONS + 7
-
+        ID_SIMPLEINSTANCEOBJECTS                     = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x020,
+        ID_DEVICE                                    = ID_SIMPLEINSTANCEOBJECTS + 1,
+        ID_INSTANCE_NOTIFICATION                     = ID_SIMPLEINSTANCEOBJECTS + 2,
+        
+        ID_SIMPLECUSTOMOBJECTS                       = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x030,
+        ID_ACCESSORY                                 = ID_SIMPLECUSTOMOBJECTS + 1,
+        ID_CUSTOM_NOTIFICATION                       = ID_SIMPLECUSTOMOBJECTS + 2,
+        
     };
 }
 }

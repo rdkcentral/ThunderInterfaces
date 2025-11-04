@@ -96,6 +96,10 @@
 #include <qa_interfaces/ITestUtility.h>
 #include <qa_interfaces/ITestController.h>
 #include <qa_interfaces/ITestAutomation.h>
+
+#include <example_interfaces/ISimpleInstanceObjects.h>
+#include <example_interfaces/ISimpleAsync.h>
+#include <example_interfaces/ISimpleCustomObjects.h>
 #endif
 
 namespace Thunder {
@@ -110,25 +114,27 @@ struct ScreenResolutionWidthHeight {
 ScreenResolutionWidthHeight resolutionWidthHeightTable[] = {
 
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_Unknown,   0,    0,    0 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_480i,      640,  480,  60000 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_480p,      640,  480,  60000 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_576i,      1024, 576,  60000 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_576p,      1024, 576,  60000 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_480i,      640,  480,  0 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_480p,      640,  480,  0 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_576i,      1024, 576,  0 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_576p,      1024, 576,  0 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_576p50Hz,  1024, 576,  50000 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_720p,      1280, 720,  60000 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_720p,      1280, 720,  0 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_720p50Hz,  1280, 720,  50000 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080i,     1920, 1080, 60000 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080i,     1920, 1080, 0 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080i25Hz, 1920, 1080, 25000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080i50Hz, 1920, 1080, 50000 },
-    { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p,     1920, 1080, 60000 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p,     1920, 1080, 0 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p24Hz, 1920, 1080, 24000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p25Hz, 1920, 1080, 25000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p30Hz, 1920, 1080, 30000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p50Hz, 1920, 1080, 50000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p60Hz, 1920, 1080, 60000 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p,     3840, 2160, 0 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p30Hz, 3840, 2160, 30000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p50Hz, 3840, 2160, 50000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p60Hz, 3840, 2160, 60000 },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_4320p    , 7680, 4320, 0 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_4320p30Hz, 7680, 4320, 30000 },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_4320p60Hz, 7680, 4320, 60000 },
 };
@@ -235,9 +241,11 @@ ENUM_CONVERSION_BEGIN(Exchange::IDeviceVideoCapabilities::ScreenResolution)
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p30Hz, _TXT("1080p30") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p50Hz, _TXT("1080p50") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_1080p60Hz, _TXT("1080p60") },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p, _TXT("2160p") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p30Hz, _TXT("2160p30") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p50Hz, _TXT("2160p50") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_2160p60Hz, _TXT("2160p60") },
+    { Exchange::IDeviceVideoCapabilities::ScreenResolution_4320p, _TXT("4320p") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_4320p30Hz, _TXT("4320p30") },
     { Exchange::IDeviceVideoCapabilities::ScreenResolution_4320p60Hz, _TXT("4320p60") },
 ENUM_CONVERSION_END(Exchange::IDeviceVideoCapabilities::ScreenResolution)
@@ -249,46 +257,6 @@ ENUM_CONVERSION_BEGIN(Exchange::IDeviceVideoCapabilities::CopyProtection)
     { Exchange::IDeviceVideoCapabilities::CopyProtection::HDCP_21, _TXT("2.1") },
     { Exchange::IDeviceVideoCapabilities::CopyProtection::HDCP_22, _TXT("2.2") },
 ENUM_CONVERSION_END(Exchange::IDeviceVideoCapabilities::CopyProtection)
-
-ENUM_CONVERSION_BEGIN(Exchange::IValuePoint::basic)
-    { Exchange::IValuePoint::basic::regulator,      _TXT("regulator")      },
-    { Exchange::IValuePoint::basic::measurement,    _TXT("measurment")     },
-    { Exchange::IValuePoint::basic::group,          _TXT("group")          },
-    { Exchange::IValuePoint::basic::identification, _TXT("identification") },
-ENUM_CONVERSION_END(Exchange::IValuePoint::basic)
-
-ENUM_CONVERSION_BEGIN(Exchange::IValuePoint::specific)
-    { Exchange::IValuePoint::specific::general,         _TXT("general")         },
-    { Exchange::IValuePoint::specific::electricity,     _TXT("electricity")     },
-    { Exchange::IValuePoint::specific::water,           _TXT("water")           },
-    { Exchange::IValuePoint::specific::gas,             _TXT("gas")             },
-    { Exchange::IValuePoint::specific::air,             _TXT("air")             },
-    { Exchange::IValuePoint::specific::smoke,           _TXT("smoke")           },
-    { Exchange::IValuePoint::specific::carbonMonoxide,  _TXT("carbonmonoxide")  },
-    { Exchange::IValuePoint::specific::carbonDioxide,   _TXT("carbondioxide")   },
-    { Exchange::IValuePoint::specific::temperature,     _TXT("temperature")     },
-    { Exchange::IValuePoint::specific::accessControl,   _TXT("accesscontrol")   },
-    { Exchange::IValuePoint::specific::burglar,         _TXT("burglar")         },
-    { Exchange::IValuePoint::specific::powerManagement, _TXT("powermanagement") },
-    { Exchange::IValuePoint::specific::system,          _TXT("system")          },
-    { Exchange::IValuePoint::specific::emergency,       _TXT("emergency")       },
-    { Exchange::IValuePoint::specific::clock,           _TXT("clock")           },
-    { Exchange::IValuePoint::specific::light,           _TXT("light")           },
-ENUM_CONVERSION_END(Exchange::IValuePoint::specific)
-
-ENUM_CONVERSION_BEGIN(Exchange::IValuePoint::dimension)
-    { Exchange::IValuePoint::dimension::logic,      _TXT("logic")      },
-    { Exchange::IValuePoint::dimension::percentage, _TXT("percentage") },
-    { Exchange::IValuePoint::dimension::kwh,        _TXT("kwh")        },
-    { Exchange::IValuePoint::dimension::kvah,       _TXT("kvah")       },
-    { Exchange::IValuePoint::dimension::pulses,     _TXT("pulses")     },
-    { Exchange::IValuePoint::dimension::degrees,    _TXT("degrees")    },
-    { Exchange::IValuePoint::dimension::units,      _TXT("units")      },
-    { Exchange::IValuePoint::dimension::lux,        _TXT("lux")        },
-    { Exchange::IValuePoint::dimension::volt,       _TXT("volt")       },
-    { Exchange::IValuePoint::dimension::ampere,     _TXT("ampere")     },
-
-ENUM_CONVERSION_END(Exchange::IValuePoint::dimension)
 
 namespace Exchange
 {
@@ -306,6 +274,16 @@ namespace Exchange
     uint32_t IComposition::RefreshRateFromResolution(const IComposition::ScreenResolution resolution)
     {
         return ((static_cast<uint32_t>(resolution) < sizeof(resolutionWidthHeightTable) / sizeof(ScreenResolutionWidthHeight)) ? resolutionWidthHeightTable[static_cast<uint32_t>(resolution)].refresh: 0);
+    }
+
+    IComposition::ScreenResolution IComposition::ResolutionFromWidthHeightRefresh(uint32_t width, uint32_t height, uint32_t refresh)
+    {
+        for (const auto& entry : resolutionWidthHeightTable) {
+            if (entry.width == width && entry.height == height && entry.refresh == refresh) {
+                return static_cast<IComposition::ScreenResolution>(entry.resolution);
+            }
+        }
+        return IComposition::ScreenResolution::ScreenResolution_Unknown;
     }
 
     // ------------------------------------------------------------------------

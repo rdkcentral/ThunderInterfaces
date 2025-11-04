@@ -24,16 +24,17 @@ namespace Thunder {
 namespace Exchange {
 
     // This interface gives access to DNS Zone information
-    struct EXTERNAL IDNS : virtual public Core::IUnknown {
+    // @json 1.0.0
+    struct EXTERNAL IDNSServer : virtual public Core::IUnknown {
         enum { ID = ID_DNS_SERVER };
 
         struct Record {
 
-            // RFC 1035 section 3.2.2
+            // RFC 1035 section 3.2.2 and rfc3596 section 2.1
             enum type : uint8_t {
                 INVALID       =   0,
 
-                RECORD_A      =   1, // a host address
+                RECORD_A      =   1, // a IPv4 host address
                 RECORD_NS     =   2, // an authoritative name server
                 RECORD_MD     =   3, // a mail destination( Obsolete - use MX)
                 RECORD_MF     =   4, // a mail forwarder (Obsolete - use MX)
@@ -49,6 +50,7 @@ namespace Exchange {
                 RECORD_MINFO  =  14, // mailbox or mail list information
                 RECORD_MX     =  15, // mail exchange
                 RECORD_TXT    =  16, // text strings
+                RECORD_AAAA   =  28, // a IPv6 host address
 
                 // RFC 1035 section 3.2.3 (superset)          
                 REQUEST_AXFR  = 252, // a request for a transfer of an entire zone
@@ -58,19 +60,20 @@ namespace Exchange {
             };
 
             type Type;
-            string Designator;
+            string Key;
             string Value;
+            uint32_t TTL;
+            uint8_t Priority;
         };
 
-        ~IDNS() override = default;
+        ~IDNSServer() override = default;
 
-        virtual Core::hresult FindByType(const Record::type kind, const string& designator, Record& entry /* @out */) = 0;
-        virtual Core::hresult FindByIndex(const uint8_t index, const string& designator, Record& entry /* @out */) = 0;
+        virtual Core::hresult FindByKey(const string& designator, const string& key, Record& entry /* @out */) = 0;
+        virtual Core::hresult CountByType(const string& designator, const Record::type kind, uint8_t& index /* @out */) = 0;
+        virtual Core::hresult FindByType(const string& designator, const Record::type kind, const uint8_t index, Record& entry /* @out */) = 0;
         virtual Core::hresult Add(const Record& entry) = 0;
         virtual Core::hresult Remove(const Record& record) = 0;
     };
-
-
 }
 }
 
