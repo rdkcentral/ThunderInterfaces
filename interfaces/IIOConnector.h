@@ -39,7 +39,7 @@ namespace Exchange {
             // @description Register to this event to be notified about pin value changes
             // @param id: pin ID (e.g. 189)
             // @param value: value of the pin (e.g. 1)
-            virtual void Activity(const uint16_t id /* @index:deprecated */, const int32_t value) = 0;
+            virtual void Activity(const uint16_t id /* @index */, const int32_t value) = 0;
         };
 
         virtual Core::hresult Register(const uint16_t id, INotification* const notification) = 0;
