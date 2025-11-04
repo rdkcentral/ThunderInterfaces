@@ -108,13 +108,13 @@ namespace Exchange {
                 // @param roomId: Token of ther room this notification relates to (e.g. 1e217990dd1cd4f66124)
                 // @param: user: Name of the user that has changed its status (e.g. Bob)
                 // @param action: New user status
-                virtual void UserUpdate(const string& roomId /* @index */, const string& user, const userupdate action) = 0;
+                virtual void UserUpdate(const string& roomId /* @index:deprecated */, const string& user, const userupdate action) = 0;
 
                 // @brief Notifies of messages sent the the room
                 // @param roomId: Token of the room this notification relates to (e.g. 1e217990dd1cd4f66124)
                 // @param user: Name of the user that has sent the message (e.g. Bob)
                 // @param message: Contents of the sent message (e.g. "Hello!")
-                virtual void Message(const string& roomId /* @index */, const string& user, const string& message) = 0;
+                virtual void Message(const string& roomId /* @index:deprecated */, const string& user, const string& message) = 0;
             };
 
             // @brief Joins a messaging room
