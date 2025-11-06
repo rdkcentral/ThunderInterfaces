@@ -28,6 +28,7 @@ find_package(CompileSettingsDebug REQUIRED)
 find_package(ProxyStubGenerator REQUIRED)
 find_package(${NAMESPACE}Core REQUIRED)
 find_package(${NAMESPACE}COM REQUIRED)
+find_package(${NAMESPACE}Messaging REQUIRED)
 
 set(Target ${NAMESPACE}${PROJECT_NAME})
 
@@ -54,6 +55,7 @@ target_link_libraries(${Target}
         PRIVATE
           ${NAMESPACE}Core::${NAMESPACE}Core
           ${NAMESPACE}COM::${NAMESPACE}COM
+          ${NAMESPACE}Messaging::${NAMESPACE}Messaging
           CompileSettingsDebug::CompileSettingsDebug
         )
 
