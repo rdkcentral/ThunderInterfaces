@@ -65,7 +65,9 @@ namespace Example {
         ID_SIMPLECUSTOMOBJECTS                       = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x030,
         ID_ACCESSORY                                 = ID_SIMPLECUSTOMOBJECTS + 1,
         ID_CUSTOM_NOTIFICATION                       = ID_SIMPLECUSTOMOBJECTS + 2,
-        
+
+        ID_CUSTOMERRORCODE                           = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x040
+
     };
 }
 }
