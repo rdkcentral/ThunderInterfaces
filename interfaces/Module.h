@@ -27,10 +27,10 @@
 
 // These are interfaces offered by Thunder and used in the Plugins. Make them
 // available on interfaces that are exposed cross plugins.
-#include <plugins/IPlugin.h>
-#include <plugins/ISubSystem.h>
-#include <plugins/IShell.h>
-#include <plugins/IStateControl.h>
+#include <interfaces/IPlugin.h>
+#include <interfaces/ISubSystem.h>
+#include <interfaces/IShell.h>
+#include <interfaces/IStateControl.h>
 
 // All identifiers to identify an interface are allocated in this same directory
 // in the file calls Ids.h, please extend it with your requried interface number
