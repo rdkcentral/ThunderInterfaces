@@ -30,7 +30,7 @@ namespace Example {
 
         enum { ID = ID_CUSTOMERRORCODE};
 
-        virtual Core::hresult TriggerCustomError(const int32_t errorcode) const = 0; // note: uin24_t would have been a better match, but as we also want to test overflow errors int32_t is used
+        virtual Core::hresult TriggerCustomError(const int32_t errorcode) const = 0; // note: uin24_t would have been a better match, but as we also want to test overflow errors int32_t is used (otherwise generated code will already block the call)
         virtual Core::hresult TriggerNonCustomError(const uint32_t errorcode) const = 0;
     };
 
