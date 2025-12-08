@@ -31,3 +31,5 @@
 #include <plugins/IStateControl.h>
 
 #include "ExampleIds.h"
+
+// @insert "ExampleIds.h"
