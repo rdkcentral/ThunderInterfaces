@@ -23,7 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp" />
-    <ClCompile Include="proxystubs\ProxyStubsMetadata.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_AmazonPrime.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Application.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_AVNClient.cpp" />
