@@ -311,6 +311,11 @@
         "technicolor",
         "Amlogic_Inc",
         "raspberrypi_org",
+        "realtek",
+        "Skyworth",
+        "RDKCommonPort",
+        "BRCMREF",
+        "SAGEMCOM",
         "Pioneer"
       ],
       "description": "Device manufacturer",
@@ -350,7 +355,16 @@
         "XUSHTC11MWR",
         "XUSPTC11MWR",
         "XUSHTB11MWR",
-        "PITU11MWR"
+        "PITU11MWR",
+        "HP44H",
+        "AH212",
+        "AT301",
+        "BLADE",
+        "REALTEKHANK",
+        "M39372180ZBSTB",
+        "BCM972180HB",
+        "BRCMREF",
+        "BCM972126OTT"
       ],
       "description": "Device model number or SKU",
       "example": "PX051AEI"
