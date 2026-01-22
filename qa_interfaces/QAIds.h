@@ -74,8 +74,10 @@ namespace QualityAssurance {
         ID_TESTKEEP                                  = ID_TESTTEXTOPTIONS + 4,
         ID_TESTKEEP_NOTIFICATION                     = ID_TESTTEXTOPTIONS + 5,
         ID_TESTCUSTOM                                = ID_TESTTEXTOPTIONS + 6,
-        ID_TESTCUSTOM_NOTIFICATION                   = ID_TESTTEXTOPTIONS + 7
+        ID_TESTCUSTOM_NOTIFICATION                   = ID_TESTTEXTOPTIONS + 7,
 
+        ID_TESTCHANNELCLOSED                        = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x040,
+        ID_TESTCHANNELCLOSED_CALLBACK               = ID_TESTCHANNELCLOSED + 1
     };
 }
 }
