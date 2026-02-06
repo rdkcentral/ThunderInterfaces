@@ -54,7 +54,7 @@ namespace Exchange {
             // @param origin: The state the device is transitioning from (e.g. ActiveStandby)
             // @param destination: The state the device is transitioning to (e.g. SuspendToRAM)
             // @param phase: The phase of the transition (e.g. After)
-            virtual Core::hresult StateChange(const PCState origin, const PCState destination, const PCPhase phase) = 0;
+            virtual void StateChange(const PCState origin, const PCState destination, const PCPhase phase) = 0;
         };
 
         virtual Core::hresult Register(INotification* const sink) = 0;
