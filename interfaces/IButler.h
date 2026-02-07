@@ -20,7 +20,7 @@
 #pragma once
 
 #include "Module.h"
-#include <plugins/IShell.h>
+#include <interfaces/IShell.h>
 #include <interfaces/IValuePoint.h>
 
 // @stubgen:include "IValuePoint.h"
