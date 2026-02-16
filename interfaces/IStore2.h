@@ -48,7 +48,7 @@ namespace Exchange {
         };
 
         virtual uint32_t Register(Exchange::IStore2::INotification* notification) = 0;
-        virtual uint32_t Unregister(Exchange::IStore2::INotification* notification) = 0;
+        virtual uint32_t Unregister(const Exchange::IStore2::INotification* notification) = 0;
 
         // @alt setValue
         virtual uint32_t SetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value, const uint32_t ttl) = 0;
