@@ -38,7 +38,7 @@ namespace Exchange {
         };
 
         virtual void RegisterEvents(INotification* sink) = 0;
-        virtual void UnregisterEvents(INotification* sink) = 0;
+        virtual void UnregisterEvents(const INotification* sink) = 0;
     };
 }
 }

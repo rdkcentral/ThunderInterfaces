@@ -66,7 +66,7 @@ namespace Exchange {
         ~ITextToSpeech() override = default;
 
         virtual void Register(ITextToSpeech::INotification* sink) = 0;
-        virtual void Unregister(ITextToSpeech::INotification* sink) = 0;
+        virtual void Unregister(const ITextToSpeech::INotification* sink) = 0;
         
         // @property
         // @brief Query the status/enable tts

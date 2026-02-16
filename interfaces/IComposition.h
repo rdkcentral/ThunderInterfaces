@@ -110,7 +110,7 @@ namespace Exchange {
         };
 
         virtual void Register(IComposition::INotification* notification) = 0;
-        virtual void Unregister(IComposition::INotification* notification) = 0;
+        virtual void Unregister(const IComposition::INotification* notification) = 0;
 
         virtual uint32_t Configure(PluginHost::IShell* service) = 0;
 

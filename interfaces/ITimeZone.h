@@ -39,7 +39,7 @@ namespace Exchange {
       };
 
       virtual uint32_t Register(ITimeZone::INotification* sink) = 0;
-      virtual uint32_t Unregister(ITimeZone::INotification* sink) = 0;
+      virtual uint32_t Unregister(const ITimeZone::INotification* sink) = 0;
 
       // @property
       // @brief TimeZone for system

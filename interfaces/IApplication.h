@@ -79,7 +79,7 @@ namespace Exchange {
         };
 
         virtual void Register(INotification* sink) = 0;
-        virtual void Unregister(INotification* sink) = 0;
+        virtual void Unregister(const INotification* sink) = 0;
 
         // @brief Resets application data
         // @param type: Type of reset to perform

@@ -64,7 +64,7 @@ namespace Thunder {
                 virtual void TearDown() = 0;
 
                 virtual void Register(ITest* test) = 0;
-                virtual void Unregister(ITest* test) = 0;
+                virtual void Unregister(const ITest* test) = 0;
                 virtual ITest::IIterator* Tests() const = 0;
                 virtual ITest* Test(const string& name) const = 0;
             };

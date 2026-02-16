@@ -75,7 +75,7 @@ namespace Exchange {
         };
 
         virtual uint32_t Register(INotification* notification) = 0;
-        virtual uint32_t Unregister(INotification* notification) = 0;
+        virtual uint32_t Unregister(const INotification* notification) = 0;
 
         // @alt openDrmSession
         // @param clientId client that establishes the playback session

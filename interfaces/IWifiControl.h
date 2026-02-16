@@ -95,7 +95,7 @@ namespace Exchange {
 
         // Pushing notifications to interested sinks
         virtual uint32_t Register(IWifiControl::INotification* sink) = 0;
-        virtual uint32_t Unregister(IWifiControl::INotification* sink) = 0;
+        virtual uint32_t Unregister(const IWifiControl::INotification* sink) = 0;
 
         // @property
         // @brief Provides available networks information

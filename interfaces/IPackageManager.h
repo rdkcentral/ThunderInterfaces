@@ -190,7 +190,7 @@ namespace Exchange {
         };
 
         virtual uint32_t Register(IPackageManager::INotification* notification) = 0;
-        virtual uint32_t Unregister(IPackageManager::INotification* notification) = 0;
+        virtual uint32_t Unregister(const IPackageManager::INotification* notification) = 0;
 
         struct EXTERNAL PackageKey {            
             string id      /* @brief Unique identifier of the package */;
