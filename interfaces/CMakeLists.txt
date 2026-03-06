@@ -60,7 +60,7 @@ target_link_libraries(${Target}
         )
 
 set_target_properties(${Target} PROPERTIES
-        CXX_STANDARD 11
+        CXX_STANDARD ${CXX_STD}
         CXX_STANDARD_REQUIRED YES
         FRAMEWORK FALSE
         SOVERSION ${PROJECT_VERSION_MAJOR}
