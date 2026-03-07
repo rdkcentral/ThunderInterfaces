@@ -42,7 +42,7 @@ namespace Exchange {
             };
 
             virtual void Register(INotification* notification) = 0;
-            virtual void Unregister(INotification* notification) = 0;
+            virtual void Unregister(const INotification* notification) = 0;
 
             virtual uint32_t Synchronize() = 0;
             virtual void Cancel() = 0;

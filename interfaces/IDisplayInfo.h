@@ -68,7 +68,7 @@ namespace Exchange {
         };
 
         virtual uint32_t Register(INotification*) = 0;
-        virtual uint32_t Unregister(INotification*) = 0;
+        virtual uint32_t Unregister(const INotification*) = 0;
 
         // @property
         // @brief Current audio passthrough status on HDMI

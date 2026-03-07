@@ -35,7 +35,7 @@ namespace Exchange {
         };
 
         virtual void Register(INotification* notification) = 0;
-        virtual void Unregister(INotification* notification) = 0;
+        virtual void Unregister(const INotification* notification) = 0;
 
         virtual uint32_t Start(const uint32_t id, const string& name) = 0;
         virtual uint32_t Stop() = 0;

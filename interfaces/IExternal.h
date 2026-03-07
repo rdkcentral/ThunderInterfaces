@@ -45,7 +45,7 @@ namespace Exchange {
 
             // Pushing notifications to interested sinks
             virtual void Register(ICatalog::INotification* sink) = 0;
-            virtual void Unregister(ICatalog::INotification* sink) = 0;
+            virtual void Unregister(const ICatalog::INotification* sink) = 0;
             virtual IExternal* Resource(const uint32_t id) = 0;
         };
 
@@ -61,7 +61,7 @@ namespace Exchange {
 
         // Pushing notifications to interested sinks
         virtual void Register(INotification* sink) = 0;
-        virtual void Unregister(INotification* sink) = 0;
+        virtual void Unregister(const INotification* sink) = 0;
 
         // Element require communication, so might fail, report our condition
         virtual condition Condition() const = 0;

@@ -63,7 +63,7 @@ namespace Exchange {
 
         // Pushing notifications to interested sinks
         virtual uint32_t Register(INetworkControl::INotification* sink) = 0;
-        virtual uint32_t Unregister(INetworkControl::INotification* sink) = 0;
+        virtual uint32_t Unregister(const INetworkControl::INotification* sink) = 0;
 
         // @property
         // @brief Currently available interfaces

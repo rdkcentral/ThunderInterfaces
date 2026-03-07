@@ -141,7 +141,7 @@ namespace Exchange {
         };
 
         virtual uint32_t Register(ILISA::INotification* notification) = 0;
-        virtual uint32_t Unregister(ILISA::INotification* notification) = 0;
+        virtual uint32_t Unregister(const ILISA::INotification* notification) = 0;
         virtual uint32_t Configure(const std::string& config) = 0;
 
         struct EXTERNAL IAppVersion : virtual public Core::IUnknown {

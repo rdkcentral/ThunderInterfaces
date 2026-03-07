@@ -42,7 +42,7 @@ namespace Exchange {
         };
 
         virtual void Register(IBrowser::INotification* sink) = 0;
-        virtual void Unregister(IBrowser::INotification* sink) = 0;
+        virtual void Unregister(const IBrowser::INotification* sink) = 0;
 
         // Change the currently displayed URL by the browser.
         virtual void SetURL(const string& URL) = 0;
@@ -96,7 +96,7 @@ namespace Exchange {
         };
 
         virtual void Register(INotification* sink) = 0;
-        virtual void Unregister(INotification* sink) = 0;
+        virtual void Unregister(const INotification* sink) = 0;
 
         // @property
         // @brief Page loaded in the browser
@@ -264,7 +264,7 @@ namespace Exchange {
         };
 
         virtual void Register(INotification* sink) = 0;
-        virtual void Unregister(INotification* sink) = 0;
+        virtual void Unregister(const INotification* sink) = 0;
 
         // @property
         // @brief Get/Set CookieJar config details

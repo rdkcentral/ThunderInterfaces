@@ -44,7 +44,7 @@ namespace Exchange {
         ~IInputPin() override = default;
 
         virtual void Register(IInputPin::INotification* sink) = 0;
-        virtual void Unregister(IInputPin::INotification* sink) = 0;
+        virtual void Unregister(const IInputPin::INotification* sink) = 0;
 
         virtual void AddMarker(const uint32_t marker) = 0;
         virtual void RemoveMarker(const uint32_t marker) = 0;

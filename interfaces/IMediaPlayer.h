@@ -50,7 +50,7 @@ struct IMediaPlayer : virtual public Core::IUnknown {
         virtual uint32_t InitConfig(const string& configurationJson) = 0;
         virtual uint32_t InitDRMConfig(const string& configurationJson) = 0;
         virtual uint32_t Register(INotification* notification) = 0;
-        virtual uint32_t Unregister(INotification* notification) = 0;
+        virtual uint32_t Unregister(const INotification* notification) = 0;
     };
 
     ~IMediaPlayer() override = default;

@@ -38,7 +38,7 @@ namespace Exchange {
 
         virtual uint32_t Configure(PluginHost::IShell* service) = 0;
         virtual void Register(INotification* sink) = 0;
-        virtual void Unregister(INotification* sink) = 0;
+        virtual void Unregister(const INotification* sink) = 0;
 
         virtual uint32_t Open(const string &input, string &output /* @out */) = 0;
         virtual uint32_t Play(const string &input, string &output /* @out */) = 0;

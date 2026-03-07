@@ -50,7 +50,7 @@ namespace Exchange {
         virtual bool IsParentalLocked(const string&) = 0;
 
         virtual void Register(IGuide::INotification*) = 0;
-        virtual void Unregister(IGuide::INotification*) = 0;
+        virtual void Unregister(const IGuide::INotification*) = 0;
     };
 }
 }

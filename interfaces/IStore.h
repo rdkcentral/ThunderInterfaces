@@ -35,7 +35,7 @@ struct EXTERNAL IStore : virtual public Core::IUnknown {
     };
 
     virtual uint32_t Register(Exchange::IStore::INotification *notification) = 0;
-    virtual uint32_t Unregister(Exchange::IStore::INotification *notification) = 0;
+    virtual uint32_t Unregister(const Exchange::IStore::INotification *notification) = 0;
     virtual uint32_t SetValue(const string &ns, const string &key, const string &value) = 0;
     virtual uint32_t GetValue(const string &ns, const string &key, string &value /* @out */) = 0;
     virtual uint32_t DeleteKey(const string &ns, const string &key) = 0;

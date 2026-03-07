@@ -41,7 +41,7 @@ namespace Exchange {
         };
 
         virtual void Register(INetflix::INotification* netflix) = 0;
-        virtual void Unregister(INetflix::INotification* netflix) = 0;
+        virtual void Unregister(const INetflix::INotification* netflix) = 0;
 
         virtual void SystemCommand(const string& command) = 0;
     };

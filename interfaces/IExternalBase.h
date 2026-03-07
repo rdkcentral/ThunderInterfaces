@@ -186,7 +186,7 @@ POP_WARNING()
 
             _adminLock.Unlock();
         }
-        void Unregister(IExternal::INotification* sink) override
+        void Unregister(const IExternal::INotification* sink) override
         {
 
             _adminLock.Lock();

@@ -38,7 +38,7 @@ namespace Exchange {
         };
 
         virtual void Register(IAmazonPrime::INotification* ignition) = 0;
-        virtual void Unregister(IAmazonPrime::INotification* ignition) = 0;
+        virtual void Unregister(const IAmazonPrime::INotification* ignition) = 0;
 
         // @brief Send a message over the message bus to ignition
         // @param messsage: The message to send according the amazon spec found
