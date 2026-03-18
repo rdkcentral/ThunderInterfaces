@@ -43,6 +43,7 @@ ProxyStubGenerator(INPUT "${EXAMPLE_INTERFACES_HEADERS}" OUTDIR "${CMAKE_CURRENT
 list(APPEND EXAMPLE_INTERFACES_HEADERS Module.h ExampleIds.h)
 
 file(GLOB EXAMPLE_PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/example_generated/ProxyStubs*.cpp")
+
 add_library(${Target} SHARED
         Module.cpp
         ${EXAMPLE_PROXY_STUB_SOURCES}
