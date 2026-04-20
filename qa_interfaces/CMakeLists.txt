@@ -38,7 +38,7 @@ endif()
 separate_arguments(INTERFACES_PATTERNS)
 file(GLOB QA_INTERFACES_HEADERS ${INTERFACES_PATTERNS})
 
-ProxyStubGenerator(NAMESPACE "Thunder::QualityAssurance" INPUT "${QA_INTERFACES_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
+ProxyStubGenerator(INPUT "${QA_INTERFACES_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/qa_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
 list(APPEND QA_INTERFACES_HEADERS Module.h QAIds.h)
 
@@ -58,7 +58,7 @@ target_link_libraries(${Target}
         )
 
 set_target_properties(${Target} PROPERTIES
-        CXX_STANDARD 11
+        CXX_STANDARD ${CXX_STD}
         CXX_STANDARD_REQUIRED YES
         FRAMEWORK FALSE
         SOVERSION ${PROJECT_VERSION_MAJOR}
