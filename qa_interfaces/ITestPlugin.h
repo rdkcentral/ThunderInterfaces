@@ -28,17 +28,30 @@ namespace QualityAssurance {
     struct EXTERNAL ITestPlugin : virtual public Core::IUnknown {
         enum { ID = ID_TESTPLUGIN };
 
+        // @event
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
+            enum { ID = ID_TESTPLUGIN_NOTIFICATION };
+            ~INotification() override = default;
+
+            // @brief Signals that a greeting was generated
+            // @param message The greeting message
+            virtual void OnGreeting(const string& message) = 0;
+        };
+
         ~ITestPlugin() override = default;
+
+        virtual Core::hresult Register(ITestPlugin::INotification* notification) = 0;
+        virtual Core::hresult Unregister(ITestPlugin::INotification* notification) = 0;
 
         // @brief Returns the input string unchanged
         // @param input The input string to echo back
         // @param output The echoed output string
-        virtual uint32_t Echo(const string& input, string& output /* @out */) = 0;
+        virtual Core::hresult Echo(const string& input, string& output /* @out */) = 0;
 
         // @brief Returns a greeting message
         // @param name The name to greet (empty defaults to "World")
         // @param message The greeting message
-        virtual uint32_t Greet(const string& name, string& message /* @out */) = 0;
+        virtual Core::hresult Greet(const string& name, string& message /* @out */) = 0;
     };
 
 } // namespace QualityAssurance
