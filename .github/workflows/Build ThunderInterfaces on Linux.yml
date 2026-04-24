@@ -16,7 +16,7 @@ jobs:
 
   ThunderInterfaces:
     needs: Thunder
-    uses: rdkcentral/ThunderInterfaces/.github/workflows/Linux build template.yml@master
+    uses: ./.github/workflows/Linux build template.yml
 
   ThunderClientLibraries:
     needs: ThunderInterfaces

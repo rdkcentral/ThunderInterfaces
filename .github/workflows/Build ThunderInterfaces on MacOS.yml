@@ -16,7 +16,7 @@ jobs:
 
   ThunderInterfaces_MacOS:
     needs: Thunder_MacOS
-    uses: rdkcentral/ThunderInterfaces/.github/workflows/MacOS build template.yml@master
+    uses: ./.github/workflows/MacOS build template.yml
 
   ThunderClientLibraries_MacOS:
     needs: ThunderInterfaces_MacOS

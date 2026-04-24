@@ -477,7 +477,8 @@
       "summary": "Notifies of a key press/release action.",
       "id": {
         "name": "key code",
-        "example": "42"
+        "example": "42",
+        "deprecated": true
       },
       "params": {
         "type": "object",

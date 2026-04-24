@@ -21,7 +21,6 @@
 
 #include "Module.h"
 
-#include <messaging/messaging.h>
 #include <com/com.h>
 
 #if defined(__WINDOWS__) 

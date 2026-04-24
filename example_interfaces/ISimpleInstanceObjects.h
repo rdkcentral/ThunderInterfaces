@@ -57,11 +57,11 @@ namespace Example {
 
                 // @statuslistener
                 // @brief Signals pin state changes
-                virtual void PinChanged(const uint8_t pin /* @index */, const bool high) = 0;
+                virtual void PinChanged(const uint8_t pin, const bool high) = 0;
             };
 
-            virtual Core::hresult Register(INotification* const notification) = 0;
-            virtual Core::hresult Unregister(const INotification* const notificaiton) = 0;
+            virtual Core::hresult Register(INotification* const notification, const Core::OptionalType<uint8_t>& pin /* @index */) = 0;
+            virtual Core::hresult Unregister(const INotification* const notificaiton, const Core::OptionalType<uint8_t>& pin /* @index */) = 0;
 
             // @property
             // @brief Name of the device

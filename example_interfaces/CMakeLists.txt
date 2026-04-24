@@ -38,11 +38,12 @@ endif()
 separate_arguments(INTERFACES_PATTERNS)
 file(GLOB EXAMPLE_INTERFACES_HEADERS ${INTERFACES_PATTERNS})
 
-ProxyStubGenerator(NAMESPACE "Thunder::Example" INPUT "${EXAMPLE_INTERFACE_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/example_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
+ProxyStubGenerator(INPUT "${EXAMPLE_INTERFACES_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINARY_DIR}/example_generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH})
 
 list(APPEND EXAMPLE_INTERFACES_HEADERS Module.h ExampleIds.h)
 
 file(GLOB EXAMPLE_PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/example_generated/ProxyStubs*.cpp")
+
 add_library(${Target} SHARED
         Module.cpp
         ${EXAMPLE_PROXY_STUB_SOURCES}
@@ -58,7 +59,7 @@ target_link_libraries(${Target}
         )
         
 set_target_properties(${Target} PROPERTIES
-        CXX_STANDARD 11
+        CXX_STANDARD ${CXX_STD}
         CXX_STANDARD_REQUIRED YES
         FRAMEWORK FALSE
         SOVERSION ${PROJECT_VERSION_MAJOR}
