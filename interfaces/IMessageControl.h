@@ -58,6 +58,10 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
     // @property
     // @brief Retrieves a list of current message controls for a specific module
     virtual Core::hresult Controls(const string& module /* @index */, IControlIterator*& control /* @out */) const = 0;
+
+    // @property
+    // @brief Retrieves a list of all current message controls
+    virtual Core::hresult Controls(IControlIterator*& controls /* @out */) const = 0;
   };
 
 } // namespace Exchange
