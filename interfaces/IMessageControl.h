@@ -28,7 +28,7 @@ namespace WPEFramework {
 
 namespace Exchange {
 
-// @json 1.0.0 @text:legacy_lowercase
+// @json 1.0.0
 struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
     enum { ID = ID_MESSAGE_CONTROL };
