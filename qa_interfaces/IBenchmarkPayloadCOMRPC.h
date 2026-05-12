@@ -66,7 +66,7 @@ namespace Thunder {
 
         virtual uint32_t SendReceiveSampleData(const SampleData &input, SampleData &output /* @out */) const = 0;
 
-        virtual uint32_t SendReceiveBuffer(uint16_t &bufferSize /* @inout */, uint8_t buffer[] /* @length:bufferSize @inout */) const = 0;
+        virtual uint32_t SendReceiveBuffer(uint16_t& bufferSize /* @inout */, uint8_t buffer[] /* @length:bufferSize @inout */) const = 0;
 
         virtual uint32_t Add(const uint32_t a, const uint32_t b, uint32_t &result /* @out */) const = 0;
 
