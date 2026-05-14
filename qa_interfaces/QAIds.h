@@ -81,7 +81,7 @@ namespace QualityAssurance {
         ID_BENCHMARK_RESULT_ITERATOR                 = ID_BENCHMARK + 2,
 
         ID_BENCHMARK_PAYLOAD                         = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x050,
-        ID_PAYLOADTYPE_ITERATOR                      = ID_BENCHMARK_PAYLOAD + 1,
+        ID_BENCHMARK_PAYLOADTYPE_ITERATOR            = ID_BENCHMARK_PAYLOAD + 1,
     };
 }
 }
