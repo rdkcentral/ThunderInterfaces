@@ -6,13 +6,13 @@ permissions:
 on:
   workflow_dispatch:
   push:
-    branches: ["development/actions-r4_4"] # TO-DO: change to R4_4 when development is over
+    branches: ["R4_4"]
   pull_request:
     branches: ["R4_4"]
 
 jobs:
   Thunder:
-    uses: rdkcentral/Thunder/.github/workflows/Linux build template.yml@development/actions-r4_4 # TO-DO: change to R4_4 when development is over
+    uses: rdkcentral/Thunder/.github/workflows/Linux build template.yml@R4_4
 
   ThunderInterfaces:
     needs: Thunder
