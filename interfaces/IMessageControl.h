@@ -60,7 +60,7 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
     virtual Core::hresult Controls(const string& module /* @index @optional */, IControlIterator*& control /* @out */) const = 0;
 
     // @json:omit
-    virtual Core::hresult Controls(IControlIterator*& controls) const = 0;
+    virtual Core::hresult Controls(IControlIterator*& controls /* @out */) const = 0;
   };
 
 } // namespace Exchange
