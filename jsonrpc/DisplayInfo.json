@@ -58,6 +58,45 @@
             "type": "string",
             "enum": [ "HDROff", "HDR10", "HDR10Plus", "HDRDolbyVision", "HDRTechnicolor" ],
             "example": "HDROff"
+          },
+          "ishdcpcompliant": {
+            "description": "The status 'HDCP compliant' will return true if the display device is connected and HDCP is in an authenticated state. The internal display is intended for sink devices (TVs), while the connected display device is for streaming source devices (STBs).",
+            "type": "boolean",
+            "example": true
+          },
+          "ishdcpenabled": {
+            "description": "This status indicates whether HDCP is enabled in the software stack. Typically, HDCP is enabled by default on all devices but can be disabled by setting a software flag.",
+            "type": "boolean",
+            "example": true
+          },
+          "ishdcpsupported": {
+            "description": "This field indicates the HDCP support status, serving as a static indicator for HDCP compatibility. HDCP support is enabled by default on all RDK devices, ensuring compatibility with protected content.",
+            "type": "boolean",
+            "example": true
+          },
+          "hdcpreason": {
+            "description": "Gets hdcp status reason as integer status code",
+            "type": "number",
+            "size": 32,
+            "example": 0
+          },
+          "supportedhdcpversion": {
+            "description": "The supported HDCP version refers to the HDCP version of the host device.",
+            "type": "string",
+            "enum": [ "Unencrypted", "HDCP1x", "HDCP2x"],
+            "example": "HDCP1x"
+          },
+          "displayhdcpversion": {
+            "description": "The 'Display HDCP version' refers to different HDCP versions depending on the device context: for the source device (STB), it indicates the HDCP version of the connected display, whereas for the sink device (TV), it will be the same HDCP version of the host device",
+            "type": "string",
+            "enum": [ "Unencrypted", "HDCP1x", "HDCP2x"],
+            "example": "HDCP1x"
+          },
+          "currenthdcpversion": {
+            "description": "The 'Current HDCP version' refers to the HDCP version determined based on the capabilities of both the host device and the connected display.",
+            "type": "string",
+            "enum": [ "Unencrypted", "HDCP1x", "HDCP2x"],
+            "example": "HDCP1x"
           }
         },
         "required": [
@@ -68,7 +107,14 @@
           "width",
           "height",
           "hdcpprotection",
-          "hdrtype"
+          "hdrtype",
+          "ishdcpcompliant",
+          "ishdcpenabled",
+          "ishdcpsupported",
+          "hdcpreason",
+          "supportedhdcpversion",
+          "receiverhdcpversion",
+          "currenthdcpversion"
         ]
       }
     }
