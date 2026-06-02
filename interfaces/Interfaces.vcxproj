@@ -68,7 +68,6 @@
     <ClCompile Include="proxystubs\ProxyStubs_Performance.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_PlayerInfo.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_PlayGiga.cpp" />
-    <ClCompile Include="proxystubs\ProxyStubs_PluginAsyncStateControl.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Power.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Provisioning.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_RemoteControl.cpp" />
@@ -141,7 +140,6 @@
     <ClInclude Include="IPackager.h" />
     <ClInclude Include="IPerformance.h" />
     <ClInclude Include="IPlayGiga.h" />
-    <ClInclude Include="IPluginAsyncStateControl.h" />
     <ClInclude Include="IPower.h" />
     <ClInclude Include="IProvisioning.h" />
     <ClInclude Include="IRPCLink.h" />
