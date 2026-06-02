@@ -26,7 +26,7 @@
 namespace Thunder {
 namespace QualityAssurance {
 
-    // @json 1.0.0 @text:legacy_lowercase
+    // @json 2.0.0
     struct EXTERNAL IBenchmark : virtual public Core::IUnknown {
         enum { ID = ID_BENCHMARK };
 
@@ -47,6 +47,12 @@ namespace QualityAssurance {
         };
 
 
+        enum FailureReason : uint8_t {
+            LATENCY_THRESHOLD_EXCEEDED,
+            MEMORY_THRESHOLD_EXCEEDED,
+            LATENCY_AND_MEMORY_THRESHOLD_EXCEEDED
+        };
+
         struct BenchmarkResult {
             string apiName;
             uint32_t iterations;
@@ -54,8 +60,8 @@ namespace QualityAssurance {
             RoundTripStats roundTrip;
             MemoryStats memory;
 
-            bool passed;            // true if within configured thresholds
-            string failureReason;   // empty if passed, describes which threshold was exceeded
+            bool passed;
+            Core::OptionalType<FailureReason> failureReason;
         };
 
         typedef RPC::IIteratorType<BenchmarkResult, ID_BENCHMARK_RESULT_ITERATOR> IBenchmarkResultIterator;
@@ -70,10 +76,15 @@ namespace QualityAssurance {
         // @param report: Iterator over the per-method benchmark results
         virtual Core::hresult CollectData(IBenchmarkResultIterator*& report /* @out */) const = 0;
 
-        // @brief Set pass/fail thresholds for benchmark results
-        // @param maxLatencyDeviationPct: Maximum allowed deviation in avg latency compared to first-run baseline, in millipercent (1000 = 1%, 0 = no latency check)
-        // @param maxMemoryGrowthBytes: Maximum allowed RSS growth in bytes per method (0 = no memory check)
-        virtual Core::hresult SetThreshold(const uint32_t maxLatencyDeviationPct, const uint64_t maxMemoryGrowthBytes) = 0;
+        // @property
+        // @brief Maximum allowed deviation in avg latency compared to first-run baseline, in millipercent (1000 = 1%, 0 = no latency check)
+        virtual Core::hresult LatencyThreshold(const uint32_t maxLatencyDeviationPct) = 0;
+        virtual Core::hresult LatencyThreshold(uint32_t& maxLatencyDeviationPct /* @out */) const = 0;
+
+        // @property
+        // @brief Maximum allowed RSS growth in bytes per method (0 = no memory check)
+        virtual Core::hresult MemoryThreshold(const uint64_t maxMemoryGrowthBytes) = 0;
+        virtual Core::hresult MemoryThreshold(uint64_t& maxMemoryGrowthBytes /* @out */) const = 0;
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
