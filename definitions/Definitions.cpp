@@ -55,7 +55,7 @@
 #include <interfaces/IMath.h>
 #include <interfaces/IMemory.h>
 #include <interfaces/IMessenger.h>
-#include <interfaces/IMessageControl.h>
+#include <interfaces/IMessagingControl.h>
 #include <interfaces/INetworkControl.h>
 #include <interfaces/INetworkTools.h>
 #include <interfaces/INetflix.h>
