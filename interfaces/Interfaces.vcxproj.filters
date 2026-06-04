@@ -110,7 +110,7 @@
     <ClInclude Include="ILocationSync.h" />
     <ClInclude Include="IMemory.h" />
     <ClInclude Include="IMemoryMonitor.h" />
-    <ClInclude Include="IMessageControl.h" />
+    <ClInclude Include="IMessagingControl.h" />
     <ClInclude Include="INetflix.h" />
     <ClInclude Include="INetflixSecurity.h" />
     <ClInclude Include="INetworkTools.h" />

@@ -309,8 +309,8 @@ namespace Exchange {
         ID_TIMEZONE                                  = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x420,
         ID_TIMEZONE_NOTIFICATION                     = ID_TIMEZONE + 1,
 
-        ID_MESSAGE_CONTROL                           = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x430,
-        ID_MESSAGE_CONTROL_ITERATOR                  = ID_MESSAGE_CONTROL + 1,
+        ID_MESSAGING_CONTROL                         = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x430,
+        ID_MESSAGING_CONTROL_ITERATOR                = ID_MESSAGING_CONTROL + 1,
 
         ID_STORE                                     = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x440,
         ID_STORE_NOTIFICATION                        = ID_STORE + 1,
@@ -417,6 +417,7 @@ namespace Exchange {
 
         ID_PLUGINASYNCSTATECONTROL = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x5A0,
         ID_PLUGINASYNCSTATECONTROL_ACTIVATIONCALLBACK = ID_PLUGINASYNCSTATECONTROL + 1,
+
     };
 }
 }

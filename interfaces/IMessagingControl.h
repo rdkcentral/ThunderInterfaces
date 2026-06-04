@@ -29,9 +29,9 @@ namespace Thunder {
 namespace Exchange {
 
 // @json 1.0.0 @text:legacy_lowercase
-struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
+struct EXTERNAL IMessagingControl : virtual public Core::IUnknown {
 
-    enum { ID = ID_MESSAGE_CONTROL };
+    enum { ID = ID_MESSAGING_CONTROL };
     using messagetype = Core::Messaging::Metadata::type;
 
     struct Control {
@@ -41,7 +41,7 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
         bool enabled /* @brief Denotes if the control is enabled (true) or disabled (false) */;
     };
 
-    using IControlIterator = RPC::IIteratorType<Control, ID_MESSAGE_CONTROL_ITERATOR>;
+    using IControlIterator = RPC::IIteratorType<Control, ID_MESSAGING_CONTROL_ITERATOR>;
     using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
     // @brief Enables/disables a message control
