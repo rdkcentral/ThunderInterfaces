@@ -35,7 +35,7 @@
     <ClCompile Include="proxystubs\ProxyStubs_Math.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_MediaPlayer.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Memory.cpp" />
-    <ClCompile Include="proxystubs\ProxyStubs_MessageControl.cpp" />
+    <ClCompile Include="proxystubs\ProxyStubs_MessagingControl.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Messenger.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Netflix.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_NetflixSecurity.cpp" />
