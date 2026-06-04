@@ -58,7 +58,7 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_MemoryMonitor.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_MessageControl.cpp">
+    <ClCompile Include="..\interfaces\json\JsonEnum_MessagingControl.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Messenger.cpp">
@@ -176,7 +176,7 @@
     <CustomBuild Include="..\interfaces\IMemoryMonitor.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\interfaces\IMessageControl.h">
+    <CustomBuild Include="..\interfaces\IMessagingControl.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IMessenger.h">
