@@ -32,10 +32,10 @@ namespace Exchange {
 struct EXTERNAL IMessagingControl : virtual public Core::IUnknown {
 
     enum { ID = ID_MESSAGING_CONTROL };
-    using messagingtype = Core::Messaging::Metadata::type;
+    using messagetype = Core::Messaging::Metadata::type;
 
     struct Control {
-        messagingtype type /* @brief Type of message */;
+        messagetype type /* @brief Type of message */;
         string category /* @brief Name of the message category (e.g. Information) */;
         string module /* @brief Name of the module the message is originating from (e.g. Plugin_BluetoothControl) */;
         bool enabled /* @brief Denotes if the control is enabled (true) or disabled (false) */;
@@ -44,19 +44,19 @@ struct EXTERNAL IMessagingControl : virtual public Core::IUnknown {
     using IControlIterator = RPC::IIteratorType<Control, ID_MESSAGING_CONTROL_ITERATOR>;
     using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
-    // @brief Enables/disables a messaging control
+    // @brief Enables/disables a message control
     // @param type: Message type
     // @param module: Name of the module the message is originating from (e.g. Plugin_BluetoothControl)
     // @param category: Name of the message category (e.g. Information)
     // @param enabled: Denotes if control should be enabled (true) or disabled (false)
-    virtual Core::hresult Enable(const messagingtype type, const string& category, const string& module, const bool enabled) = 0;
+    virtual Core::hresult Enable(const messagetype type, const string& category, const string& module, const bool enabled) = 0;
 
     // @property
-    // @brief Retrieves a list of current messaging modules
+    // @brief Retrieves a list of current message modules
     virtual Core::hresult Modules(IStringIterator*& modules /* @out */) const = 0;
 
     // @property
-    // @brief Retrieves a list of current messaging controls for a specific module
+    // @brief Retrieves a list of current message controls for a specific module
     virtual Core::hresult Controls(const string& module /* @index */, IControlIterator*& control /* @out */) const = 0;
   };
 
