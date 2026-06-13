@@ -76,9 +76,6 @@
     <ClCompile Include="..\interfaces\json\JsonEnum_OpenCDM.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\interfaces\json\JsonEnum_PerformanceMonitor.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\interfaces\json\JsonEnum_Provisioning.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -224,9 +221,6 @@
     <CustomBuild Include="..\jsonrpc\OCDM.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\jsonrpc\PerformanceMonitor.json">
-      <Filter>JSON Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\jsonrpc\Provisioning.json">
       <Filter>JSON Files</Filter>
     </CustomBuild>
@@ -256,6 +250,9 @@
       <Filter>Interface Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\interfaces\IPluginAsyncStateControl.h">
+      <Filter>Interface Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\interfaces\IPerformance.h">
       <Filter>Interface Files</Filter>
     </CustomBuild>
   </ItemGroup>
