@@ -38,7 +38,7 @@
 #include <interfaces/IDeviceInfo.h>
 #include <interfaces/IDictionary.h>
 #include <interfaces/IDisplayInfo.h>
-#include <interfaces/IDialServer.h>
+#include <interfaces/IDIALServer.h>
 #include <interfaces/IDNSServer.h>
 #include <interfaces/IDolby.h>
 #include <interfaces/IDRM.h>
@@ -50,7 +50,7 @@
 #include <interfaces/IInputSwitch.h>
 #include <interfaces/IIPNetwork.h>
 #include <interfaces/IKeyHandler.h>
-#include <interfaces/ILisa.h>
+#include <interfaces/ILISA.h>
 #include <interfaces/ILanguageTag.h>
 #include <interfaces/IMath.h>
 #include <interfaces/IMemory.h>

@@ -272,7 +272,7 @@
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" --outdir "$(ProjectDir)proxystubs" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)I*.h"</Command>
+      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" --outdir "$(ProjectDir)proxystubs" -I $(ProjectDir) -I $(FrameworkPath) "$(ProjectDir)I*.h"</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Create ProxyStub code</Message>
@@ -304,7 +304,7 @@
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" --outdir "$(ProjectDir)proxystubs" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)I*.h"</Command>
+      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" --outdir "$(ProjectDir)proxystubs" -I $(ProjectDir) -I $(FrameworkPath) "$(ProjectDir)I*.h"</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Create ProxyStub code</Message>
@@ -336,7 +336,7 @@
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" --outdir "$(ProjectDir)proxystubs" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)I*.h"</Command>
+      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" --outdir "$(ProjectDir)proxystubs" -I $(ProjectDir) -I $(FrameworkPath) "$(ProjectDir)I*.h"</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Create ProxyStub code</Message>
@@ -372,7 +372,7 @@
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <PreBuildEvent>
-      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" --outdir "$(ProjectDir)proxystubs" -I $(FrameworkPath) -I $(ProjectDir) "$(ProjectDir)I*.h"</Command>
+      <Command>python "$(ToolPath)\ProxyStubGenerator\StubGenerator.py" --outdir "$(ProjectDir)proxystubs" -I $(ProjectDir) -I $(FrameworkPath) "$(ProjectDir)I*.h"</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Create ProxyStub code</Message>

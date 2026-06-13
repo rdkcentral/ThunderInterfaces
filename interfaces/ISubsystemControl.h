@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-// @stubgen:include <plugins/ISubSystem.h>
+// @stubgen:include <interfaces/ISubSystem.h>
 
 namespace Thunder {
 
