@@ -12,7 +12,6 @@ on:
 
 env:
   definitions: ThunderInterfaces\definitions\definitions.vcxproj
-  devEnv: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.com
   interfaces: ThunderInterfaces\interfaces\Interfaces.vcxproj
   solution: Thunder.sln
 
@@ -76,10 +75,17 @@ jobs:
         
     - name: Build ThunderInterfaces
       shell: cmd
-      run: >
+      run: |
+        for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.CoreEditor -property productPath`) do set "VS_PATH=%%i"
+        if not defined VS_PATH (echo ERROR: Visual Studio not found && exit /b 1)
+        
+        set "devEnv=%VS_PATH:.exe=.com%"
         cd ThunderOnWindows
-        && "%devEnv%" /Build "${{matrix.type}}|x${{matrix.version}}" /Project "%definitions%"  "%solution%"
-        && "%devEnv%" /Build "${{matrix.type}}|x${{matrix.version}}" /Project "%interfaces%"  "%solution%"
+        
+        for %%P in ("%definitions%" "%interfaces%") do (
+          "%devEnv%" /Build "${{matrix.type}}|x${{matrix.version}}" /Project %%P "%solution%"
+          if errorlevel 1 exit /b 1
+        )
 
 # ----- Articats -----
     - name: Tar files
