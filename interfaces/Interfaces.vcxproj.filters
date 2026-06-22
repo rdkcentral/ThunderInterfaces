@@ -6,11 +6,9 @@
     <ClCompile Include="proxystubs\ProxyStubs_Application.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_AVNClient.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_AVSClient.cpp" />
-    <ClCompile Include="proxystubs\ProxyStubs_Bluetooth.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_BluetoothAudio.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Browser.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Butler.cpp" />
-    <ClCompile Include="proxystubs\ProxyStubs_Capture.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Composition.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Configuration.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_ContentDecryption.cpp" />
@@ -28,7 +26,6 @@
     <ClCompile Include="proxystubs\ProxyStubs_Guide.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_InputPin.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_InputSwitch.cpp" />
-    <ClCompile Include="proxystubs\ProxyStubs_IPNetwork.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_KeyHandler.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_LanguageTag.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_LISA.cpp" />
@@ -55,11 +52,9 @@
     <ClCompile Include="proxystubs\ProxyStubs_RtspClient.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_RustBridge.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_ScriptEngine.cpp" />
-    <ClCompile Include="proxystubs\ProxyStubs_SecureShellServer.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Store.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_StoreCache.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_Stream.cpp" />
-    <ClCompile Include="proxystubs\ProxyStubs_SwitchBoard.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_SystemCommands.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_TextToSpeech.cpp" />
     <ClCompile Include="proxystubs\ProxyStubs_TimeSync.cpp" />
