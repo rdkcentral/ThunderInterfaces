@@ -75,12 +75,9 @@ namespace QualityAssurance {
         ID_TESTKEEP_NOTIFICATION                     = ID_TESTTEXTOPTIONS + 5,
         ID_TESTCUSTOM                                = ID_TESTTEXTOPTIONS + 6,
         ID_TESTCUSTOM_NOTIFICATION                   = ID_TESTTEXTOPTIONS + 7,
-<<<<<<< development/Benchmark_QA
-=======
 
         ID_TESTPLUGIN                                = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x060,
         ID_TESTPLUGIN_NOTIFICATION                   = ID_TESTPLUGIN + 1
->>>>>>> master
 
         ID_BENCHMARK                                 = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x040,
         ID_BENCHMARK_NOTIFICATION                    = ID_BENCHMARK + 1,
