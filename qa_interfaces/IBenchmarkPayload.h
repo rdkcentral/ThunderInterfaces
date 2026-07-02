@@ -71,7 +71,7 @@ namespace Thunder {
 
         virtual Core::hresult SendBuffer(const uint16_t bufferSize, const uint8_t buffer[] /* @length:bufferSize @in */) = 0;
 
-        virtual Core::hresult SendUint32Array(const std::vector<uint32_t>& data /* @restrict:1..1024 */) = 0;
+        virtual Core::hresult SendUint32Vector(const std::vector<uint32_t>& data /* @restrict:1..1024 */) = 0;
 
         virtual Core::hresult SendReceiveUint16(const uint16_t input, uint16_t &output /* @out */) const = 0;
 
@@ -91,7 +91,7 @@ namespace Thunder {
 
         virtual Core::hresult SendReceiveBuffer(uint16_t &bufferSize /* @inout */, uint8_t buffer[] /* @length:bufferSize @inout */) const = 0;
 
-        virtual Core::hresult SendReceiveUint32Array(const std::vector<uint32_t>& input /* @restrict:1..1024 */, std::vector<uint32_t>& output /* @out @restrict:1..1024 */) const = 0;
+        virtual Core::hresult SendReceiveUint32Vector(const std::vector<uint32_t>& input /* @restrict:1..1024 */, std::vector<uint32_t>& output /* @out @restrict:1..1024 */) const = 0;
 
         virtual Core::hresult Add(const uint32_t a, const uint32_t b, uint32_t &result /* @out */) const = 0;
     };
