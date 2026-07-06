@@ -46,12 +46,20 @@ namespace QualityAssurance {
         virtual Core::hresult Unregister(INotification* notification) = 0;
 
         // @property
-        // @brief Current IStateControl state of the plugin
+        // @brief Current IStateControl lifecycle state of the plugin
+        // @detail Returns the full lifecycle state, which is a superset of the
+        //         two-value enum in the production StateControl JSON-RPC schema
+        //         (jsonrpc/StateControl.json).  The additional values are
+        //         intentional for QA use:
+        //           "uninitialized" – no state command has been issued yet
+        //           "resumed"       – plugin is active (matches schema)
+        //           "suspended"     – plugin is suspended (matches schema)
+        //           "exited"        – plugin is shutting down
         virtual Core::hresult State(string& state /* @out */) const = 0;
 
         // @brief Request a state change
         // @param command State command: "resume" or "suspend"
-        // @retval ERROR_INCORRECT_URL Unknown command string
+        // @retval ERROR_UNKNOWN_KEY Unrecognised command string
         virtual Core::hresult Request(const string& command) = 0;
     };
 
