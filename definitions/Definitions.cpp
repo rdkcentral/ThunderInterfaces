@@ -93,6 +93,9 @@
 #include <interfaces/IZigWave.h>
 #include "ValuePoint.h"
 
+#include <qa_interfaces/IBenchmark.h>
+#include <qa_interfaces/IBenchmarkPayload.h>
+#include <qa_interfaces/ITestPlugin.h>
 #include <qa_interfaces/ITestUtility.h>
 #include <qa_interfaces/ITestController.h>
 #include <qa_interfaces/ITestAutomation.h>
