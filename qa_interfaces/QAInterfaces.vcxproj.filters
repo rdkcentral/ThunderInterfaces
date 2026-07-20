@@ -4,10 +4,19 @@
     <ClCompile Include="Module.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="qa_generated\ProxyStubs_Benchmark.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qa_generated\ProxyStubs_BenchmarkPayload.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="qa_generated\ProxyStubs_TestAutomation.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="qa_generated\ProxyStubs_TestController.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qa_generated\ProxyStubs_TestPlugin.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="qa_generated\ProxyStubs_TestUtility.cpp">
@@ -15,10 +24,19 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IBenchmark.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IBenchmarkPayload.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ITestAutomation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ITestController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ITestPlugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ITestUtility.h">

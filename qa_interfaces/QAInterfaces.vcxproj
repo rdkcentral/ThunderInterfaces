@@ -23,13 +23,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp" />
+    <ClCompile Include="qa_generated\ProxyStubs_Benchmark.cpp" />
+    <ClCompile Include="qa_generated\ProxyStubs_BenchmarkPayload.cpp" />
     <ClCompile Include="qa_generated\ProxyStubs_TestAutomation.cpp" />
     <ClCompile Include="qa_generated\ProxyStubs_TestController.cpp" />
+    <ClCompile Include="qa_generated\ProxyStubs_TestPlugin.cpp" />
     <ClCompile Include="qa_generated\ProxyStubs_TestUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IBenchmark.h" />
+    <ClInclude Include="IBenchmarkPayload.h" />
     <ClInclude Include="ITestAutomation.h" />
     <ClInclude Include="ITestController.h" />
+    <ClInclude Include="ITestPlugin.h" />
     <ClInclude Include="ITestUtility.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="QAIds.h" />
