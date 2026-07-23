@@ -102,7 +102,9 @@ namespace QualityAssurance {
         // @param baseline: Iterator over BenchmarkResult entries; apiName and
         //                  roundTrip.avgNs are used for latency comparison,
         //                  memory stats for memory threshold comparison.
-        virtual Core::hresult SetBaseline(IBenchmarkResultIterator* const& baseline /* @in */) = 0;
+        //                  The callee does NOT AddRef or Release the iterator; ownership
+        //                  stays with the caller.
+        virtual Core::hresult SetBaseline(IBenchmarkResultIterator* baseline /* @in */) = 0;
 
         virtual Core::hresult Register(IBenchmark::INotification* sink) = 0;
         virtual Core::hresult Unregister(IBenchmark::INotification* sink) = 0;
