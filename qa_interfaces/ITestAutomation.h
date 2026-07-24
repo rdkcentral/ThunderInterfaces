@@ -119,13 +119,11 @@ namespace QualityAssurance {
             STATUS_AUTH_FAILED = 3 /* @text:auth-error */
         };
 
-        // @brief Set connection status.
+        // @property
+        // @brief Connection status with per-enumerator @text overrides.
         // @param status Status value.
-        virtual Core::hresult SetStatus(const ConnectionStatus status /* @in */) = 0;
-
-        // @brief Get connection status.
-        // @param status Receives current status.
-        virtual Core::hresult GetStatus(ConnectionStatus& status /* @out */) const = 0;
+        virtual Core::hresult Status(const ConnectionStatus status /* @in */) = 0;
+        virtual Core::hresult Status(ConnectionStatus& status /* @out */) const = 0;
 
         // =================================================================
         // Per-method @text override
