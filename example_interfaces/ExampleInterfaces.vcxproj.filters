@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Module.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="example_generated\ProxyStubs_CustomErrorCode.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="example_generated\ProxyStubs_SimpleAsync.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="example_generated\ProxyStubs_SimpleCustomObjects.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="example_generated\ProxyStubs_SimpleInstanceObjects.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExampleIds.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ICustomErrorCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ISimpleAsync.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ISimpleCustomObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ISimpleInstanceObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Module.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{1f0e9208-c56b-4b43-baf0-f32adf3b4389}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{26448c53-5959-4d9b-9095-0f44364cda4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{338a8582-c1e4-4043-8a82-c1e0b9be8e4e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Module.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qa_generated\ProxyStubs_Benchmark.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qa_generated\ProxyStubs_BenchmarkPayload.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qa_generated\ProxyStubs_TestAutomation.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qa_generated\ProxyStubs_TestController.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qa_generated\ProxyStubs_TestPlugin.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qa_generated\ProxyStubs_TestUtility.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IBenchmark.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IBenchmarkPayload.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ITestAutomation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ITestController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ITestPlugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ITestUtility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Module.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QAIds.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{741df02a-cf56-485c-ab9b-0764e5845a2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{1a5c4380-4e66-4b85-89df-664cece5cc36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{33d83961-aace-4246-a76a-50ea2711cc12}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
