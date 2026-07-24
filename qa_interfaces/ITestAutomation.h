@@ -100,7 +100,7 @@ namespace QualityAssurance {
         struct EXTERNAL MixedFieldNames {
             string DeviceName      /* @text:device_id */;
             uint32_t FirmwareVer   /* @text:fw_version */;
-            bool IsOnline;  // No override — follows standard camelCase convention (isOnline in JSON)
+            bool IsOnline;  // No override - follows standard camelCase convention (isOnline in JSON)
         };
 
         // @brief Echo a struct with partial field name overrides.
