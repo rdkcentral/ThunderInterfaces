@@ -93,6 +93,80 @@ namespace QualityAssurance {
         // @retval ERROR_GENERAL Failed to verify
         virtual Core::hresult TestStandard(const uint32_t firstTestParam, const uint32_t secondTestParam, const TestDetails& thirdTestParam, const EnumTextOptions fourthTestParam) = 0;
 
+        // =================================================================
+        // Per-field @text on struct members (partial overrides)
+        // =================================================================
+
+        struct EXTERNAL MixedFieldNames {
+            string DeviceName      /* @text:device_id */;
+            uint32_t FirmwareVer   /* @text:fw_version */;
+            bool IsOnline;  // No override - follows standard camelCase convention (isOnline in JSON)
+        };
+
+        // @brief Echo a struct with partial field name overrides.
+        // @param input Input struct.
+        // @param output Receives echoed struct.
+        virtual Core::hresult EchoMixedFields(const MixedFieldNames& input /* @in */, MixedFieldNames& output /* @out */) const = 0;
+
+        // =================================================================
+        // Per-enumerator @text on enum values
+        // =================================================================
+
+        enum ConnectionStatus : uint8_t {
+            STATUS_IDLE = 0,
+            STATUS_CONNECTING = 1  /* @text:connecting */,
+            STATUS_ACTIVE = 2,
+            STATUS_AUTH_FAILED = 3 /* @text:auth-error */
+        };
+
+        // @property
+        // @brief Connection status with per-enumerator @text overrides.
+        // @param status Status value.
+        virtual Core::hresult Status(const ConnectionStatus status ) = 0;
+        virtual Core::hresult Status(ConnectionStatus& status /* @out */) const = 0;
+
+        // =================================================================
+        // Per-method @text override
+        // C++ name: InternalMethodName → JSON-RPC name: "renamedMethod"
+        // =================================================================
+
+        // @brief Method with overridden JSON-RPC dispatch name.
+        // @text renamedMethod
+        // @param value Input value.
+        // @param result Receives echoed value.
+        virtual Core::hresult InternalMethodName(const uint32_t value /* @in */, uint32_t& result /* @out */) const = 0;
+
+        // =================================================================
+        // @text combined with @alt
+        // Primary: "primaryApi", Alternative: "legacyApi"
+        // C++ name "TextAndAltMethod" is NOT callable via JSON-RPC.
+        // =================================================================
+
+        // @brief Method with both text rename and alt alternative.
+        // @text primaryApi
+        // @alt legacyApi
+        // @param value Input value.
+        // @param result Receives echoed value.
+        virtual Core::hresult TextAndAltMethod(const uint32_t value /* @in */, uint32_t& result /* @out */) const = 0;
+
+        // =================================================================
+        // Event trigger (for verifying event naming under convention)
+        // =================================================================
+
+        // @brief Register for notifications.
+        virtual Core::hresult Register(INotification* notification) = 0;
+
+        // @brief Unregister from notifications.
+        virtual Core::hresult Unregister(INotification* notification) = 0;
+
+        // @brief Trigger the test event for event name verification.
+        // @param firstTestParam First param.
+        // @param secondTestParam Second param.
+        // @param thirdTestParam Struct param.
+        // @param fourthTestParam Enum param.
+        virtual Core::hresult TriggerEvent(const uint32_t firstTestParam /* @in */, const uint32_t secondTestParam /* @in */,
+            const TestDetails& thirdTestParam /* @in */, const EnumTextOptions fourthTestParam /* @in */) = 0;
+
 
         // @json 1.0.0 @text:legacy_lowercase
         struct EXTERNAL ITestLegacy : virtual public Core::IUnknown {
