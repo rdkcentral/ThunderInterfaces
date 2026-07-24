@@ -98,9 +98,9 @@ namespace QualityAssurance {
         // =================================================================
 
         struct EXTERNAL MixedFieldNames {
-            string DeviceName      /* @text device_id */;
-            uint32_t FirmwareVer   /* @text fw_version */;
-            bool IsOnline;  // No override — follows standard convention
+            string DeviceName      /* @text:device_id */;
+            uint32_t FirmwareVer   /* @text:fw_version */;
+            bool IsOnline;  // No override — follows standard camelCase convention (isOnline in JSON)
         };
 
         // @brief Echo a struct with partial field name overrides.
@@ -114,11 +114,9 @@ namespace QualityAssurance {
 
         enum ConnectionStatus : uint8_t {
             STATUS_IDLE = 0,
-            // @text connecting
-            STATUS_CONNECTING = 1,
+            STATUS_CONNECTING = 1  /* @text:connecting */,
             STATUS_ACTIVE = 2,
-            // @text auth-error
-            STATUS_AUTH_FAILED = 3
+            STATUS_AUTH_FAILED = 3 /* @text:auth-error */
         };
 
         // @brief Set connection status.
