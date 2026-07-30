@@ -120,7 +120,7 @@ namespace QualityAssurance {
         };
 
         // @property
-        // @brief Connection status with per-enumerator @text overrides.
+        // @brief Connection status with per-enumerator text overrides.
         // @param status Status value.
         virtual Core::hresult Status(const ConnectionStatus status ) = 0;
         virtual Core::hresult Status(ConnectionStatus& status /* @out */) const = 0;
