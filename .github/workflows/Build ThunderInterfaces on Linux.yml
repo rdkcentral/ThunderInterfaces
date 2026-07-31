@@ -24,7 +24,7 @@ jobs:
 
   ThunderNanoServices:
     needs: ThunderInterfaces
-    uses: rdkcentral/ThunderNanoServices/.github/workflows/Linux build template.yml@development/increase_text_tag_coverage #tmp change
+    uses: rdkcentral/ThunderNanoServices/.github/workflows/Linux build template.yml@master
 
   ThunderNanoServicesRDK:
     needs: ThunderInterfaces
