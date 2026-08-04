@@ -37,25 +37,25 @@ namespace Exchange {
         ~IES1Benchmark() override = default;
 
         // @text echostring
-        virtual uint32_t EchoString(const string& value /* @in */, string& echo /* @out */) = 0;
+        virtual uint32_t EchoString(const string& value /* @in */, string& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
 
         // @text echoarray
-        virtual uint32_t EchoArray(const std::vector<uint8_t>& values /* @in @restrict:0..256K */, std::vector<uint8_t>& echo /* @out @restrict:0..256K */) = 0;
+        virtual uint32_t EchoArray(const std::vector<uint8_t>& values /* @in @restrict:0..256K */, std::vector<uint8_t>& echo /* @out @restrict:0..256K */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
 
         // @text echoint32
-        virtual uint32_t EchoUint32(const uint32_t value /* @in */, uint32_t& echo /* @out */) = 0;
+        virtual uint32_t EchoUint32(const uint32_t value /* @in */, uint32_t& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
 
         // @text echoint64
-        virtual uint32_t EchoUint64(const uint64_t value /* @in */, uint64_t& echo /* @out */) = 0;
+        virtual uint32_t EchoUint64(const uint64_t value /* @in */, uint64_t& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
 
         // @text echobool
-        virtual uint32_t EchoBool(const bool value /* @in */, bool& echo /* @out */) = 0;
+        virtual uint32_t EchoBool(const bool value /* @in */, bool& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
 
         // @text echofloat
-        virtual uint32_t EchoFloat(const float value /* @in */, float& echo /* @out */) = 0;
+        virtual uint32_t EchoFloat(const float value /* @in */, float& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
 
         // @text echodouble
-        virtual uint32_t EchoDouble(const double value /* @in */, double& echo /* @out */) = 0;
+        virtual uint32_t EchoDouble(const double value /* @in */, double& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
     };
 
 } // namespace Exchange
