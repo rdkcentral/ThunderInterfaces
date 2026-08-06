@@ -36,11 +36,47 @@ namespace Exchange {
 
         ~IES1Benchmark() override = default;
 
+        struct MixedElement {
+            uint32_t id    /* @brief Element identifier */;
+            string   name  /* @brief Element name */;
+            double   value /* @brief Element floating-point value */;
+            bool     flag  /* @brief Element boolean flag */;
+        };
+
+        // Nested structs for deep container traversal benchmark (4 levels)
+        struct Level4Data {
+            uint32_t value /* @brief Leaf integer value */;
+            string   name  /* @brief Leaf string value */;
+        };
+
+        struct Level3Data {
+            Level4Data inner /* @brief Level-4 nested object */;
+            uint32_t   count /* @brief Level-3 integer */;
+        };
+
+        struct Level2Data {
+            Level3Data nested /* @brief Level-3 nested object */;
+            string     label  /* @brief Level-2 string */;
+        };
+
+        struct NestedObject {
+            uint32_t   id    /* @brief Object identifier */;
+            bool       flag  /* @brief Object boolean */;
+            double     score /* @brief Object score */;
+            Level2Data data  /* @brief Level-2 nested object */;
+        };
+
         // @text echostring
         virtual uint32_t EchoString(const string& value /* @in */, string& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
 
         // @text echoarray
         virtual uint32_t EchoArray(const std::vector<uint8_t>& values /* @in @restrict:0..256K */, std::vector<uint8_t>& echo /* @out @restrict:0..256K */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
+
+        // @text echomixedarray
+        virtual uint32_t EchoMixedArray(const std::vector<MixedElement>& elements /* @in @restrict:0..4228 */, std::vector<MixedElement>& echo /* @out @restrict:0..4228 */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
+
+        // @text echonestedobjects
+        virtual uint32_t EchoNestedObjects(const std::vector<NestedObject>& objects /* @in @restrict:0..1736 */, std::vector<NestedObject>& echo /* @out @restrict:0..1736 */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
 
         // @text echoint32
         virtual uint32_t EchoUint32(const uint32_t value /* @in */, uint32_t& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
