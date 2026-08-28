@@ -95,6 +95,17 @@ namespace QualityAssurance {
             virtual void PerformanceCheckCompleted() = 0;
         };
 
+        // @brief Set an explicit baseline from externally-supplied results, e.g. from a
+        //        previous release run, so that the next trigger compares against it
+        //        without requiring a warm-up run first.
+        //        Setting LatencyThreshold() or MemoryThreshold() still clears this baseline.
+        // @param baseline: Iterator over BenchmarkResult entries; apiName and
+        //                  roundTrip.avgNs are used for latency comparison,
+        //                  memory stats for memory threshold comparison.
+        //                  The callee does NOT AddRef or Release the iterator; ownership
+        //                  stays with the caller.
+        virtual Core::hresult SetBaseline(IBenchmarkResultIterator* baseline /* @in */) = 0;
+
         virtual Core::hresult Register(IBenchmark::INotification* sink) = 0;
         virtual Core::hresult Unregister(IBenchmark::INotification* sink) = 0;
     };
