@@ -29,23 +29,24 @@ namespace Exchange {
 
         ~IPluginAsyncStateControl() override = default;
 
-        struct EXTERNAL IActivationCallback : virtual public Core::IUnknown {
+        struct EXTERNAL IRequestCallback : virtual public Core::IUnknown {
             enum { ID = ID_PLUGINASYNCSTATECONTROL_ACTIVATIONCALLBACK };
-            ~IActivationCallback() override = default;
+            ~IRequestCallback() override = default;
 
+            // @encode:text
             enum class state : uint8_t {
                 SUCCESS,
                 FAILURE,
                 ABORTED
             };
 
-            // @brief callback called when an activation request has finished. Note this can be called while the Activate call has not yet returned
-            // @param state result state of the activation request (ABORTED when AbortActivate was called AND the plugin did not reach activated state yet before the request was aborted, otherwise SUCCESS will be reported as a result of an AbortActivate request)
-            // @param numberofretries Number of retries that happened the moment this callback was called
+            // @brief callback called when an activation or deactivation request has finished. Note this can be called while the Activate or Deactivate call has not yet returned
+            // @param state result state of the request (ABORTED when AbortActivate was called AND the plugin did not reach activated state yet before the request was aborted, otherwise SUCCESS will be reported as a result of an AbortActivate request)
+            // @param numberofretries Number of retries that happened the moment this callback was called (note no meaning for a Deactivate callback)
             virtual void Finished(const string& callsign, const state state, const uint8_t numberofretries) = 0;
         };
 
-        // @brief Activate a plugin. Passed callbcak will be called on failure or success
+        // @brief Activate a plugin. Passed callback will be called on failure or success
         // @param callsign: callsign of plugin to activate
         // @param maxnumberretries: maximum number of retries to initialize the plugin (default used when not specified)
         // @param delay: delay to be used (in ms) between initialization retries (default used when not specified)
@@ -53,12 +54,16 @@ namespace Exchange {
         // @retval ERROR_INPROGRESS Activation request is already in progress for this callsign
         // @retval ERROR_ILLEGAL_STATE Plugin with this callsign is in an invalid state for it to be able to be started (e.g. DESTROYED or UNAVAILABLE)
         // @retval ERROR_NOT_EXIST Plugin is unknown to Thunder (at this moment in case of Dynamic plugins)
-        virtual Core::hresult Activate(const string& callsign, const Core::OptionalType<uint8_t>& maxnumberretries, const Core::OptionalType<uint16_t>& delay, IActivationCallback* const cb) = 0;
+        virtual Core::hresult Activate(const string& callsign, const Core::OptionalType<uint8_t>& maxnumberretries, const Core::OptionalType<uint16_t>& delay, IRequestCallback* const cb) = 0;
 
-        // @brief Abort a previously started Activate request
-        // @retval ERROR_NOT_EXIST There is no ongoing activation request 
-        virtual Core::hresult AbortActivate(const string& callsign) = 0;
+        // @brief Deactivate a plugin. Passed callback will be called on failure or success
+        // @param callsign: callsign of plugin to deactivate
+        // @param cb: callback interface called on success or failure
+        virtual Core::hresult Deactivate(const string& callsign, IRequestCallback* const cb) = 0;
 
+        // @brief Abort a previously started Activate or Deactivate request
+        // @retval ERROR_NOT_EXIST There is no ongoing activation or deactivation request 
+        virtual Core::hresult AbortRequest(const string& callsign) = 0;
     };
 }
 }
