@@ -19,15 +19,3 @@ jobs:
     uses: ./.github/workflows/Linux build template.yml
     with:
       thunder_interfaces_ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
-
-  ThunderClientLibraries:
-    needs: ThunderInterfaces
-    uses: rdkcentral/ThunderClientLibraries/.github/workflows/Linux build template.yml@master
-
-  ThunderNanoServices:
-    needs: ThunderInterfaces
-    uses: rdkcentral/ThunderNanoServices/.github/workflows/Linux build template.yml@master
-
-  ThunderNanoServicesRDK:
-    needs: ThunderInterfaces
-    uses: WebPlatformForEmbedded/ThunderNanoServicesRDK/.github/workflows/Linux build template.yml@master
