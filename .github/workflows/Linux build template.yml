@@ -5,6 +5,11 @@ permissions:
 
 on:
   workflow_call:
+    inputs:
+      thunder_interfaces_ref:
+        required: false
+        type: string
+        default: R5_3
 
 jobs:
   ThunderInterfaces:
@@ -81,6 +86,7 @@ jobs:
       with:
         path: ThunderInterfaces
         repository: rdkcentral/ThunderInterfaces
+        ref: ${{ inputs.thunder_interfaces_ref }}
 
     - name: Regex ThunderInterfaces
       if: contains(github.event.pull_request.body, '[DependsOn=ThunderInterfaces:')
