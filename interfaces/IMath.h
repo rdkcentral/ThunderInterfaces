@@ -45,7 +45,7 @@ namespace Thunder {
         // @json 1.0.0
         struct EXTERNAL IMathExtended : virtual public Core::IUnknown {
 
-            // interface used for examples that need an event, event in itself might not be aproprtiate fot this use case
+            // interface used for examples that need an event, event in itself might not be appropriate for this use case
 
             enum { ID = ID_MATHEXTENDED };
 
