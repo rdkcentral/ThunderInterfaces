@@ -51,22 +51,24 @@ namespace Thunder {
 namespace Example {
 
     enum IDS : uint32_t {
-        
+
         ID_SIMPLEASYNC                               = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x010,
         ID_CALLBACK                                  = ID_SIMPLEASYNC + 1,
         ID_ASYNC_NOTIFICATION                        = ID_SIMPLEASYNC + 2,
         ID_BIND_NOTIFICATION                         = ID_SIMPLEASYNC + 3,
-        
+
 
         ID_SIMPLEINSTANCEOBJECTS                     = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x020,
         ID_DEVICE                                    = ID_SIMPLEINSTANCEOBJECTS + 1,
         ID_INSTANCE_NOTIFICATION                     = ID_SIMPLEINSTANCEOBJECTS + 2,
-        
+
         ID_SIMPLECUSTOMOBJECTS                       = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x030,
         ID_ACCESSORY                                 = ID_SIMPLECUSTOMOBJECTS + 1,
         ID_CUSTOM_NOTIFICATION                       = ID_SIMPLECUSTOMOBJECTS + 2,
 
-        ID_CUSTOMERRORCODE                           = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x040
+        ID_CUSTOMERRORCODE                           = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x040,
+
+        ID_SIMPLERICHERROR                           = RPC::IDS::ID_EXTERNAL_EXAMPLE_INTERFACE_OFFSET + 0x050
 
     };
 }
