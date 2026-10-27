@@ -35,5 +35,29 @@ namespace WPEFramework {
             virtual uint32_t Add(const uint16_t A, const uint16_t B, uint16_t& sum /* @out */)  const = 0;
             virtual uint32_t Sub(const uint16_t A, const uint16_t B, uint16_t& sum /* @out */)  const = 0;
         };
+
+        // @json 1.0.0
+        struct EXTERNAL IMathExtended : virtual public Core::IUnknown {
+
+            // interface used for examples that need an event, event in itself might not be appropriate for this use case
+
+            enum { ID = ID_MATHEXTENDED };
+
+            ~IMathExtended() override = default;
+
+            // @event
+            struct EXTERNAL INotification : virtual public Core::IUnknown {
+                enum { ID = ID_MATHEXTENDED_NOTIFICATION };
+
+                ~INotification() override = default;
+
+                virtual void MultiplyResult(const uint32_t result) = 0;
+            };
+
+            virtual Core::hresult Register(INotification* const notification) = 0;
+            virtual Core::hresult Unregister(const INotification* const notification) = 0;
+
+            virtual Core::hresult Multiply(const uint16_t A, const uint16_t B) = 0;
+        };
     }
 }
