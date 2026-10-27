@@ -27,6 +27,7 @@
     <ClCompile Include="example_generated\ProxyStubs_SimpleAsync.cpp" />
     <ClCompile Include="example_generated\ProxyStubs_SimpleCustomObjects.cpp" />
     <ClCompile Include="example_generated\ProxyStubs_SimpleInstanceObjects.cpp" />
+    <ClCompile Include="example_generated\ProxyStubs_SimpleRichError.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="definitions.h" />
@@ -35,6 +36,7 @@
     <ClInclude Include="ISimpleAsync.h" />
     <ClInclude Include="ISimpleCustomObjects.h" />
     <ClInclude Include="ISimpleInstanceObjects.h" />
+    <ClInclude Include="ISimpleRichError.h" />
     <ClInclude Include="Module.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

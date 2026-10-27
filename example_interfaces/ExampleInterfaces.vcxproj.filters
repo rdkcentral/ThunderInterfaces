@@ -16,6 +16,9 @@
     <ClCompile Include="example_generated\ProxyStubs_SimpleInstanceObjects.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="example_generated\ProxyStubs_SimpleRichError.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="definitions.h">
@@ -34,6 +37,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ISimpleInstanceObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ISimpleRichError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Module.h">
