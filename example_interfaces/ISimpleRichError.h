@@ -37,7 +37,7 @@ namespace Example {
                 NO_WATER,
                 NO_MILK,
                 NO_BEANS,
-                TRIP_TRAY_FULL,
+                DRIP_TRAY_FULL,
                 GROUNDS_CONTAINER_FULL
             };
 
