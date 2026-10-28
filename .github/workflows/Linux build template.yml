@@ -85,8 +85,8 @@ jobs:
       uses: actions/checkout@v4
       with:
         path: ThunderInterfaces
-        repository: rdkcentral/ThunderInterfaces
-        ref: ${{ inputs.thunderinterfaces_ref }}
+        repository: ${{ github.repository == 'rdkcentral/ThunderInterfaces' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name || 'rdkcentral/ThunderInterfaces' }}
+        ref: ${{ github.repository == 'rdkcentral/ThunderInterfaces' && github.event_name == 'pull_request' && github.event.pull_request.head.sha || inputs.thunderinterfaces_ref }}
 
     - name: Regex ThunderInterfaces
       if: contains(github.event.pull_request.body, '[DependsOn=ThunderInterfaces:')
