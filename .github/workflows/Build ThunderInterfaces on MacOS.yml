@@ -21,6 +21,8 @@ jobs:
   ThunderInterfaces_MacOS:
     needs: Thunder_MacOS
     uses: ./.github/workflows/MacOS build template.yml
+    with:
+      source-repository: ${{ github.repository }}
 
   ThunderClientLibraries_MacOS:
     needs: ThunderInterfaces_MacOS

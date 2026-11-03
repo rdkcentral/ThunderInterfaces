@@ -21,6 +21,8 @@ jobs:
   ThunderInterfaces:
     needs: Thunder
     uses: ./.github/workflows/Linux build template.yml
+    with:
+      source-repository: ${{ github.repository }}
 
   ThunderClientLibraries:
     needs: ThunderInterfaces
