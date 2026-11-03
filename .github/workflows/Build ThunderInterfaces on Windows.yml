@@ -10,9 +10,9 @@ concurrency:
 on:
   workflow_dispatch:
   push:
-    branches: ["master"]
+    branches: ["master", "R*"]
   pull_request:
-    branches: ["master"]
+    branches: ["master", "R*"]
 
 env:
   definitions: ThunderInterfaces\definitions\definitions.vcxproj
@@ -31,29 +31,47 @@ jobs:
     name: Build type - ${{matrix.type}}${{matrix.version}}
     steps:
 # ----- Checkout -----
+    - name: Resolve release dependency branch
+      id: release
+      shell: bash
+      env:
+        BUILD_BRANCH: ${{ github.base_ref || github.ref_name }}
+        REF_TYPE: ${{ github.ref_type }}
+      run: |
+        release_ref=
+        if [[ "$REF_TYPE" == 'branch' && "$BUILD_BRANCH" == R* ]]; then
+          release_ref="refs/heads/$BUILD_BRANCH"
+        fi
+        echo "ref=$release_ref" >> "$GITHUB_OUTPUT"
+        echo "Dependency branch: ${release_ref:-repository default}"
+
     - name: Checkout ThunderOnWindows
       uses: actions/checkout@v5
       with:
         path: ThunderOnWindows
         repository: WebPlatformForEmbedded/ThunderOnWindows
+        ref: ${{ steps.release.outputs.ref }}
 
     - name: Checkout Thunder
       uses: actions/checkout@v5
       with:
         path: ThunderOnWindows/Thunder
         repository: ${{github.repository_owner}}/Thunder
+        ref: ${{ steps.release.outputs.ref }}
 
     - name: Checkout ThunderTools
       uses: actions/checkout@v5
       with:
         path: ThunderOnWindows/ThunderTools
         repository: ${{github.repository_owner}}/ThunderTools
+        ref: ${{ steps.release.outputs.ref }}
 
     - name: Checkout ThunderClientLibraries
       uses: actions/checkout@v5
       with:
         path: ThunderOnWindows/ThunderClientLibraries
         repository: ${{github.repository_owner}}/ThunderClientLibraries
+        ref: ${{ steps.release.outputs.ref }}
 
     - name: Checkout ThunderInterfaces
       uses: actions/checkout@v5
@@ -66,12 +84,29 @@ jobs:
       with:
         path: ThunderOnWindows/ThunderNanoServices
         repository: ${{github.repository_owner}}/ThunderNanoServices
+        ref: ${{ steps.release.outputs.ref }}
 
     - name: Checkout ThunderNanoServicesRDK
       uses: actions/checkout@v5
       with:
         path: ThunderOnWindows/ThunderNanoServicesRDK
         repository: WebPlatformForEmbedded/ThunderNanoServicesRDK
+        ref: ${{ steps.release.outputs.ref }}
+
+    - name: Log source revisions
+      shell: bash
+      run: |
+        for repository in \
+          ThunderOnWindows \
+          ThunderOnWindows/Thunder \
+          ThunderOnWindows/ThunderTools \
+          ThunderOnWindows/ThunderClientLibraries \
+          ThunderOnWindows/ThunderInterfaces \
+          ThunderOnWindows/ThunderNanoServices \
+          ThunderOnWindows/ThunderNanoServicesRDK
+        do
+          git -C "$repository" log -1 --format="$repository: %H"
+        done
 
 # ----- Building -----
     - name: Install jsonref
