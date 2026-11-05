@@ -80,6 +80,7 @@
 #include <interfaces/IDeviceInfo.h>
 #include <interfaces/IWatchDog.h>
 #include <interfaces/IZigWave.h>
+#include <interfaces/ISimpleRichError.h>
 #include "ValuePoint.h"
 #endif
 
