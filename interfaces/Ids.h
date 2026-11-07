@@ -188,6 +188,7 @@ namespace Exchange {
         ID_DSGCC_CLIENT_NOTIFICATION                 = ID_DSGCC_CLIENT + 1,
 
         ID_PERFORMANCE                               = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x230,
+        ID_PERFORMANCE_STATISTICS                    = ID_PERFORMANCE + 1,
 
         ID_WEBPA                                     = RPC::IDS::ID_EXTERNAL_INTERFACE_OFFSET + 0x240,
         ID_WEBPA_CLIENT                              = ID_WEBPA + 1,
