@@ -79,6 +79,9 @@ namespace QualityAssurance {
         ID_TESTPLUGIN                                = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x060,
         ID_TESTPLUGIN_NOTIFICATION                   = ID_TESTPLUGIN + 1,
 
+        ID_TESTDELEGATEDRELEASE                      = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x070,
+        ID_TESTDELEGATEDRELEASEPEER                  = ID_TESTDELEGATEDRELEASE + 1,
+
         ID_BENCHMARK                                 = RPC::IDS::ID_EXTERNAL_QA_INTERFACE_OFFSET + 0x040,
         ID_BENCHMARK_NOTIFICATION                    = ID_BENCHMARK + 1,
         ID_BENCHMARK_RESULT_ITERATOR                 = ID_BENCHMARK + 2,
