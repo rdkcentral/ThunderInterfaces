@@ -104,6 +104,7 @@
 #include <example_interfaces/ISimpleAsync.h>
 #include <example_interfaces/ISimpleCustomObjects.h>
 #include <example_interfaces/ICustomErrorCode.h>
+#include <example_interfaces/ISimpleRichError.h>
 #endif
 
 namespace Thunder {
