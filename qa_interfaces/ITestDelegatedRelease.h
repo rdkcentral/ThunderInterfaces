@@ -33,7 +33,12 @@ namespace QualityAssurance {
         ~ITestDelegatedRelease() override = default;
 
         virtual Core::hresult Ping(uint32_t& value /* @out */) = 0;
-        virtual Core::hresult HoldPeer(ITestDelegatedReleasePeer* peer) = 0;
+        // @brief Retain a peer for the lifetime of the COM-RPC channel.
+        //        Each call retains one reference; the references are released when the channel closes.
+        // @param peer: Interface pointer the callee keeps beyond the call. The callee MUST AddRef()
+        //              it to retain it; otherwise it may be destroyed when the call returns.
+        //              The caller keeps and releases its own reference.
+        virtual Core::hresult HoldPeer(ITestDelegatedReleasePeer* peer /* @in */) = 0;
     };
 
 } // namespace QualityAssurance
