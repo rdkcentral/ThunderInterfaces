@@ -29,11 +29,13 @@ namespace QualityAssurance {
         : virtual public Core::IUnknown {
         enum { ID = ID_PERCALLSIGNREGISTRATION_TEST };
 
-        /** @brief Start monitoring plugin lifecycle notifications through IShell. */
+        /** @brief Start monitoring plugin lifecycle notifications through IShell. Each call adds one registration; returns ERROR_ALREADY_CONNECTED if this exact callsign (or the wildcard) is already registered.
+         *  @param callsign Plugin to monitor. If unset or empty, one wildcard registration is added that receives notifications for all plugins; wildcard and per-callsign registrations can be active at the same time. */
         virtual Core::hresult MonitorShell(
             const Core::OptionalType<string>& callsign /* @index */) = 0;
 
-        /** @brief Stop an IShell notification registration. */
+        /** @brief Stop one IShell notification registration. Never removes more than one registration; returns ERROR_NOT_EXIST if no registration matches.
+         *  @param callsign Callsign used in the matching MonitorShell() call. If unset or empty, only the wildcard registration is removed; per-callsign registrations stay active. */
         virtual Core::hresult StopMonitoringShell(
             const Core::OptionalType<string>& callsign /* @index */) = 0;
 
@@ -46,11 +48,13 @@ namespace QualityAssurance {
         /** @brief Return the latest IShell notification. @param notification The notification. */
         virtual Core::hresult LastShellNotification(string& notification /* @out */) const = 0;
 
-        /** @brief Start monitoring plugin state notifications through IController. */
+        /** @brief Start monitoring plugin state notifications through IController. Each call adds one registration; returns ERROR_ALREADY_CONNECTED if this exact callsign (or the wildcard) is already registered, otherwise the result of ILifeTime::Register().
+         *  @param callsign Plugin to monitor. If unset or empty, one wildcard registration is added that receives notifications for all plugins; wildcard and per-callsign registrations can be active at the same time. */
         virtual Core::hresult MonitorController(
             const Core::OptionalType<string>& callsign /* @index */) = 0;
 
-        /** @brief Stop an IController notification registration. */
+        /** @brief Stop one IController notification registration. Never removes more than one registration; returns ERROR_NOT_EXIST if no registration matches, otherwise the result of ILifeTime::Unregister().
+         *  @param callsign Callsign used in the matching MonitorController() call. If unset or empty, only the wildcard registration is removed; per-callsign registrations stay active. */
         virtual Core::hresult StopMonitoringController(
             const Core::OptionalType<string>& callsign /* @index */) = 0;
 
